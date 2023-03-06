@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('halo');
+    return redirect('/login');
+});
+
+# Auth routes.
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate'])->middleware('guest');
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
+
+# Dashboard routes.
+Route::get('/dashboard', function () {
+    return 'halodek';
 });
