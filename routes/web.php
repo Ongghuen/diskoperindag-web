@@ -25,5 +25,5 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 # Dashboard routes.
 Route::get('/dashboard', function () {
-    return 'halodek';
+    return view('pages.dashboard');
 });
