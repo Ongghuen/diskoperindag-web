@@ -19,14 +19,27 @@
                     <span class="nav-profile-name">Louis Barnett</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item">
-                        <i class="mdi mdi-settings text-primary"></i>
-                        Settings
-                    </a>
-                    <a class="dropdown-item" href="/logout">
+
+                    <button data-bs-toggle="modal" data-bs-target="#profilemodal" class="dropdown-item"><i
+                            class="mdi mdi-settings text-primary"></i>
+                        Profile
+                        </a></button>
+
+                    <button data-bs-toggle="modal" data-bs-target="#logoutmodal" class="dropdown-item"><i
+                            class="mdi mdi-logout text-primary"></i>
+                        Logout
+                        </a></button>
+
+                    {{-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profilemodal">
+                        <i class="mdi mdi-settings text-primary" data-bs-toggle="modal"
+                            data-bs-target="#profilemodal"></i>
+                        Profile
+                    </a> --}}
+
+                    {{-- <a class="dropdown-item" href="/logout">
                         <i class="mdi mdi-logout text-primary"></i>
                         Logout
-                    </a>
+                    </a> --}}
                 </div>
             </li>
         </ul>

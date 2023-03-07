@@ -14,9 +14,10 @@
             </div>
         </div>
 
-
         @yield('content')
-
         @include('partials.footer')
+
     </div>
+    @include('partials.logout_profil')
+
 </div>
