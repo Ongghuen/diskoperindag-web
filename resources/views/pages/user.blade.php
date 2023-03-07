@@ -9,6 +9,10 @@
     User
 @endsection
 
+@section('tagline')
+    Kelola data pengguna anda.
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12 stretch-card">
@@ -17,14 +21,7 @@
                     <div class="d-flex align-items-center mb-2">
                         <p class="card-title">Table User</p>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#ModalTambah"
-                            class="btn btn-dark btn-rounded btn-fw ms-auto">Tambah Data</button>
-                        {{-- <button class="btn btn-secondary btn-sm ms-auto" data-bs-toggle="modal"
-                            data-bs-target="#modal-lokasi">Lokasi</button>
-                        <button class="btn btn-primary btn-sm ms-2" data-bs-toggle="modal"
-                            data-bs-target="#modal-bayar">Bayar</button>
-                        <button class="btn btn-success btn-sm ms-2" data-bs-toggle="modal"
-                            data-bs-target="#modal-tambah">Order</button> --}}
-
+                            class="btn btn-dark btn-fw ms-auto btn-sm">Tambah</button>
                     </div>
 
                     <ul class="navbar-nav mr-lg-4 w-100">
@@ -40,68 +37,71 @@
                             </div>
                         </li>
                     </ul>
+                    @if(Session::has('status'))
+                        <div class="alert alert-success alert-dismissible fade show font-weight-bold my-2" role="alert">
+                            {{Session::get('message')}}
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table id="recent-purchases-listing" class="table">
-
                             <thead>
-
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Nama</th>
                                     <th>NIK</th>
-                                    <th>Address</th>
                                     <th>Phone</th>
-                                    <th>Gender</th>
                                     <th>Action</th>
-
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>wkwkwkw</td>
-                                    <td>wkwkwkwk</td>
-                                    <td>wkwkwkwk</td>
-                                    <td>wkwkwkwk</td>
-                                    <td>wkwkwkwk</td>
-                                    <td>wkwkwkwk</td>
-                                    <td class="align-middle text-center">
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#ModalHapus"
-                                            class="btn btn-danger btn-rounded px-3 py-1 me-1 mt-3">Hapus</button>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#ModalUbah"
-                                            class="btn btn-warning btn-rounded px-3 py-1 me-1 mt-3">Ubah</button>
-                                    </td>
-                                </tr>
-                                {{-- modal Hapus --}}
+                                @foreach ($userList as $item)
+                                    <tr>
+                                        <td>{{$loop->iteration + $userList->firstItem() - 1}}</td>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{$item->NIK}}</td>
+                                        <td>{{$item->phone}}</td>
+                                        <td class="align-middle text-center">
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalHapus{{$item->id}}">
+                                                hapus
+                                            </a>
+                                            <a href="/user" data-bs-toggle="modal" data-bs-target="#ModalUbah" class="mx-2">
+                                                edit
+                                            </a>
+                                            <a href="/user" data-bs-toggle="modal" data-bs-target="#ModalDetail">
+                                                detail
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
-                                <div class="modal fade" id="ModalHapus" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Hapus Data</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <h5>Anda Yakin Menghapus Data ?</h5>
+                                @foreach ($userList as $item)
+                                    {{-- modal Hapus --}}
+                                    <div class="modal fade" id="ModalHapus{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Hapus Data</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form action="/user-destroy/{{$item->id}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="modal-body">
+                                                        <p>Anda Yakin Menghapus Data user {{$item->name}} ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </div>
                                                 </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Send message</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                {{-- end modal Hapus --}}
+                                    {{-- end modal Hapus --}}
+                                @endforeach
 
                                 {{-- modal edit --}}
-
                                 <div class="modal fade" id="ModalUbah" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
@@ -161,19 +161,10 @@
 
                                 {{-- end modal edit --}}
                             </tbody>
-
                         </table>
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center mt-3">
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
+                                {{$userList->links('pagination::bootstrap-4')}}
                             </ul>
                         </nav>
                     </div>
@@ -190,56 +181,54 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Tambah Data</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-
-                        <form class="forms-sample">
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Nama</label>
-                                <input type="text" class="form-control" id="exampleInputUsername1"
-                                    placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">NIK</label>
-                                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="NIK">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Address">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Phone</label>
-                                <input type="text" class="form-control" id="exampleInputUsername1"
-                                    placeholder="Phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Gender</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Gender">
-                            </div>
-
-
-                        </form>
-
-                        <div class="modal-footer">
-                            <button class="btn btn-primary me-2">Submit</button>
-                            <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <div class="modal-body">
+                            <form class="forms-sample" action="/user" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">Nama</label>
+                                    <input type="text" class="form-control" id="exampleInputUsername1"
+                                        placeholder="Name" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">NIK</label>
+                                    <input type="text" class="form-control" id="exampleInputUsername1" name="NIK" placeholder="NIK">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputAddress1">Alamat</label>
+                                    <input type="text" name="alamat" class="form-control" id="exampleInputAddress1"
+                                        placeholder="Alamat">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPhone1">No. Telepon</label>
+                                    <input type="text" name="phone" class="form-control" id="exampleInputPhone1"
+                                        placeholder="No. Telepon">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option value="Laki-Laki">L</option>
+                                        <option value="Perempuan">P</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                    <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
-
-       
-
-
     </div>
-
-
     {{-- end modal add --}}
+
 @endsection

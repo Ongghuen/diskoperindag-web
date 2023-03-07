@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,20 +25,6 @@ Route::post('/login', [AuthController::class, 'authenticate'])->middleware('gues
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 # Dashboard routes.
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-});
-
-
-Route::get('/bantuan', function () {
-    return view('pages.bantuan');
-});
-
-
-Route::get('/user', function () {
-    return view('pages.user');
-});
-
-Route::get('/data', function () {
-    return view('pages.data');
-});
+Route::get('/user', [UserController::class, 'index'])->middleware('auth');
+Route::post('/user', [UserController::class, 'store'])->middleware('auth');
+Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');

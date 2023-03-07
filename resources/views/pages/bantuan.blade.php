@@ -9,15 +9,19 @@
     Bantuan
 @endsection
 
+@section('tagline')
+    Kelola data bantuan anda.
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
-                        <p class="card-title">Table User</p>
+                        <p class="card-title">Table Bantuan</p>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#ModalTambah"
-                            class="btn btn-dark btn-rounded btn-fw ms-auto">Tambah Data</button>
+                            class="btn btn-dark btn-sm btn-fw ms-auto">Tambah</button>
                         {{-- <button class="btn btn-secondary btn-sm ms-auto" data-bs-toggle="modal"
                             data-bs-target="#modal-lokasi">Lokasi</button>
                         <button class="btn btn-primary btn-sm ms-2" data-bs-toggle="modal"
