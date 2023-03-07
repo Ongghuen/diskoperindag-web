@@ -14,10 +14,32 @@
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-title">Table Data</p>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#ModalTambah"
-                        class="btn btn-dark btn-rounded btn-fw">Tambah Data</button>
-                    <br><br>
+                    <div class="d-flex align-items-center mb-2">
+                        <p class="card-title">Table User</p>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#ModalTambah"
+                            class="btn btn-dark btn-rounded btn-fw ms-auto">Tambah Data</button>
+                        {{-- <button class="btn btn-secondary btn-sm ms-auto" data-bs-toggle="modal"
+                            data-bs-target="#modal-lokasi">Lokasi</button>
+                        <button class="btn btn-primary btn-sm ms-2" data-bs-toggle="modal"
+                            data-bs-target="#modal-bayar">Bayar</button>
+                        <button class="btn btn-success btn-sm ms-2" data-bs-toggle="modal"
+                            data-bs-target="#modal-tambah">Order</button> --}}
+
+                    </div>
+
+                    <ul class="navbar-nav mr-lg-4 w-100">
+                        <li class="nav-item nav-search d-none d-lg-block w-100">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="search">
+                                        <i class="mdi mdi-magnify"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Search now" aria-label="search"
+                                    aria-describedby="search">
+                            </div>
+                        </li>
+                    </ul>
                     <div class="table-responsive">
                         <table id="recent-purchases-listing" class="table">
                             <thead>
@@ -94,16 +116,7 @@
                                                         <input type="email" class="form-control" id="exampleInputEmail1"
                                                             placeholder="Bantuan">
                                                     </div>
-                                                    {{-- <div class="form-group">
-                                                        <label for="exampleInputPassword1">Password</label>
-                                                        <input type="password" class="form-control" id="exampleInputPassword1"
-                                                            placeholder="Password">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                                                        <input type="password" class="form-control" id="exampleInputConfirmPassword1"
-                                                            placeholder="Password">
-                                                    </div> --}}
+
 
 
                                                 </form>
@@ -120,7 +133,21 @@
 
                                 {{-- end modal edit --}}
                             </tbody>
+
                         </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center mt-3">
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -140,22 +167,15 @@
                         <form class="forms-sample">
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Nama</label>
-                                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Name">
+                                <input type="text" class="form-control" id="exampleInputUsername1"
+                                    placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Bantuan</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Bantuan">
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    placeholder="Bantuan">
                             </div>
-                            {{-- <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                                <input type="password" class="form-control" id="exampleInputConfirmPassword1"
-                                    placeholder="Password">
-                            </div> --}}
+
 
 
                         </form>
