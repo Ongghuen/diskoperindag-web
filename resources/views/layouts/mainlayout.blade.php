@@ -15,6 +15,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.sidebar')
 
     <script src={{ asset("vendors/base/vendor.bundle.base.js") }}></script>
     <script src={{ asset("vendors/chart.js/Chart.min.js") }}></script>

@@ -27,3 +27,17 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
+
+
+Route::get('/bantuan', function () {
+    return view('pages.bantuan');
+});
+
+
+Route::get('/user', function () {
+    return view('pages.user');
+});
+
+Route::get('/data', function () {
+    return view('pages.data');
+});
