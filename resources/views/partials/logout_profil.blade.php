@@ -6,7 +6,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 <form class="forms-sample">
                     <div class="form-group">
                         <label for="exampleInputUsername1">Nama</label>
@@ -17,14 +16,11 @@
                         <label for="exampleInputEmail1">Email</label>
                         <input disabled type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
-
                 </form>
-
                 <div class="modal-footer">
                     {{-- <button class="btn btn-primary me-2">Submit</button> --}}
                     <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -44,7 +40,6 @@
                 <div class="modal-footer">
                     <a href="/logout" class="btn btn-danger me-2">Keluar</a>
                 </div>
-
             </div>
         </div>
     </div>

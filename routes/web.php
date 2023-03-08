@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BantuanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,14 @@ Route::get('/login', [AuthController::class, 'index'])->name('login')->middlewar
 Route::post('/login', [AuthController::class, 'authenticate'])->middleware('guest');
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
-# Dashboard routes.
+# Users routes.
 Route::get('/user', [UserController::class, 'index'])->middleware('auth');
 Route::post('/user', [UserController::class, 'store'])->middleware('auth');
 Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');
 Route::put('/user-update/{id}', [UserController::class, 'update'])->middleware('auth');
+
+# Bantuan routes.
+Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('auth');
+Route::post('/bantuan', [BantuanController::class, 'store'])->middleware('auth');
+Route::delete('/bantuan-destroy/{id}', [BantuanController::class, 'destroy'])->middleware('auth');
+Route::put('/bantuan-update/{id}', [BantuanController::class, 'update'])->middleware('auth');

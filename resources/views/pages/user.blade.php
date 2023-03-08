@@ -216,11 +216,11 @@
                             <tr>
                                 <th>Bantuan</th>
                                 <td>
-                                    @foreach ($item->bantuan as $data)
-                                        <ul>
+                                    <ol>
+                                        @foreach ($item->bantuan as $data)
                                             <li>{{$data->name}}</li>
-                                        </ul>
-                                    @endforeach
+                                        @endforeach
+                                    </ol>
                                 </td>
                             </tr>
                         </table>
