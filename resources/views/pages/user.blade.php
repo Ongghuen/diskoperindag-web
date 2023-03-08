@@ -26,15 +26,17 @@
 
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="search">
-                                        <i class="mdi mdi-magnify"></i>
-                                    </span>
+                            <form action="" method="GET">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="search">
+                                            <i class="mdi mdi-magnify"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Search now" aria-label="search"
+                                        aria-describedby="search" name="keyword">
                                 </div>
-                                <input type="text" class="form-control" placeholder="Search now" aria-label="search"
-                                    aria-describedby="search">
-                            </div>
+                            </form>
                         </li>
                     </ul>
                     @if(Session::has('status'))
@@ -49,6 +51,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIK</th>
+                                    <th>Email</th>
                                     <th>Phone</th>
                                     <th>Action</th>
                                 </tr>
@@ -59,15 +62,16 @@
                                         <td>{{$loop->iteration + $userList->firstItem() - 1}}</td>
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->NIK}}</td>
+                                        <td>{{$item->email}}</td>
                                         <td>{{$item->phone}}</td>
                                         <td class="align-middle text-center">
                                             <a href="" data-bs-toggle="modal" data-bs-target="#ModalHapus{{$item->id}}">
                                                 hapus
                                             </a>
-                                            <a href="/user" data-bs-toggle="modal" data-bs-target="#ModalUbah" class="mx-2">
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalUbah{{$item->id}}" class="mx-2">
                                                 edit
                                             </a>
-                                            <a href="/user" data-bs-toggle="modal" data-bs-target="#ModalDetail">
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalDetail{{$item->id}}">
                                                 detail
                                             </a>
                                         </td>
@@ -81,7 +85,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Hapus Data</h1>
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -99,67 +103,67 @@
                                         </div>
                                     </div>
                                     {{-- end modal Hapus --}}
-                                @endforeach
 
-                                {{-- modal edit --}}
-                                <div class="modal fade" id="ModalUbah" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    {{-- modal edit --}}
+                                    <div class="modal fade" id="ModalUbah{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Ubah Data</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Data</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-
-                                                <form class="forms-sample">
-                                                    <form class="forms-sample">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputUsername1">Nama</label>
-                                                            <input type="text" class="form-control"
-                                                                id="exampleInputUsername1" placeholder="Name">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Email</label>
-                                                            <input type="email" class="form-control"
-                                                                id="exampleInputEmail1" placeholder="Email">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputUsername1">NIK</label>
-                                                            <input type="text" class="form-control"
-                                                                id="exampleInputUsername1" placeholder="NIK">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Address</label>
-                                                            <input type="email" class="form-control"
-                                                                id="exampleInputEmail1" placeholder="Address">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputUsername1">Phone</label>
-                                                            <input type="text" class="form-control"
-                                                                id="exampleInputUsername1" placeholder="Phone">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Gender</label>
-                                                            <input type="email" class="form-control"
-                                                                id="exampleInputEmail1" placeholder="Gender">
-                                                        </div>
-
-                                                    </form>
-
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary me-2">Submit</button>
-                                                        <button class="btn btn-light"
-                                                            data-bs-dismiss="modal">Cancel</button>
+                                                <form class="forms-sample" action="/user-update/{{$item->id}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="form-group">
+                                                        <label for="exampleInputUsername1">Nama</label>
+                                                        <input type="text" name="name" class="form-control"
+                                                            id="exampleInputUsername1" placeholder="Name" value="{{$item->name}}">
                                                     </div>
-
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email</label>
+                                                        <input type="email" class="form-control"
+                                                            id="exampleInputEmail1" name="email" placeholder="Email" value="{{$item->email}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputUsername1">NIK</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputUsername1" name="NIK" placeholder="NIK" value="{{$item->NIK}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputAlamat1">Alamat</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputAlamat1" placeholder="Address" value="{{$item->alamat}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPhone1">No. Telepon</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputPhone1" placeholder="Phone" value="{{$item->phone}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="gender">Gender</label>
+                                                        <select name="gender" id="gender" class="form-control">
+                                                            <option value="{{$item->gender}}">{{$item->gender}}</option>
+                                                            @if ($item->gender == 'Laki-Laki')
+                                                                <option value="Perempuan">Perempuan</Option>
+                                                            @else
+                                                                <option value="Laki-Laki">Laki-Laki</option>
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 {{-- end modal edit --}}
+                                @endforeach
                             </tbody>
                         </table>
                         <nav aria-label="Page navigation example">
@@ -172,8 +176,62 @@
             </div>
         </div>
 
-        {{-- modal add --}}
+        @foreach ($userList as $item)
+        {{-- modal detail --}}
+        <div class="modal fade" id="ModalDetail{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <td>{{$item->name}}</td>
+                            </tr>
+                            <tr>
+                                <th>email</th>
+                                <td>{{$item->email}}</td>
+                            </tr>
+                            <tr>
+                                <th>NIK</th>
+                                <td>{{$item->NIK}}</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat</th>
+                                <td>{{$item->alamat}}</td>
+                            </tr>
+                            <tr>
+                                <th>No. Telepon</th>
+                                <td>{{$item->phone}}</td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td>{{$item->gender}}</td>
+                            </tr>
+                            <tr>
+                                <th>Bantuan</th>
+                                <td>
+                                    @foreach ($item->bantuan as $data)
+                                        <ul>
+                                            <li>{{$data->name}}</li>
+                                        </ul>
+                                    @endforeach
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- end modal detail --}}
+        @endforeach
 
+        {{-- modal add --}}
         <div class="modal fade" id="ModalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -220,7 +278,6 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                    <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>

@@ -34,19 +34,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Logout</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-                <form class="forms-sample">
-                    <h5>Anda Yakin Mau Keluar ? </h5>
-
+                <form class="forms-sample mb-2">
+                    <p>Anda Yakin Mau Keluar ?</p>
                 </form>
-
                 <div class="modal-footer">
-                    <a href="/logout" class="btn btn-danger me-2">Yes</a>
-                    <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <a href="/logout" class="btn btn-danger me-2">Keluar</a>
                 </div>
 
             </div>

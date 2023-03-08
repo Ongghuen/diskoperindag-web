@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         $keyword = $request->keyword;
 
-        $user = User::with('role')
+        $user = User::with(['role', 'bantuan'])
                 ->where(function ($query) use($keyword){
                     $query
                     ->where('name', 'LIKE', '%'.$keyword.'%')
@@ -26,6 +26,8 @@ class UserController extends Controller
 
         return view('pages.user', ['userList' => $user]);
     }
+
+    
 
     public function store(Request $request)
     {
@@ -57,6 +59,19 @@ class UserController extends Controller
         if ($user) {
             Session::flash('status', 'success');
             Session::flash('message', 'Data user berhasil dihapus!');
+        }
+
+        return redirect('/user');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        if ($user) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'Data user berhasil diubah!');
         }
 
         return redirect('/user');

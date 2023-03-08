@@ -36,7 +36,7 @@ class AuthController extends Controller
                 Session::flash('status','success');
                 Session::flash('message', 'Selamat anda berhasil login sebagai admin!');
 
-                return redirect()->intended('/dashboard');
+                return redirect()->intended('/user');
             }
             Session::flash('status','failed');
             Session::flash('message', 'Login gagal!');

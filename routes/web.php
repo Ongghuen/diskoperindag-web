@@ -28,3 +28,4 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::get('/user', [UserController::class, 'index'])->middleware('auth');
 Route::post('/user', [UserController::class, 'store'])->middleware('auth');
 Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');
+Route::put('/user-update/{id}', [UserController::class, 'update'])->middleware('auth');
