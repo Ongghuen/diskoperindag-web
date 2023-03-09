@@ -1,6 +1,5 @@
 @extends('layouts.mainlayout')
 
-
 @section('title')
     Bantuan
 @endsection

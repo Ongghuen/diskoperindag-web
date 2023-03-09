@@ -23,7 +23,6 @@
                         <button type="button" data-bs-toggle="modal" data-bs-target="#ModalTambah"
                             class="btn btn-dark btn-fw ms-auto btn-sm">Tambah</button>
                     </div>
-
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">
                             <form action="" method="GET">
@@ -221,6 +220,7 @@
                                             <li>{{$data->name}}</li>
                                         @endforeach
                                     </ol>
+                                    <a href="/user-bantuan/{{$item->id}}" class="btn btn-sm btn-primary">Tambah Bantuan</a>
                                 </td>
                             </tr>
                         </table>
