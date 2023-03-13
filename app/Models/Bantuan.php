@@ -26,6 +26,7 @@ class Bantuan extends Model
 
     public function itemBantuan()
     {
-        return $this->belongsToMany(ItemBantuan::class, 'bantuan_item', 'bantuan_id', 'item_id');
+        return $this->belongsToMany(ItemBantuan::class, 'bantuan_item', 'bantuan_id', 'item_id')
+        ->withPivot(['kuantitas']);
     }
 }

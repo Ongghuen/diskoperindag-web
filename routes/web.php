@@ -28,8 +28,10 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 # Users routes.
 Route::get('/user', [UserController::class, 'index'])->middleware('auth');
 Route::post('/user', [UserController::class, 'store'])->middleware('auth');
-Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');
+Route::get('/user-add', [UserController::class, 'storeView'])->middleware('auth');
+Route::get('/user-edit/{id}', [UserController::class, 'updateView'])->middleware('auth');
 Route::put('/user-update/{id}', [UserController::class, 'update'])->middleware('auth');
+Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');
 Route::get('/user-bantuan/{id}', [UserController::class, 'addBantuan'])->middleware('auth');
 Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middleware('auth');
 

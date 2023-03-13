@@ -26,6 +26,17 @@ class DatabaseSeeder extends Seeder
             'name' => 'User'
         ]);
 
+        User::create([
+            'name' => 'Daffa Afifi Syahrony',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
+            'NIK' => '712898289',
+            'alamat' => 'Jember',
+            'phone' => '+0895385583',
+            'gender' => 'L',
+            'role_id' => '1'
+        ]);
+
         User::factory()->count(10)->create();
         Bantuan::factory()->count(10)->create();
         ItemBantuan::factory()->count(20)->create();

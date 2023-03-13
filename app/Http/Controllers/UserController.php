@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $keyword = $request->keyword;
 
-        $user = User::with(['role', 'bantuan'])
+        $user = User::with(['role', 'bantuan.itemBantuan'])
                 ->where(function ($query) use($keyword){
                     $query
                     ->where('name', 'LIKE', '%'.$keyword.'%')
@@ -29,7 +29,10 @@ class UserController extends Controller
         return view('pages.user', ['userList' => $user]);
     }
 
-    
+    public function storeView()
+    {
+        return view('pages.user-add');
+    }
 
     public function store(Request $request)
     {
@@ -64,6 +67,12 @@ class UserController extends Controller
         }
 
         return redirect('/user');
+    }
+
+    public function updateView($id)
+    {
+        $user = User::findOrFail($id);
+        return view('pages.user-edit', ['item' => $user]);
     }
 
     public function update(Request $request, $id)

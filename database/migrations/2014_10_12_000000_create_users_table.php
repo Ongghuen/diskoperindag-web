@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('NIK', 16);
             $table->string('alamat');
             $table->string('phone');
-            $table->enum('gender', ['Laki-Laki', 'Perempuan']);
+            $table->enum('gender', ['L', 'P']);
             $table->rememberToken();
             $table->timestamps();
         });

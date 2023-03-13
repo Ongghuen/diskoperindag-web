@@ -20,8 +20,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <p class="card-title">Table User</p>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#ModalTambah"
-                            class="btn btn-dark btn-fw ms-auto btn-sm">Tambah</button>
+                        <a class="btn btn-dark btn-fw ms-auto btn-sm" href="/user-add">Tambah</a>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">
@@ -64,14 +63,14 @@
                                         <td>{{$item->email}}</td>
                                         <td>{{$item->phone}}</td>
                                         <td class="align-middle text-center">
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalHapus{{$item->id}}">
-                                                hapus
-                                            </a>
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalUbah{{$item->id}}" class="mx-2">
-                                                edit
-                                            </a>
                                             <a href="" data-bs-toggle="modal" data-bs-target="#ModalDetail{{$item->id}}">
                                                 detail
+                                            </a>
+                                            <a href="/user-edit/{{$item->id}}" class="mx-2">
+                                                edit
+                                            </a>
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalHapus{{$item->id}}">
+                                                hapus
                                             </a>
                                         </td>
                                     </tr>
@@ -102,66 +101,6 @@
                                         </div>
                                     </div>
                                     {{-- end modal Hapus --}}
-
-                                    {{-- modal edit --}}
-                                    <div class="modal fade" id="ModalUbah{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Data</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form class="forms-sample" action="/user-update/{{$item->id}}" method="POST" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="form-group">
-                                                        <label for="exampleInputUsername1">Nama</label>
-                                                        <input type="text" name="name" class="form-control"
-                                                            id="exampleInputUsername1" placeholder="Name" value="{{$item->name}}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Email</label>
-                                                        <input type="email" class="form-control"
-                                                            id="exampleInputEmail1" name="email" placeholder="Email" value="{{$item->email}}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputUsername1">NIK</label>
-                                                        <input type="text" class="form-control"
-                                                            id="exampleInputUsername1" name="NIK" placeholder="NIK" value="{{$item->NIK}}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputAlamat1">Alamat</label>
-                                                        <input type="text" class="form-control"
-                                                            id="exampleInputAlamat1" placeholder="Address" value="{{$item->alamat}}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputPhone1">No. Telepon</label>
-                                                        <input type="text" class="form-control"
-                                                            id="exampleInputPhone1" placeholder="Phone" value="{{$item->phone}}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="gender">Gender</label>
-                                                        <select name="gender" id="gender" class="form-control">
-                                                            <option value="{{$item->gender}}">{{$item->gender}}</option>
-                                                            @if ($item->gender == 'Laki-Laki')
-                                                                <option value="Perempuan">Perempuan</Option>
-                                                            @else
-                                                                <option value="Laki-Laki">Laki-Laki</option>
-                                                            @endif
-                                                        </select>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- end modal edit --}}
                                 @endforeach
                             </tbody>
                         </table>
@@ -213,14 +152,36 @@
                                 <td>{{$item->gender}}</td>
                             </tr>
                             <tr>
+                                <th>Role</th>
+                                <td>{{$item->role->name}}</td>
+                            </tr>
+                            <tr>
                                 <th>Bantuan</th>
                                 <td>
                                     <ol>
                                         @foreach ($item->bantuan as $data)
-                                            <li>{{$data->name}}</li>
+                                            <strong><li>{{$data->nama_bantuan}}</li></strong>
+                                            <table class="table table-bordered mb-2">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">No</th>
+                                                        <th scope="col">Item</th>
+                                                        <th scope="col">Qty</th>
+                                                    </tr>
+                                                </thead>
+                                                @foreach ($data->itemBantuan as $dataItem)
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$loop->iteration. '.'}}</td>
+                                                        <td>{{$dataItem->nama_item}}</td>
+                                                        <td>{{$dataItem->pivot->kuantitas}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                @endforeach
+                                            </table>
                                         @endforeach
                                     </ol>
-                                    <a href="/user-bantuan/{{$item->id}}" class="btn btn-sm btn-primary">Tambah Bantuan</a>
+                                    <a href="/user-bantuan/{{$item->id}}" class="btn btn-sm btn-primary">Tambah</a>
                                 </td>
                             </tr>
                         </table>
@@ -230,62 +191,5 @@
         </div>
         {{-- end modal detail --}}
         @endforeach
-
-        {{-- modal add --}}
-        <div class="modal fade" id="ModalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Tambah Data</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                        <div class="modal-body">
-                            <form class="forms-sample" action="/user" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">Nama</label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1"
-                                        placeholder="Name" name="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">NIK</label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1" name="NIK" placeholder="NIK">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputAddress1">Alamat</label>
-                                    <input type="text" name="alamat" class="form-control" id="exampleInputAddress1"
-                                        placeholder="Alamat">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPhone1">No. Telepon</label>
-                                    <input type="text" name="phone" class="form-control" id="exampleInputPhone1"
-                                        placeholder="No. Telepon">
-                                </div>
-                                <div class="form-group">
-                                    <label for="gender">Gender</label>
-                                    <select name="gender" id="gender" class="form-control">
-                                        <option value="Laki-Laki">L</option>
-                                        <option value="Perempuan">P</option>
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- end modal add --}}
 
 @endsection
