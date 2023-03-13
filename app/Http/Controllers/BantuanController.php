@@ -13,12 +13,12 @@ class BantuanController extends Controller
         $keyword = $request->keyword;
 
         $bantuan = Bantuan::with('users')
-                ->where(function ($query) use($keyword){
-                    $query
-                    ->where('name', 'LIKE', '%'.$keyword.'%')
-                    ->orWhere('category', 'LIKE', '%'.$keyword.'%');
-                })
-                ->paginate(10);
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('category', 'LIKE', '%' . $keyword . '%');
+            })
+            ->paginate(10);
 
         return view('pages.bantuan', ['bantuanList' => $bantuan]);
     }
@@ -26,7 +26,7 @@ class BantuanController extends Controller
     public function store(Request $request)
     {
         $bantuan = new Bantuan;
-        
+
         $bantuan->create($request->all());
 
         if ($bantuan) {
