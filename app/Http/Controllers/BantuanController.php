@@ -23,44 +23,4 @@ class BantuanController extends Controller
 
         return view('pages.bantuan', ['bantuanList' => $bantuan]);
     }
-
-    public function store(Request $request)
-    {
-        $bantuan = new Bantuan;
-
-        $bantuan->create($request->all());
-
-        if ($bantuan) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Tambah data bantuan berhasil!');
-        }
-
-        return redirect('/bantuan');
-    }
-
-    public function destroy($id)
-    {
-        $bantuan = Bantuan::findOrFail($id);
-        $bantuan->delete();
-
-        if ($bantuan) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data bantuan berhasil dihapus!');
-        }
-
-        return redirect('/bantuan');
-    }
-
-    public function update(Request $request, $id)
-    {
-        $bantuan = Bantuan::findOrFail($id);
-        $bantuan->update($request->all());
-
-        if ($bantuan) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data bantuan berhasil diubah!');
-        }
-
-        return redirect('/bantuan');
-    }
 }

@@ -14,7 +14,8 @@ class ItemBantuan extends Model
 
     protected $fillable = [
         'nama_item',
-        'stok'
+        'stok',
+        'deskripsi'
     ];
 
     public function bantuan()

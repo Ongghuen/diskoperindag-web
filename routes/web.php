@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BantuanController;
 
@@ -37,6 +38,11 @@ Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middl
 
 # Bantuan routes.
 Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('auth');
-Route::post('/bantuan', [BantuanController::class, 'store'])->middleware('auth');
-Route::delete('/bantuan-destroy/{id}', [BantuanController::class, 'destroy'])->middleware('auth');
-Route::put('/bantuan-update/{id}', [BantuanController::class, 'update'])->middleware('auth');
+
+# Item Routes
+Route::get('/item', [ItemController::class, 'index'])->middleware('auth');
+Route::post('/item', [ItemController::class, 'store'])->middleware('auth');
+Route::put('/item-update/{id}', [ItemController::class, 'update'])->middleware('auth');
+Route::delete('/item-destroy/{id}', [ItemController::class, 'destroy'])->middleware('auth');
+Route::get('/item-add', [ItemController::class, 'storeView'])->middleware('auth');
+Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');

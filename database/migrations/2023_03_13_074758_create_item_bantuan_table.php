@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_item');
             $table->integer('stok');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }

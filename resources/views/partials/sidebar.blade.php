@@ -19,6 +19,18 @@
                     <span class="menu-title">Bantuan</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/item">
+                    <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                    <span class="menu-title">Item</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/report">
+                    <i class="mdi mdi-library-books menu-icon"></i>
+                    <span class="menu-title">Report</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
