@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BantuanController;
 
 /*
@@ -46,3 +47,6 @@ Route::put('/item-update/{id}', [ItemController::class, 'update'])->middleware('
 Route::delete('/item-destroy/{id}', [ItemController::class, 'destroy'])->middleware('auth');
 Route::get('/item-add', [ItemController::class, 'storeView'])->middleware('auth');
 Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');
+
+# Report Routes
+Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
