@@ -48,7 +48,8 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
-                                    <th>Kategori</th>
+                                    <th>Jenis Usaha</th>
+                                    <th>Tahun Pemberian</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -56,8 +57,9 @@
                                 @foreach ($bantuanList as $item)
                                     <tr>
                                         <td>{{$loop->iteration + $bantuanList->firstItem() - 1}}</td>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->category}}</td>
+                                        <td>{{$item->nama_bantuan}}</td>
+                                        <td>{{$item->jenis_usaha}}</td>
+                                        <td>{{$item->tahun_pemberian}}</td>
                                         <td class="align-middle text-center">
                                             <a href="" data-bs-toggle="modal" data-bs-target="#ModalHapus{{$item->id}}">
                                                 hapus
@@ -87,7 +89,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        <p>Anda Yakin Menghapus Data {{$item->name}}?</p>
+                                                        <p>Anda Yakin Menghapus Data {{$item->nama_bantuan}}?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -115,12 +117,12 @@
                                                         <div class="form-group">
                                                             <label for="exampleInputUsername1">Nama Bantuan</label>
                                                             <input type="text" class="form-control"
-                                                                id="exampleInputUsername1" placeholder="Name" name="name" value="{{$item->name}}">
+                                                                id="exampleInputUsername1" placeholder="Name" name="name" value="{{$item->nama_bantuan}}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Kategori</label>
                                                             <input type="text" class="form-control" id="exampleInputEmail1"
-                                                                placeholder="Kategori" name="category" value="{{$item->category}}">
+                                                                placeholder="Kategori" name="category" value="{{$item->jenis_usaha}}">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-primary me-2" type="submit">Submit</button>
@@ -160,11 +162,11 @@
                         <table class="table table-striped">
                             <tr>
                                 <th>Nama Bantuan</th>
-                                <td>{{$item->name}}</td>
+                                <td>{{$item->nama_bantuan}}</td>
                             </tr>
                             <tr>
                                 <th>Kategori</th>
-                                <td>{{$item->category}}</td>
+                                <td>{{$item->jenis_usaha}}</td>
                             </tr>
                             <tr>
                                 <th>User</th>

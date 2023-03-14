@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
 use App\Models\Bantuan;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -55,6 +56,6 @@ class User extends Authenticatable
 
     public function bantuan()
     {
-        return $this->belongsToMany(Bantuan::class, 'users_bantuan', 'user_id', 'bantuan_id');
+        return $this->hasMany(Bantuan::class, 'user_id', 'id');
     }
 }

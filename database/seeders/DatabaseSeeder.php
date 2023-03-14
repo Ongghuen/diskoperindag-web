@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\Bantuan;
 use App\Models\BantuanItem;
 use App\Models\ItemBantuan;
-use App\Models\UsersBantuan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -40,7 +39,6 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(10)->create();
         Bantuan::factory()->count(10)->create();
         ItemBantuan::factory()->count(20)->create();
-        UsersBantuan::factory()->count(15)->create();
         BantuanItem::factory()->count(30)->create();
     }
 }

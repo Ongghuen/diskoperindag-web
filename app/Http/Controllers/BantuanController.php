@@ -15,8 +15,9 @@ class BantuanController extends Controller
         $bantuan = Bantuan::with('users')
             ->where(function ($query) use ($keyword) {
                 $query
-                    ->where('name', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('category', 'LIKE', '%' . $keyword . '%');
+                    ->where('nama_bantuan', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('jenis_usaha', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('tahun_pemberian', 'LIKE', '%' . $keyword . '%');
             })
             ->paginate(10);
 

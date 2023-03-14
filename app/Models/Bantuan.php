@@ -19,9 +19,9 @@ class Bantuan extends Model
         'tahun_pemberian'
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class, 'users_bantuan', 'bantuan_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function itemBantuan()

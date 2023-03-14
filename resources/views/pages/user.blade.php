@@ -160,7 +160,7 @@
                                 <td>
                                     <ol>
                                         @foreach ($item->bantuan as $data)
-                                            <strong><li>{{$data->nama_bantuan}}</li></strong>
+                                            <strong><li>{{$data->nama_bantuan}} | {{$data->tahun_pemberian}}</li></strong>
                                             <table class="table table-bordered mb-2">
                                                 <thead>
                                                     <tr>
