@@ -12,7 +12,7 @@ class BantuanController extends Controller
     {
         $keyword = $request->keyword;
 
-        $bantuan = Bantuan::with('users')
+        $bantuan = Bantuan::with(['user', 'itemBantuan'])
             ->where(function ($query) use ($keyword) {
                 $query
                     ->where('nama_bantuan', 'LIKE', '%' . $keyword . '%')
