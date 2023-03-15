@@ -158,29 +158,26 @@
                             <tr>
                                 <th>Bantuan</th>
                                 <td>
-                                    <ol>
+                                    <table class="table table-bordered mb-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Jenis Usaha</th>
+                                                <th>Tahun</th>
+                                            </tr>
+                                        </thead>
                                         @foreach ($item->bantuan as $data)
-                                            <strong><li>{{$data->nama_bantuan}} | {{$data->tahun_pemberian}}</li></strong>
-                                            <table class="table table-bordered mb-2">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">No</th>
-                                                        <th scope="col">Item</th>
-                                                        <th scope="col">Qty</th>
-                                                    </tr>
-                                                </thead>
-                                                @foreach ($data->itemBantuan as $dataItem)
-                                                <tbody>
-                                                    <tr>
-                                                        <td>{{$loop->iteration. '.'}}</td>
-                                                        <td>{{$dataItem->nama_item}}</td>
-                                                        <td>{{$dataItem->pivot->kuantitas}}</td>
-                                                    </tr>
-                                                </tbody>
-                                                @endforeach
-                                            </table>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{$loop->iteration. '.'}}</td>
+                                                <td>{{$data->nama_bantuan}}</td>
+                                                <td>{{$data->jenis_usaha}}</td>
+                                                <td>{{$data->tahun_pemberian}}</td>
+                                            </tr>
+                                        </tbody>
                                         @endforeach
-                                    </ol>
+                                    </table>
                                     <a href="/user-bantuan/{{$item->id}}" class="btn btn-sm btn-primary">Tambah</a>
                                 </td>
                             </tr>

@@ -39,6 +39,8 @@ Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middl
 
 # Bantuan routes.
 Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('auth');
+Route::get('/bantuan-item/{id}', [BantuanController::class, 'addItem'])->middleware('auth');
+Route::post('/bantuan-add-item', [BantuanController::class, 'storeItem'])->middleware('auth');
 
 # Item Routes
 Route::get('/item', [ItemController::class, 'index'])->middleware('auth');

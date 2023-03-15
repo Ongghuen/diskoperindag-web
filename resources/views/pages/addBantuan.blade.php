@@ -24,13 +24,20 @@
                     <input type="hidden" class="form-control" id="exampleInputUsername1" placeholder="Username" value="{{$user->id}}" name="user_id">
                 </div>
                 <div class="form-group">
-                    <label for="exampleSelectGender">Nama Bantuan</label>
-                    <select class="form-control" id="exampleSelectGender" name="bantuan_id">
-                        @foreach ($listBantuan as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
-                        @endforeach
-                    </select>
-                    </div>
+                    <label for="exampleInputUsername1">Nama Bantuan</label>
+                    <input type="text" class="form-control" id="exampleInputUsername1"
+                        placeholder="Nama Bantuan" name="nama_bantuan">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername2">Jenis Usaha</label>
+                    <input type="text" class="form-control" id="exampleInputUsername2"
+                        placeholder="Jenis Usaha" name="jenis_usaha">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername3">Tahun Pemberian</label>
+                    <input type="text" class="form-control" id="exampleInputUsername3"
+                        placeholder="Tahun Pemberian" name="tahun_pemberian">
+                </div>
                 <button type="submit" class="btn btn-primary me-2">Submit</button>
                 <a class="btn btn-light" href="/user">Cancel</a>
             </form>

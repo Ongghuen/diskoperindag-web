@@ -14,9 +14,10 @@ class Bantuan extends Model
     protected $table = 'bantuan';
 
     protected $fillable = [
-        'name_bantuan',
+        'nama_bantuan',
         'jenis_usaha',
-        'tahun_pemberian'
+        'tahun_pemberian',
+        'user_id'
     ];
 
     public function user()

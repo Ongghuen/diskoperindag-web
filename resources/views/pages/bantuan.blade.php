@@ -115,6 +115,7 @@
                                         </tbody>
                                         @endforeach
                                     </table>
+                                    <a href="/bantuan-item/{{$item->id}}" class="btn btn-sm btn-primary">Tambah</a>
                                 </td>
                             </tr>
                         </table>

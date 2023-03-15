@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Bantuan;
+use App\Models\ItemBantuan;
 use App\Models\UsersBantuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -91,14 +92,13 @@ class UserController extends Controller
     public function addBantuan($id)
     {
         $user = User::findOrFail($id);
-        $bantuan = Bantuan::all();
 
-        return view('pages.addBantuan', ['listBantuan' => $bantuan, 'user' => $user]);
+        return view('pages.addBantuan', ['user' => $user]);
     }
 
     public function storeBantuan(Request $request)
     {
-        $data = new UsersBantuan;
+        $data = new Bantuan;
 
         $data->create($request->all());
 
