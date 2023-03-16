@@ -19,6 +19,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <p class="card-title">Table Laporan</p>
+                        <a class="btn btn-dark btn-fw ms-auto btn-sm" href="/export">Export</a>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">

@@ -56,3 +56,4 @@ Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middlewa
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
+Route::get('/export', [ReportController::class, 'export'])->middleware('auth');
