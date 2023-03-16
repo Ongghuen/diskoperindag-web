@@ -70,19 +70,6 @@ class BantuanController extends Controller
         $bantuan = Bantuan::with(['user', 'itemBantuan'])
             ->where('id', '=', $id)
             ->first();
-        // $bantuan = Bantuan::with(['user', 'itemBantuan'])
-        //     ->where(function ($query) use ($keyword) {
-        //         $query
-        //             ->where('nama_bantuan', 'LIKE', '%' . $keyword . '%')
-        //             ->orWhere('jenis_usaha', 'LIKE', '%' . $keyword . '%')
-        //             ->orWhere('tahun_pemberian', 'LIKE', '%' . $keyword . '%');
-        //     })
-        //     ->orWhereHas('user', function ($query) use ($keyword) {
-        //         $query
-        //             ->where('name', 'LIKE', '%' . $keyword . '%')
-        //             ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
-        //     })
-        //     ->paginate(10);
 
         return view('pages.bantuan-detail', ['item' => $bantuan]);
     }

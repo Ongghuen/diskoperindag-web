@@ -36,6 +36,7 @@ Route::put('/user-update/{id}', [UserController::class, 'update'])->middleware('
 Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');
 Route::get('/user-bantuan/{id}', [UserController::class, 'addBantuan'])->middleware('auth');
 Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middleware('auth');
+Route::get('/detail-user-bantuan/{id}', [UserController::class, 'detailuserbantuan'])->middleware('auth');
 
 # Bantuan routes.
 Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('auth');

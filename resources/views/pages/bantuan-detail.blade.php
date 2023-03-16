@@ -52,6 +52,7 @@
                         </td>
                     </tr>
                 </table>
+                <a class="btn btn-light" href="/bantuan">Cancel</a>
 
             </div>
         </div>

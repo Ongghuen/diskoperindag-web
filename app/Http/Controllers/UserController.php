@@ -16,16 +16,16 @@ class UserController extends Controller
         $keyword = $request->keyword;
 
         $user = User::with(['role', 'bantuan.itemBantuan'])
-                ->where(function ($query) use($keyword){
-                    $query
-                    ->where('name', 'LIKE', '%'.$keyword.'%')
-                    ->orWhere('NIK', 'LIKE', '%'.$keyword.'%');
-                })
-                ->whereHas('role', function($query) use($keyword){
-                    $query
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+            })
+            ->whereHas('role', function ($query) use ($keyword) {
+                $query
                     ->where('name', 'User');
-                })
-                ->paginate(10);
+            })
+            ->paginate(10);
 
         return view('pages.user', ['userList' => $user]);
     }
@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $user = new User;
         $password = bcrypt($request->password);
-        
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $password;
@@ -108,5 +108,26 @@ class UserController extends Controller
         }
 
         return redirect('/user');
+    }
+
+    public function detailuserbantuan($id)
+    {
+        $user = User::with(['role', 'bantuan.itemBantuan'])
+            ->where('id', '=', $id)
+            ->first();
+
+        // $user = User::with(['role', 'bantuan.itemBantuan'])
+        //     ->where(function ($query) use ($keyword) {
+        //         $query
+        //             ->where('name', 'LIKE', '%' . $keyword . '%')
+        //             ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+        //     })
+        //     ->whereHas('role', function ($query) use ($keyword) {
+        //         $query
+        //             ->where('name', 'User');
+        //     })
+        //     ->paginate(10);
+
+        return view('pages.detail-user-bantuan', ['item' => $user]);
     }
 }
