@@ -106,6 +106,7 @@
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">Item</th>
+                                                <th>Qty</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -114,6 +115,7 @@
                                             <tr>
                                                 <td>{{$loop->iteration. '.'}}</td>
                                                 <td>{{$data->nama_item}}</td>
+                                                <td>{{$data->pivot->kuantitas}}</td>
                                                 <td>
                                                     <a href="delete-item/{{$data->id}}/{{$item->id}}">
                                                         hapus

@@ -53,3 +53,4 @@ Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
+Route::get('/export', [ReportController::class, 'export'])->middleware('auth');

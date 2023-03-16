@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bantuan;
+use App\Exports\DataExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -30,5 +32,10 @@ class ReportController extends Controller
                 ->paginate(10);
 
         return view('pages.report', ['userList' => $bantuan]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new DataExport(), 'laporan ' . date('Y-m-d') . '.xlsx');
     }
 }
