@@ -45,9 +45,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
+                                    <th>Nama Bantuan</th>
                                     <th>Jenis Usaha</th>
                                     <th>Penerima</th>
+                                    <th>NIK</th>
                                     <th>Tahun</th>
                                     <th>Action</th>
                                 </tr>
@@ -59,6 +60,7 @@
                                         <td>{{$item->nama_bantuan}}</td>
                                         <td>{{$item->jenis_usaha}}</td>
                                         <td>{{$item->user->name}}</td>
+                                        <td>{{$item->user->NIK}}</td>
                                         <td>{{$item->tahun_pemberian}}</td>
                                         <td class="align-middle text-center">
                                             <a href="" data-bs-toggle="modal" data-bs-target="#ModalDetail{{$item->id}}">
@@ -104,6 +106,7 @@
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">Item</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         @foreach ($item->itemBantuan as $data)
@@ -111,6 +114,11 @@
                                             <tr>
                                                 <td>{{$loop->iteration. '.'}}</td>
                                                 <td>{{$data->nama_item}}</td>
+                                                <td>
+                                                    <a href="delete-item/{{$data->id}}/{{$item->id}}">
+                                                        hapus
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </tbody>
                                         @endforeach

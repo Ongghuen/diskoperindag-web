@@ -132,10 +132,6 @@
                                 <td>{{$item->name}}</td>
                             </tr>
                             <tr>
-                                <th>email</th>
-                                <td>{{$item->email}}</td>
-                            </tr>
-                            <tr>
                                 <th>NIK</th>
                                 <td>{{$item->NIK}}</td>
                             </tr>
@@ -149,11 +145,11 @@
                             </tr>
                             <tr>
                                 <th>Gender</th>
-                                <td>{{$item->gender}}</td>
-                            </tr>
-                            <tr>
-                                <th>Role</th>
-                                <td>{{$item->role->name}}</td>
+                                @if ($item->gender == 'P')
+                                    <td>Perempuan</td>
+                                @else
+                                    <td>Laki-Laki</td>
+                                @endif
                             </tr>
                             <tr>
                                 <th>Bantuan</th>
@@ -161,19 +157,28 @@
                                     <table class="table table-bordered mb-2">
                                         <thead>
                                             <tr>
-                                                <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Jenis Usaha</th>
                                                 <th>Tahun</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         @foreach ($item->bantuan as $data)
                                         <tbody>
                                             <tr>
-                                                <td>{{$loop->iteration. '.'}}</td>
                                                 <td>{{$data->nama_bantuan}}</td>
                                                 <td>{{$data->jenis_usaha}}</td>
                                                 <td>{{$data->tahun_pemberian}}</td>
+                                                <td>
+                                                    <div class="mb-2">
+                                                        <a href="">
+                                                            edit
+                                                        </a>
+                                                    </div>
+                                                    <a href="">
+                                                        hapus
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </tbody>
                                         @endforeach

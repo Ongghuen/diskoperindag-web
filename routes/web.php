@@ -41,6 +41,7 @@ Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middl
 Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('auth');
 Route::get('/bantuan-item/{id}', [BantuanController::class, 'addItem'])->middleware('auth');
 Route::post('/bantuan-add-item', [BantuanController::class, 'storeItem'])->middleware('auth');
+Route::get('delete-item/{item}/{bantuan}', [BantuanController::class, 'deleteItem'])->middleware('auth');
 
 # Item Routes
 Route::get('/item', [ItemController::class, 'index'])->middleware('auth');
