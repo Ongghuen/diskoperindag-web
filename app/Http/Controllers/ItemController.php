@@ -12,13 +12,12 @@ class ItemController extends Controller
     {
         $keyword = $request->keyword;
 
-        $items = ItemBantuan::
-                where(function ($query) use($keyword){
-                    $query
-                    ->where('nama_item', 'LIKE', '%'.$keyword.'%')
-                    ->orWhere('stok', 'LIKE', '%'.$keyword.'%');
-                })
-                ->paginate(10);
+        $items = ItemBantuan::where(function ($query) use ($keyword) {
+            $query
+                ->where('nama_item', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('stok', 'LIKE', '%' . $keyword . '%');
+        })
+            ->paginate(10);
 
         return view('pages.item', ['itemList' => $items]);
     }
@@ -31,7 +30,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $items = new ItemBantuan;
-        
+
         $items->create($request->all());
 
         if ($items) {
@@ -72,5 +71,11 @@ class ItemController extends Controller
         }
 
         return redirect('/item');
+    }
+
+    public function itemdetail($id)
+    {
+        $items = ItemBantuan::findOrFail($id);
+        return view('pages.item-detail', ['item' => $items]);
     }
 }

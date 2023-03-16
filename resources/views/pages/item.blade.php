@@ -36,9 +36,9 @@
                             </form>
                         </li>
                     </ul>
-                    @if(Session::has('status'))
+                    @if (Session::has('status'))
                         <div class="alert alert-success alert-dismissible fade show font-weight-bold my-2" role="alert">
-                            {{Session::get('message')}}
+                            {{ Session::get('message') }}
                         </div>
                     @endif
                     <div class="table-responsive">
@@ -54,17 +54,22 @@
                             <tbody>
                                 @foreach ($itemList as $item)
                                     <tr>
-                                        <td>{{$loop->iteration + $itemList->firstItem() - 1}}</td>
-                                        <td>{{$item->nama_item}}</td>
-                                        <td>{{$item->stok}}</td>
+                                        <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
+                                        <td>{{ $item->nama_item }}</td>
+                                        <td>{{ $item->stok }}</td>
                                         <td class="align-middle text-center">
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalDetail{{$item->id}}">
+                                            {{-- <a href="" data-bs-toggle="modal"
+                                                data-bs-target="#ModalDetail{{ $item->id }}">
+                                                detail
+                                            </a> --}}
+                                            <a href="/item-detail/{{ $item->id }}">
                                                 detail
                                             </a>
-                                            <a href="/item-edit/{{$item->id}}" class="mx-2">
+                                            <a href="/item-edit/{{ $item->id }}" class="mx-2">
                                                 edit
                                             </a>
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#ModalHapus{{$item->id}}">
+                                            <a href="" data-bs-toggle="modal"
+                                                data-bs-target="#ModalHapus{{ $item->id }}">
                                                 hapus
                                             </a>
                                         </td>
@@ -73,8 +78,8 @@
 
                                 @foreach ($itemList as $item)
                                     {{-- modal Hapus --}}
-                                    <div class="modal fade" id="ModalHapus{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                        aria-hidden="true">
+                                    <div class="modal fade" id="ModalHapus{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -82,11 +87,11 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <form action="/item-destroy/{{$item->id}}" method="POST">
+                                                <form action="/item-destroy/{{ $item->id }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        <p>Anda Yakin Menghapus Data item {{$item->nama_item}} ?</p>
+                                                        <p>Anda Yakin Menghapus Data item {{ $item->nama_item }} ?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -101,7 +106,7 @@
                         </table>
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center mt-3">
-                                {{$itemList->links('pagination::bootstrap-4')}}
+                                {{ $itemList->links('pagination::bootstrap-4') }}
                             </ul>
                         </nav>
                     </div>
@@ -110,32 +115,30 @@
         </div>
 
         @foreach ($itemList as $item)
-        {{-- modal detail --}}
-        <div class="modal fade" id="ModalDetail{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Nama Item</th>
-                                <td>{{$item->nama_item}}</td>
-                            </tr>
-                            <tr>
-                                <th>Deskripsi</th>
-                                <td>{{$item->deskripsi}}</td>
-                            </tr>
-                        </table>
+            {{-- modal detail --}}
+            <div class="modal fade" id="ModalDetail{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Nama Item</th>
+                                    <td>{{ $item->nama_item }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Deskripsi</th>
+                                    <td>{{ $item->deskripsi }}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{-- end modal detail --}}
+            {{-- end modal detail --}}
         @endforeach
-
-@endsection
+    @endsection

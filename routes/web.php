@@ -42,6 +42,7 @@ Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('auth');
 Route::get('/bantuan-item/{id}', [BantuanController::class, 'addItem'])->middleware('auth');
 Route::post('/bantuan-add-item', [BantuanController::class, 'storeItem'])->middleware('auth');
 Route::get('delete-item/{item}/{bantuan}', [BantuanController::class, 'deleteItem'])->middleware('auth');
+Route::get('bantuan-detail/{id}', [BantuanController::class, 'detailbantuan'])->middleware('auth');
 
 # Item Routes
 Route::get('/item', [ItemController::class, 'index'])->middleware('auth');
@@ -50,6 +51,7 @@ Route::put('/item-update/{id}', [ItemController::class, 'update'])->middleware('
 Route::delete('/item-destroy/{id}', [ItemController::class, 'destroy'])->middleware('auth');
 Route::get('/item-add', [ItemController::class, 'storeView'])->middleware('auth');
 Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');
+Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middleware('auth');
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
