@@ -99,6 +99,7 @@ class UserController extends Controller
     public function storeBantuan(Request $request)
     {
         $data = new Bantuan;
+        $user = $request->user_id;
 
         $data->create($request->all());
 
@@ -107,7 +108,7 @@ class UserController extends Controller
             Session::flash('message', 'Bantuan berhasil ditambahkan!');
         }
 
-        return redirect('/user');
+        return redirect('/detail-user-bantuan/'. $user);
     }
 
     public function detailuserbantuan($id)
@@ -116,18 +117,14 @@ class UserController extends Controller
             ->where('id', '=', $id)
             ->first();
 
-        // $user = User::with(['role', 'bantuan.itemBantuan'])
-        //     ->where(function ($query) use ($keyword) {
-        //         $query
-        //             ->where('name', 'LIKE', '%' . $keyword . '%')
-        //             ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
-        //     })
-        //     ->whereHas('role', function ($query) use ($keyword) {
-        //         $query
-        //             ->where('name', 'User');
-        //     })
-        //     ->paginate(10);
-
         return view('pages.detail-user-bantuan', ['item' => $user]);
+    }
+
+    public function deleteBantuan($id)
+    {
+        $data = Bantuan::findOrFail($id);
+        $data->delete();
+
+        return back();
     }
 }

@@ -9,16 +9,18 @@
 @endsection
 
 @section('tagline')
-    Detail User
+    Cek detail user beserta bantuannya.
 @endsection
 
 @section('content')
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Form Detail User</h4>
-
-                <table class="table table-striped">
+                <div class="d-flex align-items-center mb-2">
+                    <p class="card-title">Detail User</p>
+                    <a class="btn btn-dark btn-fw ms-auto btn-sm" href="{{ url()->previous() }}">Back</a>
+                </div>
+                <table class="table table-bordered">
                     <tr>
                         <th>Name</th>
                         <td>{{ $item->name }}</td>
@@ -62,14 +64,7 @@
                                             <td>{{ $data->jenis_usaha }}</td>
                                             <td>{{ $data->tahun_pemberian }}</td>
                                             <td>
-                                                <div class="mb-2">
-                                                    <a href="">
-                                                        edit
-                                                    </a>
-                                                </div>
-                                                <a href="">
-                                                    hapus
-                                                </a>
+                                                <a href="/delete-bantuan/{{$data->id}}">hapus</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -79,8 +74,6 @@
                         </td>
                     </tr>
                 </table>
-                <a class="btn btn-light" href="/user">Cancel</a>
-
             </div>
         </div>
     </div>

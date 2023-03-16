@@ -42,6 +42,7 @@ class BantuanController extends Controller
     public function storeItem(Request $request)
     {
         $data = new BantuanItem;
+        $dataBantuan = $request->bantuan_id;
 
         $data->create($request->all());
 
@@ -50,7 +51,7 @@ class BantuanController extends Controller
             Session::flash('message', 'Item berhasil ditambahkan!');
         }
 
-        return redirect('/bantuan');
+        return redirect('bantuan-detail/'. $dataBantuan);
     }
 
     public function deleteItem($item, $bantuan)
@@ -58,13 +59,9 @@ class BantuanController extends Controller
         $data = BantuanItem::where('bantuan_id', '=', $bantuan)
             ->where('item_id', '=', $item)->delete();
 
-        if ($data) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data item bantuan berhasil dihapus!');
-        }
-
-        return redirect('/bantuan');
+        return back();
     }
+    
     public function detailbantuan($id)
     {
         $bantuan = Bantuan::with(['user', 'itemBantuan'])

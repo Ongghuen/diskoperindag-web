@@ -16,10 +16,12 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Form Detail Item Bantuan</h4>
-
+                <div class="d-flex align-items-center mb-2">
+                    <p class="card-title">Detail Item Bantuan</p>
+                    <a class="btn btn-dark btn-fw ms-auto btn-sm" href="{{ url()->previous() }}">Back</a>
+                </div>
                 <div class="modal-body">
-                    <table class="table table-striped">
+                    <table class="table table-bordered">
                         <tr>
                             <th>Nama Item</th>
                             <td>{{ $item->nama_item }}</td>
@@ -30,8 +32,6 @@
                         </tr>
                     </table>
                 </div>
-                <a class="btn btn-light" href="/item">Cancel</a>
-
             </div>
         </div>
     </div>

@@ -39,7 +39,7 @@
                         placeholder="Tahun Pemberian" name="tahun_pemberian">
                 </div>
                 <button type="submit" class="btn btn-primary me-2">Submit</button>
-                <a class="btn btn-light" href="/user">Cancel</a>
+                <a class="btn btn-light" href="{{ url()->previous() }}">Cancel</a>
             </form>
         </div>
         </div>
