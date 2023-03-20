@@ -48,6 +48,8 @@
                                     <th>Nama Bantuan</th>
                                     <th>Jenis Usaha</th>
                                     <th>Penerima</th>
+                                    <th>Koordinator</th>
+                                    <th>Sumber Anggaran</th>
                                     <th>NIK</th>
                                     <th>Tahun</th>
                                     <th>Action</th>
@@ -60,6 +62,8 @@
                                         <td>{{ $item->nama_bantuan }}</td>
                                         <td>{{ $item->jenis_usaha }}</td>
                                         <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->koordinator }}</td>
+                                        <td>{{ $item->sumber_anggaran }}</td>
                                         <td>{{ $item->user->NIK }}</td>
                                         <td>{{ $item->tahun_pemberian }}</td>
                                         <td class="align-middle text-center">
@@ -86,57 +90,57 @@
         </div>
 
         @foreach ($bantuanList as $item)
-        {{-- modal detail --}}
-        <div class="modal fade" id="ModalDetail{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Nama Bantuan</th>
-                                <td>{{$item->nama_bantuan}}</td>
-                            </tr>
-                            <tr>
-                                <th>List Item</th>
-                                <td>
-                                    <table class="table table-bordered mb-2">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">No</th>
-                                                <th scope="col">Item</th>
-                                                <th>Qty</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        @foreach ($item->itemBantuan as $data)
-                                        <tbody>
-                                            <tr>
-                                                <td>{{$loop->iteration. '.'}}</td>
-                                                <td>{{$data->nama_item}}</td>
-                                                <td>{{$data->pivot->kuantitas}}</td>
-                                                <td>
-                                                    <a href="delete-item/{{$data->id}}/{{$item->id}}">
-                                                        hapus
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        @endforeach
-                                    </table>
-                                    <a href="/bantuan-item/{{$item->id}}" class="btn btn-sm btn-primary">Tambah</a>
-                                </td>
-                            </tr>
-                        </table>
+            {{-- modal detail --}}
+            <div class="modal fade" id="ModalDetail{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Nama Bantuan</th>
+                                    <td>{{ $item->nama_bantuan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>List Item</th>
+                                    <td>
+                                        <table class="table table-bordered mb-2">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Item</th>
+                                                    <th>Qty</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            @foreach ($item->itemBantuan as $data)
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ $loop->iteration . '.' }}</td>
+                                                        <td>{{ $data->nama_item }}</td>
+                                                        <td>{{ $data->pivot->kuantitas }}</td>
+                                                        <td>
+                                                            <a href="delete-item/{{ $data->id }}/{{ $item->id }}">
+                                                                hapus
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                        <a href="/bantuan-item/{{ $item->id }}"
+                                            class="btn btn-sm btn-primary">Tambah</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{-- end modal detail --}}
+            {{-- end modal detail --}}
         @endforeach
     @endsection

@@ -17,6 +17,8 @@ class Bantuan extends Model
         'nama_bantuan',
         'jenis_usaha',
         'tahun_pemberian',
+        'koordinator',
+        'sumber_anggaran',
         'user_id'
     ];
 
@@ -28,6 +30,6 @@ class Bantuan extends Model
     public function itemBantuan()
     {
         return $this->belongsToMany(ItemBantuan::class, 'bantuan_item', 'bantuan_id', 'item_id')
-        ->withPivot(['kuantitas']);
+            ->withPivot(['kuantitas']);
     }
 }

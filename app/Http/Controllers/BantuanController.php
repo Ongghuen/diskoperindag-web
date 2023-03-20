@@ -19,7 +19,9 @@ class BantuanController extends Controller
                 $query
                     ->where('nama_bantuan', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('jenis_usaha', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('tahun_pemberian', 'LIKE', '%' . $keyword . '%');
+                    ->orWhere('tahun_pemberian', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('koordinator', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('sumber_anggaran', 'LIKE', '%' . $keyword . '%');;
             })
             ->orWhereHas('user', function ($query) use ($keyword) {
                 $query
@@ -51,7 +53,7 @@ class BantuanController extends Controller
             Session::flash('message', 'Item berhasil ditambahkan!');
         }
 
-        return redirect('bantuan-detail/'. $dataBantuan);
+        return redirect('bantuan-detail/' . $dataBantuan);
     }
 
     public function deleteItem($item, $bantuan)
@@ -61,7 +63,7 @@ class BantuanController extends Controller
 
         return back();
     }
-    
+
     public function detailbantuan($id)
     {
         $bantuan = Bantuan::with(['user', 'itemBantuan'])

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'NIK',
         'gender',
         'alamat',
+        'kepala_keluarga',
         'phone'
     ];
 
