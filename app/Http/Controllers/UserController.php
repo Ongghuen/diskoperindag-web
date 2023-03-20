@@ -44,6 +44,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = $password;
         $user->NIK = $request->NIK;
+        $user->kepala_keluarga = $request->kepala_keluarga;
         $user->alamat = $request->alamat;
         $user->phone = $request->phone;
         $user->gender = $request->gender;
@@ -108,7 +109,7 @@ class UserController extends Controller
             Session::flash('message', 'Bantuan berhasil ditambahkan!');
         }
 
-        return redirect('/detail-user-bantuan/'. $user);
+        return redirect('/detail-user-bantuan/' . $user);
     }
 
     public function detailuserbantuan($id)

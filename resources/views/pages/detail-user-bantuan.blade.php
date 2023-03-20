@@ -30,6 +30,10 @@
                         <td>{{ $item->NIK }}</td>
                     </tr>
                     <tr>
+                        <th>Kepala Keluarga</th>
+                        <td>{{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}</td>
+                    </tr>
+                    <tr>
                         <th>Alamat</th>
                         <td>{{ $item->alamat }}</td>
                     </tr>
@@ -37,6 +41,7 @@
                         <th>No. Telepon</th>
                         <td>{{ $item->phone }}</td>
                     </tr>
+
                     <tr>
                         <th>Gender</th>
                         @if ($item->gender == 'P')
@@ -64,7 +69,7 @@
                                             <td>{{ $data->jenis_usaha }}</td>
                                             <td>{{ $data->tahun_pemberian }}</td>
                                             <td>
-                                                <a href="/delete-bantuan/{{$data->id}}">hapus</a>
+                                                <a href="/delete-bantuan/{{ $data->id }}">hapus</a>
                                             </td>
                                         </tr>
                                     </tbody>

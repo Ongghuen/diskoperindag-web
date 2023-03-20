@@ -49,6 +49,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIK</th>
+                                    <th>Kepala Keluarga</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Action</th>
@@ -57,9 +58,11 @@
                             <tbody>
                                 @foreach ($userList as $item)
                                     <tr>
+
                                         <td>{{ $loop->iteration + $userList->firstItem() - 1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->NIK }}</td>
+                                        <td>{{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td class="align-middle text-center">
