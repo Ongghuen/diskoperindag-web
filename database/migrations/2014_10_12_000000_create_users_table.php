@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('phone');
             $table->enum('gender', ['L', 'P']);
+            $table->boolean('kepala_keluarga')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
