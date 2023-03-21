@@ -38,8 +38,8 @@
                             placeholder="Kuantitas" name="kuantitas">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary me-2">Submit</button>
-                <a class="btn btn-light" href="{{ url()->previous() }}">Cancel</a>
+                <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
+                <a class="btn btn-light btn-sm" href="{{ url()->previous() }}">Cancel</a>
             </form>
         </div>
         </div>

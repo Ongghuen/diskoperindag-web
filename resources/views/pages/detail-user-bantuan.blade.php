@@ -18,7 +18,6 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-2">
                     <p class="card-title">Detail User</p>
-                    <a class="btn btn-dark btn-fw ms-auto btn-sm" href="{{ url()->previous() }}">Back</a>
                 </div>
                 <table class="table table-bordered">
                     <tr>
@@ -69,7 +68,12 @@
                                             <td>{{ $data->jenis_usaha }}</td>
                                             <td>{{ $data->tahun_pemberian }}</td>
                                             <td>
-                                                <a href="/delete-bantuan/{{ $data->id }}">hapus</a>
+                                                <a href="/bantuan-detail/{{ $data->id }}" class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                    <i class="mdi mdi-exclamation"></i>
+                                                </a>
+                                                <a href="/delete-bantuan/{{ $data->id }}" class="btn btn-dark btn-sm px-1 pb-0">
+                                                    <i class="mdi mdi-delete"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

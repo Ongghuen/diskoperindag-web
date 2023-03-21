@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <p class="card-title">Table User</p>
-                        <a class="btn btn-dark btn-fw ms-auto btn-sm" href="/user-add">Tambah</a>
+                        <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/user-add">Tambah</a>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">
@@ -66,19 +66,15 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td class="align-middle text-center">
-                                            {{-- <a href="" data-bs-toggle="modal"
-                                                data-bs-target="#ModalDetail{{ $item->id }}">
-                                                detail
-                                            </a> --}}
-                                            <a href="/detail-user-bantuan/{{ $item->id }}">
-                                                detail
+                                            <a href="/detail-user-bantuan/{{ $item->id }}" class="btn btn-dark btn-sm px-1 pb-0">
+                                                <i class="mdi mdi-exclamation"></i>
                                             </a>
-                                            <a href="/user-edit/{{ $item->id }}" class="mx-2">
-                                                edit
+                                            <a href="/user-edit/{{ $item->id }}" class="mx-2 btn btn-dark btn-sm px-1 pb-0">
+                                                <i class="mdi mdi-pencil"></i>
                                             </a>
                                             <a href="" data-bs-toggle="modal"
-                                                data-bs-target="#ModalHapus{{ $item->id }}">
-                                                hapus
+                                                data-bs-target="#ModalHapus{{ $item->id }}" class="btn btn-dark btn-sm px-1 pb-0">
+                                                <i class="mdi mdi-delete"></i>
                                             </a>
                                         </td>
                                     </tr>

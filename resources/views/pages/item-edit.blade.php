@@ -33,8 +33,8 @@
                     <label for="exampleTextarea1">Deskripsi</label>
                     <textarea class="form-control" id="exampleTextarea1" rows="4" name="deskripsi">{{$item->deskripsi}}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary me-2">Submit</button>
-                <a class="btn btn-light" href="/item">Cancel</a>
+                <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
+                <a class="btn btn-light btn-sm" href="/item">Cancel</a>
             </form>
         </div>
         </div>

@@ -18,12 +18,31 @@
             <div class="card-body">
             <div class="d-flex align-items-center mb-2">
                 <p class="card-title">Detail Bantuan</p>
-                <a class="btn btn-dark btn-fw ms-auto btn-sm" href="{{ url()->previous() }}">Back</a>
             </div>
                 <table class="table table-bordered">
                     <tr>
                         <th>Nama Bantuan</th>
                         <td>{{ $item->nama_bantuan }}</td>
+                    </tr>
+                    <tr>
+                        <th>Jenis Usaha</th>
+                        <td>{{ $item->jenis_usaha }}</td>
+                    </tr>
+                    <tr>
+                        <th>Penerima</th>
+                        <td>{{ $item->user->name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Koordinator</th>
+                        <td>{{ $item->koordinator }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sumber Anggaran</th>
+                        <td>{{ $item->sumber_anggaran }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tahun Pemberian</th>
+                        <td>{{ $item->tahun_pemberian }}</td>
                     </tr>
                     <tr>
                         <th>List Item</th>
@@ -44,8 +63,8 @@
                                             <td>{{ $data->nama_item }}</td>
                                             <td>{{ $data->pivot->kuantitas }}</td>
                                             <td>
-                                                <a href="/delete-item/{{$data->id}}/{{$item->id}}">
-                                                    hapus
+                                                <a href="/delete-item/{{$data->id}}/{{$item->id}}" class="btn btn-dark btn-sm px-1 pb-0">
+                                                    <i class="mdi mdi-delete"></i>
                                                 </a>
                                             </td>
                                         </tr>

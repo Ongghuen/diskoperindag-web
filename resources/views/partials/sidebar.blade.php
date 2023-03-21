@@ -10,7 +10,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/user">
                     <i class="mdi mdi-account menu-icon"></i>
-                    <span class="menu-title">User</span>
+                    <span class="menu-title">Pengguna</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -21,13 +21,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/item">
-                    <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                    <i class="mdi mdi-dns menu-icon"></i>
                     <span class="menu-title">Item</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/report">
-                    <i class="mdi mdi-library-books menu-icon"></i>
+                    <i class="mdi mdi-file-document-box menu-icon"></i>
                     <span class="menu-title">Report</span>
                 </a>
             </li>

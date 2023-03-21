@@ -1,9 +1,7 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-            <a class="navbar-brand brand-logo" href="/user"><img src={{ asset('images/logo-navbar.png') }}
-                    alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="/user"><img src={{ asset('images/logo-navbar.png') }}
+            <a class="brand-logo" href="/user"><img src={{ asset('images/logo-navbar.png') }}
                     alt="logo" /></a>
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                 <span class="mdi mdi-sort-variant"></span>
@@ -15,31 +13,16 @@
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                    <img src={{ asset('images/faces/face1.jpg') }} alt="profile" />
+                    <img src={{ asset('images/profile.jpg') }} alt="profile" />
                     <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-
                     <button data-bs-toggle="modal" data-bs-target="#profilemodal" class="dropdown-item"><i
                             class="mdi mdi-settings text-primary"></i>
-                        Profile
-                        </a></button>
-
+                        Profile</button>
                     <button data-bs-toggle="modal" data-bs-target="#logoutmodal" class="dropdown-item"><i
                             class="mdi mdi-logout text-primary"></i>
-                        Logout
-                        </a></button>
-
-                    {{-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profilemodal">
-                        <i class="mdi mdi-settings text-primary" data-bs-toggle="modal"
-                            data-bs-target="#profilemodal"></i>
-                        Profile
-                    </a> --}}
-
-                    {{-- <a class="dropdown-item" href="/logout">
-                        <i class="mdi mdi-logout text-primary"></i>
-                        Logout
-                    </a> --}}
+                        Logout</button>
                 </div>
             </li>
         </ul>

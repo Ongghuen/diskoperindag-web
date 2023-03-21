@@ -18,7 +18,6 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-2">
                     <p class="card-title">Detail Item Bantuan</p>
-                    <a class="btn btn-dark btn-fw ms-auto btn-sm" href="{{ url()->previous() }}">Back</a>
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered">

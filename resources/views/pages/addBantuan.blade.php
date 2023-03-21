@@ -34,12 +34,22 @@
                         placeholder="Jenis Usaha" name="jenis_usaha">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputUsername3">Koordinator</label>
+                    <input type="text" class="form-control" id="exampleInputUsername3"
+                        placeholder="Koordinator" name="koordinator">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername4">Sumber Anggaran</label>
+                    <input type="text" class="form-control" id="exampleInputUsername4"
+                        placeholder="Sumber Anggaran" name="sumber_anggaran">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputUsername3">Tahun Pemberian</label>
                     <input type="text" class="form-control" id="exampleInputUsername3"
                         placeholder="Tahun Pemberian" name="tahun_pemberian">
                 </div>
-                <button type="submit" class="btn btn-primary me-2">Submit</button>
-                <a class="btn btn-light" href="{{ url()->previous() }}">Cancel</a>
+                <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
+                <a class="btn btn-light btn-sm" href="{{ url()->previous() }}">Cancel</a>
             </form>
         </div>
         </div>

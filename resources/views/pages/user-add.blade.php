@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kepala_keluarga">Kepala Keluarga</label>
-                        <select name="kepala_keluarga" id="kepala_keluarga" class="form-control">
+                        <select name="kepala_keluarga" id="kepala_keluarga" class="form-control form-control-sm">
                             <option value="0">Tidak</option>
                             <option value="1">Iya</option>
                         </select>
@@ -63,8 +63,8 @@
                             <option value="P">P</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2">Submit</button>
-                    <a class="btn btn-light" href="/user">Cancel</a>
+                    <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
+                    <a class="btn btn-light btn-sm" href="/user">Cancel</a>
                 </form>
             </div>
         </div>

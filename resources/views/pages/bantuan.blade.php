@@ -67,12 +67,8 @@
                                         <td>{{ $item->user->NIK }}</td>
                                         <td>{{ $item->tahun_pemberian }}</td>
                                         <td class="align-middle text-center">
-                                            {{-- <a href="" data-bs-toggle="modal"
-                                                data-bs-target="#ModalDetail{{ $item->id }}">
-                                                detail
-                                            </a> --}}
-                                            <a href="/bantuan-detail/{{ $item->id }}">
-                                                detail
+                                            <a href="/bantuan-detail/{{ $item->id }}" class="btn btn-dark btn-sm px-1 pb-0">
+                                                <i class="mdi mdi-exclamation"></i>
                                             </a>
                                         </td>
                                     </tr>
