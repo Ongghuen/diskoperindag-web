@@ -21,7 +21,7 @@ class BantuanFactory extends Factory
             'jenis_usaha' => $this->faker->words(2, true),
             'koordinator' => fake()->name(),
             'tahun_pemberian' => '2023',
-            "user_id" => $this->faker->numberBetween(1, 10)
+            "user_id" => $this->faker->numberBetween(2, 11)
         ];
     }
 }

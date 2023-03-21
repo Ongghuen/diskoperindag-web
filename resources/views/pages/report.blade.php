@@ -19,7 +19,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <p class="card-title">Table Laporan</p>
-                        <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/export">Export</a>
+                        <form action="/export" method="GET" class="ms-auto">
+                            @isset($data)
+                                <input type="hidden" value="{{$data}}" name="data">
+                            @endisset
+                            <button class="btn btn-primary btn-fw btn-sm" type="submit">Export</button>
+                        </form>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">

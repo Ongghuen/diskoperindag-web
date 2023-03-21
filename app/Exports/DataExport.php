@@ -14,13 +14,36 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class DataExport implements FromCollection, WithHeadings, WithMapping, WithTitle
 {
+    protected $keyword;
+    protected $rowNumber = 0;
+
+    function __construct($keyword) {
+        $this->keyword = $keyword;
+    }
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
+        $data = $this->keyword;
         $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
-                ->whereHas('user.role', function($query){
+                ->where(function ($query) use($data){
+                    $query
+                    ->where('jenis_usaha', 'LIKE', '%'.$data.'%')
+                    ->orWhere('nama_bantuan', 'LIKE', '%'.$data.'%')
+                    ->orWhere('tahun_pemberian', 'LIKE', '%'.$data.'%');
+                })
+                ->orwhereHas('user', function ($query) use($data){
+                    $query
+                    ->where('name', 'LIKE', '%'.$data.'%')
+                    ->orWhere('NIK', 'LIKE', '%'.$data.'%')
+                    ->orWhere('alamat', 'LIKE', '%'.$data.'%');
+                })
+                ->orWherehas('itemBantuan', function ($query) use($data){
+                    $query
+                    ->where('nama_item', 'LIKE', '%'.$data.'%');
+                })
+                ->whereHas('user.role', function($query) use($data){
                     $query
                     ->where('name', 'User');
                 })
@@ -33,7 +56,7 @@ class DataExport implements FromCollection, WithHeadings, WithMapping, WithTitle
     {
         $qty = [];
         $alat = [];
-        $i = 1;
+        ++$this->rowNumber;
 
         foreach($bantuan->itemBantuan as $item){
             array_push($qty, $item->pivot->kuantitas);
@@ -45,7 +68,7 @@ class DataExport implements FromCollection, WithHeadings, WithMapping, WithTitle
 
         return [
             [
-                $bantuan->id,
+                $this->rowNumber,
                 $bantuan->user->name,
                 $bantuan->user->NIK,
                 $bantuan->user->alamat,
@@ -61,7 +84,7 @@ class DataExport implements FromCollection, WithHeadings, WithMapping, WithTitle
     public function headings(): array
     {
         return [
-            'Bantuan Id.',
+            'No.',
             'Nama Penerima',
             'NIK',
             'Alamat',

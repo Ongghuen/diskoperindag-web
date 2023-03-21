@@ -17,6 +17,7 @@ class ReportController extends Controller
                 ->where(function ($query) use($keyword){
                     $query
                     ->where('jenis_usaha', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('nama_bantuan', 'LIKE', '%'.$keyword.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$keyword.'%');
                 })
                 ->orwhereHas('user', function ($query) use($keyword){
@@ -25,17 +26,26 @@ class ReportController extends Controller
                     ->orWhere('NIK', 'LIKE', '%'.$keyword.'%')
                     ->orWhere('alamat', 'LIKE', '%'.$keyword.'%');
                 })
+                ->orWherehas('itemBantuan', function ($query) use($keyword){
+                    $query
+                    ->where('nama_item', 'LIKE', '%'.$keyword.'%');
+                })
                 ->whereHas('user.role', function($query) use($keyword){
                     $query
                     ->where('name', 'User');
                 })
                 ->paginate(10);
 
-        return view('pages.report', ['userList' => $bantuan]);
+        if($keyword){
+            return view('pages.report', ['userList' => $bantuan, 'data' => $keyword]);
+        }else{
+            return view('pages.report', ['userList' => $bantuan]);
+        }
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new DataExport(), 'laporan ' . date('Y-m-d') . '.xlsx');
+        $data = $request->data;
+        return Excel::download(new DataExport($data), 'laporan ' . date('Y-m-d') . '.xlsx');
     }
 }

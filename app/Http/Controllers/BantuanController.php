@@ -21,7 +21,7 @@ class BantuanController extends Controller
                     ->orWhere('jenis_usaha', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('koordinator', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('sumber_anggaran', 'LIKE', '%' . $keyword . '%');;
+                    ->orWhere('sumber_anggaran', 'LIKE', '%' . $keyword . '%');
             })
             ->orWhereHas('user', function ($query) use ($keyword) {
                 $query
