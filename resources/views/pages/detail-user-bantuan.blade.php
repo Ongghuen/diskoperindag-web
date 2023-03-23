@@ -69,7 +69,7 @@
                                             <td>{{ $data->tahun_pemberian }}</td>
                                             <td>
                                                 <a href="/bantuan-detail/{{ $data->id }}" class="btn btn-dark btn-sm px-1 pb-0 me-1">
-                                                    <i class="mdi mdi-exclamation"></i>
+                                                    <i class="mdi mdi-eye"></i>
                                                 </a>
                                                 <a href="/delete-bantuan/{{ $data->id }}" class="btn btn-dark btn-sm px-1 pb-0">
                                                     <i class="mdi mdi-delete"></i>

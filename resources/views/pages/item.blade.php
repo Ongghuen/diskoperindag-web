@@ -59,7 +59,7 @@
                                         <td>{{ $item->stok }}</td>
                                         <td class="align-middle text-center">
                                             <a href="/item-detail/{{ $item->id }}" class="btn btn-dark btn-sm px-1 pb-0">
-                                                <i class="mdi mdi-exclamation"></i>
+                                                <i class="mdi mdi-eye"></i>
                                             </a>
                                             <a href="/item-edit/{{ $item->id }}" class="mx-2 btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-pencil"></i>

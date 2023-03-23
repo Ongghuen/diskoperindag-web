@@ -58,7 +58,6 @@
                             <tbody>
                                 @foreach ($userList as $item)
                                     <tr>
-
                                         <td>{{ $loop->iteration + $userList->firstItem() - 1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->NIK }}</td>
@@ -67,7 +66,7 @@
                                         <td>{{ $item->phone }}</td>
                                         <td class="align-middle text-center">
                                             <a href="/detail-user-bantuan/{{ $item->id }}" class="btn btn-dark btn-sm px-1 pb-0">
-                                                <i class="mdi mdi-exclamation"></i>
+                                                <i class="mdi mdi-eye"></i>
                                             </a>
                                             <a href="/user-edit/{{ $item->id }}" class="mx-2 btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-pencil"></i>

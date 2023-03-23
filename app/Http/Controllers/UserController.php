@@ -25,6 +25,7 @@ class UserController extends Controller
                 $query
                     ->where('name', 'User');
             })
+            ->sortable()
             ->paginate(10);
 
         return view('pages.user', ['userList' => $user]);
