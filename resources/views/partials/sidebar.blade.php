@@ -13,12 +13,30 @@
                     <span class="menu-title">Pengguna</span>
                 </a>
             </li>
+
             <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <i class="mdi mdi-chart-pie menu-icon"></i>
+                    <span class="menu-title">Fasilitas</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="/bantuan">Item</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/pelatihan">Pelatihan</a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="/sertifikat">Sertifikat</a></li>
+                    </ul>
+
+                </div>
+            </li>
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="/bantuan">
                     <i class="mdi mdi-chart-pie menu-icon"></i>
                     <span class="menu-title">Bantuan</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" href="/item">
                     <i class="mdi mdi-dns menu-icon"></i>

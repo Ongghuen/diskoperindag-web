@@ -1,16 +1,15 @@
 @extends('layouts.mainlayout')
 
-
 @section('title')
-    User
+    Pelatihan
 @endsection
 
 @section('title-page')
-    User
+    Pelatihan
 @endsection
 
 @section('tagline')
-    Kelola data pengguna anda.
+    Kelola data pelatihan anda.
 @endsection
 
 @section('content')
@@ -19,8 +18,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
-                        <p class="card-title">Table User</p>
-                        <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/user-add">Tambah</a>
+                        <p class="card-title">Table Item Pelatihan</p>
+                        <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/pelatihan-add">Tambah</a>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">
@@ -48,30 +47,26 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>NIK</th>
-                                    {{-- <th>Umur</th> --}}
-                                    <th>Kepala Keluarga</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
+                                    <th>Penyelenggara</th>
+                                    <th>Tanggal Pelaksanaan</th>
+                                    <th>Tempat</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($userList as $item)
+                                @foreach ($itemList as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration + $userList->firstItem() - 1 }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->NIK }}</td>
-                                        {{-- <td>{{ $age = \Carbon\Carbon::parse($item->tanggal_lahir)->age }}</td> --}}
-                                        <td>{{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->phone }}</td>
+                                        <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->penyelenggara }}</td>
+                                        <td>{{ $item->tanggal_pelaksanaan }}</td>
+                                        <td>{{ $item->tempat }}</td>
                                         <td class="align-middle text-center">
-                                            <a href="/detail-user-bantuan/{{ $item->id }}"
+                                            <a href="/pelatihan-detail/{{ $item->id }}"
                                                 class="btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-eye"></i>
                                             </a>
-                                            <a href="/user-edit/{{ $item->id }}"
+                                            <a href="/pelatihan-edit/{{ $item->id }}"
                                                 class="mx-2 btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-pencil"></i>
                                             </a>
@@ -84,7 +79,7 @@
                                     </tr>
                                 @endforeach
 
-                                @foreach ($userList as $item)
+                                @foreach ($itemList as $item)
                                     {{-- modal Hapus --}}
                                     <div class="modal fade" id="ModalHapus{{ $item->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,11 +90,11 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <form action="/user-destroy/{{ $item->id }}" method="POST">
+                                                <form action="/pelatihan-destroy/{{ $item->id }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        <p>Anda Yakin Menghapus Data user {{ $item->name }} ?</p>
+                                                        <p>Anda Yakin Menghapus Data Pelatihan {{ $item->nama_item }} ?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -114,7 +109,7 @@
                         </table>
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center mt-3">
-                                {{ $userList->links('pagination::bootstrap-4') }}
+                                {{ $itemList->links('pagination::bootstrap-4') }}
                             </ul>
                         </nav>
                     </div>
@@ -122,7 +117,7 @@
             </div>
         </div>
 
-        @foreach ($userList as $item)
+        @foreach ($itemList as $item)
             {{-- modal detail --}}
             <div class="modal fade" id="ModalDetail{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -135,64 +130,12 @@
                         <div class="modal-body">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>Name</th>
-                                    <td>{{ $item->name }}</td>
+                                    <th>Nama Item</th>
+                                    <td>{{ $item->nama_item }}</td>
                                 </tr>
                                 <tr>
-                                    <th>NIK</th>
-                                    <td>{{ $item->NIK }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Alamat</th>
-                                    <td>{{ $item->alamat }}</td>
-                                </tr>
-                                <tr>
-                                    <th>No. Telepon</th>
-                                    <td>{{ $item->phone }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Gender</th>
-                                    @if ($item->gender == 'P')
-                                        <td>Perempuan</td>
-                                    @else
-                                        <td>Laki-Laki</td>
-                                    @endif
-                                </tr>
-                                <tr>
-                                    <th>Bantuan</th>
-                                    <td>
-                                        <table class="table table-bordered mb-2">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Jenis Usaha</th>
-                                                    <th>Tahun</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            @foreach ($item->bantuan as $data)
-                                                <tbody>
-                                                    <tr>
-                                                        <td>{{ $data->nama_bantuan }}</td>
-                                                        <td>{{ $data->jenis_usaha }}</td>
-                                                        <td>{{ $data->tahun_pemberian }}</td>
-                                                        <td>
-                                                            <div class="mb-2">
-                                                                <a href="">
-                                                                    edit
-                                                                </a>
-                                                            </div>
-                                                            <a href="">
-                                                                hapus
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            @endforeach
-                                        </table>
-                                        <a href="/user-bantuan/{{ $item->id }}"
-                                            class="btn btn-sm btn-primary">Tambah</a>
-                                    </td>
+                                    <th>Deskripsi</th>
+                                    <td>{{ $item->deskripsi }}</td>
                                 </tr>
                             </table>
                         </div>

@@ -28,7 +28,9 @@ class User extends Authenticatable
         'kepala_keluarga',
         'gender',
         'alamat',
-        'phone'
+        'phone',
+        'tempat_lahir',
+        'tanggal_lahir',
     ];
 
     public $sortable = [

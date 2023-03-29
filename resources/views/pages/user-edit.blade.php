@@ -70,6 +70,16 @@
                             @endif
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="exampleInputEmail1" name="tanggal_lahir"
+                            placeholder="Tanggal Lahir" value="{{ $item->tanggal_lahir }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPhone1">Tempat Lahir</label>
+                        <input type="text" name="tempat_lahir" class="form-control" id="exampleInputPhone1"
+                            placeholder="Tempat Lahir" value="{{ $item->tempat_lahir }}">
+                    </div>
                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                     <a class="btn btn-light" href="/user">Cancel</a>
                 </form>

@@ -63,6 +63,16 @@
                             <option value="P">P</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="exampleInputEmail1" name="tanggal_lahir"
+                            placeholder="Tanggal Lahir" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPhone1">Tempat Lahir</label>
+                        <input type="text" name="tempat_lahir" class="form-control" id="exampleInputPhone1"
+                            placeholder="Tempat Lahir">
+                    </div>
                     <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
                     <a class="btn btn-light btn-sm" href="/user">Cancel</a>
                 </form>

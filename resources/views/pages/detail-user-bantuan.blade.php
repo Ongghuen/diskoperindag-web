@@ -50,6 +50,18 @@
                         @endif
                     </tr>
                     <tr>
+                        <th>Umur</th>
+                        <td>{{ $age = \Carbon\Carbon::parse($item->tanggal_lahir)->age }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Lahir</th>
+                        <td>{{ $item->tanggal_lahir }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tempat Lahir</th>
+                        <td>{{ $item->tempat_lahir }}</td>
+                    </tr>
+                    <tr>
                         <th>Bantuan</th>
                         <td>
                             <table class="table table-bordered mb-2">
@@ -68,10 +80,12 @@
                                             <td>{{ $data->jenis_usaha }}</td>
                                             <td>{{ $data->tahun_pemberian }}</td>
                                             <td>
-                                                <a href="/bantuan-detail/{{ $data->id }}" class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                <a href="/bantuan-detail/{{ $data->id }}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
                                                     <i class="mdi mdi-eye"></i>
                                                 </a>
-                                                <a href="/delete-bantuan/{{ $data->id }}" class="btn btn-dark btn-sm px-1 pb-0">
+                                                <a href="/delete-bantuan/{{ $data->id }}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0">
                                                     <i class="mdi mdi-delete"></i>
                                                 </a>
                                             </td>

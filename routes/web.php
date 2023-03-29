@@ -6,6 +6,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BantuanController;
+use App\Http\Controllers\PelatihanController;
+use App\Http\Controllers\SertifikatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,24 @@ Route::delete('/item-destroy/{id}', [ItemController::class, 'destroy'])->middlew
 Route::get('/item-add', [ItemController::class, 'storeView'])->middleware('auth');
 Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');
 Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middleware('auth');
+
+# Item Pelatihan
+Route::get('/pelatihan', [PelatihanController::class, 'index'])->middleware('auth');
+Route::post('/pelatihan', [PelatihanController::class, 'store'])->middleware('auth');
+Route::put('pelatihan-update/{id}', [PelatihanController::class, 'update'])->middleware('auth');
+Route::delete('/pelatihan-destroy/{id}', [PelatihanController::class, 'destroy'])->middleware('auth');
+Route::get('/pelatihan-add', [PelatihanController::class, 'storeView'])->middleware('auth');
+Route::get('/pelatihan-edit/{id}', [PelatihanController::class, 'updateView'])->middleware('auth');
+Route::get('/pelatihan-detail/{id}', [PelatihanController::class, 'pelatihandetail'])->middleware('auth');
+
+# Item Sertifikat
+Route::get('/sertifikat', [SertifikatController::class, 'index'])->middleware('auth');
+Route::post('/sertifikat', [SertifikatController::class, 'store'])->middleware('auth');
+Route::put('sertifikat-update/{id}', [SertifikatController::class, 'update'])->middleware('auth');
+Route::delete('/sertifikat-destroy/{id}', [SertifikatController::class, 'destroy'])->middleware('auth');
+Route::get('/sertifikat-add', [SertifikatController::class, 'storeView'])->middleware('auth');
+Route::get('/sertifikat-edit/{id}', [SertifikatController::class, 'updateView'])->middleware('auth');
+Route::get('/sertifikat-detail/{id}', [SertifikatController::class, 'sertifikatdetail'])->middleware('auth');
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');

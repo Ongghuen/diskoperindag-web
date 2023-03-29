@@ -8,6 +8,7 @@ use App\Models\ItemBantuan;
 use App\Models\UsersBantuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -28,7 +29,16 @@ class UserController extends Controller
             ->sortable()
             ->paginate(10);
 
-        return view('pages.user', ['userList' => $user]);
+
+
+
+        return view(
+            'pages.user',
+            [
+                'userList' => $user,
+
+            ]
+        );
     }
 
     public function storeView()
