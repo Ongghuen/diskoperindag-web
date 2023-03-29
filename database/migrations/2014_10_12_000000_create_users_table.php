@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('phone');
             $table->enum('gender', ['L', 'P']);
             $table->boolean('kepala_keluarga')->default(false);
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('umur')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
