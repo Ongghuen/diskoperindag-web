@@ -47,7 +47,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Stok</th>
+                                    <th>Jumlah Diberikan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

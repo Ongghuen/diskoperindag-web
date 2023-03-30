@@ -45,13 +45,13 @@
                         <td>{{ $item->tahun_pemberian }}</td>
                     </tr>
                     <tr>
-                        <th>List Item</th>
+                        <th>List Alat</th>
                         <td>
                             <table class="table table-bordered mb-2">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Item</th>
+                                        <th scope="col">Nama Alat</th>
                                         <th>Qty</th>
                                         <th>Action</th>
                                     </tr>

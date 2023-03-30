@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SertifikatItem>
  */
-class ItemSertifikatFactory extends Factory
+class BantuanSertifikatFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class ItemSertifikatFactory extends Factory
     {
         return [
             "bantuan_id" => $this->faker->numberBetween(1, 10),
-            "item_id" => $this->faker->numberBetween(1, 20),
+            "sertifikat_id" => $this->faker->numberBetween(1, 20),
         ];
     }
 }

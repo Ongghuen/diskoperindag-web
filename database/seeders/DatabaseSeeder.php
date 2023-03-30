@@ -3,12 +3,16 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Alat;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Bantuan;
-use App\Models\BantuanItem;
-use App\Models\ItemBantuan;
+use App\Models\Pelatihan;
+use App\Models\Sertifikat;
+use App\Models\BantuanAlat;
 use Illuminate\Database\Seeder;
+use App\Models\BantuanPelatihan;
+use App\Models\BantuanSertifikat;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,7 +42,11 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->count(10)->create();
         Bantuan::factory()->count(10)->create();
-        ItemBantuan::factory()->count(20)->create();
-        BantuanItem::factory()->count(30)->create();
+        Alat::factory()->count(20)->create();
+        Sertifikat::factory()->count(20)->create();
+        Pelatihan::factory()->count(20)->create();
+        BantuanAlat::factory()->count(30)->create();
+        BantuanSertifikat::factory()->count(30)->create();
+        BantuanPelatihan::factory()->count(30)->create();
     }
 }

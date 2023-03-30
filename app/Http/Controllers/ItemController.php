@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ItemBantuan;
+use App\Models\Alat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -12,7 +12,7 @@ class ItemController extends Controller
     {
         $keyword = $request->keyword;
 
-        $items = ItemBantuan::where(function ($query) use ($keyword) {
+        $items = Alat::where(function ($query) use ($keyword) {
             $query
                 ->where('nama_item', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('stok', 'LIKE', '%' . $keyword . '%');
@@ -29,7 +29,7 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $items = new ItemBantuan;
+        $items = new Alat;
 
         $items->create($request->all());
 
@@ -43,7 +43,7 @@ class ItemController extends Controller
 
     public function destroy($id)
     {
-        $items = ItemBantuan::findOrFail($id);
+        $items = Alat::findOrFail($id);
         $items->delete();
 
         if ($items) {
@@ -56,13 +56,13 @@ class ItemController extends Controller
 
     public function updateView($id)
     {
-        $items = ItemBantuan::findOrFail($id);
+        $items = Alat::findOrFail($id);
         return view('pages.item-edit', ['item' => $items]);
     }
 
     public function update(Request $request, $id)
     {
-        $items = ItemBantuan::findOrFail($id);
+        $items = Alat::findOrFail($id);
         $items->update($request->all());
 
         if ($items) {
@@ -75,7 +75,7 @@ class ItemController extends Controller
 
     public function itemdetail($id)
     {
-        $items = ItemBantuan::findOrFail($id);
+        $items = Alat::findOrFail($id);
         return view('pages.item-detail', ['item' => $items]);
     }
 }

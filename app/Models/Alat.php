@@ -6,11 +6,11 @@ use App\Models\Bantuan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ItemBantuan extends Model
+class Alat extends Model
 {
     use HasFactory;
 
-    protected $table = 'item_bantuan';
+    protected $table = 'alat';
 
     protected $fillable = [
         'nama_item',

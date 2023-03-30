@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bantuan;
-use App\Models\BantuanItem;
-use App\Models\PelatihanItem;
-use App\Models\SertifikatItem;
-use App\Models\ItemBantuan;
+use App\Models\BantuanAlat;
+use App\Models\BantuanPelatihan;
+use App\Models\BantuanSertifikat;
+use App\Models\Alat;
 use App\Models\Pelatihan;
 use App\Models\Sertifikat;
 use Illuminate\Http\Request;
@@ -40,14 +40,14 @@ class BantuanController extends Controller
     public function addItem($id)
     {
         $bantuan = Bantuan::findOrFail($id);
-        $items = ItemBantuan::all();
+        $items = Alat::all();
 
         return view('pages.addItem', ['bantuan' => $bantuan, 'itemList' => $items]);
     }
 
     public function storeItem(Request $request)
     {
-        $data = new BantuanItem;
+        $data = new BantuanAlat;
         $dataBantuan = $request->bantuan_id;
 
         $data->create($request->all());
@@ -62,7 +62,7 @@ class BantuanController extends Controller
 
     public function deleteItem($item, $bantuan)
     {
-        $data = BantuanItem::where('bantuan_id', '=', $bantuan)
+        $data = BantuanAlat::where('bantuan_id', '=', $bantuan)
             ->where('item_id', '=', $item)->delete();
 
         return back();
@@ -114,7 +114,7 @@ class BantuanController extends Controller
 
     public function storeItemPelatihan(Request $request)
     {
-        $data = new PelatihanItem;
+        $data = new BantuanPelatihan;
         $bantuan = $request->bantuan_id;
 
         $data->create($request->all());
@@ -129,7 +129,7 @@ class BantuanController extends Controller
 
     public function deleteItemPelatihan($item, $bantuan)
     {
-        $data = PelatihanItem::where('bantuan_id', '=', $bantuan)
+        $data = BantuanPelatihan::where('bantuan_id', '=', $bantuan)
             ->where('item_id', '=', $item)->delete();
 
         return back();
@@ -182,7 +182,7 @@ class BantuanController extends Controller
 
     public function storeItemSertifikat(Request $request)
     {
-        $data = new SertifikatItem;
+        $data = new BantuanSertifikat;
         $bantuan = $request->bantuan_id;
 
         $data->create($request->all());
@@ -197,7 +197,7 @@ class BantuanController extends Controller
 
     public function deleteItemSertifikat($item, $bantuan)
     {
-        $data = SertifikatItem::where('bantuan_id', '=', $bantuan)
+        $data = BantuanSertifikat::where('bantuan_id', '=', $bantuan)
             ->where('item_id', '=', $item)->delete();
 
         return back();

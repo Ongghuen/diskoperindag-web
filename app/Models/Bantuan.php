@@ -31,17 +31,17 @@ class Bantuan extends Model
 
     public function itemBantuan()
     {
-        return $this->belongsToMany(ItemBantuan::class, 'bantuan_item', 'bantuan_id', 'item_id')
+        return $this->belongsToMany(Alat::class, 'bantuan_alat', 'bantuan_id', 'alat_id')
             ->withPivot(['kuantitas']);
     }
 
     public function itemSertifikat()
     {
-        return $this->belongsToMany(Sertifikat::class, 'sertifikat_item', 'bantuan_id', 'item_id');
+        return $this->belongsToMany(Sertifikat::class, 'bantuan_sertifikat', 'bantuan_id', 'sertifikat_id');
     }
 
     public function itemPelatihan()
     {
-        return $this->belongsToMany(Pelatihan::class, 'pelatihan_item', 'bantuan_id', 'item_id');
+        return $this->belongsToMany(Pelatihan::class, 'bantuan_pelatihan', 'bantuan_id', 'pelatihan_id');
     }
 }

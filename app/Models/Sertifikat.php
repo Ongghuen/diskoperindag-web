@@ -10,7 +10,7 @@ class Sertifikat extends Model
 {
     use HasFactory;
 
-    protected $table = 'item_sertifikat';
+    protected $table = 'sertifikat';
 
     protected $fillable = [
         'no_sertifikat',
@@ -22,6 +22,6 @@ class Sertifikat extends Model
 
     public function bantuan()
     {
-        return $this->belongsToMany(Bantuan::class, 'sertifikat_item', 'item_id', 'bantuan_id');
+        return $this->belongsToMany(Bantuan::class, 'bantuan_sertifikat', 'sertifikat_id', 'bantuan_id');
     }
 }

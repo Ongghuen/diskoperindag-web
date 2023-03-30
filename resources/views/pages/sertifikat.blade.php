@@ -50,7 +50,6 @@
                                     <th>Nama</th>
                                     <th>Tanggal Terbit</th>
                                     <th>Kadaluarsa Penyelenggara</th>
-                                    <th>Keterangan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -62,7 +61,6 @@
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->tanggal_terbit }}</td>
                                         <td>{{ $item->kadaluarsa_penyelenggara }}</td>
-                                        <td>{{ $item->keterangan }}</td>
                                         <td class="align-middle text-center">
                                             <a href="/sertifikat-detail/{{ $item->id }}"
                                                 class="btn btn-dark btn-sm px-1 pb-0">

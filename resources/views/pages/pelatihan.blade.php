@@ -62,10 +62,10 @@
                                         <td>{{ $item->tanggal_pelaksanaan }}</td>
                                         <td>{{ $item->tempat }}</td>
                                         <td class="align-middle text-center">
-                                            <a href="/pelatihan-detail/{{ $item->id }}"
+                                            {{-- <a href="/pelatihan-detail/{{ $item->id }}"
                                                 class="btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-eye"></i>
-                                            </a>
+                                            </a> --}}
                                             <a href="/pelatihan-edit/{{ $item->id }}"
                                                 class="mx-2 btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-pencil"></i>

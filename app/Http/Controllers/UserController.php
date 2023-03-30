@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Bantuan;
-use App\Models\ItemBantuan;
-use App\Models\UsersBantuan;
+use App\Models\Alat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -28,9 +27,6 @@ class UserController extends Controller
             })
             ->sortable()
             ->paginate(10);
-
-
-
 
         return view(
             'pages.user',

@@ -11,7 +11,7 @@ class Pelatihan extends Model
 {
     use HasFactory;
 
-    protected $table = 'item_pelatihan';
+    protected $table = 'pelatihan';
 
     protected $fillable = [
         'nama',
@@ -23,6 +23,6 @@ class Pelatihan extends Model
 
     public function bantuan()
     {
-        return $this->belongsToMany(Bantuan::class, 'pelatihan_item', 'item_id', 'bantuan_id');
+        return $this->belongsToMany(Bantuan::class, 'bantuan_pelatihan', 'pelatihan_id', 'bantuan_id');
     }
 }
