@@ -27,6 +27,8 @@ class UserFactory extends Factory
             'phone' => $this->faker->e164PhoneNumber(),
             'gender' => $this->faker->randomElement(['L', 'P']),
             'kepala_keluarga' => $this->faker->randomElement([0, 1]),
+            'tempat_lahir' => $this->faker->words(2, true),
+            'tanggal_lahir' => $this->faker->date(),
             'role_id' => '2'
         ];
     }
