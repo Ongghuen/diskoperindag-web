@@ -9,7 +9,7 @@ class Sertifikat extends Model
 {
     use HasFactory;
 
-    protected $table = 'sertifikat';
+    protected $table = 'item_sertifikat';
 
     protected $fillable = [
         'no_sertifikat',

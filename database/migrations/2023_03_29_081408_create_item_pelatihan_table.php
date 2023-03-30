@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sertifikat', function (Blueprint $table) {
+        Schema::create('item_pelatihan', function (Blueprint $table) {
             $table->id();
-            $table->string('no_sertifikat');
             $table->string('nama');
-            $table->date('tanggal_terbit');
-            $table->date('kadaluarsa_penyelenggara');
-            $table->string('keterangan');
+            $table->string('penyelenggara');
+            $table->date('tanggal_pelaksanaan');
+            $table->string('tempat');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sertifikat');
+        Schema::dropIfExists('item_pelatihan');
     }
 };

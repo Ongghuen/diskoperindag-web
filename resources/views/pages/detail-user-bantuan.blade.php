@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <th>Umur</th>
-                        <td>{{ $age = \Carbon\Carbon::parse($item->tanggal_lahir)->age }}</td>
+                        <td>{{ $age = \Carbon\Carbon::parse($item->tanggal_lahir)->age }} Tahun</td>
                     </tr>
                     <tr>
                         <th>Tanggal Lahir</th>

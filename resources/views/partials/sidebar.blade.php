@@ -13,35 +13,44 @@
                     <span class="menu-title">Pengguna</span>
                 </a>
             </li>
-
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="/bantuan">
+                    <i class="mdi mdi-chart-pie menu-icon"></i>
+                    <span class="menu-title">Fasilitas</span>
+                </a>
+            </li> --}}
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false"
                     aria-controls="ui-basic">
                     <i class="mdi mdi-chart-pie menu-icon"></i>
                     <span class="menu-title">Fasilitas</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="ui-basic1">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/bantuan">Item</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/bantuan">Alat</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/pelatihan">Pelatihan</a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="/sertifikat">Sertifikat</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <i class="mdi mdi mdi-dns menu-icon"></i>
+                    <span class="menu-title">Item</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic2">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="/item">Alat</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/pelatihan">Pelatihan</a>
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="/sertifikat">Sertifikat</a></li>
                     </ul>
 
                 </div>
-            </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="/bantuan">
-                    <i class="mdi mdi-chart-pie menu-icon"></i>
-                    <span class="menu-title">Bantuan</span>
-                </a>
-            </li> --}}
-            <li class="nav-item">
-                <a class="nav-link" href="/item">
-                    <i class="mdi mdi-dns menu-icon"></i>
-                    <span class="menu-title">Item</span>
-                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/report">
@@ -51,7 +60,6 @@
             </li>
         </ul>
     </nav>
-
     @include('partials.content')
 </div>
 
