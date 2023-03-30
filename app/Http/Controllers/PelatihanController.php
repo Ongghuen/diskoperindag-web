@@ -21,7 +21,7 @@ class PelatihanController extends Controller
         })
             ->paginate(10);
 
-        return view('pages.pelatihan', ['itemList' => $items]);
+        return view('pages.pelatihanitem', ['itemList' => $items]);
     }
 
     public function storeView()
@@ -40,7 +40,7 @@ class PelatihanController extends Controller
             Session::flash('message', 'Tambah data pelatihan berhasil!');
         }
 
-        return redirect('/pelatihan');
+        return redirect('/pelatihanitem');
     }
 
     public function destroy($id)
@@ -53,7 +53,7 @@ class PelatihanController extends Controller
             Session::flash('message', 'Data pelatihan berhasil dihapus!');
         }
 
-        return redirect('/pelatihan');
+        return redirect('/pelatihanitem');
     }
 
     public function updateView($id)
@@ -72,7 +72,7 @@ class PelatihanController extends Controller
             Session::flash('message', 'Data pelatihan berhasil diubah!');
         }
 
-        return redirect('/pelatihan');
+        return redirect('/pelatihanitem');
     }
 
     public function pelatihandetail($id)

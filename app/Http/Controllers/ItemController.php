@@ -19,7 +19,7 @@ class ItemController extends Controller
         })
             ->paginate(10);
 
-        return view('pages.item', ['itemList' => $items]);
+        return view('pages.alatitem', ['itemList' => $items]);
     }
 
     public function storeView()
@@ -38,7 +38,7 @@ class ItemController extends Controller
             Session::flash('message', 'Tambah data item bantuan berhasil!');
         }
 
-        return redirect('/item');
+        return redirect('/alatitem');
     }
 
     public function destroy($id)
@@ -51,7 +51,7 @@ class ItemController extends Controller
             Session::flash('message', 'Data item bantuan berhasil dihapus!');
         }
 
-        return redirect('/item');
+        return redirect('/alatitem');
     }
 
     public function updateView($id)
@@ -70,7 +70,7 @@ class ItemController extends Controller
             Session::flash('message', 'Data item bantuan berhasil diubah!');
         }
 
-        return redirect('/item');
+        return redirect('/alatitem');
     }
 
     public function itemdetail($id)

@@ -21,7 +21,7 @@ class SertifikatController extends Controller
         })
             ->paginate(10);
 
-        return view('pages.sertifikat', ['itemList' => $items]);
+        return view('pages.sertifikatitem', ['itemList' => $items]);
     }
 
     public function storeView()
@@ -40,7 +40,7 @@ class SertifikatController extends Controller
             Session::flash('message', 'Tambah data sertifikat berhasil!');
         }
 
-        return redirect('/sertifikat');
+        return redirect('/sertifikatitem');
     }
 
     public function destroy($id)
@@ -53,7 +53,7 @@ class SertifikatController extends Controller
             Session::flash('message', 'Data sertifikat berhasil dihapus!');
         }
 
-        return redirect('/sertikat');
+        return redirect('/sertikatitem');
     }
 
     public function updateView($id)
@@ -72,7 +72,7 @@ class SertifikatController extends Controller
             Session::flash('message', 'Data sertifikat berhasil diubah!');
         }
 
-        return redirect('/sertifikat');
+        return redirect('/sertifikatitem');
     }
 
     public function sertifikatdetail($id)
