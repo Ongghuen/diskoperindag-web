@@ -55,6 +55,13 @@ Route::get('delete-item-pelatihan/{item}/{bantuan}', [BantuanController::class, 
 Route::get('pelatihandetail/{id}', [BantuanController::class, 'detailpelatihan'])->middleware('auth');
 
 
+Route::get('/sertifikatfasilitas', [BantuanController::class, 'indexsertifikat'])->middleware('auth');
+Route::get('/sertifikat-item/{id}', [BantuanController::class, 'addItemSertifikat'])->middleware('auth');
+Route::post('/sertifikat-add-item', [BantuanController::class, 'storeItemSertifikat'])->middleware('auth');
+Route::get('delete-item-sertifikat/{item}/{bantuan}', [BantuanController::class, 'deleteItemSertifikat'])->middleware('auth');
+Route::get('sertifikatdetail/{id}', [BantuanController::class, 'detailsertifikat'])->middleware('auth');
+
+
 # Item Routes
 Route::get('/item', [ItemController::class, 'index'])->middleware('auth');
 Route::post('/item', [ItemController::class, 'store'])->middleware('auth');

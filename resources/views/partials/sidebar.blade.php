@@ -31,7 +31,7 @@
                         <li class="nav-item"> <a class="nav-link" href="/bantuan">Alat</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/pelatihanfasilitas">Pelatihan</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="/sertifikat">Sertifikat</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/sertifikatfasilitas">Sertifikat</a></li>
                     </ul>
                 </div>
             </li>
