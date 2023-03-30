@@ -3,8 +3,9 @@
 namespace App\Models;
 
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Bantuan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pelatihan extends Model
 {
@@ -19,4 +20,9 @@ class Pelatihan extends Model
         'tempat',
 
     ];
+
+    public function bantuan()
+    {
+        return $this->belongsToMany(Bantuan::class, 'pelatihan_item', 'item_id', 'bantuan_id');
+    }
 }

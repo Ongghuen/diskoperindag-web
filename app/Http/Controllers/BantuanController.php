@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Bantuan;
 use App\Models\BantuanItem;
+use App\Models\PelatihanItem;
+use App\Models\SertifikatItem;
 use App\Models\ItemBantuan;
+use App\Models\Pelatihan;
+use App\Models\Sertifikat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -71,5 +75,73 @@ class BantuanController extends Controller
             ->first();
 
         return view('pages.bantuan-detail', ['item' => $bantuan]);
+    }
+
+
+
+    // Pelatihan Ngab
+
+    public function indexpelatihan(Request $request)
+    {
+        $keyword = $request->keyword;
+
+        $pelatihan = Bantuan::with(['user', 'itemPelatihan'])
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('nama_bantuan', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('jenis_usaha', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('tahun_pemberian', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('koordinator', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('sumber_anggaran', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orWhereHas('user', function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+            })
+            ->paginate(10);
+
+        return view('pages.pelatihanfasilitas', ['pelatihanList' => $pelatihan]);
+    }
+
+    public function addItemPelatihan($id)
+    {
+        $bantuan = Bantuan::findOrFail($id);
+        $datapelatihan = Pelatihan::all();
+
+        return view('pages.addItemPelatihan', ['bantuan' => $bantuan, 'PelatihanList' => $datapelatihan]);
+    }
+
+    public function storeItemPelatihan(Request $request)
+    {
+        $data = new PelatihanItem;
+        $bantuan = $request->bantuan_id;
+
+        $data->create($request->all());
+
+        if ($data) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'Item berhasil ditambahkan!');
+        }
+
+        return redirect('pelatihandetail/' . $bantuan);
+    }
+
+    public function deleteItemPelatihan($item, $bantuan)
+    {
+        $data = PelatihanItem::where('bantuan_id', '=', $bantuan)
+            ->where('item_id', '=', $item)->delete();
+
+        return back();
+    }
+
+
+    public function detailpelatihan($id)
+    {
+        $pelatihan = Bantuan::with(['user', 'itemPelatihan'])
+            ->where('id', '=', $id)
+            ->first();
+
+        return view('pages.pelatihandetail', ['item' => $pelatihan]);
     }
 }

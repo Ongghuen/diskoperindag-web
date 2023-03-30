@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Bantuan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Sertifikat extends Model
 {
@@ -18,4 +19,9 @@ class Sertifikat extends Model
         'kadaluarsa_penyelenggara',
         'keterangan',
     ];
+
+    public function bantuan()
+    {
+        return $this->belongsToMany(Bantuan::class, 'sertifikat_item', 'item_id', 'bantuan_id');
+    }
 }
