@@ -5,11 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
 use App\Models\Bantuan;
+use App\Models\Pelatihan;
+use App\Models\Sertifikat;
 use Laravel\Sanctum\HasApiTokens;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
@@ -68,5 +70,15 @@ class User extends Authenticatable
     public function bantuan()
     {
         return $this->hasMany(Bantuan::class, 'user_id', 'id');
+    }
+
+    public function pelatihan()
+    {
+        return $this->hasMany(Pelatihan::class, 'user_id', 'id');
+    }
+
+    public function sertifikat()
+    {
+        return $this->hasMany(Sertifikat::class, 'user_id', 'id');
     }
 }

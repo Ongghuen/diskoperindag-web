@@ -18,11 +18,11 @@ class Pelatihan extends Model
         'penyelenggara',
         'tanggal_pelaksanaan',
         'tempat',
-
+        'user_id'
     ];
 
-    public function bantuan()
+    public function user()
     {
-        return $this->belongsToMany(Bantuan::class, 'bantuan_pelatihan', 'pelatihan_id', 'bantuan_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

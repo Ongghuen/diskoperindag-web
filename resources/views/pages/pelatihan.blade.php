@@ -1,15 +1,15 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Sertifikat
+    Pelatihan
 @endsection
 
 @section('title-page')
-    Sertifikat
+    Pelatihan
 @endsection
 
 @section('tagline')
-    Kelola data Sertifikat anda.
+    Kelola data pelatihan anda.
 @endsection
 
 @section('content')
@@ -18,8 +18,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
-                        <p class="card-title">Table Sertifikat</p>
-                        <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/sertifikat-add">Tambah</a>
+                        <p class="card-title">Table Item Pelatihan</p>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">
@@ -46,36 +45,24 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>No Sertifikat</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Terbit</th>
-                                    <th>Kadaluarsa Penyelenggara</th>
-                                    <th>Action</th>
+                                    <th>Nama Pelatihan</th>
+                                    <th>Penyelenggara</th>
+                                    <th>Tanggal Pelaksanaan</th>
+                                    <th>Tempat</th>
+                                    <th>Penerima</th>
+                                    <th>NIK</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($itemList as $item)
                                     <tr>
                                         <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
-                                        <td>{{ $item->no_sertifikat }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tanggal_terbit }}</td>
-                                        <td>{{ $item->kadaluarsa_penyelenggara }}</td>
-                                        <td class="align-middle text-center">
-                                            <a href="/sertifikat-detail/{{ $item->id }}"
-                                                class="btn btn-dark btn-sm px-1 pb-0">
-                                                <i class="mdi mdi-eye"></i>
-                                            </a>
-                                            <a href="/sertifikat-edit/{{ $item->id }}"
-                                                class="mx-2 btn btn-dark btn-sm px-1 pb-0">
-                                                <i class="mdi mdi-pencil"></i>
-                                            </a>
-                                            <a href="" data-bs-toggle="modal"
-                                                data-bs-target="#ModalHapus{{ $item->id }}"
-                                                class="btn btn-dark btn-sm px-1 pb-0">
-                                                <i class="mdi mdi-delete"></i>
-                                            </a>
-                                        </td>
+                                        <td>{{ $item->penyelenggara }}</td>
+                                        <td>{{ $item->tanggal_pelaksanaan }}</td>
+                                        <td>{{ $item->tempat }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->user->NIK }}</td>
                                     </tr>
                                 @endforeach
 
@@ -90,12 +77,11 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <form action="/sertfikat-destroy/{{ $item->id }}" method="POST">
+                                                <form action="/pelatihan-destroy/{{ $item->id }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        <p>Anda Yakin Menghapus Data Sertifikat {{ $item->nama_item }} ?
-                                                        </p>
+                                                        <p>Anda Yakin Menghapus Data Pelatihan {{ $item->nama_item }} ?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>

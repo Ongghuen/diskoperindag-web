@@ -21,7 +21,8 @@ class SertifikatFactory extends Factory
             'nama' => $this->faker->words(2, true),
             'tanggal_terbit' => $this->faker->date(),
             'kadaluarsa_penyelenggara' => $this->faker->date(),
-            'keterangan' => $this->faker->paragraph()
+            'keterangan' => $this->faker->paragraph(),
+            "user_id" => $this->faker->numberBetween(2, 11)
         ];
     }
 }

@@ -18,10 +18,11 @@ class Sertifikat extends Model
         'tanggal_terbit',
         'kadaluarsa_penyelenggara',
         'keterangan',
+        'user_id'
     ];
 
-    public function bantuan()
+    public function user()
     {
-        return $this->belongsToMany(Bantuan::class, 'bantuan_sertifikat', 'sertifikat_id', 'bantuan_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

@@ -22,7 +22,7 @@
                 <div class="modal-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th>No Sertifikat</th>
+                            <th>Nomor Sertifikat</th>
                             <td>{{ $item->no_sertifikat }}</td>
                         </tr>
                         <tr>
@@ -34,8 +34,16 @@
                             <td>{{ $item->tanggal_terbit }}</td>
                         </tr>
                         <tr>
-                            <th>Kadaluarsa Penyelenggara</th>
+                            <th>Tanggal Kadaluarsa</th>
                             <td>{{ $item->kadaluarsa_penyelenggara }}</td>
+                        </tr>
+                        <tr>
+                            <th>Penerima</th>
+                            <td>{{ $item->user->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>NIK</th>
+                            <td>{{ $item->user->NIK }}</td>
                         </tr>
                         <tr>
                             <th>Keterangan</th>

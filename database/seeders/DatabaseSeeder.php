@@ -11,8 +11,6 @@ use App\Models\Pelatihan;
 use App\Models\Sertifikat;
 use App\Models\BantuanAlat;
 use Illuminate\Database\Seeder;
-use App\Models\BantuanPelatihan;
-use App\Models\BantuanSertifikat;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,7 +44,5 @@ class DatabaseSeeder extends Seeder
         Sertifikat::factory()->count(20)->create();
         Pelatihan::factory()->count(20)->create();
         BantuanAlat::factory()->count(30)->create();
-        BantuanSertifikat::factory()->count(30)->create();
-        BantuanPelatihan::factory()->count(30)->create();
     }
 }
