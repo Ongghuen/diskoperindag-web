@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bantuan;
-use App\Models\BantuanAlat;
 use App\Models\Alat;
+use App\Models\User;
+use App\Models\Bantuan;
 use App\Models\Pelatihan;
 use App\Models\Sertifikat;
+use App\Models\BantuanAlat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -73,5 +74,21 @@ class BantuanController extends Controller
             ->first();
 
         return view('pages.bantuan-detail', ['item' => $bantuan]);
+    }
+
+    public function updateView($idBantuan, $idUser)
+    {
+        $items = Bantuan::findOrFail($idBantuan);
+        $user = User::findOrFail($idUser);
+        return view('pages.bantuan-edit', ['item' => $items, 'user' => $user]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $items = Bantuan::findOrFail($id);
+        $user = $request->user_id;
+        $items->update($request->all());
+
+        return redirect('/detail-user-bantuan/' . $user);
     }
 }

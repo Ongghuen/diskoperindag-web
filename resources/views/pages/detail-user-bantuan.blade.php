@@ -50,24 +50,25 @@
                         @endif
                     </tr>
                     <tr>
-                        <th>Umur</th>
-                        <td>{{ $age = \Carbon\Carbon::parse($item->tanggal_lahir)->age }} Tahun</td>
+                        <th>Tempat Lahir</th>
+                        <td>{{ $item->tempat_lahir }}</td>
                     </tr>
                     <tr>
                         <th>Tanggal Lahir</th>
                         <td>{{ $item->tanggal_lahir }}</td>
                     </tr>
                     <tr>
-                        <th>Tempat Lahir</th>
-                        <td>{{ $item->tempat_lahir }}</td>
+                        <th>Umur</th>
+                        <td>{{ $age = \Carbon\Carbon::parse($item->tanggal_lahir)->age }} Tahun</td>
                     </tr>
                     <tr>
-                        <th>Bantuan</th>
+                        <th>Bantuan Alat</th>
                         <td>
                             <table class="table table-bordered mb-2">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Nama</th>
+                                        <th>No</th>
+                                        <th scope="col">Nama Bantuan</th>
                                         <th scope="col">Jenis Usaha</th>
                                         <th>Tahun</th>
                                         <th>Action</th>
@@ -76,6 +77,7 @@
                                 @foreach ($item->bantuan as $data)
                                     <tbody>
                                         <tr>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->nama_bantuan }}</td>
                                             <td>{{ $data->jenis_usaha }}</td>
                                             <td>{{ $data->tahun_pemberian }}</td>
@@ -83,6 +85,10 @@
                                                 <a href="/bantuan-detail/{{ $data->id }}"
                                                     class="btn btn-dark btn-sm px-1 pb-0 me-1">
                                                     <i class="mdi mdi-eye"></i>
+                                                </a>
+                                                <a href="/bantuan-edit/{{ $data->id }}/{{$item->id}}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                    <i class="mdi mdi-pencil"></i>
                                                 </a>
                                                 <a href="/delete-bantuan/{{ $data->id }}"
                                                     class="btn btn-dark btn-sm px-1 pb-0">
@@ -94,6 +100,88 @@
                                 @endforeach
                             </table>
                             <a href="/user-bantuan/{{ $item->id }}" class="btn btn-sm btn-primary">Tambah</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Pelatihan</th>
+                        <td>
+                            <table class="table table-bordered mb-2">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th scope="col">Nama Pelatihan</th>
+                                        <th scope="col">Penyelenggara</th>
+                                        <th>Tanggal Pelaksanaan</th>
+                                        <th>Tempat</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                @foreach ($item->pelatihan as $data)
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $data->penyelenggara }}</td>
+                                            <td>{{ $data->tanggal_pelaksanaan }}</td>
+                                            <td>{{ $data->tempat }}</td>
+                                            <td>
+                                                <a href="/pelatihan-edit/{{ $data->id }}/{{$item->id}}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                    <i class="mdi mdi-pencil"></i>
+                                                </a>
+                                                <a href="/delete-pelatihan/{{ $data->id }}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0">
+                                                    <i class="mdi mdi-delete"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+                            </table>
+                            <a href="/user-pelatihan/{{ $item->id }}" class="btn btn-sm btn-primary">Tambah</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Sertifikat</th>
+                        <td>
+                            <table class="table table-bordered mb-2">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th scope="col">Nomor Sertifikat</th>
+                                        <th scope="col">Nama Sertifikat</th>
+                                        <th>Tanggal Terbit</th>
+                                        <th>Tanggal Kadaluarsa</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                @foreach ($item->sertifikat as $data)
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $data->no_sertifikat }}</td>
+                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $data->tanggal_terbit }}</td>
+                                            <td>{{ $data->kadaluarsa_penyelenggara }}</td>
+                                            <td>
+                                                <a href="/sertifikat-detail/{{ $data->id }}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                    <i class="mdi mdi-eye"></i>
+                                                </a>
+                                                <a href="/sertifikat-edit/{{ $data->id }}/{{$item->id}}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                    <i class="mdi mdi-pencil"></i>
+                                                </a>
+                                                <a href="/delete-sertifikat/{{ $data->id }}"
+                                                    class="btn btn-dark btn-sm px-1 pb-0">
+                                                    <i class="mdi mdi-delete"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+                            </table>
+                            <a href="/user-sertifikat/{{ $item->id }}" class="btn btn-sm btn-primary">Tambah</a>
                         </td>
                     </tr>
                 </table>

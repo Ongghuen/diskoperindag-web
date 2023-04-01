@@ -111,17 +111,12 @@ class UserController extends Controller
 
         $data->create($request->all());
 
-        if ($data) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Bantuan berhasil ditambahkan!');
-        }
-
         return redirect('/detail-user-bantuan/' . $user);
     }
 
     public function detailuserbantuan($id)
     {
-        $user = User::with(['role', 'bantuan.itemBantuan'])
+        $user = User::with(['role', 'bantuan.itemBantuan', 'pelatihan', 'sertifikat'])
             ->where('id', '=', $id)
             ->first();
 

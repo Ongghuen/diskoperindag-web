@@ -20,6 +20,9 @@
                 <form class="forms-sample" action="/pelatihan" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
+                        <input type="hidden" class="form-control" id="exampleInputUsername1" placeholder="Username" value="{{$user->id}}" name="user_id">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputUsername1">Nama</label>
                         <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama"
                             name="nama">
@@ -40,7 +43,7 @@
                             placeholder="Tempat">
                     </div>
                     <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
-                    <a class="btn btn-light btn-sm" href="/pelatihan">Cancel</a>
+                    <a class="btn btn-light btn-sm" href="{{ url()->previous() }}">Cancel</a>
                 </form>
             </div>
         </div>

@@ -46,11 +46,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Pelatihan</th>
+                                    <th>Penerima</th>
+                                    <th>NIK</th>
                                     <th>Penyelenggara</th>
                                     <th>Tanggal Pelaksanaan</th>
                                     <th>Tempat</th>
-                                    <th>Penerima</th>
-                                    <th>NIK</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,11 +58,11 @@
                                     <tr>
                                         <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
                                         <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->user->NIK }}</td>
                                         <td>{{ $item->penyelenggara }}</td>
                                         <td>{{ $item->tanggal_pelaksanaan }}</td>
                                         <td>{{ $item->tempat }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        <td>{{ $item->user->NIK }}</td>
                                     </tr>
                                 @endforeach
 

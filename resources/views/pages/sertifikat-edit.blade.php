@@ -17,10 +17,13 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Form Edit Pelatihan</h4>
-                <form class="forms-sample" action="/pelatihan-update/{{ $item->id }}" method="POST"
+                <form class="forms-sample" action="/sertifikat-update/{{ $item->id }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="exampleInputUsername1" placeholder="Username" value="{{$user->id}}" name="user_id">
+                    </div>
                     <div class="form-group">
                         <label for="exampleInputUsername1">No Sertifikat</label>
                         <input type="text" class="form-control" id="exampleInputUsername1" placeholder="No Sertifikat"

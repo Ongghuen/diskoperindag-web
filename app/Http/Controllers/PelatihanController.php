@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,49 +31,52 @@ class PelatihanController extends Controller
         return view('pages.pelatihan', ['itemList' => $items]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $items = new Pelatihan;
+    public function detailPelatihan($id)
+    {
+        $pelatihan = Pelatihan::with('user')
+            ->where('id', '=', $id)
+            ->first();
 
-    //     $items->create($request->all());
+        return view('pages.pelatihan-detail', ['item' => $pelatihan]);
+    }
 
-    //     if ($items) {
-    //         Session::flash('status', 'success');
-    //         Session::flash('message', 'Tambah data pelatihan berhasil!');
-    //     }
+    public function destroy($id)
+    {
+        $items = Pelatihan::findOrFail($id);
+        $items->delete();
 
-    //     return redirect('/pelatihanitem');
-    // }
+        return back();
+    }
 
-    // public function destroy($id)
-    // {
-    //     $items = Pelatihan::findOrFail($id);
-    //     $items->delete();
+    public function storeView($id){
+        $user = User::findOrFail($id);
 
-    //     if ($items) {
-    //         Session::flash('status', 'success');
-    //         Session::flash('message', 'Data pelatihan berhasil dihapus!');
-    //     }
+        return view('pages.pelatihan-add', ['user' => $user]);
+    }
 
-    //     return redirect('/pelatihanitem');
-    // }
+    public function store(Request $request)
+    {
+        $items = new Pelatihan;
+        $user = $request->user_id;
 
-    // public function updateView($id)
-    // {
-    //     $items = Pelatihan::findOrFail($id);
-    //     return view('pages.pelatihan-edit', ['item' => $items]);
-    // }
+        $items->create($request->all());
 
-    // public function update(Request $request, $id)
-    // {
-    //     $items = Pelatihan::findOrFail($id);
-    //     $items->update($request->all());
+        return redirect('/detail-user-bantuan/' . $user);
+    }
 
-    //     if ($items) {
-    //         Session::flash('status', 'success');
-    //         Session::flash('message', 'Data pelatihan berhasil diubah!');
-    //     }
+    public function updateView($idPelatihan, $idUser)
+    {
+        $items = Pelatihan::findOrFail($idPelatihan);
+        $user = User::findOrFail($idUser);
+        return view('pages.pelatihan-edit', ['item' => $items, 'user' => $user]);
+    }
 
-    //     return redirect('/pelatihanitem');
-    // }
+    public function update(Request $request, $id)
+    {
+        $items = Pelatihan::findOrFail($id);
+        $user = $request->user_id;
+        $items->update($request->all());
+
+        return redirect('/detail-user-bantuan/' . $user);
+    }
 }

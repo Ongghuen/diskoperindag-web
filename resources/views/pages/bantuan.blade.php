@@ -46,12 +46,12 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Bantuan</th>
+                                    <th>Penerima</th>
+                                    <th>NIK</th>
                                     <th>Jenis Usaha</th>
                                     <th>Koordinator</th>
                                     <th>Sumber Anggaran</th>
                                     <th>Tahun</th>
-                                    <th>Penerima</th>
-                                    <th>NIK</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -60,12 +60,12 @@
                                     <tr>
                                         <td>{{ $loop->iteration + $bantuanList->firstItem() - 1 }}</td>
                                         <td>{{ $item->nama_bantuan }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->user->NIK }}</td>
                                         <td>{{ $item->jenis_usaha }}</td>
                                         <td>{{ $item->koordinator }}</td>
                                         <td>{{ $item->sumber_anggaran }}</td>
                                         <td>{{ $item->tahun_pemberian }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        <td>{{ $item->user->NIK }}</td>
                                         <td class="align-middle text-center">
                                             <a href="/bantuan-detail/{{ $item->id }}" class="btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-eye"></i>

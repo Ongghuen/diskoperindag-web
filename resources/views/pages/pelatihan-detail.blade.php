@@ -22,19 +22,19 @@
                 <div class="modal-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th>Nama</th>
+                            <th class="col-3">Nama</th>
                             <td>{{ $item->nama }}</td>
                         </tr>
                         <tr>
-                            <th>Penyelenggara</th>
+                            <th class="col-3">Penyelenggara</th>
                             <td>{{ $item->penyelenggara }}</td>
                         </tr>
                         <tr>
-                            <th>Tanggal Pelaksanaan</th>
+                            <th class="col-3">Tanggal Pelaksanaan</th>
                             <td>{{ $item->tanggal_pelaksanaan }}</td>
                         </tr>
                         <tr>
-                            <th>Tempat</th>
+                            <th class="col-3">Tempat</th>
                             <td>{{ $item->tempat }}</td>
                         </tr>
                     </table>

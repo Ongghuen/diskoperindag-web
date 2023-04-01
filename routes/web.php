@@ -47,24 +47,26 @@ Route::get('/bantuan-item/{id}', [BantuanController::class, 'addItem'])->middlew
 Route::post('/bantuan-add-item', [BantuanController::class, 'storeItem'])->middleware('auth');
 Route::get('delete-item/{item}/{bantuan}', [BantuanController::class, 'deleteItem'])->middleware('auth');
 Route::get('bantuan-detail/{id}', [BantuanController::class, 'detailbantuan'])->middleware('auth');
+Route::get('/bantuan-edit/{idBantuan}/{idUser}', [BantuanController::class, 'updateView'])->middleware('auth');
+Route::put('bantuan-update/{id}', [BantuanController::class, 'update'])->middleware('auth');
 
 # Pelatihan
 Route::get('/pelatihan', [PelatihanController::class, 'index'])->middleware('auth');
-// Route::post('/pelatihanitem', [PelatihanController::class, 'store'])->middleware('auth');
-// Route::put('pelatihan-update/{id}', [PelatihanController::class, 'update'])->middleware('auth');
-// Route::delete('/pelatihan-destroy/{id}', [PelatihanController::class, 'destroy'])->middleware('auth');
-// Route::get('/pelatihan-add', [PelatihanController::class, 'storeView'])->middleware('auth');
-// Route::get('/pelatihan-edit/{id}', [PelatihanController::class, 'updateView'])->middleware('auth');
-// Route::get('/pelatihan-detail/{id}', [PelatihanController::class, 'pelatihandetail'])->middleware('auth');
+Route::get('/pelatihan-detail/{id}', [PelatihanController::class, 'detailPelatihan'])->middleware('auth');
+Route::get('/delete-pelatihan/{id}', [PelatihanController::class, 'destroy'])->middleware('auth');
+Route::get('/user-pelatihan/{id}', [PelatihanController::class, 'storeView'])->middleware('auth');
+Route::post('/pelatihan', [PelatihanController::class, 'store'])->middleware('auth');
+Route::get('/pelatihan-edit/{idPelatihan}/{idUser}', [PelatihanController::class, 'updateView'])->middleware('auth');
+Route::put('pelatihan-update/{id}', [PelatihanController::class, 'update'])->middleware('auth');
 
 # Sertifikat
 Route::get('/sertifikat', [SertifikatController::class, 'index'])->middleware('auth');
 Route::get('/sertifikat-detail/{id}', [SertifikatController::class, 'detailsertifikat'])->middleware('auth');
-// Route::post('/sertifikatitem', [SertifikatController::class, 'store'])->middleware('auth');
-// Route::put('sertifikat-update/{id}', [SertifikatController::class, 'update'])->middleware('auth');
-// Route::delete('/sertifikat-destroy/{id}', [SertifikatController::class, 'destroy'])->middleware('auth');
-// Route::get('/sertifikat-add', [SertifikatController::class, 'storeView'])->middleware('auth');
-// Route::get('/sertifikat-edit/{id}', [SertifikatController::class, 'updateView'])->middleware('auth');
+Route::get('/delete-sertifikat/{id}', [SertifikatController::class, 'destroy'])->middleware('auth');
+Route::get('/user-sertifikat/{id}', [SertifikatController::class, 'storeView'])->middleware('auth');
+Route::post('/sertifikat', [SertifikatController::class, 'store'])->middleware('auth');
+Route::put('/sertifikat-update/{id}', [SertifikatController::class, 'update'])->middleware('auth');
+Route::get('/sertifikat-edit/{idSertifikat}/{idUser}', [SertifikatController::class, 'updateView'])->middleware('auth');
 
 # Item Routes
 Route::get('/alatitem', [ItemController::class, 'index'])->middleware('auth');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use App\Models\Sertifikat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,49 +37,43 @@ class SertifikatController extends Controller
         return view('pages.sertifikat-detail', ['item' => $items]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $items = new Sertifikat;
+    public function destroy($id)
+    {
+        $items = Sertifikat::findOrFail($id);
+        $items->delete();
 
-    //     $items->create($request->all());
+        return back();
+    }
 
-    //     if ($items) {
-    //         Session::flash('status', 'success');
-    //         Session::flash('message', 'Tambah data sertifikat berhasil!');
-    //     }
+    public function storeView($id){
+        $user = User::findOrFail($id);
 
-    //     return redirect('/sertifikatitem');
-    // }
+        return view('pages.sertifikat-add', ['user' => $user]);
+    }
 
-    // public function destroy($id)
-    // {
-    //     $items = Sertifikat::findOrFail($id);
-    //     $items->delete();
+    public function store(Request $request)
+    {
+        $items = new Sertifikat;
+        $user = $request->user_id;
 
-    //     if ($items) {
-    //         Session::flash('status', 'success');
-    //         Session::flash('message', 'Data sertifikat berhasil dihapus!');
-    //     }
+        $items->create($request->all());
 
-    //     return redirect('/sertikatitem');
-    // }
+        return redirect('/detail-user-bantuan/' . $user);
+    }
 
-    // public function updateView($id)
-    // {
-    //     $items = Sertifikat::findOrFail($id);
-    //     return view('pages.sertifikat-edit', ['item' => $items]);
-    // }
+    public function updateView($idSertifikat, $idUser)
+    {
+        $items = Sertifikat::findOrFail($idSertifikat);
+        $user = User::findOrFail($idUser);
+        return view('pages.sertifikat-edit', ['item' => $items, 'user' => $user]);
+    }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $items = Sertifikat::findOrFail($id);
-    //     $items->update($request->all());
+    public function update(Request $request, $id)
+    {
+        $items = Sertifikat::findOrFail($id);
+        $user = $request->user_id;
+        $items->update($request->all());
 
-    //     if ($items) {
-    //         Session::flash('status', 'success');
-    //         Session::flash('message', 'Data sertifikat berhasil diubah!');
-    //     }
-
-    //     return redirect('/sertifikatitem');
-    // }
+        return redirect('/detail-user-bantuan/' . $user);
+    }
 }

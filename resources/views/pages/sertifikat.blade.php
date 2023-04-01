@@ -46,11 +46,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>No Sertifikat</th>
-                                    <th>Nama</th>
-                                    <th>Tgl Terbit</th>
-                                    <th>Tgl Kadaluarsa</th>
+                                    <th>Nama Sertifikat</th>
                                     <th>Penerima</th>
                                     <th>NIK</th>
+                                    <th>Tanggal Terbit</th>
+                                    <th>Tanggal Kadaluarsa</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -60,10 +60,10 @@
                                         <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
                                         <td>{{ $item->no_sertifikat }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tanggal_terbit }}</td>
-                                        <td>{{ $item->kadaluarsa_penyelenggara }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->user->NIK }}</td>
+                                        <td>{{ $item->tanggal_terbit }}</td>
+                                        <td>{{ $item->kadaluarsa_penyelenggara }}</td>
                                         <td class="align-middle text-center">
                                             <a href="/sertifikat-detail/{{ $item->id }}"
                                                 class="btn btn-dark btn-sm px-1 pb-0">
