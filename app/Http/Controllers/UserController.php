@@ -32,7 +32,6 @@ class UserController extends Controller
             'pages.user',
             [
                 'userList' => $user,
-
             ]
         );
     }
@@ -46,6 +45,8 @@ class UserController extends Controller
     {
         $user = new User;
         $password = bcrypt($request->password);
+        $tl = Carbon::parse($request->tanggal_lahir);
+        $umur = $tl->diffInYears(Carbon::now());
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -55,6 +56,9 @@ class UserController extends Controller
         $user->alamat = $request->alamat;
         $user->phone = $request->phone;
         $user->gender = $request->gender;
+        $user->tempat_lahir = $request->tempat_lahir;
+        $user->tanggal_lahir = $request->tanggal_lahir;
+        $user->umur = $umur;
         $user->save();
 
         if ($user) {
@@ -129,5 +133,130 @@ class UserController extends Controller
         $data->delete();
 
         return back();
+    }
+
+    public function nolDuaPuluh(Request $request){
+        $keyword = $request->keyword;
+
+        $user = User::with(['role', 'bantuan.itemBantuan'])
+            ->whereBetween('umur', ['0', '20'])
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+            })
+            ->whereHas('role', function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'User');
+            })
+            ->sortable()
+            ->paginate(10);
+
+        return view(
+            'pages.user',
+            [
+                'userList' => $user,
+            ]
+        );
+    }
+
+    public function duaSatuTigaPuluh(Request $request){
+        $keyword = $request->keyword;
+
+        $user = User::with(['role', 'bantuan.itemBantuan'])
+            ->whereBetween('umur', ['21', '30'])
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+            })
+            ->whereHas('role', function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'User');
+            })
+            ->sortable()
+            ->paginate(10);
+
+        return view(
+            'pages.user',
+            [
+                'userList' => $user,
+            ]
+        );
+    }
+
+    public function tigaSatuEmpatPuluh(Request $request){
+        $keyword = $request->keyword;
+
+        $user = User::with(['role', 'bantuan.itemBantuan'])
+            ->whereBetween('umur', ['31', '40'])
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+            })
+            ->whereHas('role', function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'User');
+            })
+            ->sortable()
+            ->paginate(10);
+
+        return view(
+            'pages.user',
+            [
+                'userList' => $user,
+            ]
+        );
+    }
+
+    public function empatSatuLimaPuluh(Request $request){
+        $keyword = $request->keyword;
+
+        $user = User::with(['role', 'bantuan.itemBantuan'])
+            ->whereBetween('umur', ['41', '50'])
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+            })
+            ->whereHas('role', function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'User');
+            })
+            ->sortable()
+            ->paginate(10);
+
+        return view(
+            'pages.user',
+            [
+                'userList' => $user,
+            ]
+        );
+    }
+
+    public function limaSatuPlus(Request $request){
+        $keyword = $request->keyword;
+
+        $user = User::with(['role', 'bantuan.itemBantuan'])
+            ->whereBetween('umur', ['50', '200'])
+            ->where(function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+            })
+            ->whereHas('role', function ($query) use ($keyword) {
+                $query
+                    ->where('name', 'User');
+            })
+            ->sortable()
+            ->paginate(10);
+
+        return view(
+            'pages.user',
+            [
+                'userList' => $user,
+            ]
+        );
     }
 }

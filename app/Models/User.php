@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\Bantuan;
 use App\Models\Pelatihan;
@@ -33,6 +34,7 @@ class User extends Authenticatable
         'phone',
         'tempat_lahir',
         'tanggal_lahir',
+        'umur'
     ];
 
     public $sortable = [
@@ -80,5 +82,10 @@ class User extends Authenticatable
     public function sertifikat()
     {
         return $this->hasMany(Sertifikat::class, 'user_id', 'id');
+    }
+
+    public function getUmurAttribute()
+    {
+        return $this->attributes['umur'] = Carbon::parse($this->attributes['tanggal_lahir'])->age;
     }
 }

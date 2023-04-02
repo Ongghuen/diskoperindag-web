@@ -59,7 +59,7 @@
                     </tr>
                     <tr>
                         <th>Umur</th>
-                        <td>{{ $age = \Carbon\Carbon::parse($item->tanggal_lahir)->age }} Tahun</td>
+                        <td>{{$item->umur}}</td>
                     </tr>
                     <tr>
                         <th>Bantuan Alat</th>

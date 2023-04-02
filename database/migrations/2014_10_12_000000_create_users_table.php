@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('kepala_keluarga')->default(false);
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->integer('umur');
             $table->rememberToken();
             $table->timestamps();
         });

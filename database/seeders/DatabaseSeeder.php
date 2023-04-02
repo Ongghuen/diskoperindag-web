@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jember',
             'phone' => '+0895385583',
             'gender' => 'L',
+            'umur' => '20',
             'role_id' => '1'
         ]);
 

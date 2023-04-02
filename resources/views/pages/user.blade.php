@@ -20,7 +20,19 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <p class="card-title">Table User</p>
-                        <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/user-add">Tambah</a>
+                        <a class="btn btn-primary btn-fw ms-auto btn-sm me-2" href="/user-add">Tambah</a>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Umur
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-sm">
+                                <a class="dropdown-item" href="/umur0-20">0 - 20</a>
+                                <a class="dropdown-item" href="/umur21-30">21 - 30</a>
+                                <a class="dropdown-item" href="/umur31-40">31 - 40</a>
+                                <a class="dropdown-item" href="/umur41-50">41 - 50</a>
+                                <a class="dropdown-item" href="/umur51++">51++</a>
+                            </div>
+                          </div>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
                         <li class="nav-item nav-search d-none d-lg-block w-100">

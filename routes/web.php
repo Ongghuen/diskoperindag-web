@@ -39,7 +39,12 @@ Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middlew
 Route::get('/user-bantuan/{id}', [UserController::class, 'addBantuan'])->middleware('auth');
 Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middleware('auth');
 Route::get('/detail-user-bantuan/{id}', [UserController::class, 'detailuserbantuan'])->middleware('auth');
-Route::get('delete-bantuan/{id}', [UserController::class, 'deleteBantuan'])->middleware('auth');
+Route::get('/delete-bantuan/{id}', [UserController::class, 'deleteBantuan'])->middleware('auth');
+Route::get('/umur0-20', [UserController::class, 'nolDuaPuluh'])->middleware('auth');
+Route::get('/umur21-30', [UserController::class, 'duaSatuTigaPuluh'])->middleware('auth');
+Route::get('/umur31-40', [UserController::class, 'tigaSatuEmpatPuluh'])->middleware('auth');
+Route::get('/umur41-50', [UserController::class, 'empatSatuLimaPuluh'])->middleware('auth');
+Route::get('/umur51++', [UserController::class, 'limaSatuPlus'])->middleware('auth');
 
 # Bantuan routes.
 Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('auth');
