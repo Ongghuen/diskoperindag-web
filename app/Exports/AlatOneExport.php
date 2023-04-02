@@ -3,26 +3,20 @@
 namespace App\Exports;
 
 use App\Models\Bantuan;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\ItemBantuan;
-use App\Models\BantuanItem;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class DataExport implements FromCollection, WithHeadings, WithMapping, WithTitle
+class AlatOneExport implements FromCollection, WithHeadings, WithMapping, WithTitle
 {
     protected $keyword;
     protected $rowNumber = 0;
 
-    function __construct($keyword) {
-        $this->keyword = $keyword;
+    function __construct($data1) {
+        $this->keyword = $data1;
     }
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+    
     public function collection()
     {
         $data = $this->keyword;
@@ -31,17 +25,17 @@ class DataExport implements FromCollection, WithHeadings, WithMapping, WithTitle
                     $query
                     ->where('jenis_usaha', 'LIKE', '%'.$data.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data.'%')
-                    ->orWhere('tahun_pemberian', 'LIKE', '%'.$data.'%');
-                })
-                ->orwhereHas('user', function ($query) use($data){
-                    $query
-                    ->where('name', 'LIKE', '%'.$data.'%')
-                    ->orWhere('NIK', 'LIKE', '%'.$data.'%')
-                    ->orWhere('alamat', 'LIKE', '%'.$data.'%');
-                })
-                ->orWherehas('itemBantuan', function ($query) use($data){
-                    $query
-                    ->where('nama_item', 'LIKE', '%'.$data.'%');
+                    ->orWhere('tahun_pemberian', 'LIKE', '%'.$data.'%')
+                    ->orwhereHas('user', function ($query) use($data){
+                        $query
+                        ->where('name', 'LIKE', '%'.$data.'%')
+                        ->orWhere('NIK', 'LIKE', '%'.$data.'%')
+                        ->orWhere('alamat', 'LIKE', '%'.$data.'%');
+                    })
+                    ->orWherehas('itemBantuan', function ($query) use($data){
+                        $query
+                        ->where('nama_item', 'LIKE', '%'.$data.'%');
+                    });
                 })
                 ->whereHas('user.role', function($query) use($data){
                     $query
@@ -98,6 +92,6 @@ class DataExport implements FromCollection, WithHeadings, WithMapping, WithTitle
 
     public function title(): string
     {
-        return 'Data Bantuan';
+        return 'Bantuan Alat';
     }
 }

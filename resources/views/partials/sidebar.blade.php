@@ -31,7 +31,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/report">
                     <i class="mdi mdi-file-document-box menu-icon"></i>
-                    <span class="menu-title">Report</span>
+                    <span class="menu-title">Laporan</span>
                 </a>
             </li>
         </ul>
