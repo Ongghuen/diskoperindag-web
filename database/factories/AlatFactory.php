@@ -18,7 +18,6 @@ class AlatFactory extends Factory
     {
         return [
             'nama_item' => $this->faker->words(2, true),
-            'stok' => $this->faker->randomNumber(2, false),
             'deskripsi' => $this->faker->paragraph()
         ];
     }

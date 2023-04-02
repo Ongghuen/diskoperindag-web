@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="exampleSelectGender">Nama Item</label>
-                        <select class="form-control form-control-sm" id="exampleSelectGender" name="item_id">
+                        <select class="form-control form-control-sm" id="exampleSelectGender" name="alat_id">
                             @foreach ($itemList as $item)
                                 <option value="{{$item->id}}">{{$item->nama_item}}</option>
                             @endforeach

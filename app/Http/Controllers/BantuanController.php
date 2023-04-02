@@ -62,7 +62,7 @@ class BantuanController extends Controller
     public function deleteItem($item, $bantuan)
     {
         $data = BantuanAlat::where('bantuan_id', '=', $bantuan)
-            ->where('item_id', '=', $item)->delete();
+            ->where('alat_id', '=', $item)->delete();
 
         return back();
     }

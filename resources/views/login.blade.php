@@ -11,8 +11,8 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto mt-4">
-                <div class="card border-0 shadow rounded-3 my-5">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto d-flex align-items-center" style="height: 100vh;">
+                <div class="card border-0 shadow rounded-3">
                     <div class="card-body p-4 p-sm-5">
                     <div class="card-title text-center mb-5 fw-light fs-5">
                         <img src="{{ asset("images/diskoperindag.png") }}" width="80" alt="DISKOPERINDAG">

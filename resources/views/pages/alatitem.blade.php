@@ -56,7 +56,13 @@
                                     <tr>
                                         <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
                                         <td>{{ $item->nama_item }}</td>
-                                        <td>{{ $item->stok }}</td>
+                                        <td>
+                                            @if ($item->stok == null)
+                                                0
+                                            @else
+                                                {{$item->stok}}
+                                            @endif    
+                                        </td>
                                         <td class="align-middle text-center">
                                             <a href="/item-detail/{{ $item->id }}"
                                                 class="btn btn-dark btn-sm px-1 pb-0">
