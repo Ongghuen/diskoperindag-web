@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('jenis_usaha');
             $table->string('koordinator')->default('Belum ada');
             $table->string('sumber_anggaran')->default('Belum ada');
-            $table->string('tahun_pemberian');
+            $table->date('tahun_pemberian');
             $table->timestamps();
         });
     }

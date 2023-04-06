@@ -41,7 +41,7 @@
                         <td>{{ $item->sumber_anggaran }}</td>
                     </tr>
                     <tr>
-                        <th>Tahun Pemberian</th>
+                        <th>Tanggal Pemberian</th>
                         <td>{{ $item->tahun_pemberian }}</td>
                     </tr>
                     <tr>

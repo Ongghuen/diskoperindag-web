@@ -44,8 +44,8 @@
                         placeholder="Sumber Anggaran" name="sumber_anggaran">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputUsername3">Tahun Pemberian</label>
-                    <input type="text" class="form-control" id="exampleInputUsername3"
+                    <label for="exampleInputUsername3">Tanggal Pemberian</label>
+                    <input type="date" class="form-control" id="exampleInputUsername3"
                         placeholder="Tahun Pemberian" name="tahun_pemberian">
                 </div>
                 <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>

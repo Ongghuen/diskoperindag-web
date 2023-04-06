@@ -51,7 +51,7 @@
                                     <th>Jenis Usaha</th>
                                     <th>Koordinator</th>
                                     <th>Sumber Anggaran</th>
-                                    <th>Tahun</th>
+                                    <th>Tanggal Pemberian</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

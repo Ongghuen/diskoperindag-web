@@ -70,7 +70,7 @@
                                         <th>No</th>
                                         <th scope="col">Nama Bantuan</th>
                                         <th scope="col">Jenis Usaha</th>
-                                        <th>Tahun</th>
+                                        <th>Tanggal Pemberian</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

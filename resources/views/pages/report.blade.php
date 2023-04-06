@@ -27,19 +27,26 @@
                                                 <i class="mdi mdi-magnify"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Search now" aria-label="search"
+                                        <input type="text" class="form-control me-2" placeholder="Search now" aria-label="search"
                                             aria-describedby="search" name="keyword">
+                                        <label for="date1" class="mt-2">Start :</label>
+                                        <input type="date" class="form-control mx-2" name="date1" id="date1">
+                                        <label for="date2" class="mt-2">Finish :</label>
+                                        <input type="date" class="form-control mx-2" name="date2" id="date2">
+                                        <button class="btn btn-primary btn-sm ms-1" type="submit">
+                                            <i class="mdi mdi-magnify"></i>
+                                        </button>
                                     </div>
                                 </form>
                             </li>
                         </ul>
-                        <form action="/export" method="GET" class="ms-auto">
-                            @isset($keyword)
-                                <input type="hidden" value="{{$keyword}}" name="data">
-                            @endisset
-                            <button class="btn btn-primary btn-fw btn-sm" type="submit">Export</button>
-                        </form>
                     </div>
+                    <form action="/export" method="GET" class="ms-auto mt-3">
+                        @isset($keyword)
+                            <input type="hidden" value="{{$keyword}}" name="data">
+                        @endisset
+                        <button class="btn btn-primary btn-fw btn-sm" type="submit">Export</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -63,7 +70,7 @@
                                     <th>Bantuan</th>
                                     <th>Alat</th>
                                     <th>Qty</th>
-                                    <th>Tahun</th>
+                                    <th>Tanggal Pemberian</th>
                                     <th>Usaha</th>
                                 </tr>
                             </thead>
