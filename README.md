@@ -1,3 +1,2 @@
-## Diskoperindag
-
-entryyyyyyyy lalu idk
+# Android
+Diskoperindag - Data management for admin.
