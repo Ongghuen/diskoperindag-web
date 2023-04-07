@@ -45,7 +45,8 @@ class SertifikatController extends Controller
         return back();
     }
 
-    public function storeView($id){
+    public function storeView($id)
+    {
         $user = User::findOrFail($id);
 
         return view('pages.sertifikat-add', ['user' => $user]);
@@ -53,6 +54,28 @@ class SertifikatController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(
+            [
+
+                'no_sertifikat' => 'required|max:20',
+                'nama' => 'required|max:50',
+                'tanggal_terbit' => 'required|date',
+                'kadaluarsa_penyelenggara' => 'required|date',
+                'keterangan' => 'required|max:255',
+
+            ],
+            [
+                'no_sertifikat.required' => 'No. Sertifikat tidak boleh kosong!',
+                'no_sertifikat.max' => 'No. Sertifikat maksimal 20 karakter!',
+                'nama.required' => 'Nama tidak boleh kosong!',
+                'nama.max' => 'Nama maksimal 50 karakter!',
+                'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
+                'kadaluarsa_penyelenggara.required' => 'Kadaluarsa Penyelenggara tidak boleh kosong!',
+                'keterangan.required' => 'Keterangan tidak boleh kosong!',
+                'keterangan.max' => 'Keterangan maksimal 50 karakter!',
+            ]
+        );
+
         $items = new Sertifikat;
         $user = $request->user_id;
 
@@ -70,6 +93,28 @@ class SertifikatController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+
+                'no_sertifikat' => 'required|max:20',
+                'nama' => 'required|max:50',
+                'tanggal_terbit' => 'required|date',
+                'kadaluarsa_penyelenggara' => 'required|date',
+                'keterangan' => 'required|max:255',
+
+            ],
+            [
+                'no_sertifikat.required' => 'No. Sertifikat tidak boleh kosong!',
+                'no_sertifikat.max' => 'No. Sertifikat maksimal 20 karakter!',
+                'nama.required' => 'Nama tidak boleh kosong!',
+                'nama.max' => 'Nama maksimal 50 karakter!',
+                'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
+                'kadaluarasa_penyelenggara.required' => 'Kadaluarsa Penyelenggara tidak boleh kosong!',
+                'keterangan.required' => 'Keterangan tidak boleh kosong!',
+                'keterangan.max' => 'Keterangan maksimal 50 karakter!',
+            ]
+        );
+
         $items = Sertifikat::findOrFail($id);
         $user = $request->user_id;
         $items->update($request->all());

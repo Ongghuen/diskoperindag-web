@@ -43,6 +43,48 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'name' => 'required|max:30|min:5|string',
+                'password' => 'required|max:30|min:5|string',
+                'email' => 'required|email|max:50',
+                'NIK' => 'required|numeric|min:15|max:17',
+                'address' => 'required|max:100',
+                'phone' => 'required|numeric|min:10|max:15',
+                'tanggal_lahir' => 'required|date',
+                'tempat_lahir' => 'required|max:30',
+
+            ],
+            [
+                'name.required' => 'Nama tidak boleh kosong',
+                'password.required' => 'Password tidak boleh kosong',
+                'password.max' => 'Password tidak boleh lebih dari 30 karakter',
+                'password.min' => 'Password tidak boleh kurang dari 5 karakter',
+                'password.string' => 'Password harus berupa huruf',
+                'name.max' => 'Nama tidak boleh lebih dari 30 karakter',
+                'name.min' => 'Nama tidak boleh kurang dari 5 karakter',
+                'name.string' => 'Nama harus berupa huruf',
+                'email.required' => 'Email tidak boleh kosong',
+                'email.email' => 'Email tidak valid',
+                'email.max' => 'Email tidak boleh lebih dari 50 karakter',
+                'NIK.required' => 'NIK tidak boleh kosong',
+                'NIK.numeric' => 'NIK harus berupa angka',
+                'NIK.min' => 'NIK tidak boleh kurang dari 15 karakter',
+                'NIK.max' => 'NIK tidak boleh lebih dari 17 karakter',
+                'address.required' => 'Alamat tidak boleh kosong',
+                'address.max' => 'Alamat tidak boleh lebih dari 100 karakter',
+                'phone.required' => 'Nomor telepon tidak boleh kosong',
+                'phone.numeric' => 'Nomor telepon harus berupa angka',
+                'phone.min' => 'Nomor telepon tidak boleh kurang dari 10 karakter',
+                'phone.max' => 'Nomor telepon tidak boleh lebih dari 15 karakter',
+                'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+                'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
+                'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
+                'tempat_lahir.max' => 'Tempat lahir tidak boleh lebih dari 30 karakter',
+
+            ],
+        );
+
         $user = new User;
         $password = bcrypt($request->password);
         $tl = Carbon::parse($request->tanggal_lahir);
@@ -90,9 +132,47 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
 
+        $request->validate(
+            [
+                'name' => 'required|max:30|min:5|string',
+                'email' => 'required|email|max:50',
+                'NIK' => 'required|numeric|min:15|max:17',
+                'address' => 'required|max:100',
+                'phone' => 'required|numeric|min:10|max:15',
+                'tanggal_lahir' => 'required|date',
+                'tempat_lahir' => 'required|max:30',
+
+            ],
+            [
+                'name.required' => 'Nama tidak boleh kosong',
+                'name.max' => 'Nama tidak boleh lebih dari 30 karakter',
+                'name.min' => 'Nama tidak boleh kurang dari 5 karakter',
+                'name.string' => 'Nama harus berupa huruf',
+                'email.required' => 'Email tidak boleh kosong',
+                'email.email' => 'Email tidak valid',
+                'email.max' => 'Email tidak boleh lebih dari 50 karakter',
+                'NIK.required' => 'NIK tidak boleh kosong',
+                'NIK.numeric' => 'NIK harus berupa angka',
+                'NIK.min' => 'NIK tidak boleh kurang dari 15 karakter',
+                'NIK.max' => 'NIK tidak boleh lebih dari 17 karakter',
+                'address.required' => 'Alamat tidak boleh kosong',
+                'address.max' => 'Alamat tidak boleh lebih dari 100 karakter',
+                'phone.required' => 'Nomor telepon tidak boleh kosong',
+                'phone.numeric' => 'Nomor telepon harus berupa angka',
+                'phone.min' => 'Nomor telepon tidak boleh kurang dari 10 karakter',
+                'phone.max' => 'Nomor telepon tidak boleh lebih dari 15 karakter',
+                'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+                'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
+                'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
+                'tempat_lahir.max' => 'Tempat lahir tidak boleh lebih dari 30 karakter',
+
+            ],
+        );
+
+        $user = User::findOrFail($id);
+
+        $user->update($request->all());
         if ($user) {
             Session::flash('status', 'success');
             Session::flash('message', 'Data user berhasil diubah!');
@@ -110,6 +190,28 @@ class UserController extends Controller
 
     public function storeBantuan(Request $request)
     {
+        $request->validate(
+            [
+                'nama_bantuan' => 'required|max:50',
+                'jenis_usaha' => 'required|max:50',
+                'tanggal_pemberian' => 'required|date',
+                'koordinator' => 'required|max:50',
+                'sumber_anggaran' => 'required|max:50',
+            ],
+            [
+                'nama_bantuan.required' => 'Nama bantuan tidak boleh kosong!',
+                'nama_bantuan.max' => 'Nama bantuan maksimal 50 karakter!',
+                'jenis_usaha.required' => 'Jenis usaha tidak boleh kosong!',
+                'jenis_usaha.max' => 'Jenis usaha maksimal 50 karakter!',
+                'tanggal_pemberian.required' => 'Tanggal pemberian tidak boleh kosong!',
+                'tanggal_pemberian.date' => 'Tanggal pemberian harus berupa tanggal!',
+                'koordinator.required' => 'Koordinator tidak boleh kosong!',
+                'koordinator.max' => 'Koordinator maksimal 50 karakter!',
+                'sumber_anggaran.required' => 'Sumber anggaran tidak boleh kosong!',
+                'sumber_anggaran.max' => 'Sumber anggaran maksimal 50 karakter!',
+            ]
+        );
+
         $data = new Bantuan;
         $user = $request->user_id;
 
@@ -135,7 +237,8 @@ class UserController extends Controller
         return back();
     }
 
-    public function nolDuaPuluh(Request $request){
+    public function nolDuaPuluh(Request $request)
+    {
         $keyword = $request->keyword;
 
         $user = User::with(['role', 'bantuan.itemBantuan'])
@@ -160,7 +263,8 @@ class UserController extends Controller
         );
     }
 
-    public function duaSatuTigaPuluh(Request $request){
+    public function duaSatuTigaPuluh(Request $request)
+    {
         $keyword = $request->keyword;
 
         $user = User::with(['role', 'bantuan.itemBantuan'])
@@ -185,7 +289,8 @@ class UserController extends Controller
         );
     }
 
-    public function tigaSatuEmpatPuluh(Request $request){
+    public function tigaSatuEmpatPuluh(Request $request)
+    {
         $keyword = $request->keyword;
 
         $user = User::with(['role', 'bantuan.itemBantuan'])
@@ -210,7 +315,8 @@ class UserController extends Controller
         );
     }
 
-    public function empatSatuLimaPuluh(Request $request){
+    public function empatSatuLimaPuluh(Request $request)
+    {
         $keyword = $request->keyword;
 
         $user = User::with(['role', 'bantuan.itemBantuan'])
@@ -235,7 +341,8 @@ class UserController extends Controller
         );
     }
 
-    public function limaSatuPlus(Request $request){
+    public function limaSatuPlus(Request $request)
+    {
         $keyword = $request->keyword;
 
         $user = User::with(['role', 'bantuan.itemBantuan'])

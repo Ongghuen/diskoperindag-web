@@ -19,8 +19,19 @@
                 <h4 class="card-title">Form tambah Sertifikat</h4>
                 <form class="forms-sample" action="/sertifikat" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $pesan)
+                                    <li>{{ $pesan }}</li>
+                                @endforeach
+                            </ul>
+
+                        </div>
+                    @endif
                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="exampleInputUsername1" placeholder="Username" value="{{$user->id}}" name="user_id">
+                        <input type="hidden" class="form-control" id="exampleInputUsername1" placeholder="Username"
+                            value="{{ $user->id }}" name="user_id">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputUsername1">No Sertifikat</label>
@@ -47,7 +58,7 @@
                         <textarea class="form-control" id="exampleTextarea1" rows="4" name="keterangan"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
-                    <a class="btn btn-light btn-sm" href="{{ url()->previous() }}">Cancel</a>
+                    <a class="btn btn-light btn-sm" href="/detail-user-bantuan/{{ $user->id }}">Cancel</a>
                 </form>
             </div>
         </div>

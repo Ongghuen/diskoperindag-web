@@ -29,6 +29,23 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'nama_item' => 'required|max:50',
+                'stok' => 'required|max:6',
+                'deskripsi' => 'required|max:255',
+            ],
+            [
+                'nama_item.required' => 'Nama item tidak boleh kosong!',
+                'nama_item.max' => 'Nama item maksimal 50 karakter!',
+                'stok.required' => 'Stok tidak boleh kosong!',
+                'stok.max' => 'Stok maksimal 6 karakter!',
+                'deskripsi.required' => 'deskripsi tidak boleh kosong!',
+                'deskripsi.max' => 'deskripsi maksimal 255 karakter!',
+            ]
+
+        );
+
         $items = new Alat;
 
         $items->create($request->all());
@@ -62,6 +79,23 @@ class ItemController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'nama_item' => 'required|max:50',
+                'stok' => 'required|max:6',
+                'deskripsi' => 'required|max:255',
+            ],
+            [
+                'nama_item.required' => 'Nama item tidak boleh kosong!',
+                'nama_item.max' => 'Nama item maksimal 50 karakter!',
+                'stok.required' => 'Stok tidak boleh kosong!',
+                'stok.max' => 'Stok maksimal 6 karakter!',
+                'deskripsi.required' => 'deskripsi tidak boleh kosong!',
+                'deskripsi.max' => 'deskripsi maksimal 255 karakter!',
+            ]
+
+        );
+
         $items = Alat::findOrFail($id);
         $items->update($request->all());
 

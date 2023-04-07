@@ -19,6 +19,15 @@
                 <h4 class="card-title">Form tambah user</h4>
                 <form class="forms-sample" action="/user" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $pesan)
+                                    <li>{{ $pesan }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-group">
                         <label for="exampleInputUsername1">Nama</label>
                         <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Name"

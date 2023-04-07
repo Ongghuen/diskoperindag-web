@@ -48,7 +48,8 @@ class PelatihanController extends Controller
         return back();
     }
 
-    public function storeView($id){
+    public function storeView($id)
+    {
         $user = User::findOrFail($id);
 
         return view('pages.pelatihan-add', ['user' => $user]);
@@ -56,6 +57,25 @@ class PelatihanController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'nama' => 'required|max:50',
+                'penyelenggara' => 'required|max:50',
+                'tanggal_pelaksanaan' => 'required|date',
+                'tempat' => 'required|max:50',
+
+            ],
+            [
+                'nama.required' => 'Nama Pelatihan tidak boleh kosong',
+                'nama.max' => 'Nama Pelatihan maksimal 50 karakter',
+                'tanggal_pelaksanaan.required' => 'tanggal pelaksanaan tidak boleh kosong',
+                'penyelenggara.max' => 'Penyelenggara maksimal 50 karakter',
+                'penyelenggara.required' => 'Penyelenggara tidak boleh kosong',
+                'tempat.required' => 'Tempat tidak boleh kosong',
+
+            ]
+        );
+
         $items = new Pelatihan;
         $user = $request->user_id;
 
@@ -73,6 +93,25 @@ class PelatihanController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'nama' => 'required|max:50',
+                'penyelenggara' => 'required|max:50',
+                'tanggal_pelaksanaan' => 'required|date',
+                'tempat' => 'required|max:50',
+
+            ],
+            [
+                'nama.required' => 'Nama Pelatihan tidak boleh kosong',
+                'nama.max' => 'Nama Pelatihan maksimal 50 karakter',
+                'tanggal_pelaksanaan.required' => 'tanggal pelaksanaan tidak boleh kosong',
+                'penyelenggara.max' => 'Penyelenggara maksimal 50 karakter',
+                'penyelenggara.required' => 'Penyelenggara tidak boleh kosong',
+                'tempat.required' => 'Tempat tidak boleh kosong',
+
+            ]
+        );
+
         $items = Pelatihan::findOrFail($id);
         $user = $request->user_id;
         $items->update($request->all());

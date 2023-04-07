@@ -15,44 +15,53 @@
 @section('content')
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Form tambah bantuan</h4>
-            <form class="forms-sample" action="/user-add-bantuan" method="POST" enctype="multipart/form-data">
-                @csrf
-                <form class="forms-sample">
-                <div class="form-group">
-                    <input type="hidden" class="form-control" id="exampleInputUsername1" placeholder="Username" value="{{$user->id}}" name="user_id">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputUsername1">Nama Bantuan</label>
-                    <input type="text" class="form-control" id="exampleInputUsername1"
-                        placeholder="Nama Bantuan" name="nama_bantuan">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputUsername2">Jenis Usaha</label>
-                    <input type="text" class="form-control" id="exampleInputUsername2"
-                        placeholder="Jenis Usaha" name="jenis_usaha">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputUsername3">Koordinator</label>
-                    <input type="text" class="form-control" id="exampleInputUsername3"
-                        placeholder="Koordinator" name="koordinator">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputUsername4">Sumber Anggaran</label>
-                    <input type="text" class="form-control" id="exampleInputUsername4"
-                        placeholder="Sumber Anggaran" name="sumber_anggaran">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputUsername3">Tanggal Pemberian</label>
-                    <input type="date" class="form-control" id="exampleInputUsername3"
-                        placeholder="Tahun Pemberian" name="tahun_pemberian">
-                </div>
-                <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
-                <a class="btn btn-light btn-sm" href="{{ url()->previous() }}">Cancel</a>
-            </form>
-        </div>
+            <div class="card-body">
+                <h4 class="card-title">Form tambah bantuan</h4>
+                <form class="forms-sample" action="/user-add-bantuan" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <form class="forms-sample">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $pesan)
+                                        <li>{{ $pesan }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="exampleInputUsername1" placeholder="Username"
+                                value="{{ $user->id }}" name="user_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Nama Bantuan</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama Bantuan"
+                                name="nama_bantuan">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername2">Jenis Usaha</label>
+                            <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Jenis Usaha"
+                                name="jenis_usaha">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername3">Koordinator</label>
+                            <input type="text" class="form-control" id="exampleInputUsername3" placeholder="Koordinator"
+                                name="koordinator">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername4">Sumber Anggaran</label>
+                            <input type="text" class="form-control" id="exampleInputUsername4"
+                                placeholder="Sumber Anggaran" name="sumber_anggaran">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername3">Tanggal Pemberian</label>
+                            <input type="date" class="form-control" id="exampleInputUsername3"
+                                placeholder="Tahun Pemberian" name="tahun_pemberian">
+                        </div>
+                        <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
+                        <a class="btn btn-light btn-sm" href="/detail-user-bantuan/{{ $user->id }}">Cancel</a>
+                    </form>
+            </div>
         </div>
     </div>
 @endsection
-
