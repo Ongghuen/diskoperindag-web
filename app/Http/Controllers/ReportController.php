@@ -12,6 +12,9 @@ use App\Exports\OneKeywordExport;
 use App\Exports\TwoKeywordExport;
 use App\Exports\ThreeKeywordExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OneKeywordExportDate;
+use App\Exports\TwoKeywordExportDate;
+use App\Exports\ThreeKeywordExportDate;
 
 class ReportController extends Controller
 {
@@ -208,7 +211,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'date2' => $date2]);
             }elseif(isset($data3) && ($date1 == null) && ($date2 != null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
@@ -360,7 +363,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'now' => $now, 'date2' => $date2]);
             }elseif(isset($data3) && ($date1 != null) && ($date2 == null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
@@ -512,7 +515,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'now' => $now]);
             }if(isset($data3) && ($date1 == null) && ($date2 == null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
@@ -771,7 +774,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'date2' => $date2]);
             }elseif(isset($data2) && ($date1 == null) && ($date2 != null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
@@ -881,7 +884,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'now' => $now, 'date2' => $date2]);
             }elseif(isset($data2) && ($date1 != null) && ($date2 == null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
@@ -991,7 +994,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'now' => $now]);
             }elseif(isset($data2) && ($date1 == null) && ($date2 == null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
@@ -1166,7 +1169,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'date2' => $date2]);
             }elseif(isset($data1) && ($date1 == null) && ($date2 != null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                     ->where(function ($query) use($data1){
@@ -1234,7 +1237,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'now' => $now, 'date2' => $date2]);
             }elseif(isset($data1) && ($date1 != null) && ($date2 == null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                     ->where(function ($query) use($data1){
@@ -1302,7 +1305,7 @@ class ReportController extends Controller
                     })
                     ->paginate(10);
 
-                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
+                return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'now' => $now]);
             }elseif(isset($data1) && ($date1 == null) && ($date2 == null)){
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                     ->where(function ($query) use($data1){
@@ -1396,10 +1399,16 @@ class ReportController extends Controller
                 $data1 = $data[0];
             }
 
-            if(isset($data3)){
+            if(isset($data3) && ($date1 != null) && ($date2 != null)){
+                return Excel::download(new ThreeKeywordExportDate($data1, $data2, $data3, $date1, $date2), 'laporan ' . date('Y-m-d') . '.xlsx');
+            }elseif(isset($data3)){
                 return Excel::download(new ThreeKeywordExport($data1, $data2, $data3), 'laporan ' . date('Y-m-d') . '.xlsx');
+            }elseif(isset($data2) && ($date1 != null) && ($date2 != null)){
+                return Excel::download(new TwoKeywordExportDate($data1, $data2, $date1, $date2), 'laporan ' . date('Y-m-d') . '.xlsx');
             }elseif(isset($data2)){
                 return Excel::download(new TwoKeywordExport($data1, $data2), 'laporan ' . date('Y-m-d') . '.xlsx');
+            }elseif(isset($data1) && ($date1 != null) && ($date2 != null)){
+                return Excel::download(new OneKeywordExportDate($data1, $date1, $date2), 'laporan ' . date('Y-m-d') . '.xlsx');
             }elseif(isset($data1)){
                 return Excel::download(new OneKeywordExport($data1), 'laporan ' . date('Y-m-d') . '.xlsx');
             }

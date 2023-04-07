@@ -42,9 +42,21 @@
                         </ul>
                     </div>
                     <form action="/export" method="GET" class="ms-auto mt-3">
-                        @isset($keyword)
+                        @if(isset($keyword) && isset($date1) && isset($date2))
                             <input type="hidden" value="{{$keyword}}" name="data">
-                        @endisset
+                            <input type="hidden" value="{{$date1}}" name="date1">
+                            <input type="hidden" value="{{$date2}}" name="date2">
+                        @elseif(isset($keyword) && isset($now) && isset($date2))
+                            <input type="hidden" value="{{$keyword}}" name="data">
+                            <input type="hidden" value="{{$now}}" name="date1">
+                            <input type="hidden" value="{{$date2}}" name="date2">
+                        @elseif(isset($keyword) && isset($date1) && isset($now))
+                            <input type="hidden" value="{{$keyword}}" name="data">
+                            <input type="hidden" value="{{$date1}}" name="date1">
+                            <input type="hidden" value="{{$now}}" name="date2">
+                        @elseif(isset($keyword))
+                            <input type="hidden" value="{{$keyword}}" name="data">
+                        @endif
                         <button class="btn btn-primary btn-fw btn-sm" type="submit">Export</button>
                     </form>
                 </div>
