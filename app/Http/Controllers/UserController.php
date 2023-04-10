@@ -53,7 +53,6 @@ class UserController extends Controller
                 'phone' => 'required|numeric|min:10|max:15',
                 'tanggal_lahir' => 'required|date',
                 'tempat_lahir' => 'required|max:30',
-
             ],
             [
                 'name.required' => 'Nama tidak boleh kosong',
@@ -81,7 +80,6 @@ class UserController extends Controller
                 'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
                 'tempat_lahir.max' => 'Tempat lahir tidak boleh lebih dari 30 karakter',
-
             ],
         );
 
@@ -142,7 +140,6 @@ class UserController extends Controller
                 'phone' => 'required|numeric|min:10|max:15',
                 'tanggal_lahir' => 'required|date',
                 'tempat_lahir' => 'required|max:30',
-
             ],
             [
                 'name.required' => 'Nama tidak boleh kosong',
@@ -166,7 +163,6 @@ class UserController extends Controller
                 'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
                 'tempat_lahir.max' => 'Tempat lahir tidak boleh lebih dari 30 karakter',
-
             ],
         );
 
