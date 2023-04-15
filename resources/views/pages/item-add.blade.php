@@ -34,7 +34,7 @@
                             name="nama_item">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Stok</label>
+                        <label for="exampleInputEmail1">Jumlah Diberikan</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" name="stok"
                             placeholder="Stok">
                     </div>

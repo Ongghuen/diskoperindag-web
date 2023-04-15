@@ -48,13 +48,11 @@ class BantuanController extends Controller
     {
         $request->validate(
             [
-
-                'jumlah' => 'required|max:6|numeric',
+                'kuantitas' => 'required|numeric',
             ],
             [
-                'jumlah.required' => 'Jumlah tidak boleh kosong!',
-                'jumlah.max' => 'Jumlah maksimal 6 karakter!',
-                'jumlah.numeric' => 'Jumlah harus berupa angka!',
+                'kuantitas.required' => 'Jumlah tidak boleh kosong!',
+                'kuantitas.numeric' => 'Jumlah harus berupa angka!',
             ]
         );
         $data = new BantuanAlat;
@@ -100,7 +98,7 @@ class BantuanController extends Controller
             [
                 'nama_bantuan' => 'required|max:50',
                 'jenis_usaha' => 'required|max:50',
-                'tanggal_pemberian' => 'required|date',
+                'tahun_pemberian' => 'required|date',
                 'koordinator' => 'required|max:50',
                 'sumber_anggaran' => 'required|max:50',
             ],
@@ -109,8 +107,8 @@ class BantuanController extends Controller
                 'nama_bantuan.max' => 'Nama bantuan maksimal 50 karakter!',
                 'jenis_usaha.required' => 'Jenis usaha tidak boleh kosong!',
                 'jenis_usaha.max' => 'Jenis usaha maksimal 50 karakter!',
-                'tanggal_pemberian.required' => 'Tanggal pemberian tidak boleh kosong!',
-                'tanggal_pemberian.date' => 'Tanggal pemberian harus berupa tanggal!',
+                'tahun_pemberian.required' => 'Tanggal pemberian tidak boleh kosong!',
+                'tahun_pemberian.date' => 'Tanggal pemberian harus berupa tanggal!',
                 'koordinator.required' => 'Koordinator tidak boleh kosong!',
                 'koordinator.max' => 'Koordinator maksimal 50 karakter!',
                 'sumber_anggaran.required' => 'Sumber anggaran tidak boleh kosong!',

@@ -50,7 +50,7 @@
                     <div class="form-group">
 
                         <label for="gender">Kepala Keluarga</label>
-                        <select name="kepala_keluarga" id="kepala_keluarga" class="form-control">
+                        <select name="kepala_keluarga" id="kepala_keluarga" class="form-control form-control-sm">
                             <option value="{{ $item->kepala_keluarga }}">
                                 {{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}
                             </option>
@@ -76,7 +76,7 @@
                     <div class="form-group">
 
                         <label for="gender">Gender</label>
-                        <select name="gender" id="gender" class="form-control">
+                        <select name="gender" id="gender" class="form-control form-control-sm">
                             <option value="{{ $item->gender }}">{{ $item->gender }}</option>
                             @if ($item->gender == 'L')
                                 <option value="P">P</Option>

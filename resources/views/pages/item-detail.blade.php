@@ -26,6 +26,10 @@
                             <td>{{ $item->nama_item }}</td>
                         </tr>
                         <tr>
+                            <th>Jumlah Diberikan</th>
+                            <td>{{ $item->stok }}</td>
+                        </tr>
+                        <tr>
                             <th>Deskripsi</th>
                             <td>{{ $item->deskripsi }}</td>
                         </tr>

@@ -56,17 +56,14 @@ class SertifikatController extends Controller
     {
         $request->validate(
             [
-
-                'no_sertifikat' => 'required|max:20',
+                'no_sertifikat' => 'required',
                 'nama' => 'required|max:50',
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
                 'keterangan' => 'required|max:255',
-
             ],
             [
                 'no_sertifikat.required' => 'No. Sertifikat tidak boleh kosong!',
-                'no_sertifikat.max' => 'No. Sertifikat maksimal 20 karakter!',
                 'nama.required' => 'Nama tidak boleh kosong!',
                 'nama.max' => 'Nama maksimal 50 karakter!',
                 'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
@@ -101,7 +98,6 @@ class SertifikatController extends Controller
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
                 'keterangan' => 'required|max:255',
-
             ],
             [
                 'no_sertifikat.required' => 'No. Sertifikat tidak boleh kosong!',

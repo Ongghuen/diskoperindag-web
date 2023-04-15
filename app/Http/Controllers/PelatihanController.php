@@ -63,7 +63,6 @@ class PelatihanController extends Controller
                 'penyelenggara' => 'required|max:50',
                 'tanggal_pelaksanaan' => 'required|date',
                 'tempat' => 'required|max:50',
-
             ],
             [
                 'nama.required' => 'Nama Pelatihan tidak boleh kosong',
@@ -72,7 +71,6 @@ class PelatihanController extends Controller
                 'penyelenggara.max' => 'Penyelenggara maksimal 50 karakter',
                 'penyelenggara.required' => 'Penyelenggara tidak boleh kosong',
                 'tempat.required' => 'Tempat tidak boleh kosong',
-
             ]
         );
 
@@ -99,7 +97,6 @@ class PelatihanController extends Controller
                 'penyelenggara' => 'required|max:50',
                 'tanggal_pelaksanaan' => 'required|date',
                 'tempat' => 'required|max:50',
-
             ],
             [
                 'nama.required' => 'Nama Pelatihan tidak boleh kosong',
@@ -108,7 +105,6 @@ class PelatihanController extends Controller
                 'penyelenggara.max' => 'Penyelenggara maksimal 50 karakter',
                 'penyelenggara.required' => 'Penyelenggara tidak boleh kosong',
                 'tempat.required' => 'Tempat tidak boleh kosong',
-
             ]
         );
 
