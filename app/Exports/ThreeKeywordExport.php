@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Exports\AlatThreeExport;
+use App\Exports\UserThreeExport;
 use App\Exports\PelatihanThreeExport;
 use App\Exports\SertifikatThreeExport;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -23,6 +24,7 @@ class ThreeKeywordExport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
+            'Induk Pengguna' => new UserThreeExport($this->data1, $this->data2, $this->data3),
             'Bantuan Alat' => new AlatThreeExport($this->data1, $this->data2, $this->data3),
             'Pelatihan' => new PelatihanThreeExport($this->data1, $this->data2, $this->data3),
             'Sertifikat' => new SertifikatThreeExport($this->data1, $this->data2, $this->data3)

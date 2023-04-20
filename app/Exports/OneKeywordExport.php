@@ -19,6 +19,7 @@ class OneKeywordExport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
+            'Induk Pengguna' => new UserOneExport($this->data1),
             'Bantuan Alat' => new AlatOneExport($this->data1),
             'Pelatihan' => new PelatihanOneExport($this->data1),
             'Sertifikat' => new SertifikatOneExport($this->data1)

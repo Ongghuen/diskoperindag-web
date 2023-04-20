@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Exports\AlatTwoExport;
+use App\Exports\UserTwoExport;
 use App\Exports\PelatihanTwoExport;
 use App\Exports\SertifikatTwoExport;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -21,6 +22,7 @@ class TwoKeywordExport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
+            'Induk Pengguna' => new UserTwoExport($this->data1, $this->data2),
             'Bantuan Alat' => new AlatTwoExport($this->data1, $this->data2),
             'Pelatihan' => new PelatihanTwoExport($this->data1, $this->data2),
             'Sertifikat' => new SertifikatTwoExport($this->data1, $this->data2)

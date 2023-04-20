@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Exports\AlatOneExport;
+use App\Exports\UserOneExportDate;
 use App\Exports\PelatihanOneExport;
 use App\Exports\SertifikatOneExport;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -23,6 +24,7 @@ class OneKeywordExportDate implements WithMultipleSheets
     public function sheets(): array
     {
         return [
+            'Induk Pengguna' => new UserOneExportDate($this->data1, $this->date1, $this->date2),
             'Bantuan Alat' => new AlatOneExportDate($this->data1, $this->date1, $this->date2),
             'Pelatihan' => new PelatihanOneExportDate($this->data1, $this->date1, $this->date2),
             'Sertifikat' => new SertifikatOneExportDate($this->data1, $this->date1, $this->date2)
