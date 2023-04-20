@@ -22,7 +22,7 @@
                         <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/item-add">Tambah</a>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
-                        <li class="nav-item nav-search d-none d-lg-block w-100">
+                        <li class="nav-item nav-search w-100">
                             <form action="" method="GET">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
