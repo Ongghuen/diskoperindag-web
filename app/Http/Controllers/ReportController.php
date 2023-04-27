@@ -7,6 +7,7 @@ use App\Models\Bantuan;
 use App\Models\Pelatihan;
 use App\Models\Sertifikat;
 use Illuminate\Http\Request;
+use App\Exports\OnlyFullDate;
 use App\Exports\NoKeywordExport;
 use App\Exports\OneKeywordExport;
 use App\Exports\TwoKeywordExport;
@@ -1373,7 +1374,85 @@ class ReportController extends Controller
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
             }
 
-        }else{
+        }elseif(empty($keyword) && ($date1 != null) && ($date2 != null)){
+            $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
+                ->whereHas('user.role', function($query){
+                    $query
+                    ->where('name', 'User');
+                })
+                ->whereBetween('tahun_pemberian', [$date1, $date2])
+                ->paginate(5);
+
+            $pelatihan = Pelatihan::with('user.role')
+                ->whereHas('user.role', function($query){
+                    $query
+                    ->where('name', 'User');
+                })
+                ->whereBetween('created_at', [$date1, $date2])
+                ->paginate(10);
+
+            $sertfikat = Sertifikat::with('user.role')
+                ->whereHas('user.role', function($query){
+                    $query
+                    ->where('name', 'User');
+                })
+                ->whereBetween('created_at', [$date1, $date2])
+                ->paginate(10);
+
+            return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'date1' => $date1, 'date2' => $date2]);
+        }elseif(empty($keyword) && ($date1 == null) && ($date2 != null)){
+            $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
+                ->whereHas('user.role', function($query){
+                    $query
+                    ->where('name', 'User');
+                })
+                ->whereBetween('tahun_pemberian', [$now, $date2])
+                ->paginate(5);
+
+            $pelatihan = Pelatihan::with('user.role')
+                ->whereHas('user.role', function($query){
+                    $query
+                    ->where('name', 'User');
+                })
+                ->whereBetween('created_at', [$now, $date2])
+                ->paginate(10);
+
+            $sertfikat = Sertifikat::with('user.role')
+                ->whereHas('user.role', function($query){
+                    $query
+                    ->where('name', 'User');
+                })
+                ->whereBetween('created_at', [$now, $date2])
+                ->paginate(10);
+
+            return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'now' => $now, 'date2' => $date2]);
+        }elseif(empty($keyword) && ($date1 != null) && ($date2 == null)){
+            $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
+                ->whereHas('user.role', function($query){
+                    $query
+                    ->where('name', 'User');
+                })
+                ->whereBetween('tahun_pemberian', [$date1, $now])
+                ->paginate(5);
+
+            $pelatihan = Pelatihan::with('user.role')
+                    ->whereHas('user.role', function($query){
+                        $query
+                        ->where('name', 'User');
+                    })
+                    ->whereBetween('created_at', [$date1, $now])
+                    ->paginate(10);
+
+            $sertfikat = Sertifikat::with('user.role')
+                    ->whereHas('user.role', function($query){
+                        $query
+                        ->where('name', 'User');
+                    })
+                    ->whereBetween('created_at', [$date1, $now])
+                    ->paginate(10);
+
+            return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'date1' => $date1, 'now' => $now]);
+        }elseif(empty($keyword)){
             return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat]);
         }
     }
@@ -1412,7 +1491,9 @@ class ReportController extends Controller
             }elseif(isset($data1)){
                 return Excel::download(new OneKeywordExport($data1), 'laporan ' . date('Y-m-d') . '.xlsx');
             }
-        }else{
+        }elseif(empty($keyword) && ($date1 != null) && ($date2 != null)){
+            return Excel::download(new OnlyFullDate($date1, $date2), 'laporan ' . date('Y-m-d') . '.xlsx');
+        }elseif(empty($keyword)){
             return Excel::download(new NoKeywordExport(), 'laporan ' . date('Y-m-d') . '.xlsx');
         }
     }

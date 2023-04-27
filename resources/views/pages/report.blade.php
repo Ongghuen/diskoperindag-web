@@ -56,6 +56,15 @@
                             <input type="hidden" value="{{$now}}" name="date2">
                         @elseif(isset($keyword))
                             <input type="hidden" value="{{$keyword}}" name="data">
+                        @elseif(empty($keyword) && isset($date1) && isset($date2))
+                            <input type="hidden" value="{{$date1}}" name="date1">
+                            <input type="hidden" value="{{$date2}}" name="date2">
+                        @elseif(empty($keyword) && isset($now) && isset($date2))
+                            <input type="hidden" value="{{$now}}" name="date1">
+                            <input type="hidden" value="{{$date2}}" name="date2">
+                        @elseif(empty($keyword) && isset($date1) && isset($now))
+                            <input type="hidden" value="{{$date1}}" name="date1">
+                            <input type="hidden" value="{{$now}}" name="date2">
                         @endif
                         <button class="btn btn-primary btn-fw btn-sm" type="submit">Export</button>
                     </form>

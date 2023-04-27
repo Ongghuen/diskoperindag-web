@@ -8,7 +8,7 @@
     <title>Diskoperindag | @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="icon" href="{{ asset('images/diskoperindag.png') }}" sizes="32x32" />
+    <link rel="icon" href="{{ asset('images/logo-tuansilat-mini.svg') }}" sizes="32x32" />
     <link rel="stylesheet" href={{ asset('vendors/mdi/css/materialdesignicons.min.css') }}>
     <link rel="stylesheet" href={{ asset('vendors/base/vendor.bundle.base.css') }}>
     <link rel="stylesheet" href={{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}>
