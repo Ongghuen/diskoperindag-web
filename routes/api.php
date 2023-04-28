@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ApiAuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthControllerApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +14,11 @@ use App\Http\Controllers\AuthControllerApi;
 |
 */
 
+Route::post('/login', [ApiAuthController::class, 'login']);
+
 Route::middleware(['auth:sanctum'])->group(function () {
-    //auth
-    Route::get('/logout', [AuthControllerApi::class, 'logout']);
-    Route::get('/me', [AuthControllerApi::class, 'me']);
+    Route::get('/logout', [ApiAuthController::class, 'logout']);
+    Route::get('/me', [ApiAuthController::class, 'me']);
 });
 
-Route::post('/login', [AuthControllerApi::class, 'login']);
+Route::get('/hello', [ApiAuthController::class, 'hello']);

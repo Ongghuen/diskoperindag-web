@@ -28,7 +28,7 @@ class AuthController extends Controller
         } else{
             $userLogin = 3;
         }
-        
+
         if($userLogin == 1){
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
@@ -40,17 +40,17 @@ class AuthController extends Controller
             }
             Session::flash('status','failed');
             Session::flash('message', 'Login gagal!');
-    
+
             return back();
         } elseif($userLogin == 2){
             Session::flash('status','failed');
             Session::flash('message', 'Maaf hanya admin yang boleh masuk!');
-    
+
             return back();
         } elseif($userLogin ==3){
             Session::flash('status','failed');
             Session::flash('message', 'Login gagal!');
-    
+
             return back();
         }
     }
@@ -61,7 +61,7 @@ class AuthController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
- 
+
         return redirect('/');
     }
 }
