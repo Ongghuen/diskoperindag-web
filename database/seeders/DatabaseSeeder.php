@@ -7,6 +7,7 @@ use App\Models\Alat;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Bantuan;
+use App\Models\Berita;
 use App\Models\Pelatihan;
 use App\Models\Sertifikat;
 use App\Models\BantuanAlat;
@@ -39,11 +40,24 @@ class DatabaseSeeder extends Seeder
             'role_id' => '1'
         ]);
 
+        User::create([
+            'name' => 'Raihan Achmad',
+            'email' => 'r@r',
+            'password' => bcrypt('r'),
+            'NIK' => '6969696969',
+            'alamat' => 'Jember',
+            'phone' => '+0895385583',
+            'gender' => 'L',
+            'umur' => '20',
+            'role_id' => '1'
+        ]);
+
         User::factory()->count(10)->create();
         Bantuan::factory()->count(10)->create();
         Alat::factory()->count(20)->create();
         Sertifikat::factory()->count(20)->create();
         Pelatihan::factory()->count(20)->create();
         BantuanAlat::factory()->count(30)->create();
+        Berita::factory()->count(10)->create();
     }
 }
