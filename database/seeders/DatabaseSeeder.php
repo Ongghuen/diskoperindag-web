@@ -58,6 +58,6 @@ class DatabaseSeeder extends Seeder
         Sertifikat::factory()->count(20)->create();
         Pelatihan::factory()->count(20)->create();
         BantuanAlat::factory()->count(30)->create();
-        Berita::factory()->count(10)->create();
+        Berita::factory()->count(100)->create();
     }
 }
