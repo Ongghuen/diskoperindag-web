@@ -67,7 +67,8 @@
                                         <td>{{ $item->sumber_anggaran }}</td>
                                         <td>{{ $item->tahun_pemberian }}</td>
                                         <td class="align-middle text-center">
-                                            <a href="/bantuan-detail/{{ $item->id }}" class="btn btn-dark btn-sm px-1 pb-0">
+                                            <a href="/bantuan-detail/{{ $item->id }}"
+                                                class="btn btn-dark btn-sm px-1 pb-0">
                                                 <i class="mdi mdi-eye"></i>
                                             </a>
                                         </td>

@@ -28,20 +28,19 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Gambar</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="image" placeholder="Stok"
-                           >
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload Gambar</label>
+                        <input class="form-control" name="image" type="file" id="formFile">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Judul</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="judul" placeholder="Stok"
-                           >
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="judul"
+                            placeholder="Stok">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Sub Judul</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="subjudul" placeholder="Stok"
-                           >
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="subjudul"
+                            placeholder="Stok">
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea1">Deskripsi</label>

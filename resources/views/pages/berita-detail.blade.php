@@ -23,7 +23,7 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>Gambar</th>
-                            <td><img src="http://127.0.0.1:8000/images/profile.jpg" alt="profile"></td>
+                            <td><img src="{{ asset('images/berita/' . $item['image']) }}" alt="profile"></td>
                         </tr>
                         <tr>
                             <th>Judul</th>
