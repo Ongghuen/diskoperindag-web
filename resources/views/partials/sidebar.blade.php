@@ -29,6 +29,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/berita">
+                    <i class="mdi mdi-file-document-box menu-icon"></i>
+                    <span class="menu-title">Berita</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/report">
                     <i class="mdi mdi-file-document-box menu-icon"></i>
                     <span class="menu-title">Laporan</span>

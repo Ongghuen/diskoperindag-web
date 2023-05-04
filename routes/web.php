@@ -8,6 +8,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\SertifikatController;
+use App\Http\Controllers\BeritaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +83,17 @@ Route::delete('/item-destroy/{id}', [ItemController::class, 'destroy'])->middlew
 Route::get('/item-add', [ItemController::class, 'storeView'])->middleware('auth');
 Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');
 Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middleware('auth');
+
+# Item Routes
+Route::get('/berita', [BeritaController::class, 'index'])->middleware('auth');
+Route::get('/berita-detail/{id}', [BeritaController::class, 'beritadetail'])->middleware('auth');
+Route::get('/berita-edit/{id}', [BeritaController::class, 'editview'])->middleware('auth');
+Route::post('/beritatambah', [BeritaController::class, 'store'])->middleware('auth');
+Route::put('/berita-update/{id}', [BeritaController::class, 'update'])->middleware('auth');
+Route::delete('/berita-destroy/{id}', [BeritaController::class, 'destroy'])->middleware('auth');
+Route::get('/berita-add', [BeritaController::class, 'storeView'])->middleware('auth');
+// Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');
+// Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middleware('auth');
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
