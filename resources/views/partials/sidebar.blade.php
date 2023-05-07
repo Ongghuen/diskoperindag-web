@@ -30,7 +30,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/berita">
-                    <i class="mdi mdi-file-document-box menu-icon"></i>
+                    <i class="mdi mdi-newspaper menu-icon"></i>
                     <span class="menu-title">Berita</span>
                 </a>
             </li>

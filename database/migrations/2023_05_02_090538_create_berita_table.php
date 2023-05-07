@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('berita', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('judul');
             $table->string('subjudul');
             $table->string('body');

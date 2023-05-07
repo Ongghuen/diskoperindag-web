@@ -84,7 +84,7 @@ Route::get('/item-add', [ItemController::class, 'storeView'])->middleware('auth'
 Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');
 Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middleware('auth');
 
-# Item Routes
+# Berita Routes
 Route::get('/berita', [BeritaController::class, 'index'])->middleware('auth');
 Route::get('/berita-detail/{id}', [BeritaController::class, 'beritadetail'])->middleware('auth');
 Route::get('/berita-edit/{id}', [BeritaController::class, 'editview'])->middleware('auth');

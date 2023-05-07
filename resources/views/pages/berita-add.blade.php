@@ -9,7 +9,7 @@
 @endsection
 
 @section('tagline')
-    Tambah Berita
+    Tambah berita atau pengumuman dari diskoperindag.
 @endsection
 
 @section('content')
@@ -28,19 +28,19 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Gambar</label>
-                        <input class="form-control" name="image" type="file" id="formFile">
-                    </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Judul</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" name="judul"
                             placeholder="Stok">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Sub Judul</label>
+                        <label for="exampleInputEmail1">Subjudul</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" name="subjudul"
                             placeholder="Stok">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload Gambar</label>
+                        <input class="form-control" name="image" type="file" id="formFile">
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea1">Deskripsi</label>

@@ -34,19 +34,18 @@ class BeritaController extends Controller
     {
         $request->validate(
             [
-                'image' => 'required|max:2048|mimes:png,jpg,jpeg',
-                'judul' => 'required|max:50',
-                'subjudul' => 'required|max:50',
+                'image' => 'max:2048|mimes:png,jpg,jpeg',
+                'judul' => 'required|max:100',
+                'subjudul' => 'required|max:100',
                 'body' => 'required|max:1000',
             ],
             [
-                'image' => 'Image tidak boleh kosong!',
                 'image.max' => 'Image maksimal 2MB!',
                 'image.mimes' => 'Image harus berupa png, jpg, jpeg!',
                 'judul.required' => 'Judul tidak boleh kosong!',
-                'judul.max' => 'Sub Judul maksimal 50 karakter!',
+                'judul.max' => 'Sub Judul maksimal 100 karakter!',
                 'subjudul.required' => 'Judul tidak boleh kosong!',
-                'subjudul.max' => 'Sub Judul maksimal 50 karakter!',
+                'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
                 'body.required' => 'deskripsi tidak boleh kosong!',
                 'body.max' => 'deskripsi maksimal 1000 karakter!',
             ]
@@ -88,25 +87,23 @@ class BeritaController extends Controller
 
     public function update(Request $request, $id)
     {
-
         if ($request->image == null) {
             $request->validate(
                 [
-                    'judul' => 'required|max:50',
-                    'subjudul' => 'required|max:50',
+                    'judul' => 'required|max:100',
+                    'subjudul' => 'required|max:100',
                     'body' => 'required|max:1000',
                 ],
                 [
                     'judul.required' => 'Judul tidak boleh kosong!',
-                    'judul.max' => 'Sub Judul maksimal 50 karakter!',
+                    'judul.max' => 'Sub Judul maksimal 100 karakter!',
                     'subjudul.required' => 'Judul tidak boleh kosong!',
-                    'subjudul.max' => 'Sub Judul maksimal 50 karakter!',
+                    'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
                     'body.required' => 'deskripsi tidak boleh kosong!',
                     'body.max' => 'deskripsi maksimal 1000 karakter!',
                 ]
-
             );
-
+            
             $items = Berita::findOrFail($id);
             $items->update($request->all());
 
@@ -120,8 +117,8 @@ class BeritaController extends Controller
             $request->validate(
                 [
                     'image' => 'required|max:2048|mimes:png,jpg,jpeg',
-                    'judul' => 'required|max:50',
-                    'subjudul' => 'required|max:50',
+                    'judul' => 'required|max:100',
+                    'subjudul' => 'required|max:100',
                     'body' => 'required|max:1000',
                 ],
                 [
@@ -129,9 +126,9 @@ class BeritaController extends Controller
                     'image.max' => 'Image maksimal 2MB!',
                     'image.mimes' => 'Image harus berupa png, jpg, jpeg!',
                     'judul.required' => 'Judul tidak boleh kosong!',
-                    'judul.max' => 'Sub Judul maksimal 50 karakter!',
+                    'judul.max' => 'Sub Judul maksimal 100 karakter!',
                     'subjudul.required' => 'Judul tidak boleh kosong!',
-                    'subjudul.max' => 'Sub Judul maksimal 50 karakter!',
+                    'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
                     'body.required' => 'deskripsi tidak boleh kosong!',
                     'body.max' => 'deskripsi maksimal 1000 karakter!',
                 ]

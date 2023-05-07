@@ -9,7 +9,7 @@
 @endsection
 
 @section('tagline')
-    Edit Berita
+    Edit berita atau pengumuman dari Diskoperindag.
 @endsection
 
 @section('content')
@@ -30,15 +30,6 @@
                             </ul>
                         </div>
                     @endif
-                    {{-- <div class="form-group">
-                        <label for="exampleInputUsername1">Gambar</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nama Item"
-                            name="nama_item" value="{{ $item->image }}">
-                    </div> --}}
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Gambar</label>
-                        <input class="form-control" name="image" type="file" id="formFile">
-                      </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Judul</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" name="judul" placeholder="Stok"
@@ -48,6 +39,10 @@
                         <label for="exampleInputEmail1">Sub Judul</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" name="subjudul" placeholder="Stok"
                             value="{{ $item->subjudul }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload Gambar</label>
+                        <input class="form-control" name="image" type="file" id="formFile">
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea1">Deskripsi</label>

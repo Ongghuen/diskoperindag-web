@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
-                        <p class="card-title">Table Item Bantuan</p>
+                        <p class="card-title">Table Berita</p>
                         <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/berita-add">Tambah</a>
                     </div>
                     <ul class="navbar-nav mr-lg-4 w-100">
@@ -46,7 +46,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Image</th>
+                                    <th>Gambar</th>
                                     <th>Judul</th>
                                     <th>Action</th>
                                 </tr>
@@ -55,10 +55,14 @@
                                 @foreach ($itemList as $item)
                                     <tr>
                                         <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
-                                        <td><img src="{{ asset('images/berita/' . $item['image']) }}" alt="profile"></td>
+                                        <td>
+                                            @if ($item->image == null)
+                                                <img src="{{ asset('images/logo-tuansilat-mini.svg') }}" alt="profile">
+                                            @else
+                                                <img src="{{ asset('images/berita/' . $item['image']) }}" alt="profile">
+                                            @endif
+                                        </td>
                                         <td>{{ $item->judul }}</td>
-
-
                                         <td class="align-middle text-center">
                                             <a href="/berita-detail/{{ $item->id }}"
                                                 class="btn btn-dark btn-sm px-1 pb-0">

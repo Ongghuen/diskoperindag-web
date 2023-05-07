@@ -5,11 +5,11 @@
 @endsection
 
 @section('title-page')
-    Detail berita
+    Detail Berita
 @endsection
 
 @section('tagline')
-    Detail data berita Anda.
+    Detail data berita.
 @endsection
 
 @section('content')
@@ -23,18 +23,24 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>Gambar</th>
-                            <td><img src="{{ asset('images/berita/' . $item['image']) }}" alt="profile"></td>
+                            <td>
+                                @if ($item->image == null)
+                                    <img src="{{ asset('images/logo-tuansilat-mini.svg') }}" alt="profile">
+                                @else
+                                    <img src="{{ asset('images/berita/' . $item['image']) }}" alt="profile">
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>Judul</th>
                             <td>{{ $item->judul }}</td>
                         </tr>
                         <tr>
-                            <th>Sub Judul</th>
+                            <th>Subjudul</th>
                             <td>{{ $item->subjudul }}</td>
                         </tr>
                         <tr>
-                            <th>Deskripsi</th>
+                            <th>Content</th>
                             <td>{{ $item->body }}</td>
                         </tr>
                     </table>
