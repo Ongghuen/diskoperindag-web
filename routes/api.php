@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ApiBeritaController;
+use App\Http\Controllers\ApiFasilitasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// public api, i guess
 Route::post('/login', [ApiAuthController::class, 'login']);
 Route::get('/news', [ApiBeritaController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
+    // auth
     Route::get('/logout', [ApiAuthController::class, 'logout']);
     Route::get('/me', [ApiAuthController::class, 'me']);
 
+    // berita
     Route::get('/news/saved', [ApiBeritaController::class, 'indexSaved']);
     Route::post('/news/add', [ApiBeritaController::class, 'store']);
     Route::delete('/news/delete/{id}', [ApiBeritaController::class, 'destroy']);
+
+    // fasilitasi
+    Route::get('/fasilitasi/bantuan', [ApiFasilitasiController::class, 'bantuan']);
+    Route::get('/fasilitasi/bantuan/{id}', [ApiFasilitasiController::class, 'bantuanDetail']);
+    Route::get('/fasilitasi/sertifikat', [ApiFasilitasiController::class, 'sertifikat']);
+    Route::get('/fasilitasi/pelatihan', [ApiFasilitasiController::class, 'pelatihan']);
 });

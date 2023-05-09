@@ -2,23 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Bantuan;
 
 class ApiFasilitasiController extends Controller
 {
-    public function index()
+
+    public function bantuan()
     {
-        //
+        return response()->json(auth()->user()->bantuan()->get());
     }
 
-    public function store(Request $request)
+    public function bantuanDetail($id)
     {
-        //
+        $bantuan = Bantuan::with(['user', 'itemBantuan'])
+            ->where('id', '=', $id)
+            ->first();
+
+        return response()->json($bantuan);
     }
 
-    public function show(string $id)
+    public function sertifikat()
     {
-        //
+        return response()->json(auth()->user()->sertifikat()->get());
+    }
+
+    public function pelatihan()
+    {
+        return response()->json(auth()->user()->pelatihan()->get());
     }
 
 }
