@@ -4,15 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
-use App\Models\Role;
-use App\Models\Bantuan;
-use App\Models\Pelatihan;
-use App\Models\Sertifikat;
-use Laravel\Sanctum\HasApiTokens;
-use Kyslik\ColumnSortable\Sortable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Kyslik\ColumnSortable\Sortable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -34,7 +30,7 @@ class User extends Authenticatable
         'phone',
         'tempat_lahir',
         'tanggal_lahir',
-        'umur'
+        'umur',
     ];
 
     public $sortable = [
@@ -42,7 +38,7 @@ class User extends Authenticatable
         'email',
         'NIK',
         'kepala_keluarga',
-        'phone'
+        'phone',
     ];
 
     /**
@@ -82,6 +78,11 @@ class User extends Authenticatable
     public function sertifikat()
     {
         return $this->hasMany(Sertifikat::class, 'user_id', 'id');
+    }
+
+    public function berita()
+    {
+        return $this->belongsToMany(Berita::class, 'berita_tersimpan', 'user_id', 'berita_id');
     }
 
     public function getUmurAttribute()
