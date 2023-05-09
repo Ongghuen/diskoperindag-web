@@ -23,35 +23,23 @@ class AuthController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if($user){
+        if ($user) {
             $userLogin = $user->role_id;
-        } else{
+        } else {
             $userLogin = 3;
         }
 
-        if($userLogin == 1){
+        if ($userLogin == 1) {
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-
-                Session::flash('status','success');
-                Session::flash('message', 'Selamat anda berhasil login sebagai admin!');
-
-                return redirect()->intended('/user');
+                return redirect()->intended('/user')->with('loginberhasil', 'login berhasil');
+            } else {
+                return redirect()->intended('/login')->with('loginerror', 'login error');
             }
-            Session::flash('status','failed');
-            Session::flash('message', 'Login gagal!');
-
-            return back();
-        } elseif($userLogin == 2){
-            Session::flash('status','failed');
-            Session::flash('message', 'Maaf hanya admin yang boleh masuk!');
-
-            return back();
-        } elseif($userLogin ==3){
-            Session::flash('status','failed');
-            Session::flash('message', 'Login gagal!');
-
-            return back();
+        } elseif ($userLogin == 2) {
+            return redirect()->intended('/login')->with('bukanadmin', 'login error');
+        } elseif ($userLogin == 3) {
+            return redirect()->intended('/login')->with('failed', 'login error');
         }
     }
 
@@ -62,6 +50,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login')->with('logout', 'logout berhasil');
     }
 }

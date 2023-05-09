@@ -31,7 +31,7 @@ class BantuanController extends Controller
                     ->where('name', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
             })
-            ->paginate(10);
+            ->get();
 
         return view('pages.bantuan', ['bantuanList' => $bantuan]);
     }
@@ -61,11 +61,10 @@ class BantuanController extends Controller
         $data->create($request->all());
 
         if ($data) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Item berhasil ditambahkan!');
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Item berhasil ditambahkan!');
+            return redirect('bantuan-detail/' . $dataBantuan)->with('create', 'Item berhasil ditambahkan');
         }
-
-        return redirect('bantuan-detail/' . $dataBantuan);
     }
 
     public function deleteItem($item, $bantuan)
@@ -73,7 +72,9 @@ class BantuanController extends Controller
         $data = BantuanAlat::where('bantuan_id', '=', $bantuan)
             ->where('alat_id', '=', $item)->delete();
 
-        return back();
+        if ($data) {
+            return redirect('bantuan-detail/' . $bantuan)->with('delete', 'Item berhasil dihapus!');
+        }
     }
 
     public function detailbantuan($id)
@@ -120,6 +121,6 @@ class BantuanController extends Controller
         $user = $request->user_id;
         $items->update($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user);
+        return redirect()->intended('/detail-user-bantuan/' . $user)->with('update', 'berhasil diubah');
     }
 }

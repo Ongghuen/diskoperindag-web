@@ -6,27 +6,18 @@ use App\Models\User;
 use App\Models\Bantuan;
 use App\Models\Alat;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->keyword;
-
         $user = User::with(['role', 'bantuan.itemBantuan'])
-            ->where(function ($query) use ($keyword) {
-                $query
-                    ->where('name', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
-            })
-            ->whereHas('role', function ($query) use ($keyword) {
-                $query
-                    ->where('name', 'User');
-            })
+            ->where('role_id', '!=', 1)
             ->sortable()
-            ->paginate(10);
+            ->get();
 
         return view(
             'pages.user',
@@ -47,7 +38,8 @@ class UserController extends Controller
             [
                 'name' => 'required|max:50',
                 'email' => 'required|email|max:50|unique:users,email',
-                'password' => 'required|max:30|min:8',
+                'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
+                're_password' => 'required|same:password',
                 'NIK' => 'required|numeric|digits:16',
                 'alamat' => 'required|max:100',
                 'phone' => 'required|numeric',
@@ -63,8 +55,11 @@ class UserController extends Controller
                 'email.max' => 'Email tidak boleh lebih dari 50 karakter',
                 'email.unique' => 'Email sudah terdaftar, silahkan gunakan email lain',
                 'password.required' => 'Password tidak boleh kosong',
+                'password.min' => 'Password harus lebih dari 8 karakter',
+                'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol',
+                're_password.required' => 'Konfirmasi password tidak boleh kosong',
+                're_password.same' => 'Konfirmasi password tidak sama dengan password',
                 'password.max' => 'Password tidak boleh lebih dari 30 karakter',
-                'password.min' => 'Password tidak boleh kurang dari 5 karakter',
                 'NIK.required' => 'NIK tidak boleh kosong',
                 'NIK.numeric' => 'NIK harus berupa angka',
                 'NIK.digits' => 'NIK harus berjumlah 16 karakter',
@@ -98,11 +93,10 @@ class UserController extends Controller
         $user->save();
 
         if ($user) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Tambah data user berhasil!');
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Tambah data user berhasil!');
+            return redirect()->intended('/user')->with('create', 'berhasil create');
         }
-
-        return redirect('/user');
     }
 
     public function destroy($id)
@@ -110,12 +104,13 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        if ($user) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data user berhasil dihapus!');
-        }
+        // if ($user) {
+        //     Session::flash('status', 'success');
+        //     Session::flash('message', 'Data user berhasil dihapus!');
+        // }
 
-        return redirect('/user');
+        // return redirect('/user');
+        return redirect()->intended('/user')->with('delete', 'berhasil delete');
     }
 
     public function updateView($id)
@@ -160,12 +155,13 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $user->update($request->all());
-        if ($user) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data user berhasil diubah!');
-        }
+        // if ($user) {
+        //     Session::flash('status', 'success');
+        //     Session::flash('message', 'Data user berhasil diubah!');
+        // }
 
-        return redirect('/user');
+        // return redirect('/user');
+        return redirect()->intended('/user')->with('update', 'berhasil update');
     }
 
     public function addBantuan($id)
@@ -204,7 +200,7 @@ class UserController extends Controller
 
         $data->create($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user);
+        return redirect()->intended('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
     }
 
     public function detailuserbantuan($id)
@@ -221,7 +217,7 @@ class UserController extends Controller
         $data = Bantuan::findOrFail($id);
         $data->delete();
 
-        return back();
+        return redirect()->back()->with('delete', 'berhasil dihapus');
     }
 
     public function nolDuaPuluh(Request $request)

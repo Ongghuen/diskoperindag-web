@@ -12,6 +12,7 @@ use App\Models\Pelatihan;
 use App\Models\Sertifikat;
 use App\Models\BantuanAlat;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Crypt;
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,7 +44,8 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Raihan Achmad',
             'email' => 'r@r',
-            'password' => bcrypt('r'),
+            // 'password' => bcrypt('r'),
+            'password' => bcrypt('anjay'),
             'NIK' => '6969696969',
             'alamat' => 'Jember',
             'phone' => '+0895385583',

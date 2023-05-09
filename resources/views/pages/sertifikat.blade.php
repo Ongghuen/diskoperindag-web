@@ -1,142 +1,137 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Sertifikat
-@endsection
-
-@section('title-page')
-    Sertifikat
-@endsection
-
-@section('tagline')
-    Kelola data Sertifikat anda.
+    Data Sertifikat
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12 stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center mb-2">
-                        <p class="card-title">Table Sertifikat</p>
-                    </div>
-                    <ul class="navbar-nav mr-lg-4 w-100">
-                        <li class="nav-item nav-search w-100">
-                            <form action="" method="GET">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="search">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Search now" aria-label="search"
-                                        aria-describedby="search" name="keyword">
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-                    @if (Session::has('status'))
-                        <div class="alert alert-success alert-dismissible fade show font-weight-bold my-2" role="alert">
-                            {{ Session::get('message') }}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Data Sertifikat</h4>
+                        <div class="align-right text-right">
+
                         </div>
-                    @endif
-                    <div class="table-responsive">
-                        <table id="recent-purchases-listing" class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>No Sertifikat</th>
-                                    <th>Nama Sertifikat</th>
-                                    <th>Penerima</th>
-                                    <th>NIK</th>
-                                    <th>Tanggal Terbit</th>
-                                    <th>Tanggal Kadaluarsa</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($itemList as $item)
+                        <div class="table-responsive">
+                            <table id="example" class="table table-bordered zero-configuration">
+                                <thead>
                                     <tr>
-                                        <td>{{ $loop->iteration + $itemList->firstItem() - 1 }}</td>
-                                        <td>{{ $item->no_sertifikat }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        <td>{{ $item->user->NIK }}</td>
-                                        <td>{{ $item->tanggal_terbit }}</td>
-                                        <td>{{ $item->kadaluarsa_penyelenggara }}</td>
-                                        <td class="align-middle text-center">
-                                            <a href="/sertifikat-detail/{{ $item->id }}"
-                                                class="btn btn-dark btn-sm px-1 pb-0">
-                                                <i class="mdi mdi-eye"></i>
-                                            </a>
-                                        </td>
+                                        <th>No</th>
+                                        <th>No Sertifikat</th>
+                                        <th>Nama Sertifikat</th>
+                                        <th>Penerima</th>
+                                        <th>NIK</th>
+                                        <th>Tanggal Terbit</th>
+                                        <th>Tanggal Kadaluarsa</th>
+                                        <th>Action</th>
                                     </tr>
-                                @endforeach
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    
+                                    $no = 1;
+                                    
+                                    ?>
+                                    @foreach ($itemList as $item)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->no_sertifikat }}</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->user->NIK }}</td>
+                                            <td>{{ $item->tanggal_terbit }}</td>
+                                            <td>{{ $item->kadaluarsa_penyelenggara }}</td>
+                                            <td class="align-middle text-center">
+                                                <span>
+                                                    <a class="btn mb-1 btn-rounded btn-outline-success btn-sm"
+                                                        href="/sertifikat-detail/{{ $item->id }}">Detail</a>
 
-                                @foreach ($itemList as $item)
-                                    {{-- modal Hapus --}}
-                                    <div class="modal fade" id="ModalHapus{{ $item->id }}" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <form action="/sertfikat-destroy/{{ $item->id }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <div class="modal-body">
-                                                        <p>Anda Yakin Menghapus Data Sertifikat {{ $item->nama_item }} ?
-                                                        </p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- end modal Hapus --}}
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center mt-3">
-                                {{ $itemList->links('pagination::bootstrap-4') }}
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-        @foreach ($itemList as $item)
-            {{-- modal detail --}}
-            <div class="modal fade" id="ModalDetail{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Nama Item</th>
-                                    <td>{{ $item->nama_item }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Deskripsi</th>
-                                    <td>{{ $item->deskripsi }}</td>
-                                </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- end modal detail --}}
-        @endforeach
-    @endsection
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+
+
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    ['10 rows', '25 rows', '50 rows', 'Show all']
+                ],
+
+                buttons: [{
+                        extend: 'colvis',
+                        className: 'btn btn-primary btn-sm',
+                        text: 'Column Visibility',
+                        // columns: ':gt(0)'
+
+
+                    },
+
+                    {
+
+                        extend: 'pageLength',
+                        className: 'btn btn-primary btn-sm',
+                        text: 'Page Length',
+                        // columns: ':gt(0)'
+                    },
+
+
+                    // 'colvis', 'pageLength',
+
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-primary btn-sm',
+                        exportOptions: {
+                            columns: [0, ':visible']
+                        }
+                    },
+
+                    // {
+                    //     extend: 'csv',
+                    //     className: 'btn btn-primary btn-sm',
+                    //     exportOptions: {
+                    //         columns: [0, ':visible']
+                    //     }
+                    // },
+                    {
+                        extend: 'pdf',
+                        className: 'btn btn-primary btn-sm',
+                        exportOptions: {
+                            columns: [0, ':visible']
+                        }
+                    },
+
+                    {
+                        extend: 'print',
+                        className: 'btn btn-primary btn-sm',
+                        exportOptions: {
+                            columns: [0, ':visible']
+                        }
+                    },
+
+                    // 'pageLength', 'colvis',
+                    // 'copy', 'csv', 'excel', 'print'
+
+                ],
+
+            });
+        });
+    </script>
+@endsection

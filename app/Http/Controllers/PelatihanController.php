@@ -26,7 +26,7 @@ class PelatihanController extends Controller
                     ->where('name', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
             })
-            ->paginate(10);
+            ->get();
 
         return view('pages.pelatihan', ['itemList' => $items]);
     }
@@ -45,7 +45,7 @@ class PelatihanController extends Controller
         $items = Pelatihan::findOrFail($id);
         $items->delete();
 
-        return back();
+        return back()->with('delete', 'berhasil dihapus');
     }
 
     public function storeView($id)
@@ -79,7 +79,7 @@ class PelatihanController extends Controller
 
         $items->create($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user);
+        return redirect('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
     }
 
     public function updateView($idPelatihan, $idUser)
@@ -112,6 +112,6 @@ class PelatihanController extends Controller
         $user = $request->user_id;
         $items->update($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user);
+        return redirect('/detail-user-bantuan/' . $user)->with('update', 'berhasil diupdate');
     }
 }

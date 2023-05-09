@@ -19,7 +19,7 @@ class BeritaController extends Controller
                 ->where('judul', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('subjudul', 'LIKE', '%' . $keyword . '%');
         })
-            ->paginate(10);
+            ->get();
 
         return view('pages.berita', ['itemList' => $dataBerita]);
     }
@@ -65,11 +65,10 @@ class BeritaController extends Controller
 
 
         if ($items) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Tambah data item bantuan berhasil!');
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Tambah data item bantuan berhasil!');
+            return redirect()->intended('/berita')->with('create', 'berhasil create');
         }
-
-        return redirect('/berita');
     }
 
 
@@ -103,16 +102,17 @@ class BeritaController extends Controller
                     'body.max' => 'deskripsi maksimal 1000 karakter!',
                 ]
             );
-            
+
             $items = Berita::findOrFail($id);
             $items->update($request->all());
 
             if ($items) {
-                Session::flash('status', 'success');
-                Session::flash('message', 'Data item bantuan berhasil diubah!');
+                // Session::flash('status', 'success');
+                // Session::flash('message', 'Data item bantuan berhasil diubah!');
+                return redirect()->intended('/berita')->with('update', 'berhasil diupdate');
             }
 
-            return redirect('/berita');
+            // return redirect('/berita');
         } else {
             $request->validate(
                 [
@@ -150,11 +150,12 @@ class BeritaController extends Controller
             $items->save();
 
             if ($items) {
-                Session::flash('status', 'success');
-                Session::flash('message', 'Data item bantuan berhasil diubah!');
+                // Session::flash('status', 'success');
+                // Session::flash('message', 'Data item bantuan berhasil diubah!');
+                return redirect()->intended('/berita')->with('update', 'berhasil diupdate');
             }
 
-            return redirect('/berita');
+            // return redirect('/berita');
         }
     }
     public function destroy($id)
@@ -166,10 +167,11 @@ class BeritaController extends Controller
         $items->delete();
 
         if ($items) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data item bantuan berhasil dihapus!');
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Data item bantuan berhasil dihapus!');
+            return redirect()->intended('/berita')->with('delete', 'berhasil dihapus');
         }
 
-        return redirect('/berita');
+        // return redirect('/berita');
     }
 }

@@ -1,32 +1,64 @@
-<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-    <div class="navbar-brand-wrapper d-flex justify-content-center">
-        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-            <a class="navbar-brand brand-logo" href="/user"><img src={{ asset('images/logo-tuansilat.svg') }}
-                    alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="/user"><img src={{ asset('images/logo-tuansilat-mini.svg') }}
-                    alt="logo" /></a>
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                <span class="mdi mdi-sort-variant"></span>
-            </button>
+<div class="header">
+    <div class="header-content clearfix">
+
+        <div class="nav-control">
+            <div class="hamburger">
+                <span class="toggle-icon"><i class="icon-menu"></i></span>
+            </div>
+        </div>
+        {{-- <div class="header-left">
+            <div class="input-group icons">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i
+                            class="mdi mdi-magnify"></i></span>
+                </div>
+                <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                <div class="drop-down animated flipInX d-md-none">
+                    <form action="#">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </form>
+                </div>
+            </div>
+        </div> --}}
+        <div class="header-right">
+            <ul class="clearfix">
+                <li class="icons dropdown d-none d-md-flex">
+                    <a href="javascript:void(0)" class="log-user" data-toggle="dropdown">
+                        <span>{{ Auth::User()->name }}</span>
+                    </a>
+
+                <li class="icons dropdown">
+                    <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+                        <span class="activity active"></span>
+                        <img src="images/user/1.png" height="40" width="40" alt="">
+                    </div>
+                    <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                        <div class="dropdown-content-body">
+                            <ul>
+                                <li>
+                                    <a data-toggle="modal" data-target="#profileModal" href="#"><i
+                                            class="icon-user"></i> <span>Profile</span></a>
+                                </li>
+                                {{-- <li>
+                                    <a href="javascript:void()">
+                                        <i class="icon-envelope-open"></i> <span>Inbox</span>
+                                        <div class="badge gradient-3 badge-pill gradient-1">3</div>
+                                    </a>
+                                </li> --}}
+
+                                {{-- <hr class="my-2"> --}}
+                                {{-- <li>
+                                    <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock
+                                            Screen</span></a>
+                                </li> --}}
+                                <li><a data-toggle="modal" data-target="#logoutModal" href="#"><i
+                                            class="icon-key"></i> <span>Logout</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item nav-profile dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                    <img src={{ asset('images/profile.jpg') }} alt="profile" />
-                    <span class="nav-profile-name">{{ Auth::user()->name }}</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <button data-bs-toggle="modal" data-bs-target="#logoutmodal" class="dropdown-item"><i
-                            class="mdi mdi-logout text-primary"></i>
-                        Logout</button>
-                </div>
-            </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-            data-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
-        </button>
-    </div>
-</nav>
+</div>

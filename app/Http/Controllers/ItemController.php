@@ -8,16 +8,9 @@ use Illuminate\Support\Facades\Session;
 
 class ItemController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->keyword;
-
-        $items = Alat::where(function ($query) use ($keyword) {
-            $query
-                ->where('nama_item', 'LIKE', '%' . $keyword . '%')
-                ->orWhere('stok', 'LIKE', '%' . $keyword . '%');
-        })
-            ->paginate(10);
+        $items = Alat::all();
 
         return view('pages.alatitem', ['itemList' => $items]);
     }
@@ -51,11 +44,10 @@ class ItemController extends Controller
         $items->create($request->all());
 
         if ($items) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Tambah data item bantuan berhasil!');
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Tambah data item bantuan berhasil!');
+            return redirect()->intended('/alatitem')->with('create', 'berhasil create');
         }
-
-        return redirect('/alatitem');
     }
 
     public function destroy($id)
@@ -64,11 +56,8 @@ class ItemController extends Controller
         $items->delete();
 
         if ($items) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data item bantuan berhasil dihapus!');
+            return redirect()->intended('/alatitem')->with('delete', 'berhasil delete');
         }
-
-        return redirect('/alatitem');
     }
 
     public function updateView($id)
@@ -100,11 +89,8 @@ class ItemController extends Controller
         $items->update($request->all());
 
         if ($items) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data item bantuan berhasil diubah!');
+            return redirect()->intended('/alatitem')->with('update', 'berhasil delete');
         }
-
-        return redirect('/alatitem');
     }
 
     public function itemdetail($id)

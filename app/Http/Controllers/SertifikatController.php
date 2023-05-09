@@ -26,7 +26,7 @@ class SertifikatController extends Controller
                     ->where('name', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
             })
-            ->paginate(10);
+            ->get();
 
         return view('pages.sertifikat', ['itemList' => $items]);
     }
@@ -42,7 +42,7 @@ class SertifikatController extends Controller
         $items = Sertifikat::findOrFail($id);
         $items->delete();
 
-        return back();
+        return back()->with('delete', 'berhasil dihapus');
     }
 
     public function storeView($id)
@@ -78,7 +78,7 @@ class SertifikatController extends Controller
 
         $items->create($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user);
+        return redirect('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
     }
 
     public function updateView($idSertifikat, $idUser)
@@ -115,6 +115,6 @@ class SertifikatController extends Controller
         $user = $request->user_id;
         $items->update($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user);
+        return redirect('/detail-user-bantuan/' . $user)->with('update', 'berhasil diupdate');
     }
 }

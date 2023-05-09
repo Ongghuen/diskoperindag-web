@@ -1,57 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Diskoperindag | Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="icon" href="{{ asset("images/logo-tuansilat-mini.svg") }}" sizes="32x32" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Diskoperindag - Login</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="css/style.css" rel="stylesheet">
+
+
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto d-flex align-items-center" style="height: 100vh;">
-                <div class="card border-0 shadow rounded-3">
-                    <div class="card-body p-4 p-sm-5">
-                    <div class="card-title text-center mb-4 fw-light fs-5">
-                        <img src="{{ asset("images/tuansilat-full.png") }}" width="300" alt="DISKOPERINDAG">
-                    </div>
-                        <form action="/login" method="POST">
-                            @csrf
-                            @if(Session::has('status'))
-                                <div class="alert alert-danger alert-dismissible fade show font-weight-bold" role="alert">
-                                    <strong>{{Session::get('message')}}</strong>
-                                </div>
-                            @endif
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com">
-                                <label for="email">Email address</label>
-                                @error('email')
-                                    <span class="invalid-feedback">
-                                        <strong>{{$message}}</strong>
-                                    </span>
-                                @enderror
+
+<body class="h-100">
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                    stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                <a class="text-center" href="/">
+                                    <h4>Login</h4>
+                                </a>
+                                <form action="/login" method="POST" class="mt-5 mb-5 login-input">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input name="email" type="email" class="form-control"
+                                            value="{{ Session::get('email') }}" placeholder="Email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="password" type="password" class="form-control"
+                                            value="{{ Session::get('password') }}" placeholder="Password" required>
+
+                                    </div>
+                                    <button type="submit" class="btn login-form__btn submit w-100">Sign In</button>
+                                </form>
+
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
-                                <label for="password">Password</label>
-                                @error('password')
-                                    <span class="invalid-feedback">
-                                        <strong>{{$message}}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="d-grid">
-                                <button class="btn btn-dark btn-login text-uppercase fw-bold" type="submit">LOGIN</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
+
 </html>
+
+@if (Session::get('belumlogin'))
+    <script>
+        swal("Opps Error", "Silahkan Login Dulu", "error");
+    </script>
+@endif
+
+@if (Session::get('loginerror'))
+    <script>
+        swal("Opps Error", "Login Gagal", "error");
+    </script>
+@endif
+
+@if (Session::get('bukanadmin'))
+    <script>
+        swal("Opps Error", "Anda Bukan Admin", "error");
+    </script>
+@endif
+
+@if (Session::get('failed'))
+    <script>
+        swal("Opps Error", "Login Gagal", "error");
+    </script>
+@endif
+
+@if (Session::get('logout'))
+    <script>
+        swal("Well Done", "Anda Berhasil Logout", "success");
+    </script>
+@endif
