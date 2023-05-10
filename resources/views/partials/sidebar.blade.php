@@ -18,15 +18,15 @@
 
              <li>
                  <a href="/user" aria-expanded="false">
-                     <i class="icon-user menu-icon"></i><span class="nav-text">Data User</span>
+                     <i class="icon-user menu-icon"></i><span class="nav-text">Pengguna</span>
                  </a>
              </li>
              <li>
                  <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                     <i class="icon-grid menu-icon"></i> <span class="nav-text">Fasilitas</span>
+                     <i class="icon-grid menu-icon"></i> <span class="nav-text">Fasilitasi</span>
                  </a>
                  <ul aria-expanded="false">
-                     <li><a href="/bantuan">Alat</a></li>
+                     <li><a href="/bantuan">Bantuan Alat</a></li>
                      <li><a href="/sertifikat">Sertifikat</a></li>
                      <li><a href="/pelatihan">Pelatihan</a></li>
                  </ul>
@@ -43,7 +43,7 @@
              </li>
              <li>
                  <a href="/report" aria-expanded="false">
-                     <i class="icon-graph menu-icon"></i><span class="nav-text">Report</span>
+                     <i class="icon-graph menu-icon"></i><span class="nav-text">Laporan</span>
                  </a>
              </li>
              {{-- <li class="mega-menu mega-menu-sm">

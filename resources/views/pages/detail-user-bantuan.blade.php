@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Detail User
+    Detail Pengguna
 @endsection
 
 @section('content')
@@ -10,10 +10,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="/user"><i class="fa fa-arrow-left"></i></a>
+                        <a class="btn btn-master btn-sm mb-4" href="/user"><i class="fa fa-arrow-left"></i></a>
                         <div class="d-flex align-items-center mb-2">
-
-                            <p class="card-title">Detail User</p>
+                            <p class="card-title">Detail Pengguna</p>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered zero-configuration">
@@ -37,7 +36,6 @@
                                     <th>No. Telepon</th>
                                     <td>{{ $item->phone }}</td>
                                 </tr>
-
                                 <tr>
                                     <th>Gender</th>
                                     @if ($item->gender == 'P')
@@ -62,7 +60,7 @@
                                     <th>Bantuan Alat</th>
                                     <td>
                                         <div class="table-responsive">
-                                            <table id="example" class="table table-bordered zero-configuration">
+                                            <table class="my-3 mx-2">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -81,15 +79,15 @@
                                                             <td>{{ $data->tahun_pemberian }}</td>
                                                             <td>
                                                                 <a href="/bantuan-detail/{{ $data->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                                    class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                     <i class="mdi mdi-eye"></i>
                                                                 </a>
                                                                 <a href="/bantuan-edit/{{ $data->id }}/{{ $item->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                                    class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                     <i class="mdi mdi-pencil"></i>
                                                                 </a>
                                                                 <a href="/delete-bantuan/{{ $data->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0">
+                                                                    class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                     <i class="mdi mdi-delete"></i>
                                                                 </a>
                                                             </td>
@@ -99,14 +97,14 @@
                                             </table>
                                         </div>
                                         <a href="/user-bantuan/{{ $item->id }}"
-                                            class="btn btn-sm btn-primary">Tambah</a>
+                                            class="btn btn-sm btn-master ml-2">Tambah</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Pelatihan</th>
                                     <td>
                                         <div class="table-responsive">
-                                            <table id="exampleaja" class="table table-bordered zero-configuration">
+                                            <table class="my-3 mx-2">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -127,11 +125,11 @@
                                                             <td>{{ $data->tempat }}</td>
                                                             <td>
                                                                 <a href="/pelatihan-edit/{{ $data->id }}/{{ $item->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
+                                                                    class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                     <i class="mdi mdi-pencil"></i>
                                                                 </a>
                                                                 <a href="/delete-pelatihan/{{ $data->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0">
+                                                                    class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                     <i class="mdi mdi-delete"></i>
                                                                 </a>
                                                             </td>
@@ -141,14 +139,14 @@
                                             </table>
                                         </div>
                                         <a href="/user-pelatihan/{{ $item->id }}"
-                                            class="btn btn-sm btn-primary">Tambah</a>
+                                            class="btn btn-sm btn-master ml-2">Tambah</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Sertifikat</th>
                                     <td>
                                         <div class="table-responsive">
-                                            <table id="examplecuy" class="table table-bordered zero-configuration">
+                                            <table class="my-3 mx-2">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -160,34 +158,34 @@
                                                     </tr>
                                                 </thead>
                                                 @foreach ($item->sertifikat as $data)
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $data->no_sertifikat }}</td>
-                                                            <td>{{ $data->nama }}</td>
-                                                            <td>{{ $data->tanggal_terbit }}</td>
-                                                            <td>{{ $data->kadaluarsa_penyelenggara }}</td>
-                                                            <td>
-                                                                <a href="/sertifikat-detail/{{ $data->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
-                                                                    <i class="mdi mdi-eye"></i>
-                                                                </a>
-                                                                <a href="/sertifikat-edit/{{ $data->id }}/{{ $item->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0 me-1">
-                                                                    <i class="mdi mdi-pencil"></i>
-                                                                </a>
-                                                                <a href="/delete-sertifikat/{{ $data->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0">
-                                                                    <i class="mdi mdi-delete"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $data->no_sertifikat }}</td>
+                                                        <td>{{ $data->nama }}</td>
+                                                        <td>{{ $data->tanggal_terbit }}</td>
+                                                        <td>{{ $data->kadaluarsa_penyelenggara }}</td>
+                                                        <td>
+                                                            <a href="/sertifikat-detail/{{ $data->id }}"
+                                                                class="btn mx-1 mb-1 btn-outline-light btn-sm">
+                                                                <i class="mdi mdi-eye"></i>
+                                                            </a>
+                                                            <a href="/sertifikat-edit/{{ $data->id }}/{{ $item->id }}"
+                                                                class="btn mx-1 mb-1 btn-outline-light btn-sm">
+                                                                <i class="mdi mdi-pencil"></i>
+                                                            </a>
+                                                            <a href="/delete-sertifikat/{{ $data->id }}"
+                                                                class="btn mx-1 mb-1 btn-outline-light btn-sm">
+                                                                <i class="mdi mdi-delete"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
                                                 @endforeach
                                             </table>
                                         </div>
                                         <a href="/user-sertifikat/{{ $item->id }}"
-                                            class="btn btn-sm btn-primary">Tambah</a>
+                                            class="btn btn-sm btn-master ml-2">Tambah</a>
                                     </td>
                                 </tr>
                             </table>
@@ -201,237 +199,6 @@
 
 @section('script')
     <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                dom: 'Bfrtip',
-
-
-                lengthMenu: [
-                    [10, 25, 50, -1],
-                    ['10 rows', '25 rows', '50 rows', 'Show all']
-                ],
-
-                buttons: [{
-                        extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
-                        // columns: ':gt(0)'
-
-
-                    },
-
-                    {
-
-                        extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
-                        // columns: ':gt(0)'
-                    },
-
-
-                    // 'colvis', 'pageLength',
-
-                    {
-                        extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // {
-                    //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
-                    //     exportOptions: {
-                    //         columns: [0, ':visible']
-                    //     }
-                    // },
-                    {
-                        extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    {
-                        extend: 'print',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // 'pageLength', 'colvis',
-                    // 'copy', 'csv', 'excel', 'print'
-
-                ],
-
-            });
-        });
-        $(document).ready(function() {
-            $('#exampleaja').DataTable({
-                dom: 'Bfrtip',
-
-
-                lengthMenu: [
-                    [10, 25, 50, -1],
-                    ['10 rows', '25 rows', '50 rows', 'Show all']
-                ],
-
-                buttons: [{
-                        extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
-                        // columns: ':gt(0)'
-
-
-                    },
-
-                    {
-
-                        extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
-                        // columns: ':gt(0)'
-                    },
-
-
-                    // 'colvis', 'pageLength',
-
-                    {
-                        extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // {
-                    //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
-                    //     exportOptions: {
-                    //         columns: [0, ':visible']
-                    //     }
-                    // },
-                    {
-                        extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    {
-                        extend: 'print',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // 'pageLength', 'colvis',
-                    // 'copy', 'csv', 'excel', 'print'
-
-                ],
-
-            });
-        });
-        $(document).ready(function() {
-            $('#examplecuy').DataTable({
-                dom: 'Bfrtip',
-
-
-                lengthMenu: [
-                    [10, 25, 50, -1],
-                    ['10 rows', '25 rows', '50 rows', 'Show all']
-                ],
-
-                buttons: [{
-                        extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
-                        // columns: ':gt(0)'
-
-
-                    },
-
-                    {
-
-                        extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
-                        // columns: ':gt(0)'
-                    },
-
-
-                    // 'colvis', 'pageLength',
-
-                    {
-                        extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // {
-                    //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
-                    //     exportOptions: {
-                    //         columns: [0, ':visible']
-                    //     }
-                    // },
-                    {
-                        extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    {
-                        extend: 'print',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // 'pageLength', 'colvis',
-                    // 'copy', 'csv', 'excel', 'print'
-
-                ],
-
-            });
-        });
+        
     </script>
-@endsection
-
-@section('sweetalert')
-    @if (Session::get('update'))
-        <script>
-            swal("Done", "Data Berhasil Diupdate", "success");
-        </script>
-    @endif
-    @if (Session::get('delete'))
-        <script>
-            swal("Done", "Data Berhasil Dihapus", "success");
-        </script>
-    @endif
-    @if (Session::get('gagal'))
-        <script>
-            swal("Gagal Hapus", "Data Masih Terelasi", "error");
-        </script>
-    @endif
-    @if (Session::get('create'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
-    @if (Session::get('autocreate'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
 @endsection

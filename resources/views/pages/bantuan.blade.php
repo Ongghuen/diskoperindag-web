@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2">
-                            <p class="card-title">Table Bantuan</p>
+                            <p class="card-title">Data Bantuan Alat</p>
                         </div>
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered zero-configuration">
@@ -46,9 +46,10 @@
                                             <td>{{ $item->tahun_pemberian }}</td>
                                             <td class="align-middle text-center">
                                                 <span>
-                                                    <a class="btn mb-1 btn-rounded btn-outline-success btn-sm"
-                                                        href="/bantuan-detail/{{ $item->id }}">Detail</a>
-
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/bantuan-detail/{{ $item->id }}">
+                                                        <i class="icon-eye menu-icon"></i>
+                                                    </a>
                                                 </span>
                                             </td>
 
@@ -140,8 +141,8 @@
 
                 buttons: [{
                         extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Kolom Ditampilkan',
                         // columns: ':gt(0)'
 
 
@@ -150,8 +151,8 @@
                     {
 
                         extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Baris Ditampilkan',
                         // columns: ':gt(0)'
                     },
 
@@ -160,7 +161,7 @@
 
                     {
                         extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -168,14 +169,14 @@
 
                     // {
                     //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
+                    //     className: 'btn btn-master btn-sm',
                     //     exportOptions: {
                     //         columns: [0, ':visible']
                     //     }
                     // },
                     {
                         extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -183,7 +184,7 @@
 
                     {
                         extend: 'print',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -197,32 +198,4 @@
             });
         });
     </script>
-@endsection
-
-@section('sweetalert')
-    @if (Session::get('update'))
-        <script>
-            swal("Done", "Data Berhasil Diupdate", "success");
-        </script>
-    @endif
-    @if (Session::get('delete'))
-        <script>
-            swal("Done", "Data Berhasil Dihapus", "success");
-        </script>
-    @endif
-    @if (Session::get('gagal'))
-        <script>
-            swal("Gagal Hapus", "Data Masih Terelasi", "error");
-        </script>
-    @endif
-    @if (Session::get('create'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
-    @if (Session::get('autocreate'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
 @endsection

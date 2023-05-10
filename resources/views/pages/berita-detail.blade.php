@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="/berita"><i class="fa fa-arrow-left"></i></a>
+                        <a class="btn btn-master btn-sm mb-4" href="/berita"><i class="fa fa-arrow-left"></i></a>
                         <div class="d-flex align-items-center mb-2">
                             <p class="card-title">Detail Berita</p>
                         </div>
@@ -22,7 +22,7 @@
                                         <td>
                                             @if ($item->image == null)
                                                 <img style="width: 100px; height: 100px;"
-                                                    src="{{ asset('images/logo-tuansilat-mini.svg') }}" alt="profile">
+                                                    src="{{ asset('images/tuansilat_logo.png') }}" alt="profile">
                                             @else
                                                 <img style="width: 100px; height: 100px;"
                                                     src="{{ asset('images/berita/' . $item['image']) }}" alt="profile">

@@ -10,33 +10,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <p class="card-title">Table Berita</p>
-                            {{-- <a class="btn btn-primary btn-fw ms-auto btn-sm" href="/berita-add">Tambah</a> --}}
-                            <a class="btn mb-1 btn-rounded btn-outline-primary btn-sm ms-auto" href="/berita-add">Add</a>
+                        <h4 class="card-title">Data Berita</h4>
+                        <div class="align-right text-right">
+                            <a class="btn mb-1 btn-outline-primary btn-sm ms-auto" href="/berita-add">Tambah</a>
+                            <a class="btn mb-1 btn-outline-danger btn-sm ms-auto mx-1" href="/berita-add">Hapus</a>
+                            <a class="btn mb-1 btn-outline-warning btn-sm ms-auto" href="/berita-add">Pulihkan</a>
                         </div>
-                        {{-- <ul class="navbar-nav mr-lg-4 w-100">
-                            <li class="nav-item nav-search w-100">
-                                <form action="" method="GET">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="search">
-                                                <i class="mdi mdi-magnify"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Search now"
-                                            aria-label="search" aria-describedby="search" name="keyword">
-                                    </div>
-                                </form>
-                            </li>
-                        </ul> --}}
-                        {{-- @if (Session::has('status'))
-                            <div class="alert alert-success alert-dismissible fade show font-weight-bold my-2"
-                                role="alert">
-                                {{ Session::get('message') }}
-                            </div>
-                        @endif --}}
-
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered zero-configuration">
                                 <thead>
@@ -45,6 +24,7 @@
                                         <th>Gambar</th>
                                         <th>Judul</th>
                                         <th>Action</th>
+                                        <th>Hapus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +39,7 @@
                                             <td>
                                                 @if ($item->image == null)
                                                     <img style="width: 50px; height: 50px;"
-                                                        src="{{ asset('images/logo-tuansilat-mini.svg') }}" alt="profile">
+                                                        src="{{ asset('images/tuansilat_logo.png') }}" alt="profile">
                                                 @else
                                                     <img style="width: 50px; height: 50px;"
                                                         src="{{ asset('images/berita/' . $item['image']) }}" alt="profile">
@@ -68,19 +48,23 @@
                                             <td>{{ $item->judul }}</td>
                                             <td class="align-middle text-center">
                                                 <span>
-                                                    <a class="btn mb-1 btn-rounded btn-outline-success btn-sm"
-                                                        href="/berita-detail/{{ $item->id }}">Detail</a>
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/berita-detail/{{ $item->id }}">
+                                                        <i class="icon-eye menu-icon"></i>
+                                                    </a>
 
-                                                    <a class="btn mb-1 btn-rounded btn-outline-warning btn-sm"
-                                                        href="/berita-edit/{{ $item->id }}">Edit</a>
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/berita-edit/{{ $item->id }}">
+                                                        <i class="icon-pencil menu-icon"></i>
+                                                    </a>
 
-                                                    <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
+                                                    {{-- <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
                                                         type="button"
-                                                        class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button>
+                                                        class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button> --}}
 
                                                 </span>
-
                                             </td>
+                                            <td class="text-center"><input type="checkbox" name="" id=""></td>
                                         </tr>
                                     @endforeach
 
@@ -168,8 +152,8 @@
 
                 buttons: [{
                         extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Kolom Ditampilkan',
                         // columns: ':gt(0)'
 
 
@@ -178,8 +162,8 @@
                     {
 
                         extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Baris Ditampilkan',
                         // columns: ':gt(0)'
                     },
 
@@ -188,7 +172,7 @@
 
                     {
                         extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -196,14 +180,14 @@
 
                     // {
                     //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
+                    //     className: 'btn btn-master btn-sm',
                     //     exportOptions: {
                     //         columns: [0, ':visible']
                     //     }
                     // },
                     {
                         extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -211,7 +195,7 @@
 
                     {
                         extend: 'print',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }

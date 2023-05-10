@@ -34,12 +34,12 @@ class AuthController extends Controller
                 $request->session()->regenerate();
                 return redirect()->intended('/user')->with('loginberhasil', 'login berhasil');
             } else {
-                return redirect()->intended('/login')->with('loginerror', 'login error');
+                return redirect()->back()->withInput()->with('loginerror', 'login error');
             }
         } elseif ($userLogin == 2) {
-            return redirect()->intended('/login')->with('bukanadmin', 'login error');
+            return redirect()->back()->withInput()->with('bukanadmin', 'login error');
         } elseif ($userLogin == 3) {
-            return redirect()->intended('/login')->with('failed', 'login error');
+            return redirect()->back()->withInput()->with('failed', 'login error');
         }
     }
 

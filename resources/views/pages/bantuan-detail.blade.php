@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Detail Bantuan
+    Detail Bantuan Alat
 @endsection
 
 @section('content')
@@ -10,10 +10,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="{{ redirect()->back()->getTargetUrl() }}"><i
+                        <a class="btn btn-master btn-sm mb-4" href="{{ redirect()->back()->getTargetUrl() }}"><i
                                 class="fa fa-arrow-left"></i></a>
                         <div class="d-flex align-items-center mb-2">
-                            <p class="card-title">Detail Bantuan</p>
+                            <p class="card-title">Detail Bantuan Alat</p>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -45,7 +45,7 @@
                                     <th>List Alat</th>
                                     <td>
                                         <div class="table-responsive">
-                                            <table id="example" class="table table-bordered zero-configuration">
+                                            <table class="my-3 mx-2">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
@@ -62,7 +62,7 @@
                                                             <td>{{ $data->pivot->kuantitas }}</td>
                                                             <td>
                                                                 <a href="/delete-item/{{ $data->id }}/{{ $item->id }}"
-                                                                    class="btn btn-dark btn-sm px-1 pb-0">
+                                                                    class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                     <i class="mdi mdi-delete"></i>
                                                                 </a>
                                                             </td>
@@ -72,7 +72,7 @@
                                             </table>
                                         </div>
                                         <a href="/bantuan-item/{{ $item->id }}"
-                                            class="btn btn-sm btn-primary">Tambah</a>
+                                            class="btn btn-sm btn-master ml-2">Tambah</a>
                                     </td>
                                 </tr>
                             </table>
@@ -86,101 +86,6 @@
 
 @section('script')
     <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                dom: 'Bfrtip',
 
-
-                lengthMenu: [
-                    [10, 25, 50, -1],
-                    ['10 rows', '25 rows', '50 rows', 'Show all']
-                ],
-
-                buttons: [{
-                        extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
-                        // columns: ':gt(0)'
-
-
-                    },
-
-                    {
-
-                        extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
-                        // columns: ':gt(0)'
-                    },
-
-
-                    // 'colvis', 'pageLength',
-
-                    {
-                        extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // {
-                    //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
-                    //     exportOptions: {
-                    //         columns: [0, ':visible']
-                    //     }
-                    // },
-                    {
-                        extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    {
-                        extend: 'print',
-                        className: 'btn btn-primary btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // 'pageLength', 'colvis',
-                    // 'copy', 'csv', 'excel', 'print'
-
-                ],
-
-            });
-        });
     </script>
-@endsection
-
-@section('sweetalert')
-    @if (Session::get('update'))
-        <script>
-            swal("Done", "Data Berhasil Diupdate", "success");
-        </script>
-    @endif
-    @if (Session::get('delete'))
-        <script>
-            swal("Done", "Data Berhasil Dihapus", "success");
-        </script>
-    @endif
-    @if (Session::get('gagal'))
-        <script>
-            swal("Gagal Hapus", "Data Masih Terelasi", "error");
-        </script>
-    @endif
-    @if (Session::get('create'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
-    @if (Session::get('autocreate'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
 @endsection

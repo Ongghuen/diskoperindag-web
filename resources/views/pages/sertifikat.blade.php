@@ -45,9 +45,10 @@
                                             <td>{{ $item->kadaluarsa_penyelenggara }}</td>
                                             <td class="align-middle text-center">
                                                 <span>
-                                                    <a class="btn mb-1 btn-rounded btn-outline-success btn-sm"
-                                                        href="/sertifikat-detail/{{ $item->id }}">Detail</a>
-
+                                                    <a class="bbtn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/sertifikat-detail/{{ $item->id }}">
+                                                        <i class="icon-eye menu-icon"></i>
+                                                    </a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -77,8 +78,8 @@
 
                 buttons: [{
                         extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Kolom Ditampilkan',
                         // columns: ':gt(0)'
 
 
@@ -87,8 +88,8 @@
                     {
 
                         extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Baris Ditampilkan',
                         // columns: ':gt(0)'
                     },
 
@@ -97,7 +98,7 @@
 
                     {
                         extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -105,14 +106,14 @@
 
                     // {
                     //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
+                    //     className: 'btn btn-master btn-sm',
                     //     exportOptions: {
                     //         columns: [0, ':visible']
                     //     }
                     // },
                     {
                         extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -120,7 +121,7 @@
 
                     {
                         extend: 'print',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }

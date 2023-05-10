@@ -8,6 +8,7 @@
     <title>Diskoperindag - Login</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/tuansilat_logo.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -36,11 +37,11 @@
                                     @csrf
                                     <div class="form-group">
                                         <input name="email" type="email" class="form-control"
-                                        value="{{ Session::get('email') }}" placeholder="Email" required>
+                                        value="{{ old('email') }}" placeholder="Email" required>
                                     </div>
                                     <div class="form-group">
                                         <input name="password" type="password" class="form-control"
-                                        value="{{ Session::get('password') }}" placeholder="Password" required>
+                                        value="{{ old('password') }}" placeholder="Password" required>
                                     </div>
                                     <button type="submit" class="btn login-form__btn submit w-100">Sign In</button>
                                 </form>
@@ -58,36 +59,82 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>
 
 @if (Session::get('belumlogin'))
     <script>
-        swal("Opps Error", "Silahkan Login Dulu", "error");
+        Toastify({
+            text: "    Anda belum login ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+            }).showToast()
     </script>
 @endif
 
 @if (Session::get('loginerror'))
     <script>
-        swal("Opps Error", "Login Gagal", "error");
+        Toastify({
+            text: "    Login gagal ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+            }).showToast()
     </script>
 @endif
 
 @if (Session::get('bukanadmin'))
-    <script>
-        swal("Opps Error", "Anda Bukan Admin", "error");
-    </script>
+<script>
+    Toastify({
+        text: "    Hanya admin yang boleh masuk ! ",
+        duration: 3000,
+        close: true,
+        stopOnFocus: true,
+        avatar: "{{ asset('images/error.png') }}",
+        style: {
+            background: "linear-gradient(to right, #BE2525, #BE4525)",
+        },
+        }).showToast();
+</script>
 @endif
 
 @if (Session::get('failed'))
     <script>
-        swal("Opps Error", "Login Gagal", "error");
+        Toastify({
+            text: "    Login gagal ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+            }).showToast();
     </script>
 @endif
 
 @if (Session::get('logout'))
-    <script>
-        swal("Well Done", "Anda Berhasil Logout", "success");
-    </script>
+<script>
+    Toastify({
+        text: "    Berhasil logout ! ",
+        duration: 3000,
+        close: true,
+        stopOnFocus: true,
+        avatar: "{{ asset('images/success.png') }}",
+        style: {
+            background: "linear-gradient(to right, #25BE60, #25BE45)",
+        },
+        }).showToast();
+</script>
 @endif

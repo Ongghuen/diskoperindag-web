@@ -34,7 +34,7 @@
                                             <input type="date" class="form-control mx-2" name="date1" id="date1">
                                             <label for="date2" class="mt-2">Finish :</label>
                                             <input type="date" class="form-control mx-2" name="date2" id="date2">
-                                            <button class="btn btn-primary btn-sm ms-1" type="submit">
+                                            <button class="btn btn-master btn-sm ms-1" type="submit">
                                                 <i class="mdi mdi-magnify"></i>
                                             </button>
                                         </div>
@@ -67,7 +67,7 @@
                                 <input type="hidden" value="{{ $date1 }}" name="date1">
                                 <input type="hidden" value="{{ $now }}" name="date2">
                             @endif
-                            <button class="btn btn-primary btn-fw btn-sm" type="submit">Export</button>
+                            <button class="btn btn-master btn-fw btn-sm" type="submit">Export</button>
                         </form>
                     </div>
                 </div>

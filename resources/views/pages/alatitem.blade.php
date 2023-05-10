@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Data Alat
+    Data Alat Bantuan
 @endsection
 
 @section('content')
@@ -10,9 +10,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Data Alat</h4>
+                        <h4 class="card-title">Data Alat Bantuan</h4>
                         <div class="align-right text-right">
-                            <a class="btn mb-1 btn-rounded btn-outline-primary btn-sm ms-auto" href="/item-add">Add</a>
+                            <a class="btn mb-1 btn-outline-primary btn-sm ms-auto mr-1" href="/item-add">Tambah</a>
+                            <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="/item-add">Hapus</a>
                         </div>
 
                         @if ($errors->any())
@@ -40,6 +41,7 @@
                                         <th>Nama</th>
                                         <th>Jumlah Diberikan</th>
                                         <th>Action</th>
+                                        <th>Hapus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,18 +64,23 @@
 
                                             <td class="align-middle text-center">
                                                 <span>
-                                                    <a class="btn mb-1 btn-rounded btn-outline-success btn-sm"
-                                                        href="item-detail/{{ $item->id }}">Detail</a>
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="item-detail/{{ $item->id }}">
+                                                        <i class="icon-eye menu-icon"></i>
+                                                    </a>
 
-                                                    <a class="btn mb-1 btn-rounded btn-outline-warning btn-sm"
-                                                        href="/item-edit/{{ $item->id }}">Edit</a>
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/item-edit/{{ $item->id }}">
+                                                        <i class="icon-pencil menu-icon"></i>
+                                                    </a>
 
-                                                    <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
+                                                    {{-- <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
                                                         type="button"
-                                                        class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button>
+                                                        class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button> --}}
 
                                                 </span>
                                             </td>
+                                            <td class="text-center"><input type="checkbox" name="" id=""></td>
                                         </tr>
                                     @endforeach
 
@@ -128,8 +135,8 @@
 
                 buttons: [{
                         extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Kolom Ditampilkan',
                         // columns: ':gt(0)'
 
 
@@ -138,8 +145,8 @@
                     {
 
                         extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Baris Ditampilkan',
                         // columns: ':gt(0)'
                     },
 
@@ -148,7 +155,7 @@
 
                     {
                         extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -156,14 +163,14 @@
 
                     // {
                     //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
+                    //     className: 'btn btn-master btn-sm',
                     //     exportOptions: {
                     //         columns: [0, ':visible']
                     //     }
                     // },
                     {
                         extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -171,7 +178,7 @@
 
                     {
                         extend: 'print',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -187,30 +194,3 @@
     </script>
 @endsection
 
-@section('sweetalert')
-    @if (Session::get('update'))
-        <script>
-            swal("Done", "Data Berhasil Diupdate", "success");
-        </script>
-    @endif
-    @if (Session::get('delete'))
-        <script>
-            swal("Done", "Data Berhasil Dihapus", "success");
-        </script>
-    @endif
-    @if (Session::get('gagal'))
-        <script>
-            swal("Gagal Hapus", "Data Masih Terelasi", "error");
-        </script>
-    @endif
-    @if (Session::get('create'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
-    @if (Session::get('autocreate'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
-@endsection

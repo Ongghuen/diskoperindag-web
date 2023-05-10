@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Detail Item
+    Detail Alat
 @endsection
 
 @section('content')
@@ -10,9 +10,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="/alatitem"><i class="fa fa-arrow-left"></i></a>
+                        <a class="btn btn-master btn-sm mb-4" href="/alatitem"><i class="fa fa-arrow-left"></i></a>
                         <div class="d-flex align-items-center mb-2">
-                            <p class="card-title">Detail Item Bantuan</p>
+                            <p class="card-title">Detail Alat Bantuan</p>
                         </div>
                         <div class="modal-body">
                             <div class="table-responsive">

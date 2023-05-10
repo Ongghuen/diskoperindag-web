@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2">
-                            <p class="card-title">Table Item Pelatihan</p>
+                            <p class="card-title">Data Pelatihan</p>
                         </div>
 
 
@@ -130,8 +130,8 @@
 
                 buttons: [{
                         extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Kolom Ditampilkan',
                         // columns: ':gt(0)'
 
 
@@ -140,8 +140,8 @@
                     {
 
                         extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Baris Ditampilkan',
                         // columns: ':gt(0)'
                     },
 
@@ -150,7 +150,7 @@
 
                     {
                         extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -158,14 +158,14 @@
 
                     // {
                     //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
+                    //     className: 'btn btn-master btn-sm',
                     //     exportOptions: {
                     //         columns: [0, ':visible']
                     //     }
                     // },
                     {
                         extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
@@ -173,7 +173,7 @@
 
                     {
                         extend: 'print',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }

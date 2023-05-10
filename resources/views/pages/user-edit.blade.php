@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Edit User
+    Edit Pengguna
 @endsection
 
 @section('content')
@@ -10,8 +10,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="/user"><i class="fa fa-arrow-left"></i></a>
-                        <h4 class="card-title">Form edit user</h4>
+                        <a class="btn btn-master btn-sm mb-4" href="/user"><i class="fa fa-arrow-left"></i></a>
+                        <h4 class="card-title">Form edit pengguna</h4>
                         <form class="forms-sample" action="/user-update/{{ $item->id }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
@@ -36,26 +36,26 @@
                             @endif
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Nama</label>
-                                <input type="text" name="name" class="form-control input-rounded"
+                                <input type="text" name="name" class="form-control input-default"
                                     id="exampleInputUsername1" placeholder="Name" value="{{ $item->name }}">
                             </div>
                             <div class="form-group">
 
                                 <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control input-rounded" id="exampleInputEmail1"
+                                <input type="email" class="form-control input-default" id="exampleInputEmail1"
                                     name="email" placeholder="Email" value="{{ $item->email }}">
                             </div>
                             <div class="form-group">
 
                                 <label for="exampleInputUsername1">NIK</label>
-                                <input type="text" class="form-control input-rounded" id="exampleInputUsername1"
+                                <input type="text" class="form-control input-default" id="exampleInputUsername1"
                                     name="NIK" placeholder="NIK" value="{{ $item->NIK }}">
                             </div>
                             <div class="form-group">
 
                                 <label for="gender">Kepala Keluarga</label>
-                                <select name="kepala_keluarga input-rounded" id="kepala_keluarga"
-                                    class="form-control input-rounded">
+                                <select name="kepala_keluarga input-default" id="kepala_keluarga"
+                                    class="form-control input-default">
                                     <option value="{{ $item->kepala_keluarga }}">
                                         {{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}
                                     </option>
@@ -69,19 +69,19 @@
                             <div class="form-group">
 
                                 <label for="exampleInputAlamat1">Alamat</label>
-                                <input type="text" class="form-control input-rounded" name="alamat"
+                                <input type="text" class="form-control input-default" name="alamat"
                                     id="exampleInputAlamat1" placeholder="Address" value="{{ $item->alamat }}">
                             </div>
                             <div class="form-group">
 
                                 <label for="exampleInputPhone1">No. Telepon</label>
-                                <input type="text" class="form-control input-rounded" name="phone"
+                                <input type="text" class="form-control input-default" name="phone"
                                     id="exampleInputPhone1" placeholder="Phone" value="{{ $item->phone }}">
                             </div>
                             <div class="form-group">
 
                                 <label for="gender">Gender</label>
-                                <select name="gender" id="gender" class="form-control input-rounded">
+                                <select name="gender" id="gender" class="form-control input-default">
                                     <option value="{{ $item->gender }}">{{ $item->gender }}</option>
                                     @if ($item->gender == 'L')
                                         <option value="P">P</Option>
@@ -93,17 +93,17 @@
                             <div class="form-group">
 
                                 <label for="exampleTextarea1">Tanggal Lahir</label>
-                                <input type="date" class="form-control input-rounded" id="exampleInputEmail1"
+                                <input type="date" class="form-control input-default" id="exampleInputEmail1"
                                     name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ $item->tanggal_lahir }}">
                             </div>
                             <div class="form-group">
 
                                 <label for="exampleInputPhone1">Tempat Lahir</label>
-                                <input type="text" name="tempat_lahir" class="form-control input-rounded"
+                                <input type="text" name="tempat_lahir" class="form-control input-default"
                                     id="exampleInputPhone1" placeholder="Tempat Lahir" value="{{ $item->tempat_lahir }}">
                             </div>
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
-                            <a class="btn btn-light" href="/user">Cancel</a>
+                            <button type="submit" class="btn btn-sm btn-primary me-2">Submit</button>
+                            <a class="btn btn-light btn-sm" href="/user">Cancel</a>
                         </form>
                     </div>
                 </div>

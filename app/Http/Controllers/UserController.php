@@ -38,7 +38,7 @@ class UserController extends Controller
             [
                 'name' => 'required|max:50',
                 'email' => 'required|email|max:50|unique:users,email',
-                'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
+                'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->uncompromised()],
                 're_password' => 'required|same:password',
                 'NIK' => 'required|numeric|digits:16',
                 'alamat' => 'required|max:100',

@@ -20,6 +20,7 @@
     <link href="{{ asset('plugins/tables/css/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.signature.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 
     {{-- <link href="{{ asset('plugins/tables/css/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> --}}
@@ -73,6 +74,7 @@
 
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 
     <script src="{{ asset('plugins/common/common.min.js') }}"></script>
@@ -146,4 +148,125 @@
 
 </html>
 
-@yield('sweetalert')
+@if (Session::get('update'))
+<script>
+    Toastify({
+    text: "    Data berhasil diupdate ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
+@if (Session::get('delete'))
+<script>
+    Toastify({
+    text: "    Data berhasil dihapus ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
+@if (Session::get('gagal'))
+<script>
+    Toastify({
+        text: "    Gagal dihapus, data masih terelasi ! ",
+        duration: 3000,
+        close: true,
+        stopOnFocus: true,
+        avatar: "{{ asset('images/error.png') }}",
+        style: {
+            background: "linear-gradient(to right, #BE2525, #BE4525)",
+        },
+        }).showToast();
+</script>
+@endif
+
+@if (Session::get('create'))
+<script>
+    Toastify({
+    text: "    Data berhasil ditambahkan ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
+@if (Session::get('autocreate'))
+<script>
+    Toastify({
+    text: "    Data berhasil ditambahkan ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
+@if (Session::get('loginberhasil'))
+<script>
+    Toastify({
+    text: "    Selamat anda berhasil login ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
+{{-- @if (Session::get('updateprofil'))
+<script>
+    swal("Well Done", "Password Berhasil Diperbarui", "success");
+</script>
+@endif
+
+@if (Session::get('updateprofilerror'))
+<script>
+    swal("Opps!!", "Password Anda Salah", "error");
+</script>
+@endif
+
+@if (Session::get('passwordtidaksama'))
+<script>
+    swal("Opps!!", "Konfirmasi Password Anda Salah", "error");
+</script>
+@endif --}}
+
+@if (Session::get('sudahlogin'))
+<script>
+    Toastify({
+        text: "    Silahkan logout terlebih dahulu ! ",
+        duration: 3000,
+        close: true,
+        stopOnFocus: true,
+        avatar: "{{ asset('images/error.png') }}",
+        style: {
+            background: "linear-gradient(to right, #BE2525, #BE4525)",
+        },
+        }).showToast();
+</script>
+@endif

@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Data User</h4>
+                        <h4 class="card-title">Data Pengguna</h4>
                         <div class="align-right text-right">
                             <a class="btn mb-1 mr-1 btn-outline-primary btn-sm ms-auto" href="/user-add">Tambah</a>
                             <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="/user-add">Hapus</a>
@@ -30,20 +30,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    
-                                    $no = 1;
-                                    
-                                    ?>
                                     @foreach ($userList as $item)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->NIK }}</td>
                                             <td>{{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
-
                                             <td class="align-middle text-center">
                                                 <span>
                                                     <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
@@ -55,11 +49,9 @@
                                                         href="/user-edit/{{ $item->id }}">
                                                         <i class="icon-pencil menu-icon"></i>
                                                     </a>
-
                                                     {{-- <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
                                                         type="button"
                                                         class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button> --}}
-
                                                 </span>
                                             </td>
                                             <td class="text-center"><input type="checkbox" name="" id=""></td>
@@ -147,62 +139,4 @@
             });
         });
     </script>
-@endsection
-
-@section('sweetalert')
-    @if (Session::get('update'))
-        <script>
-            swal("Done", "Data Berhasil Diupdate", "success");
-        </script>
-    @endif
-    @if (Session::get('delete'))
-        <script>
-            swal("Done", "Data Berhasil Dihapus", "success");
-        </script>
-    @endif
-    @if (Session::get('gagal'))
-        <script>
-            swal("Gagal Hapus", "Data Masih Terelasi", "error");
-        </script>
-    @endif
-    @if (Session::get('create'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
-    @if (Session::get('autocreate'))
-        <script>
-            swal("Done", "Data Berhasil Ditambahkan", "success");
-        </script>
-    @endif
-
-    @if (Session::get('loginberhasil'))
-        <script>
-            swal("Well Done", "Anda Berhasil Login", "success");
-        </script>
-    @endif
-
-    @if (Session::get('updateprofil'))
-        <script>
-            swal("Well Done", "Password Berhasil Diperbarui", "success");
-        </script>
-    @endif
-
-    @if (Session::get('updateprofilerror'))
-        <script>
-            swal("Opps!!", "Password Anda Salah", "error");
-        </script>
-    @endif
-
-    @if (Session::get('passwordtidaksama'))
-        <script>
-            swal("Opps!!", "Konfirmasi Password Anda Salah", "error");
-        </script>
-    @endif
-
-    @if (Session::get('sudahlogin'))
-        <script>
-            swal("Notice", "Anda Masih Login", "success");
-        </script>
-    @endif
 @endsection
