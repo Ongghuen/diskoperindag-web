@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\ApiSuratController;
 use App\Http\Controllers\ApiBeritaController;
 use App\Http\Controllers\ApiFasilitasiController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/fasilitasi/bantuan/{id}', [ApiFasilitasiController::class, 'bantuanDetail']);
     Route::get('/fasilitasi/sertifikat', [ApiFasilitasiController::class, 'sertifikat']);
     Route::get('/fasilitasi/pelatihan', [ApiFasilitasiController::class, 'pelatihan']);
+
+    // surat
+    Route::post('/surat', [ApiSuratController::class, 'store']);
 });

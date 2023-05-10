@@ -2509,6 +2509,39 @@ fieldset:disabled a.btn {
     box-shadow: 0 0 0 0.2rem rgba(117, 113, 249, 0.5);
 }
 
+.btn-master {
+    color: #fff;
+    background-color: #DA251C;
+    border-color: #DA251C;
+}
+.btn-master:hover {
+    color: #fff;
+    background-color: #BF241C;
+    border-color: #9D1C16;
+}
+.btn-master:focus,
+.btn-master.focus {
+    box-shadow: 0 0 0 0.2rem rgba(117, 113, 249, 0.5);
+}
+.btn-master.disabled,
+.btn-master:disabled {
+    color: #fff;
+    background-color: #DA251C;
+    border-color: #DA251C;
+}
+.btn-master:not(:disabled):not(.disabled):active,
+.btn-master:not(:disabled):not(.disabled).active,
+.show > .btn-master.dropdown-toggle {
+    color: #fff;
+    background-color: #9D1C16;
+    border-color: #9D1C16;
+}
+.btn-master:not(:disabled):not(.disabled):active:focus,
+.btn-master:not(:disabled):not(.disabled).active:focus,
+.show > .btn-master.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(117, 113, 249, 0.5);
+}
+
 .btn-secondary {
     color: #212529;
     background-color: #9097c4;
@@ -13885,7 +13918,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 .login-form__btn {
-    background: #455f98;
+    background: #DA251C;
     color: #fff;
     padding: 13px 40px;
     font-size: 14px;
@@ -13897,7 +13930,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 .login-form__btn.submit {
     padding: 15px 40px;
-    background: #7571f9;
+    background: #DA251C;
     font-weight: 700;
 }
 
@@ -15874,6 +15907,14 @@ table.dataTable thead .sorting::after {
     background: #4540f7;
     color: #fff;
     border-color: #4540f7;
+}
+
+.btn-master:active,
+.btn-master:focus,
+.btn-master:hover {
+    background: #9D1C16;
+    color: #fff;
+    border-color: #9D1C16;
 }
 
 .btn-secondary:active,

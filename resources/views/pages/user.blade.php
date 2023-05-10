@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Data User
+    Data Pengguna
 @endsection
 
 @section('content')
@@ -12,12 +12,8 @@
                     <div class="card-body">
                         <h4 class="card-title">Data User</h4>
                         <div class="align-right text-right">
-                            {{-- <button data-toggle="modal" data-target="#addModal" type="button"
-                                class="btn mb-1 btn-rounded btn-outline-primary btn-sm ms-auto">Add</button> --}}
-
-                            <a class="btn mb-1 btn-rounded btn-outline-primary btn-sm ms-auto" href="/user-add">Add</a>
-
-
+                            <a class="btn mb-1 mr-1 btn-outline-primary btn-sm ms-auto" href="/user-add">Tambah</a>
+                            <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="/user-add">Hapus</a>
                         </div>
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered zero-configuration">
@@ -28,8 +24,9 @@
                                         <th>NIK</th>
                                         <th>Kepala Keluarga</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
+                                        <th>No. Telepon</th>
                                         <th>Action</th>
+                                        <th>Hapus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,18 +46,23 @@
 
                                             <td class="align-middle text-center">
                                                 <span>
-                                                    <a class="btn mb-1 btn-rounded btn-outline-success btn-sm"
-                                                        href="/detail-user-bantuan/{{ $item->id }}">Detail</a>
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/detail-user-bantuan/{{ $item->id }}">
+                                                        <i class="icon-eye menu-icon"></i>
+                                                    </a>
 
-                                                    <a class="btn mb-1 btn-rounded btn-outline-warning btn-sm"
-                                                        href="/user-edit/{{ $item->id }}">Edit</a>
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/user-edit/{{ $item->id }}">
+                                                        <i class="icon-pencil menu-icon"></i>
+                                                    </a>
 
-                                                    <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
+                                                    {{-- <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
                                                         type="button"
-                                                        class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button>
+                                                        class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button> --}}
 
                                                 </span>
                                             </td>
+                                            <td class="text-center"><input type="checkbox" name="" id=""></td>
                                         </tr>
 
                                         {{-- Modal Hapus --}}
@@ -103,69 +105,45 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 dom: 'Bfrtip',
-
-
                 lengthMenu: [
                     [10, 25, 50, -1],
-                    ['10 rows', '25 rows', '50 rows', 'Show all']
+                    ['10 baris', '25 baris', '50 baris', 'Tampilkan semua']
                 ],
-
                 buttons: [{
                         extend: 'colvis',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Column Visibility',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Kolom Ditampilkan',
                         // columns: ':gt(0)'
-
-
                     },
-
                     {
-
                         extend: 'pageLength',
-                        className: 'btn btn-primary btn-sm',
-                        text: 'Page Length',
+                        className: 'btn btn-master btn-sm',
+                        text: 'Baris Ditampilkan',
                         // columns: ':gt(0)'
                     },
-
-
                     // 'colvis', 'pageLength',
-
                     {
                         extend: 'excel',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
                     },
-
-                    // {
-                    //     extend: 'csv',
-                    //     className: 'btn btn-primary btn-sm',
-                    //     exportOptions: {
-                    //         columns: [0, ':visible']
-                    //     }
-                    // },
                     {
                         extend: 'pdf',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
                     },
-
                     {
                         extend: 'print',
-                        className: 'btn btn-primary btn-sm',
+                        className: 'btn btn-master btn-sm',
                         exportOptions: {
                             columns: [0, ':visible']
                         }
                     },
-
-                    // 'pageLength', 'colvis',
-                    // 'copy', 'csv', 'excel', 'print'
-
                 ],
-
             });
         });
     </script>
