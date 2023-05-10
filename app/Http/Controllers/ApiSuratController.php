@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiSuratController extends Controller
 {
+    public function index(){
+        return response()->json(Surat::all());
+    }
+
     public function store(Request $request){
         $request->validate([
             'title' => 'required|max:255',
@@ -26,7 +30,6 @@ class ApiSuratController extends Controller
         $request['image'] = $image;
         $request['user_id'] = Auth::user()->id;
         $post = Surat::create($request->all());
-        return response()->json(auth()->user()->surat()->get());
     }
 
     function generateRandomString($length = 10) {

@@ -39,5 +39,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/fasilitasi/pelatihan', [ApiFasilitasiController::class, 'pelatihan']);
 
     // surat
+    Route::get('/surat', [ApiSuratController::class, 'index']);
     Route::post('/surat', [ApiSuratController::class, 'store']);
 });
