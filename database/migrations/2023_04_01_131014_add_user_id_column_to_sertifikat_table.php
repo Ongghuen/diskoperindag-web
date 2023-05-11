@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('sertifikat', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('keterangan')->default(2);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
         });
     }
 

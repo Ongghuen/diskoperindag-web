@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('bantuan_alat', function (Blueprint $table) {
             $table->unsignedBigInteger('bantuan_id');
-            $table->foreign('bantuan_id')->references('id')->on('bantuan')->onDelete('cascade');
+            $table->foreign('bantuan_id')->references('id')->on('bantuan')->onDelete('restrict');
             $table->unsignedBigInteger('alat_id');
-            $table->foreign('alat_id')->references('id')->on('alat')->onDelete('cascade');
+            $table->foreign('alat_id')->references('id')->on('alat')->onDelete('restrict');
             $table->integer('kuantitas');
         });
     }

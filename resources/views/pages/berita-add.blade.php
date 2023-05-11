@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <a class="btn btn-master btn-sm mb-4" href="/berita"><i class="fa fa-arrow-left"></i></a>
-                        <h4 class="card-title">Form tambah Berita</h4>
+                        <h4 class="card-title">Form tambah berita</h4>
                         <form class="forms-sample" action="/beritatambah" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if ($errors->any())

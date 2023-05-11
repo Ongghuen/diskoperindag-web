@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Diskoperindag - @yield('title')</title>
+    <title>Situansilat - @yield('title')</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/tuansilat_logo.png') }}">
 
@@ -181,7 +181,7 @@
 @if (Session::get('gagal'))
 <script>
     Toastify({
-        text: "    Gagal dihapus, data masih terelasi ! ",
+        text: "    Gagal dihapus, data dibutuhkan untuk laporan ! ",
         duration: 3000,
         close: true,
         stopOnFocus: true,
@@ -260,6 +260,21 @@
 <script>
     Toastify({
         text: "    Silahkan logout terlebih dahulu ! ",
+        duration: 3000,
+        close: true,
+        stopOnFocus: true,
+        avatar: "{{ asset('images/error.png') }}",
+        style: {
+            background: "linear-gradient(to right, #BE2525, #BE4525)",
+        },
+        }).showToast();
+</script>
+@endif
+
+@if (Session::get('deleteFail'))
+<script>
+    Toastify({
+        text: "    Belum ada data yang dipilih ! ",
         duration: 3000,
         close: true,
         stopOnFocus: true,

@@ -152,29 +152,27 @@ class BeritaController extends Controller
             $items->save();
 
             if ($items) {
-                // Session::flash('status', 'success');
-                // Session::flash('message', 'Data item bantuan berhasil diubah!');
                 return redirect()->intended('/berita')->with('update', 'berhasil diupdate');
             }
-
-            // return redirect('/berita');
         }
     }
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleteimage = Berita::findOrFail($id);
-        File::delete('images/berita/' . $deleteimage->image);
+        $ids = $request->ids;
 
-        $items = Berita::findOrFail($id);
-        $items->delete();
+        if($ids != null){
+            foreach($ids as $data){
+                File::delete(storage_path('images/berita/' . Berita::find($data)->image));
+            }
+            $berita = Berita::whereIn('id', $ids);
+            $berita->delete();
 
-        if ($items) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Data item bantuan berhasil dihapus!');
-            return redirect()->intended('/berita')->with('delete', 'berhasil dihapus');
+            if($berita){
+                return redirect()->intended('/berita')->with('delete', 'berhasil dihapus');
+            }
+        } else{
+            return redirect()->intended('/berita')->with('deleteFail', 'gagal dihapus');
         }
-
-        // return redirect('/berita');
     }
 
     function generateRandomString($length = 10) {

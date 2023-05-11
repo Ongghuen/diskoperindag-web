@@ -9,11 +9,33 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <form action="/item-destroy" method="POST">
+                    @csrf
+                    {{-- modal Hapus --}}
+                    <div class="modal fade" id="hapusModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Hapus Modal</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal"><span>&times;</span>
+                                    </button>
+                                </div>
+                                    <div class="modal-body">Anda yakin akan menghapus data alat ini?</div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-danger">Yes</button>
+                                        <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">No</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end modal Hapus --}}
                     <div class="card-body">
                         <h4 class="card-title">Data Alat Bantuan</h4>
                         <div class="align-right text-right">
                             <a class="btn mb-1 btn-outline-primary btn-sm ms-auto mr-1" href="/item-add">Tambah</a>
-                            <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="/item-add">Hapus</a>
+                            <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="" data-toggle="modal" data-target="#hapusModal">Hapus</a>
                         </div>
 
                         @if ($errors->any())
@@ -80,41 +102,16 @@
 
                                                 </span>
                                             </td>
-                                            <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                            <td class="text-center">
+                                                <input type="checkbox" name="ids[{{$item->id}}]" id="delete" value="{{$item->id}}">
+                                            </td>
                                         </tr>
-                                    @endforeach
-
-                                    @foreach ($itemList as $item)
-                                        {{-- modal Hapus --}}
-                                        <div class="modal fade" id="hapusModal{{ $item->id }}">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Hapus Modal</h5>
-                                                        <button type="button" class="close"
-                                                            data-dismiss="modal"><span>&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="/item-destroy/{{ $item->id }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <div class="modal-body">Anda Yakin Akan Menghapus Data
-                                                            {{ $item->name }}?</div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-danger">Yes</button>
-                                                            <button type="button" class="btn btn-primary"
-                                                                data-dismiss="modal">No</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end modal Hapus --}}
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </form>
                 </div>
             </div>
         </div>

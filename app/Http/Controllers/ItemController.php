@@ -50,13 +50,23 @@ class ItemController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $items = Alat::findOrFail($id);
-        $items->delete();
+        try {
+            $ids = $request->ids;
 
-        if ($items) {
-            return redirect()->intended('/alatitem')->with('delete', 'berhasil delete');
+            if($ids != null){
+                $alat = Alat::whereIn('id', $ids);
+                $alat->delete();
+
+                if($alat){
+                    return redirect()->intended('/alatitem')->with('delete', 'berhasil dihapus');
+                }
+            } else{
+                return redirect()->intended('/alatitem')->with('deleteFail', 'gagal dihapus');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->intended('/alatitem')->with('gagal', 'gagal delete');
         }
     }
 

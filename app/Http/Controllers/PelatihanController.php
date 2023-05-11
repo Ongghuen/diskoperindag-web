@@ -42,10 +42,14 @@ class PelatihanController extends Controller
 
     public function destroy($id)
     {
-        $items = Pelatihan::findOrFail($id);
-        $items->delete();
-
-        return back()->with('delete', 'berhasil dihapus');
+        try {
+            $items = Pelatihan::findOrFail($id);
+            $items->delete();
+    
+            return back()->with('delete', 'berhasil dihapus');
+        } catch (\Throwable $th) {
+            return back()->with('gagal', 'gagal dihapus');
+        }
     }
 
     public function storeView($id)

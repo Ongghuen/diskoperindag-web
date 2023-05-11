@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('subjudul');
             $table->string('body');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

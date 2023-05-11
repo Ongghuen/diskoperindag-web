@@ -100,18 +100,24 @@ class UserController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        try {
+            $ids = $request->ids;
 
-        // if ($user) {
-        //     Session::flash('status', 'success');
-        //     Session::flash('message', 'Data user berhasil dihapus!');
-        // }
+            if($ids != null){
+                $user = User::whereIn('id', $ids);
+                $user->delete();
 
-        // return redirect('/user');
-        return redirect()->intended('/user')->with('delete', 'berhasil delete');
+                if($user){
+                    return redirect()->intended('/user')->with('delete', 'berhasil delete');
+                }
+            } else{
+                return redirect()->intended('/user')->with('deleteFail', 'gagal dihapus');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->intended('/user')->with('gagal', 'gagal delete');
+        }
     }
 
     public function updateView($id)
@@ -212,10 +218,14 @@ class UserController extends Controller
 
     public function deleteBantuan($id)
     {
-        $data = Bantuan::findOrFail($id);
-        $data->delete();
+        try {
+            $data = Bantuan::findOrFail($id);
+            $data->delete();
 
-        return redirect()->back()->with('delete', 'berhasil dihapus');
+            return redirect()->back()->with('delete', 'berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('gagal', 'gagal dihapus');
+        }
     }
 
     public function nolDuaPuluh(Request $request)

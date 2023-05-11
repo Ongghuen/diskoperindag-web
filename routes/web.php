@@ -37,7 +37,7 @@ Route::post('/user', [UserController::class, 'store'])->middleware('IsLogin');
 Route::get('/user-add', [UserController::class, 'storeView'])->middleware('IsLogin');
 Route::get('/user-edit/{id}', [UserController::class, 'updateView'])->middleware('IsLogin');
 Route::put('/user-update/{id}', [UserController::class, 'update'])->middleware('IsLogin');
-Route::delete('/user-destroy/{id}', [UserController::class, 'destroy'])->middleware('IsLogin');
+Route::post('/user-destroy', [UserController::class, 'destroy'])->middleware('IsLogin');
 Route::get('/user-bantuan/{id}', [UserController::class, 'addBantuan'])->middleware('IsLogin');
 Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middleware('IsLogin');
 Route::get('/detail-user-bantuan/{id}', [UserController::class, 'detailuserbantuan'])->middleware('IsLogin');
@@ -79,7 +79,7 @@ Route::get('/sertifikat-edit/{idSertifikat}/{idUser}', [SertifikatController::cl
 Route::get('/alatitem', [ItemController::class, 'index'])->middleware('IsLogin');
 Route::post('/alatitem', [ItemController::class, 'store'])->middleware('IsLogin');
 Route::put('/item-update/{id}', [ItemController::class, 'update'])->middleware('IsLogin');
-Route::delete('/item-destroy/{id}', [ItemController::class, 'destroy'])->middleware('IsLogin');
+Route::post('/item-destroy', [ItemController::class, 'destroy'])->middleware('IsLogin');
 Route::get('/item-add', [ItemController::class, 'storeView'])->middleware('IsLogin');
 Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('IsLogin');
 Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middleware('IsLogin');
@@ -90,10 +90,8 @@ Route::get('/berita-detail/{id}', [BeritaController::class, 'beritadetail'])->mi
 Route::get('/berita-edit/{id}', [BeritaController::class, 'editview'])->middleware('IsLogin');
 Route::post('/beritatambah', [BeritaController::class, 'store'])->middleware('IsLogin');
 Route::put('/berita-update/{id}', [BeritaController::class, 'update'])->middleware('IsLogin');
-Route::delete('/berita-destroy/{id}', [BeritaController::class, 'destroy'])->middleware('IsLogin');
+Route::post('/berita-destroy', [BeritaController::class, 'destroy'])->middleware('IsLogin');
 Route::get('/berita-add', [BeritaController::class, 'storeView'])->middleware('IsLogin');
-// Route::get('/item-edit/{id}', [ItemController::class, 'updateView'])->middleware('auth');
-// Route::get('/item-detail/{id}', [ItemController::class, 'itemdetail'])->middleware('auth');
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('IsLogin');

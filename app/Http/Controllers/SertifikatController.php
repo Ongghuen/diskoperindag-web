@@ -39,10 +39,14 @@ class SertifikatController extends Controller
 
     public function destroy($id)
     {
-        $items = Sertifikat::findOrFail($id);
-        $items->delete();
-
-        return back()->with('delete', 'berhasil dihapus');
+        try {
+            $items = Sertifikat::findOrFail($id);
+            $items->delete();
+    
+            return back()->with('delete', 'berhasil dihapus');
+        } catch (\Throwable $th) {
+            return back()->with('gagal', 'gagal dihapus');
+        }
     }
 
     public function storeView($id)
