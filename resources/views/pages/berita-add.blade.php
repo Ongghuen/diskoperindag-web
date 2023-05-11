@@ -34,20 +34,20 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Judul</label>
                                 <input type="text" class="form-control input-default" id="exampleInputEmail1"
-                                    name="judul" placeholder="Enter Judul">
+                                    name="judul" placeholder="Enter Judul" value="{{ old('judul') }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Subjudul</label>
                                 <input type="text" class="form-control input-default" id="exampleInputEmail1"
-                                    name="subjudul" placeholder="Enter Sub Judul">
+                                    name="subjudul" placeholder="Enter Sub Judul" value="{{ old('subjudul') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Upload Gambar</label>
-                                <input class="form-control input-default" name="image" type="file" id="formFile">
+                                <input class="form-control input-default" name="file" type="file" id="formFile" value="{{ old('file') }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleTextarea1">Deskripsi</label>
-                                <textarea class="form-control input-default" id="exampleTextarea1" rows="4" name="body"></textarea>
+                                <textarea class="form-control input-default" id="exampleTextarea1" rows="4" name="body">{{ old('body') }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
                             <a class="btn btn-light btn-sm" href="/berita">Cancel</a>

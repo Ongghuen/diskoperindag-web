@@ -35,16 +35,16 @@
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Nama Item</label>
                                 <input type="text" class="form-control input-default" id="exampleInputUsername1"
-                                    placeholder="Nama Item" name="nama_item">
+                                    placeholder="Nama Item" name="nama_item" value="{{ old('nama_item') }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Jumlah Diberikan</label>
                                 <input type="text" class="form-control input-default" id="exampleInputEmail1"
-                                    name="stok" placeholder="Jumlah Diberikan">
+                                    name="stok" placeholder="Jumlah Diberikan" value="{{ old('stok') }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleTextarea1">Deskripsi</label>
-                                <textarea class="form-control input-default" id="exampleTextarea1" rows="4" name="deskripsi"></textarea>
+                                <textarea class="form-control input-default" id="exampleTextarea1" rows="4" name="deskripsi">{{ old('deskripsi') }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
                             <a class="btn btn-light btn-sm" href="/alatitem">Cancel</a>

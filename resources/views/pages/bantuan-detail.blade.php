@@ -72,7 +72,7 @@
                                             </table>
                                         </div>
                                         <a href="/bantuan-item/{{ $item->id }}"
-                                            class="btn btn-sm btn-master ml-2">Tambah</a>
+                                            class="btn btn-sm btn-primary ml-2">Tambah</a>
                                     </td>
                                 </tr>
                             </table>

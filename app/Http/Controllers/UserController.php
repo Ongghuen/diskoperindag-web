@@ -38,9 +38,9 @@ class UserController extends Controller
             [
                 'name' => 'required|max:50',
                 'email' => 'required|email|max:50|unique:users,email',
-                'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->uncompromised()],
-                're_password' => 'required|same:password',
-                'NIK' => 'required|numeric|digits:16',
+                // 'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->uncompromised()],
+                // 're_password' => 'required|same:password',
+                'NIK' => 'unique:users|required|numeric|digits:16',
                 'alamat' => 'required|max:100',
                 'phone' => 'required|numeric',
                 'tanggal_lahir' => 'required|date',
@@ -54,13 +54,14 @@ class UserController extends Controller
                 'email.email' => 'Email tidak valid',
                 'email.max' => 'Email tidak boleh lebih dari 50 karakter',
                 'email.unique' => 'Email sudah terdaftar, silahkan gunakan email lain',
-                'password.required' => 'Password tidak boleh kosong',
-                'password.min' => 'Password harus lebih dari 8 karakter',
-                'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol',
-                're_password.required' => 'Konfirmasi password tidak boleh kosong',
-                're_password.same' => 'Konfirmasi password tidak sama dengan password',
-                'password.max' => 'Password tidak boleh lebih dari 30 karakter',
+                // 'password.required' => 'Password tidak boleh kosong',
+                // 'password.min' => 'Password harus lebih dari 8 karakter',
+                // 'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol',
+                // 're_password.required' => 'Konfirmasi password tidak boleh kosong',
+                // 're_password.same' => 'Konfirmasi password tidak sama dengan password',
+                // 'password.max' => 'Password tidak boleh lebih dari 30 karakter',
                 'NIK.required' => 'NIK tidak boleh kosong',
+                'NIK.unique' => 'NIK sudah terdaftar',
                 'NIK.numeric' => 'NIK harus berupa angka',
                 'NIK.digits' => 'NIK harus berjumlah 16 karakter',
                 'alamat.required' => 'Alamat tidak boleh kosong',
@@ -75,7 +76,7 @@ class UserController extends Controller
         );
 
         $user = new User;
-        $password = bcrypt($request->password);
+        $password = bcrypt($request->NIK);
         $tl = Carbon::parse($request->tanggal_lahir);
         $umur = $tl->diffInYears(Carbon::now());
 
@@ -125,7 +126,6 @@ class UserController extends Controller
             [
                 'name' => 'required|max:50',
                 'email' => 'required|email|max:50',
-                'NIK' => 'required|numeric|digits:16',
                 'alamat' => 'required|max:100',
                 'phone' => 'required|numeric',
                 'tanggal_lahir' => 'required|date',
@@ -138,9 +138,6 @@ class UserController extends Controller
                 'email.required' => 'Email tidak boleh kosong',
                 'email.email' => 'Email tidak valid',
                 'email.max' => 'Email tidak boleh lebih dari 50 karakter',
-                'NIK.required' => 'NIK tidak boleh kosong',
-                'NIK.numeric' => 'NIK harus berupa angka',
-                'NIK.digits' => 'NIK harus berjumlah 16 karakter',
                 'alamat.required' => 'Alamat tidak boleh kosong',
                 'alamat.max' => 'Alamat tidak boleh lebih dari 100 karakter',
                 'phone.required' => 'Nomor telepon tidak boleh kosong',
@@ -154,6 +151,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
 
+        // $user->password = bcrypt($user->NIK);
         $user->update($request->all());
         // if ($user) {
         //     Session::flash('status', 'success');

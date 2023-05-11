@@ -25,14 +25,14 @@ class ItemController extends Controller
         $request->validate(
             [
                 'nama_item' => 'required|max:50',
-                'stok' => 'required|max:6',
+                'stok' => 'required|numeric',
                 'deskripsi' => 'required|max:255',
             ],
             [
                 'nama_item.required' => 'Nama item tidak boleh kosong!',
                 'nama_item.max' => 'Nama item maksimal 50 karakter!',
                 'stok.required' => 'Stok tidak boleh kosong!',
-                'stok.max' => 'Stok maksimal 6 karakter!',
+                'stok.numeric' => 'Jumlah harus berupa angka!',
                 'deskripsi.required' => 'deskripsi tidak boleh kosong!',
                 'deskripsi.max' => 'deskripsi maksimal 255 karakter!',
             ]

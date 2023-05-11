@@ -47,12 +47,6 @@
                             </div>
                             <div class="form-group">
 
-                                <label for="exampleInputUsername1">NIK</label>
-                                <input type="text" class="form-control input-default" id="exampleInputUsername1"
-                                    name="NIK" placeholder="NIK" value="{{ $item->NIK }}">
-                            </div>
-                            <div class="form-group">
-
                                 <label for="gender">Kepala Keluarga</label>
                                 <select name="kepala_keluarga input-default" id="kepala_keluarga"
                                     class="form-control input-default">

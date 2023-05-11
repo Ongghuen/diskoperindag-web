@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="/detail-user-bantuan/{{ $user->id }}"><i
+                        <a class="btn btn-master btn-sm mb-4" href="/detail-user-bantuan/{{ $user->id }}"><i
                                 class="fa fa-arrow-left"></i></a>
                         <h4 class="card-title">Form edit bantuan</h4>
                         <form class="forms-sample" action="/bantuan-update/{{ $item->id }}" method="POST"
@@ -42,22 +42,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Nama Bantuan</label>
-                                    <input type="text" class="form-control input-rounded" id="exampleInputUsername1"
+                                    <input type="text" class="form-control input-master" id="exampleInputUsername1"
                                         placeholder="Nama Bantuan" name="nama_bantuan" value="{{ $item->nama_bantuan }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername2">Jenis Usaha</label>
-                                    <input type="text" class="form-control input-rounded" id="exampleInputUsername2"
+                                    <input type="text" class="form-control input-master" id="exampleInputUsername2"
                                         placeholder="Jenis Usaha" name="jenis_usaha" value="{{ $item->jenis_usaha }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername3">Koordinator</label>
-                                    <input type="text" class="form-control input-rounded" id="exampleInputUsername3"
+                                    <input type="text" class="form-control input-master" id="exampleInputUsername3"
                                         placeholder="Koordinator" name="koordinator" value="{{ $item->koordinator }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername4">Sumber Anggaran</label>
-                                    <input type="text" class="form-control input-rounded" id="exampleInputUsername4"
+                                    <input type="text" class="form-control input-master" id="exampleInputUsername4"
                                         placeholder="Sumber Anggaran" name="sumber_anggaran"
                                         value="{{ $item->sumber_anggaran }}">
                                 </div>

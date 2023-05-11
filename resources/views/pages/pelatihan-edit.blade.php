@@ -10,9 +10,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="/detail-user-bantuan/{{ $user->id }}"><i
+                        <a class="btn btn-master btn-sm mb-4" href="/detail-user-bantuan/{{ $user->id }}"><i
                                 class="fa fa-arrow-left"></i></a>
-                        <h4 class="card-title">Form Edit Pelatihan</h4>
+                        <h4 class="card-title">Form edit pelatihan</h4>
                         <form class="forms-sample" action="/pelatihan-update/{{ $item->id }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
@@ -36,28 +36,28 @@
                                 </div>
                             @endif
                             <div class="form-group">
-                                <input type="hidden" class="form-control input-rounded" id="exampleInputUsername1"
+                                <input type="hidden" class="form-control input-default" id="exampleInputUsername1"
                                     placeholder="Username" value="{{ $user->id }}" name="user_id">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Nama</label>
-                                <input type="text" class="form-control input-rounded" id="exampleInputUsername1"
+                                <input type="text" class="form-control input-default" id="exampleInputUsername1"
                                     placeholder="Nama" name="nama" value="{{ $item->nama }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Penyelenggara</label>
-                                <input type="text" class="form-control input-rounded" id="exampleInputEmail1"
+                                <input type="text" class="form-control input-default" id="exampleInputEmail1"
                                     name="penyelenggara" placeholder="Penyelenggara" value="{{ $item->penyelenggara }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleTextarea1">Tanggal Pelaksanaan</label>
-                                <input type="date" class="form-control input-rounded" id="exampleInputEmail1"
+                                <input type="date" class="form-control input-default" id="exampleInputEmail1"
                                     name="tanggal_pelaksanaan" placeholder="Tanggal Pelaksanaan"
                                     value="{{ $item->tanggal_pelaksanaan }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tempat</label>
-                                <input type="text" class="form-control input-rounded" id="exampleInputEmail1"
+                                <input type="text" class="form-control input-default" id="exampleInputEmail1"
                                     name="tempat" placeholder="Tempat" value="{{ $item->tempat }}">
                             </div>
                             <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>

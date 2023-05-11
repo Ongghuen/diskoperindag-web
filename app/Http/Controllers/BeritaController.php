@@ -34,14 +34,14 @@ class BeritaController extends Controller
     {
         $request->validate(
             [
-                'image' => 'max:2048|mimes:png,jpg,jpeg',
+                'file' => 'max:2048|mimes:png,jpg,jpeg',
                 'judul' => 'required|max:100',
                 'subjudul' => 'required|max:100',
                 'body' => 'required|max:1000',
             ],
             [
-                'image.max' => 'Image maksimal 2MB!',
-                'image.mimes' => 'Image harus berupa png, jpg, jpeg!',
+                'file.max' => 'Image maksimal 2MB!',
+                'file.mimes' => 'Image harus berupa png, jpg, jpeg!',
                 'judul.required' => 'Judul tidak boleh kosong!',
                 'judul.max' => 'Sub Judul maksimal 100 karakter!',
                 'subjudul.required' => 'Judul tidak boleh kosong!',
@@ -49,24 +49,26 @@ class BeritaController extends Controller
                 'body.required' => 'deskripsi tidak boleh kosong!',
                 'body.max' => 'deskripsi maksimal 1000 karakter!',
             ]
-
         );
 
         $items = new Berita;
 
-        $fileNameImage = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images/berita/'), $fileNameImage);
+        $image = null;
+        if ($request->file){
+            $fileName = $this->generateRandomString();
+            $extension = $request->file->extension();
+            $image = $fileName.'.'.$extension;
 
-        $items->image = $fileNameImage;
+            $request->file->move(public_path('images/berita/'), $image);
+        }
+
+        $items->image = $image;
         $items->judul = $request->judul;
         $items->subjudul = $request->subjudul;
         $items->body = $request->body;
         $items->save();
 
-
         if ($items) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Tambah data item bantuan berhasil!');
             return redirect()->intended('/berita')->with('create', 'berhasil create');
         }
     }
@@ -173,5 +175,15 @@ class BeritaController extends Controller
         }
 
         // return redirect('/berita');
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

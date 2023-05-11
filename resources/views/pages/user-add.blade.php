@@ -42,7 +42,7 @@
                                 <input name="email" type="text" class="form-control input-default"
                                     placeholder="Input Email" value="{{ old('email') }}" required>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="">Password</label>
                                 <input name="password" type="password" class="form-control input-default"
                                     placeholder="Input Password" value="{{ old('password') }}" required>
@@ -52,7 +52,7 @@
                                 <label for="">Re-Password</label>
                                 <input name="re_password" type="password" class="form-control input-default"
                                     placeholder="Input Password" value="{{ old('re_password') }}" required>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="">NIK</label>
                                 <input name="NIK" type="text" class="form-control input-default"

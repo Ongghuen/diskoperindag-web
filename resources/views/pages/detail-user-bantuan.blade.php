@@ -25,6 +25,10 @@
                                     <td>{{ $item->NIK }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Email</th>
+                                    <td>{{ $item->email }}</td>
+                                </tr>
+                                <tr>
                                     <th>Kepala Keluarga</th>
                                     <td>{{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}</td>
                                 </tr>
@@ -97,7 +101,7 @@
                                             </table>
                                         </div>
                                         <a href="/user-bantuan/{{ $item->id }}"
-                                            class="btn btn-sm btn-master ml-2">Tambah</a>
+                                            class="btn btn-sm btn-primary ml-2">Tambah</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -139,7 +143,7 @@
                                             </table>
                                         </div>
                                         <a href="/user-pelatihan/{{ $item->id }}"
-                                            class="btn btn-sm btn-master ml-2">Tambah</a>
+                                            class="btn btn-sm btn-primary ml-2">Tambah</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -185,7 +189,7 @@
                                             </table>
                                         </div>
                                         <a href="/user-sertifikat/{{ $item->id }}"
-                                            class="btn btn-sm btn-master ml-2">Tambah</a>
+                                            class="btn btn-sm btn-primary ml-2">Tambah</a>
                                     </td>
                                 </tr>
                             </table>

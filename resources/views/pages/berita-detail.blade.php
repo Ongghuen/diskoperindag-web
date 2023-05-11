@@ -21,10 +21,10 @@
                                         <th>Gambar</th>
                                         <td>
                                             @if ($item->image == null)
-                                                <img style="width: 100px; height: 100px;"
+                                                <img style="width: 200px; height: 200px;"
                                                     src="{{ asset('images/tuansilat_logo.png') }}" alt="profile">
                                             @else
-                                                <img style="width: 100px; height: 100px;"
+                                                <img style="width: 200px; height: 200px;"
                                                     src="{{ asset('images/berita/' . $item['image']) }}" alt="profile">
                                             @endif
                                         </td>

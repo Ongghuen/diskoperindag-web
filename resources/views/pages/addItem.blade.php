@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Add Item Bantuan
+    Tambah Bantuan Alat
 @endsection
 
 @section('content')
@@ -10,9 +10,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm mb-4" href="/bantuan-detail/{{ $bantuan->id }}"><i
+                        <a class="btn btn-master btn-sm mb-4" href="/bantuan-detail/{{ $bantuan->id }}"><i
                                 class="fa fa-arrow-left"></i></a>
-                        <h4 class="card-title">Form tambah Item Bantuan</h4>
+                        <h4 class="card-title">Form tambah bantuan alat</h4>
 
                         <form class="forms-sample" action="/bantuan-add-item" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -42,7 +42,7 @@
                                 <div class="row">
                                     <div class="form-group col-6">
                                         <label for="exampleSelectGender">Nama Item</label>
-                                        <select class="form-control input-rounded" id="exampleSelectGender" name="alat_id">
+                                        <select class="form-control input-default" id="exampleSelectGender" name="alat_id">
                                             @foreach ($itemList as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama_item }}</option>
                                             @endforeach
@@ -50,8 +50,8 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="exampleInputUsername1">Kuantitas</label>
-                                        <input type="text" class="form-control input-rounded" id="exampleInputUsername1"
-                                            placeholder="Kuantitas" name="kuantitas">
+                                        <input type="text" class="form-control input-default" id="exampleInputUsername1"
+                                            placeholder="Kuantitas" name="kuantitas" value="{{ old('kuantitas') }}">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
