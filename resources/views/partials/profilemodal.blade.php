@@ -33,7 +33,7 @@
                         <div class="input-group">
                           <input name="old_password" type="password" class="form-control input-default" required>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                                <button class="btn btn-outline-secondary" type="button" id="toggle-password1">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
@@ -44,18 +44,18 @@
                         <div class="input-group">
                           <input name="new_password" type="password" class="form-control input-default" required>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                                <button class="btn btn-outline-secondary" type="button" id="toggle-password2">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Komfirmasi password baru</label>
+                        <label for="">Konfirmasi password baru</label>
                         <div class="input-group">
                           <input name="new_password_confirmation" type="password" class="form-control input-default" required>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                                <button class="btn btn-outline-secondary" type="button" id="toggle-password3">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>

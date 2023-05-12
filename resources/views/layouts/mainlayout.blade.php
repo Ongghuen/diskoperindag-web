@@ -8,11 +8,8 @@
     <title>Situansilat - @yield('title')</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/tuansilat_logo.png') }}">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Pignose Calender -->
-    {{-- <link href="{{ asset('plugins/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet"> --}}
     <!-- Chartist -->
     <link rel="stylesheet" href="{{ asset('plugins/chartist/css/chartist.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
@@ -22,33 +19,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-    {{-- <link href="{{ asset('plugins/tables/css/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> --}}
-
-    {{-- <link href="{{ asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}"
-        rel="stylesheet"> --}}
-    <!-- Page plugins css -->
-    {{-- <link href="{{ asset('plugins/clockpicker/dist/jquery-clockpicker.min.css') }}" rel="stylesheet"> --}}
-    <!-- Color picker plugins css -->
-    <!-- Date picker plugins css -->
-    {{-- <link href="{{ asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet"> --}}
-    <!-- Daterange picker plugins css -->
-    {{-- <link href="{{ asset('plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('plugins/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet"> --}}
-
-    {{-- <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet"> --}}
-    <!-- Custom Stylesheet -->
-
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
     @yield('css')
 
 </head>
 
 <body>
-
-
     <!--*******************
         Preloader start
     ********************-->
@@ -65,18 +45,60 @@
     ********************-->
 
     <div id="main-wrapper">
-
         @include('partials.header')
         @include('partials.navbar')
         @include('partials.sidebar')
-
     </div>
-
-
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').selectize({
+                sortField: 'text'
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('toggle-password1').addEventListener('click', function() {
+        var passwordInput = document.getElementsByName('old_password')[0];
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.querySelector('i').classList.remove('fa-eye');
+                this.querySelector('i').classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                this.querySelector('i').classList.remove('fa-eye-slash');
+                this.querySelector('i').classList.add('fa-eye');
+            }
+        });
 
+        document.getElementById('toggle-password2').addEventListener('click', function() {
+        var passwordInput = document.getElementsByName('new_password')[0];
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.querySelector('i').classList.remove('fa-eye');
+                this.querySelector('i').classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                this.querySelector('i').classList.remove('fa-eye-slash');
+                this.querySelector('i').classList.add('fa-eye');
+            }
+        });
+
+        document.getElementById('toggle-password3').addEventListener('click', function() {
+        var passwordInput = document.getElementsByName('new_password_confirmation')[0];
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.querySelector('i').classList.remove('fa-eye');
+                this.querySelector('i').classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                this.querySelector('i').classList.remove('fa-eye-slash');
+                this.querySelector('i').classList.add('fa-eye');
+            }
+        });
+    </script>
 
     <script src="{{ asset('plugins/common/common.min.js') }}"></script>
     <script src="{{ asset('js/custom.min.js') }}"></script>
@@ -84,13 +106,6 @@
     <script src="{{ asset('js/gleek.js') }}"></script>
     <script src="{{ asset('js/styleSwitcher.js') }}"></script>
 
-
-    <!-- tables -->
-    {{-- <script src="{{ asset('plugins/tables/js/jquery.dataTables.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('plugins/tables/js/datatable-init/datatable-basic.min.js') }}"></script> --}}
-
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <script src="{{ asset('plugins/tables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }}"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
@@ -102,23 +117,6 @@
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 
     <script src="{{ asset('plugins/moment/moment.js') }}"></script>
-    {{-- <script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}">
-    </script> --}}
-    <!-- Clock Plugin JavaScript -->
-    {{-- <script src="{{ asset('plugins/clockpicker/dist/jquery-clockpicker.min.js') }}"></script> --}}
-    <!-- Color Picker Plugin JavaScript -->
-    {{-- <script src="{{ asset('plugins/jquery-asColorPicker-master/libs/jquery-asColor.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js') }}"></script> --}}
-    <!-- Date Picker Plugin JavaScript -->
-    {{-- <script src="{{ asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script> --}}
-    <!-- Date range Plugin JavaScript -->
-    {{-- <script src="{{ asset('plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
-    <script src="{{ asset('plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script> --}}
-
-    {{-- <script src="{{ asset('js/plugins-init/form-pickers-init.js') }}"></script> --}}
-
-
     <!-- Chartjs -->
     <script src="{{ asset('plugins/chart.js/Chart.bundle.min.js') }}"></script>
     <!-- Circle progress -->
@@ -132,16 +130,12 @@
     <script src="{{ asset('plugins/morris/morris.min.js') }}"></script>
     <!-- Pignose Calender -->
     <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-    {{-- <script src="{{ asset('plugins/pg-calendar/js/pignose.calendar.min.js') }}"></script> --}}
     <!-- ChartistJS -->
     <script src="{{ asset('plugins/chartist/js/chartist.min.js') }}"></script>
     <script src="{{ asset('plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js') }}"></script>
     <script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script>
-
-    {{-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
     <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/signature_pad.min.js') }}"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script> --}}
 
     @yield('script')
 
@@ -283,24 +277,6 @@
     }).showToast();
 </script>
 @endif
-
-{{-- @if (Session::get('updateprofil'))
-<script>
-    swal("Well Done", "Password Berhasil Diperbarui", "success");
-</script>
-@endif
-
-@if (Session::get('updateprofilerror'))
-<script>
-    swal("Opps!!", "Password Anda Salah", "error");
-</script>
-@endif
-
-@if (Session::get('passwordtidaksama'))
-<script>
-    swal("Opps!!", "Konfirmasi Password Anda Salah", "error");
-</script>
-@endif --}}
 
 @if (Session::get('sudahlogin'))
 <script>

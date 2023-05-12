@@ -41,8 +41,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-6">
-                                        <label for="exampleSelectGender">Nama Item</label>
-                                        <select class="form-control input-default" id="exampleSelectGender" name="alat_id">
+                                        <label for="select-state">Nama Item</label>
+                                        <select class="form-control input-default" id="select-state" name="alat_id">
                                             @foreach ($itemList as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama_item }}</option>
                                             @endforeach
