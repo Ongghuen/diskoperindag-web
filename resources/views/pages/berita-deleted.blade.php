@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Data Berita
+    Berita Terhapus 
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form action="/berita-destroy" method="POST">
+                    <form action="/berita-force-destroy" method="POST">
                     @csrf
                     {{-- modal Hapus --}}
                     <div class="modal fade" id="hapusModal">
@@ -21,7 +21,7 @@
                                         data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
-                                    <div class="modal-body">Anda yakin akan menghapus berita ini?</div>
+                                    <div class="modal-body">Anda yakin akan menghapus permanen berita ini?</div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-danger">Yes</button>
                                         <button type="button" class="btn btn-primary"
@@ -33,11 +33,10 @@
                     {{-- end modal Hapus --}}
 
                     <div class="card-body">
-                        <h4 class="card-title">Data Berita</h4>
+                        <a class="btn btn-master btn-sm mb-4" href="/berita"><i class="fa fa-arrow-left"></i></a>
+                        <p class="card-title">Berita Terhapus</p>
                         <div class="align-right text-right">
-                            <a class="btn mb-1 btn-outline-primary btn-sm ms-auto" href="/berita-add">Tambah</a>
                             <a class="btn mb-1 btn-outline-danger btn-sm ms-auto mx-1" href="" data-toggle="modal" data-target="#hapusModal">Hapus</a>
-                            <a class="btn mb-1 btn-outline-warning btn-sm ms-auto" href="/berita-restore">Terhapus</a>
                         </div>
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered zero-configuration">
@@ -72,14 +71,19 @@
                                             <td class="align-middle text-center">
                                                 <span>
                                                     <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
-                                                        href="/berita-detail/{{ $item->id }}">
+                                                        href="/berita-detail-deleted/{{ $item->id }}">
                                                         <i class="icon-eye menu-icon"></i>
                                                     </a>
 
                                                     <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/berita-pulihkan/{{ $item->id }}">
+                                                        <i class="icon-refresh menu-icon"></i>
+                                                    </a>
+
+                                                    {{-- <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
                                                         href="/berita-edit/{{ $item->id }}">
                                                         <i class="icon-pencil menu-icon"></i>
-                                                    </a>
+                                                    </a> --}}
 
                                                     {{-- <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
                                                         type="button"
@@ -159,43 +163,6 @@
                         text: 'Baris Ditampilkan',
                         // columns: ':gt(0)'
                     },
-
-
-                    // 'colvis', 'pageLength',
-
-                    {
-                        extend: 'excel',
-                        className: 'btn btn-master btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // {
-                    //     extend: 'csv',
-                    //     className: 'btn btn-master btn-sm',
-                    //     exportOptions: {
-                    //         columns: [0, ':visible']
-                    //     }
-                    // },
-                    {
-                        extend: 'pdf',
-                        className: 'btn btn-master btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    {
-                        extend: 'print',
-                        className: 'btn btn-master btn-sm',
-                        exportOptions: {
-                            columns: [0, ':visible']
-                        }
-                    },
-
-                    // 'pageLength', 'colvis',
-                    // 'copy', 'csv', 'excel', 'print'
 
                 ],
 

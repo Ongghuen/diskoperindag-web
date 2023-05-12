@@ -208,6 +208,21 @@
 </script>
 @endif
 
+@if (Session::get('restore'))
+<script>
+    Toastify({
+    text: "    Berita berhasil dipulihkan ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
 @if (Session::get('autocreate'))
 <script>
     Toastify({

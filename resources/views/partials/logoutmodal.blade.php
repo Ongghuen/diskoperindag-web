@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Anda Yakin Akan Keluar?</div>
+            <div class="modal-body">Anda yakin akan keluar?</div>
             <div class="modal-footer">
                 <a href="/logout" class="btn btn-danger">Yes</a>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>

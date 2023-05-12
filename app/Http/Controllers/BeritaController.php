@@ -161,9 +161,9 @@ class BeritaController extends Controller
         $ids = $request->ids;
 
         if($ids != null){
-            foreach($ids as $data){
-                File::delete(storage_path('images/berita/' . Berita::find($data)->image));
-            }
+            // foreach($ids as $data){
+            //     File::delete(storage_path('images/berita/' . Berita::find($data)->image));
+            // }
             $berita = Berita::whereIn('id', $ids);
             $berita->delete();
 
@@ -183,5 +183,45 @@ class BeritaController extends Controller
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    public function restoreView(){
+        $dataBerita = Berita::onlyTrashed()->get();
+
+        return view('pages.berita-deleted', ['itemList' => $dataBerita]);
+    }
+
+    public function beritaDetailDeleted($id)
+    {
+        $items = Berita::withTrashed()->find($id);
+
+        return view('pages.berita-detail', ['item' => $items]);
+    }
+
+    public function forceDestroy(Request $request){
+        $ids = $request->ids;
+
+        if($ids != null){
+            foreach($ids as $data){
+                $image = Berita::withTrashed()->find($data);
+                if($image->image != null){
+                    File::delete('images/berita/' . $image->image);
+                }
+            }
+            $berita = Berita::whereIn('id', $ids);
+            $berita->forceDelete();
+
+            if($berita){
+                return redirect()->intended('/berita-restore')->with('delete', 'berhasil dihapus');
+            }
+        } else{
+            return redirect()->intended('/berita-restore')->with('deleteFail', 'gagal dihapus');
+        }
+    }
+
+    public function restore($id){
+        $berita = Berita::withTrashed()->where('id', $id)->restore();
+
+        return redirect()->intended('/berita-restore')->with('restore', 'berhasil dipulihkan');
     }
 }

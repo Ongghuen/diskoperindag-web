@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-master btn-sm mb-4" href="/berita"><i class="fa fa-arrow-left"></i></a>
+                        <a class="btn btn-master btn-sm mb-4" href="{{ url()->previous() }}"><i class="fa fa-arrow-left"></i></a>
                         <div class="d-flex align-items-center mb-2">
                             <p class="card-title">Detail Berita</p>
                         </div>

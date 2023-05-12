@@ -92,6 +92,10 @@ Route::post('/beritatambah', [BeritaController::class, 'store'])->middleware('Is
 Route::put('/berita-update/{id}', [BeritaController::class, 'update'])->middleware('IsLogin');
 Route::post('/berita-destroy', [BeritaController::class, 'destroy'])->middleware('IsLogin');
 Route::get('/berita-add', [BeritaController::class, 'storeView'])->middleware('IsLogin');
+Route::get('/berita-restore', [BeritaController::class, 'restoreView'])->middleware('IsLogin');
+Route::get('/berita-detail-deleted/{id}', [BeritaController::class, 'beritaDetailDeleted'])->middleware('IsLogin');
+Route::post('/berita-force-destroy', [BeritaController::class, 'forceDestroy'])->middleware('IsLogin');
+Route::get('/berita-pulihkan/{id}', [BeritaController::class, 'restore'])->middleware('IsLogin');
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('IsLogin');

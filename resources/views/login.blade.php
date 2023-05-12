@@ -31,7 +31,7 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 <div class="text-center">
-                                    <img src="{{ asset('images/tuansilat-full.png') }}" width="380" alt="">
+                                    <img src="{{ asset('images/tuansilat-full.png') }}" width="300" alt="">
                                 </div>
                                 <form action="/login" method="POST" class="mt-5 mb-5 login-input">
                                     @csrf
