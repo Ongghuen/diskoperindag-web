@@ -2709,25 +2709,25 @@ fieldset:disabled a.btn {
 
 .btn-light {
     color: #212529;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
+    background-color: #fff;
+    border-color: #fff;
 }
-.btn-light:hover {
+/* .btn-light:hover {
     color: #212529;
     background-color: #e2e6ea;
     border-color: #dae0e5;
-}
-.btn-light:focus,
+} */
+/* .btn-light:focus,
 .btn-light.focus {
     box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
-}
-.btn-light.disabled,
+} */
+/* .btn-light.disabled,
 .btn-light:disabled {
     color: #212529;
     background-color: #f8f9fa;
     border-color: #f8f9fa;
-}
-.btn-light:not(:disabled):not(.disabled):active,
+} */
+/* .btn-light:not(:disabled):not(.disabled):active,
 .btn-light:not(:disabled):not(.disabled).active,
 .show > .btn-light.dropdown-toggle {
     color: #212529;
@@ -2738,7 +2738,7 @@ fieldset:disabled a.btn {
 .btn-light:not(:disabled):not(.disabled).active:focus,
 .show > .btn-light.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
-}
+} */
 
 .btn-dark {
     color: #fff;
@@ -15960,13 +15960,13 @@ table.dataTable thead .sorting::after {
     border-color: #1a56ff;
 }
 
-.btn-light:active,
+/* .btn-light:active,
 .btn-light:focus,
 .btn-light:hover {
     background: #919191;
     color: #fff;
     border-color: #919191;
-}
+} */
 
 .btn-dark:active,
 .btn-dark:focus,

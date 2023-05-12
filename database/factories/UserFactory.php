@@ -20,7 +20,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('1234567890123456'),
             'remember_token' => Str::random(10),
             'NIK' => $this->faker->randomNumber(9, true),
             'alamat' => $this->faker->address(),
@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'tempat_lahir' => $this->faker->words(2, true),
             'tanggal_lahir' => $this->faker->date(),
             'umur' => $this->faker->randomNumber(2, true),
-            'role_id' => '2'
+            'role_id' => '3'
         ];
     }
 

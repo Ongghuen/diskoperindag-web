@@ -13,6 +13,27 @@
                         <a class="btn btn-master btn-sm mb-4" href="/user"><i class="fa fa-arrow-left"></i></a>
                         <div class="d-flex align-items-center mb-2">
                             <p class="card-title">Detail Pengguna</p>
+                            <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="" data-toggle="modal" data-target="#hapusModal">Reset Password</a>
+                            {{-- Modal Hapus --}}
+                            <div class="modal fade" id="hapusModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Hapus Modal</h5>
+                                            <button type="button" class="close"
+                                                data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                            <div class="modal-body">Anda yakin akan menyetel ulang password pengguna ini?</div>
+                                            <div class="modal-footer">
+                                                <a type="submit" class="btn btn-danger" href="/reset-pw/{{$item->id}}">Yes</a>
+                                                <button type="button" class="btn btn-primary"
+                                                    data-dismiss="modal">No</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- End Modal Hapus --}}
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered zero-configuration">

@@ -2,51 +2,68 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Profile Modal</h5>
+                <h5 class="modal-title">Ganti password</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form action="/profil-update/{{ Auth::User()->id }}" method="post">
+            <form action="/change-password/{{ Auth::User()->id }}" method="post">
                 @csrf
                 @method('PUT')
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">×</span>
+                        </button>
+
+
+                        <?php
+                        
+                        $nomer = 1;
+                        
+                        ?>
+
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $nomer++ }}. {{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="modal-body">
-                    {{-- <div class="text-center">
-                        <img src="" class="rounded-circle" alt="..." height="200">
-                    </div> --}}
                     <div class="form-group">
-                        <label for="">Name</label>
-                        <input type="text" name="name" value="{{ Auth::User()->name }}"
-                            class="form-control input-rounded" placeholder="Input Rounded">
-                    </div>
-                    {{-- <div class="form-group">
-                        <label for="">Username</label>
-                        <input type="text" name="username" value="{{ Auth::User()->username }}"
-                            class="form-control input-rounded" placeholder="Input Rounded">
-                    </div> --}}
-                    <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="email" name="email" value="{{ Auth::User()->email }}"
-                            class="form-control input-rounded" placeholder="Input Rounded">
+                        <label for="">Password lama</label>
+                        <div class="input-group">
+                          <input name="old_password" type="password" class="form-control input-default" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Old Password</label>
-                        <input type="password" name="oldpassword" class="form-control input-rounded"
-                            placeholder="Input Rounded">
+                        <label for="">Password baru</label>
+                        <div class="input-group">
+                          <input name="new_password" type="password" class="form-control input-default" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">New Password</label>
-                        <input type="password" name="password" class="form-control input-rounded"
-                            placeholder="Input Rounded">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Re New Password</label>
-                        <input type="password" name="repassword" class="form-control input-rounded"
-                            placeholder="Input Rounded">
+                        <label for="">Komfirmasi password baru</label>
+                        <div class="input-group">
+                          <input name="new_password_confirmation" type="password" class="form-control input-default" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" type="submit">Save</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
                 </div>
             </form>
         </div>

@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\SertifikatController;
-use App\Http\Controllers\BeritaController;
 
 
 /*
@@ -30,6 +31,7 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('IsStay');
 Route::post('/login', [AuthController::class, 'authenticate'])->middleware('IsStay');
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('IsLogin');
+Route::put('/change-password/{id}', [AuthController::class, 'changePassword'])->middleware('IsLogin');
 
 # Users routes.
 Route::get('/user', [UserController::class, 'index'])->middleware('IsLogin');
@@ -42,11 +44,16 @@ Route::get('/user-bantuan/{id}', [UserController::class, 'addBantuan'])->middlew
 Route::post('/user-add-bantuan', [UserController::class, 'storeBantuan'])->middleware('IsLogin');
 Route::get('/detail-user-bantuan/{id}', [UserController::class, 'detailuserbantuan'])->middleware('IsLogin');
 Route::get('/delete-bantuan/{id}', [UserController::class, 'deleteBantuan'])->middleware('IsLogin');
-Route::get('/umur0-20', [UserController::class, 'nolDuaPuluh'])->middleware('IsLogin');
-Route::get('/umur21-30', [UserController::class, 'duaSatuTigaPuluh'])->middleware('IsLogin');
-Route::get('/umur31-40', [UserController::class, 'tigaSatuEmpatPuluh'])->middleware('IsLogin');
-Route::get('/umur41-50', [UserController::class, 'empatSatuLimaPuluh'])->middleware('IsLogin');
-Route::get('/umur51++', [UserController::class, 'limaSatuPlus'])->middleware('IsLogin');
+
+# Admin routes.
+Route::get('/admin', [AdminController::class, 'index'])->middleware('IsLogin');
+Route::post('/admin', [AdminController::class, 'store'])->middleware('IsLogin');
+Route::get('/admin-add', [AdminController::class, 'storeView'])->middleware('IsLogin');
+Route::post('/admin-destroy', [AdminController::class, 'destroy'])->middleware('IsLogin');
+Route::get('/admin-edit/{id}', [AdminController::class, 'updateView'])->middleware('IsLogin');
+Route::put('/admin-update/{id}', [AdminController::class, 'update'])->middleware('IsLogin');
+Route::get('/admin-detail/{id}', [AdminController::class, 'show'])->middleware('IsLogin');
+Route::get('/reset-pw/{id}', [AdminController::class, 'resetPassword'])->middleware('IsLogin');
 
 # Bantuan routes.
 Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('IsLogin');

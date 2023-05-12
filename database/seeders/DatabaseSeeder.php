@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Role::create([
+            'name' => 'Super Admin'
+        ]);
+
+        Role::create([
             'name' => 'Admin'
         ]);
 
@@ -33,9 +37,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Daffa Afifi Syahrony',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
-            'NIK' => '712898289',
-            'alamat' => 'Jember',
-            'phone' => '+0895385583',
+            'NIK' => '7128982898229102',
+            'alamat' => 'Tempurejo, Jember',
+            'phone' => '0895385501523',
             'gender' => 'L',
             'umur' => '20',
             'role_id' => '1'
@@ -43,14 +47,14 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Raihan Achmad',
-            'email' => 'r@r',
-            'password' => bcrypt('r'),
-            'NIK' => '6969696969',
+            'email' => 'radf17@gmail.com',
+            'password' => bcrypt('1234567890123456'),
+            'NIK' => '1234567890123456',
             'alamat' => 'Jember',
-            'phone' => '+0895385583',
+            'phone' => '089538558328',
             'gender' => 'L',
             'umur' => '20',
-            'role_id' => '1'
+            'role_id' => '2'
         ]);
 
         User::factory()->count(10)->create();

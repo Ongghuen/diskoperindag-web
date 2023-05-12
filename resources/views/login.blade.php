@@ -9,6 +9,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/tuansilat_logo.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -39,9 +41,19 @@
                                         <input name="email" type="email" class="form-control"
                                         value="{{ old('email') }}" placeholder="Email" required>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <input name="password" type="password" class="form-control"
                                         value="{{ old('password') }}" placeholder="Password" required>
+                                    </div> --}}
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                          <input name="password" type="password" class="form-control" value="{{ old('password') }}" placeholder="Password" required>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-light" type="button" id="toggle-password">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <button type="submit" class="btn login-form__btn submit w-100">Sign In</button>
                                 </form>
@@ -60,6 +72,20 @@
     <script src="js/styleSwitcher.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function() {
+        var passwordInput = document.getElementsByName('password')[0];
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.querySelector('i').classList.remove('fa-eye');
+                this.querySelector('i').classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                this.querySelector('i').classList.remove('fa-eye-slash');
+                this.querySelector('i').classList.add('fa-eye');
+            }
+        });
+    </script>
 </body>
 
 </html>

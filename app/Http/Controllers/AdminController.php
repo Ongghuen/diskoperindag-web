@@ -3,33 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Bantuan;
-use App\Models\Alat;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\Session;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
-        $user = User::with(['role', 'bantuan.itemBantuan'])
-            ->where('role_id', '=', 3)
+        $admin = User::with('role')
+            ->where('role_id', '=', 2)
             ->sortable()
             ->get();
 
         return view(
-            'pages.user',
+            'pages.admin',
             [
-                'userList' => $user,
+                'adminList' => $admin,
             ]
         );
     }
 
     public function storeView()
     {
-        return view('pages.user-add');
+        return view('pages.admin-add');
     }
 
     public function store(Request $request)
@@ -91,13 +87,13 @@ class UserController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->umur = $umur;
-        $user->role_id = 3;
+        $user->role_id = 2;
         $user->save();
 
         if ($user) {
             // Session::flash('status', 'success');
             // Session::flash('message', 'Tambah data user berhasil!');
-            return redirect()->intended('/user')->with('create', 'berhasil create');
+            return redirect()->intended('/admin')->with('create', 'berhasil create');
         }
     }
 
@@ -111,20 +107,20 @@ class UserController extends Controller
                 $user->delete();
 
                 if($user){
-                    return redirect()->intended('/user')->with('delete', 'berhasil delete');
+                    return redirect()->intended('/admin')->with('delete', 'berhasil delete');
                 }
             } else{
-                return redirect()->intended('/user')->with('deleteFail', 'gagal dihapus');
+                return redirect()->intended('/admin')->with('deleteFail', 'gagal dihapus');
             }
         } catch (\Throwable $th) {
-            return redirect()->intended('/user')->with('gagal', 'gagal delete');
+            return redirect()->intended('/admin')->with('gagal', 'gagal delete');
         }
     }
 
     public function updateView($id)
     {
         $user = User::findOrFail($id);
-        return view('pages.user-edit', ['item' => $user]);
+        return view('pages.admin-edit', ['item' => $user]);
     }
 
     public function update(Request $request, $id)
@@ -166,66 +162,24 @@ class UserController extends Controller
         // }
 
         // return redirect('/user');
-        return redirect()->intended('/user')->with('update', 'berhasil update');
+        return redirect()->intended('/admin')->with('update', 'berhasil update');
     }
 
-    public function addBantuan($id)
+    public function show($id)
+    {
+        $user = User::where('id', '=', $id)
+            ->first();
+
+        return view('pages.admin-detail', ['item' => $user]);
+    }
+
+    public function resetPassword($id)
     {
         $user = User::findOrFail($id);
 
-        return view('pages.addBantuan', ['user' => $user]);
-    }
+        $user->password = bcrypt($user->NIK);
+        $user->update();
 
-    public function storeBantuan(Request $request)
-    {
-        $request->validate(
-            [
-                'nama_bantuan' => 'required|max:50',
-                'jenis_usaha' => 'required|max:50',
-                'tahun_pemberian' => 'required|date',
-                'koordinator' => 'required|max:50',
-                'sumber_anggaran' => 'required|max:50',
-            ],
-            [
-                'nama_bantuan.required' => 'Nama bantuan tidak boleh kosong!',
-                'nama_bantuan.max' => 'Nama bantuan maksimal 50 karakter!',
-                'jenis_usaha.required' => 'Jenis usaha tidak boleh kosong!',
-                'jenis_usaha.max' => 'Jenis usaha maksimal 50 karakter!',
-                'tahun_pemberian.required' => 'Tanggal pemberian tidak boleh kosong!',
-                'tahun_pemberian.date' => 'Tanggal pemberian harus berupa tanggal!',
-                'koordinator.required' => 'Koordinator tidak boleh kosong!',
-                'koordinator.max' => 'Koordinator maksimal 50 karakter!',
-                'sumber_anggaran.required' => 'Sumber anggaran tidak boleh kosong!',
-                'sumber_anggaran.max' => 'Sumber anggaran maksimal 50 karakter!',
-            ]
-        );
-
-        $data = new Bantuan;
-        $user = $request->user_id;
-
-        $data->create($request->all());
-
-        return redirect()->intended('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
-    }
-
-    public function detailuserbantuan($id)
-    {
-        $user = User::with(['role', 'bantuan.itemBantuan', 'pelatihan', 'sertifikat'])
-            ->where('id', '=', $id)
-            ->first();
-
-        return view('pages.detail-user-bantuan', ['item' => $user]);
-    }
-
-    public function deleteBantuan($id)
-    {
-        try {
-            $data = Bantuan::findOrFail($id);
-            $data->delete();
-
-            return redirect()->back()->with('delete', 'berhasil dihapus');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('gagal', 'gagal dihapus');
-        }
+        return redirect()->back()->with('resetPw', 'berhasil reset');
     }
 }

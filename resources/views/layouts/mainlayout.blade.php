@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.signature.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
     {{-- <link href="{{ asset('plugins/tables/css/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> --}}
@@ -223,6 +224,21 @@
 </script>
 @endif
 
+@if (Session::get('resetPw'))
+<script>
+    Toastify({
+    text: "    Password berhasil direset ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
 @if (Session::get('autocreate'))
 <script>
     Toastify({
@@ -242,6 +258,21 @@
 <script>
     Toastify({
     text: "    Selamat anda berhasil login ! ",
+    duration: 3000,
+    close: true,
+    stopOnFocus: true,
+    avatar: "{{ asset('images/success.png') }}",
+    style: {
+        background: "linear-gradient(to right, #25BE60, #25BE45)",
+    },
+    }).showToast();
+</script>
+@endif
+
+@if (Session::get('cp_succes'))
+<script>
+    Toastify({
+    text: "    Password berhasil diganti ! ",
     duration: 3000,
     close: true,
     stopOnFocus: true,
@@ -275,6 +306,21 @@
 <script>
     Toastify({
         text: "    Silahkan logout terlebih dahulu ! ",
+        duration: 3000,
+        close: true,
+        stopOnFocus: true,
+        avatar: "{{ asset('images/error.png') }}",
+        style: {
+            background: "linear-gradient(to right, #BE2525, #BE4525)",
+        },
+        }).showToast();
+</script>
+@endif
+
+@if (Session::get('current_password'))
+<script>
+    Toastify({
+        text: "    Password lama salah ! ",
         duration: 3000,
         close: true,
         stopOnFocus: true,
