@@ -3,12 +3,14 @@
 namespace App\Exports;
 
 use App\Models\Bantuan;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class AlatOnlyFullDate implements FromCollection, WithHeadings, WithMapping, WithTitle
+class AlatOnlyFullDate implements FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
 {
     protected $keyword2;
     protected $keyword3;
@@ -81,5 +83,14 @@ class AlatOnlyFullDate implements FromCollection, WithHeadings, WithMapping, Wit
     public function title(): string
     {
         return 'Bantuan Alat';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }

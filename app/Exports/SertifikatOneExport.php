@@ -4,11 +4,13 @@ namespace App\Exports;
 
 use App\Models\Sertifikat;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class SertifikatOneExport implements FromCollection, WithHeadings, WithMapping, WithTitle
+class SertifikatOneExport implements FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
 {
     protected $keyword;
     protected $rowNumber = 0;
@@ -80,5 +82,14 @@ class SertifikatOneExport implements FromCollection, WithHeadings, WithMapping, 
     public function title(): string
     {
         return 'Sertifikat';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }

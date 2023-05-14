@@ -3,13 +3,16 @@
 namespace App\Exports;
 
 use App\Models\Bantuan;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class AlatExport implements FromCollection, WithHeadings, WithMapping, WithTitle
-{
+class AlatExport implements FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
+{   
     protected $rowNumber = 0;
     
     public function collection()
@@ -71,5 +74,14 @@ class AlatExport implements FromCollection, WithHeadings, WithMapping, WithTitle
     public function title(): string
     {
         return 'Bantuan Alat';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }

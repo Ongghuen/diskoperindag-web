@@ -4,11 +4,13 @@ namespace App\Exports;
 
 use App\Models\Pelatihan;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class PelatihanOnlyFullDate implements FromCollection, WithHeadings, WithMapping, WithTitle
+class PelatihanOnlyFullDate implements FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
 {
     protected $keyword2;
     protected $keyword3;
@@ -69,5 +71,14 @@ class PelatihanOnlyFullDate implements FromCollection, WithHeadings, WithMapping
     public function title(): string
     {
         return 'Pelatihan';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }

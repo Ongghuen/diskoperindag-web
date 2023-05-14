@@ -5,12 +5,15 @@ namespace App\Exports;
 use App\Models\Bantuan;
 use App\Models\Pelatihan;
 use App\Models\Sertifikat;
+use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class UserExport implements FromCollection, WithHeadings, WithMapping, WithTitle
+class UserExport implements FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
 {
     protected $rowNumber = 0;
 
@@ -202,5 +205,14 @@ class UserExport implements FromCollection, WithHeadings, WithMapping, WithTitle
     public function title(): string
     {
         return 'Induk Pengguna';
+    }
+    
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }

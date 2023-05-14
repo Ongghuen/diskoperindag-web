@@ -3,12 +3,15 @@
 namespace App\Exports;
 
 use App\Models\Pelatihan;
+use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class PelatihanExport implements  FromCollection, WithHeadings, WithMapping, WithTitle
+class PelatihanExport implements  FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
 {
     protected $rowNumber = 0;
 
@@ -59,5 +62,14 @@ class PelatihanExport implements  FromCollection, WithHeadings, WithMapping, Wit
     public function title(): string
     {
         return 'Pelatihan';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }

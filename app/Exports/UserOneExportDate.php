@@ -6,11 +6,13 @@ use App\Models\Bantuan;
 use App\Models\Pelatihan;
 use App\Models\Sertifikat;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class UserOneExportDate implements FromCollection, WithHeadings, WithMapping, WithTitle
+class UserOneExportDate implements FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
 {
     protected $keyword1;
     protected $keyword2;
@@ -260,5 +262,14 @@ class UserOneExportDate implements FromCollection, WithHeadings, WithMapping, Wi
     public function title(): string
     {
         return 'Induk Pengguna';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }

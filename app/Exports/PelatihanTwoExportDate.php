@@ -4,11 +4,13 @@ namespace App\Exports;
 
 use App\Models\Pelatihan;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class PelatihanTwoExportDate implements FromCollection, WithHeadings, WithMapping, WithTitle
+class PelatihanTwoExportDate implements FromCollection, WithHeadings, WithMapping, WithTitle, ShouldAutoSize, WithEvents
 {
     protected $keyword1;
     protected $keyword2;
@@ -101,5 +103,14 @@ class PelatihanTwoExportDate implements FromCollection, WithHeadings, WithMappin
     public function title(): string
     {
         return 'Pelatihan';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->autoSize();
+            },
+        ];
     }
 }
