@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('judul');
             $table->string('subjudul');
-            $table->string('body');
+            $table->longText('body');
             $table->softDeletes();
             $table->timestamps();
         });
