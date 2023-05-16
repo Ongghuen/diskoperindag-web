@@ -17,6 +17,10 @@ class ApiBeritaController extends Controller
         return response()->json(auth()->user()->berita()->get());
     }
 
+    public function detail(string $id) {
+        return response()->json(Berita::where('id', "=", $id)->first());
+    }
+
     public function store(Request $request)
     {
         $saved = auth()->user()->berita()->get();

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiAuthController;
-use App\Http\Controllers\ApiSuratController;
 use App\Http\Controllers\ApiBeritaController;
 use App\Http\Controllers\ApiFasilitasiController;
+use App\Http\Controllers\ApiSuratController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +19,15 @@ use App\Http\Controllers\ApiFasilitasiController;
 
 // public api, i guess
 Route::post('/login', [ApiAuthController::class, 'login']);
-Route::get('/news', [ApiBeritaController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
     // auth
     Route::get('/logout', [ApiAuthController::class, 'logout']);
     Route::get('/me', [ApiAuthController::class, 'me']);
 
     // berita
-    Route::get('/news/saved', [ApiBeritaController::class, 'indexSaved']);
     Route::post('/news/add', [ApiBeritaController::class, 'store']);
+    Route::get('/news/saved', [ApiBeritaController::class, 'indexSaved']);
     Route::delete('/news/delete/{id}', [ApiBeritaController::class, 'destroy']);
 
     // fasilitasi
@@ -42,3 +40,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/surat', [ApiSuratController::class, 'index']);
     Route::post('/surat', [ApiSuratController::class, 'store']);
 });
+
+Route::get('/news', [ApiBeritaController::class, 'index']);
+Route::get('/news/{id}', [ApiBeritaController::class, 'detail']);
