@@ -9,7 +9,7 @@ class ApiBeritaController extends Controller
 {
     public function index()
     {
-        return response()->json(Berita::all());
+        return response()->json(Berita::where('deleted_at', "=", null)->get());
     }
 
     public function indexSaved()
