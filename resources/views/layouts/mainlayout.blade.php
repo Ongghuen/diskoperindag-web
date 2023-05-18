@@ -18,11 +18,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.signature.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+        integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
+        integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
     @yield('css')
 
@@ -53,7 +57,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('select').selectize({
                 sortField: 'text'
             });
@@ -61,7 +65,7 @@
     </script>
     <script>
         document.getElementById('toggle-password1').addEventListener('click', function() {
-        var passwordInput = document.getElementsByName('old_password')[0];
+            var passwordInput = document.getElementsByName('old_password')[0];
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 this.querySelector('i').classList.remove('fa-eye');
@@ -74,7 +78,7 @@
         });
 
         document.getElementById('toggle-password2').addEventListener('click', function() {
-        var passwordInput = document.getElementsByName('new_password')[0];
+            var passwordInput = document.getElementsByName('new_password')[0];
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 this.querySelector('i').classList.remove('fa-eye');
@@ -87,7 +91,7 @@
         });
 
         document.getElementById('toggle-password3').addEventListener('click', function() {
-        var passwordInput = document.getElementsByName('new_password_confirmation')[0];
+            var passwordInput = document.getElementsByName('new_password_confirmation')[0];
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 this.querySelector('i').classList.remove('fa-eye');
@@ -144,181 +148,196 @@
 </html>
 
 @if (Session::get('update'))
-<script>
-    Toastify({
-    text: "    Data berhasil diupdate ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Data berhasil diupdate ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('delete'))
-<script>
-    Toastify({
-    text: "    Data berhasil dihapus ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Data berhasil dihapus ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('gagal'))
-<script>
-    Toastify({
-        text: "    Gagal dihapus, data dibutuhkan untuk laporan ! ",
-        duration: 3000,
-        close: true,
-        stopOnFocus: true,
-        avatar: "{{ asset('images/error.png') }}",
-        style: {
-            background: "linear-gradient(to right, #BE2525, #BE4525)",
-        },
+    <script>
+        Toastify({
+            text: "    Gagal dihapus, data dibutuhkan untuk laporan ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
         }).showToast();
-</script>
+    </script>
 @endif
 
 @if (Session::get('create'))
-<script>
-    Toastify({
-    text: "    Data berhasil ditambahkan ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Data berhasil ditambahkan ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('restore'))
-<script>
-    Toastify({
-    text: "    Berita berhasil dipulihkan ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Berita berhasil dipulihkan ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('resetPw'))
-<script>
-    Toastify({
-    text: "    Password berhasil direset ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Password berhasil direset ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('autocreate'))
-<script>
-    Toastify({
-    text: "    Data berhasil ditambahkan ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Data berhasil ditambahkan ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('loginberhasil'))
-<script>
-    Toastify({
-    text: "    Selamat anda berhasil login ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Selamat anda berhasil login ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
+@endif
+
+@if (Session::get('andasiapa'))
+    <script>
+        Toastify({
+            text: "    Anda bukan superadmin ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('cp_succes'))
-<script>
-    Toastify({
-    text: "    Password berhasil diganti ! ",
-    duration: 3000,
-    close: true,
-    stopOnFocus: true,
-    avatar: "{{ asset('images/success.png') }}",
-    style: {
-        background: "linear-gradient(to right, #25BE60, #25BE45)",
-    },
-    }).showToast();
-</script>
+    <script>
+        Toastify({
+            text: "    Password berhasil diganti ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
 @endif
 
 @if (Session::get('sudahlogin'))
-<script>
-    Toastify({
-        text: "    Silahkan logout terlebih dahulu ! ",
-        duration: 3000,
-        close: true,
-        stopOnFocus: true,
-        avatar: "{{ asset('images/error.png') }}",
-        style: {
-            background: "linear-gradient(to right, #BE2525, #BE4525)",
-        },
+    <script>
+        Toastify({
+            text: "    Silahkan logout terlebih dahulu ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
         }).showToast();
-</script>
+    </script>
 @endif
 
 @if (Session::get('current_password'))
-<script>
-    Toastify({
-        text: "    Password lama salah ! ",
-        duration: 3000,
-        close: true,
-        stopOnFocus: true,
-        avatar: "{{ asset('images/error.png') }}",
-        style: {
-            background: "linear-gradient(to right, #BE2525, #BE4525)",
-        },
+    <script>
+        Toastify({
+            text: "    Password lama salah ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
         }).showToast();
-</script>
+    </script>
 @endif
 
 @if (Session::get('deleteFail'))
-<script>
-    Toastify({
-        text: "    Belum ada data yang dipilih ! ",
-        duration: 3000,
-        close: true,
-        stopOnFocus: true,
-        avatar: "{{ asset('images/error.png') }}",
-        style: {
-            background: "linear-gradient(to right, #BE2525, #BE4525)",
-        },
+    <script>
+        Toastify({
+            text: "    Belum ada data yang dipilih ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
         }).showToast();
-</script>
+    </script>
 @endif

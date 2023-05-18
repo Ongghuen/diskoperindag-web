@@ -46,14 +46,14 @@ Route::get('/detail-user-bantuan/{id}', [UserController::class, 'detailuserbantu
 Route::get('/delete-bantuan/{id}', [UserController::class, 'deleteBantuan'])->middleware('IsLogin');
 
 # Admin routes.
-Route::get('/admin', [AdminController::class, 'index'])->middleware('IsLogin');
-Route::post('/admin', [AdminController::class, 'store'])->middleware('IsLogin');
-Route::get('/admin-add', [AdminController::class, 'storeView'])->middleware('IsLogin');
-Route::post('/admin-destroy', [AdminController::class, 'destroy'])->middleware('IsLogin');
-Route::get('/admin-edit/{id}', [AdminController::class, 'updateView'])->middleware('IsLogin');
-Route::put('/admin-update/{id}', [AdminController::class, 'update'])->middleware('IsLogin');
-Route::get('/admin-detail/{id}', [AdminController::class, 'show'])->middleware('IsLogin');
-Route::get('/reset-pw/{id}', [AdminController::class, 'resetPassword'])->middleware('IsLogin');
+Route::get('/admin', [AdminController::class, 'index'])->middleware('IsLogin', 'Session');
+Route::post('/admin', [AdminController::class, 'store'])->middleware('IsLogin', 'Session');
+Route::get('/admin-add', [AdminController::class, 'storeView'])->middleware('IsLogin','Session');
+Route::post('/admin-destroy', [AdminController::class, 'destroy'])->middleware('IsLogin','Session');
+Route::get('/admin-edit/{id}', [AdminController::class, 'updateView'])->middleware('IsLogin','Session');
+Route::put('/admin-update/{id}', [AdminController::class, 'update'])->middleware('IsLogin','Session');
+Route::get('/admin-detail/{id}', [AdminController::class, 'show'])->middleware('IsLogin','Session');
+Route::get('/reset-pw/{id}', [AdminController::class, 'resetPassword'])->middleware('IsLogin','Session');
 
 # Bantuan routes.
 Route::get('/bantuan', [BantuanController::class, 'index'])->middleware('IsLogin');
