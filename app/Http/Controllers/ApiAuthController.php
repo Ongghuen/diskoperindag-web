@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
@@ -37,13 +37,14 @@ class ApiAuthController extends Controller
         return response()->json('Logged Out');
     }
 
-    public function me(Request $request)
+    public function changePassword(Request $request)
     {
-        return response()->json(Auth::user());
-    }
-
-    public function hello(Request $request)
-    {
-        return response()->json('hello');
+        if (Hash::check($request->currentPassword, auth()->user()->password)) {
+            $user = auth()->user();
+            $user->password = bcrypt($request->newPassword);
+            return response()->json($user->save());
+        }else{
+            return response(status: 403);
+        }
     }
 }

@@ -23,7 +23,7 @@ Route::post('/login', [ApiAuthController::class, 'login']);
 Route::middleware(['auth:sanctum'])->group(function () {
     // auth
     Route::get('/logout', [ApiAuthController::class, 'logout']);
-    Route::get('/me', [ApiAuthController::class, 'me']);
+    Route::post('/changePassword', [ApiAuthController::class, 'changePassword']);
 
     // berita
     Route::post('/news/add', [ApiBeritaController::class, 'store']);
