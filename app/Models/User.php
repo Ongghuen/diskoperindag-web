@@ -4,12 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
-use App\Models\Surat;
-use Laravel\Sanctum\HasApiTokens;
-use Kyslik\ColumnSortable\Sortable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Kyslik\ColumnSortable\Sortable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -94,5 +93,10 @@ class User extends Authenticatable
     public function getUmurAttribute()
     {
         return $this->attributes['umur'] = Carbon::parse($this->attributes['tanggal_lahir'])->age;
+    }
+
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
     }
 }

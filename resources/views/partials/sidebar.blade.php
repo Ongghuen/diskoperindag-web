@@ -18,7 +18,7 @@
              @endif
              <li>
                  <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                     <i class="icon-grid menu-icon"></i> <span class="nav-text">Fasilitasi</span>
+                     <i class="icon-grid menu-icon"></i><span class="nav-text">Fasilitasi</span>
                  </a>
                  <ul aria-expanded="false">
                      <li><a href="/bantuan">Bantuan Alat</a></li>
@@ -39,6 +39,11 @@
              <li>
                  <a href="/report" aria-expanded="false">
                      <i class="icon-graph menu-icon"></i><span class="nav-text">Laporan</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="/notifikasi" aria-expanded="false">
+                     <i class="icon-info menu-icon"></i><span class="nav-text">Notifikasi</span>
                  </a>
              </li>
          </ul>

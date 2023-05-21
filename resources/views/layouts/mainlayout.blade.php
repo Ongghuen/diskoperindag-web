@@ -207,6 +207,36 @@
     </script>
 @endif
 
+@if (Session::get('createNotif'))
+    <script>
+        Toastify({
+            text: "    Notifikasi berhasil dikirim ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/success.png') }}",
+            style: {
+                background: "linear-gradient(to right, #25BE60, #25BE45)",
+            },
+        }).showToast();
+    </script>
+@endif
+
+@if (Session::get('notifGagal'))
+    <script>
+        Toastify({
+            text: "    User belum mempunyai token! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+        }).showToast();
+    </script>
+@endif
+
 @if (Session::get('restore'))
     <script>
         Toastify({

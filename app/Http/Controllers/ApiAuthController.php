@@ -37,13 +37,19 @@ class ApiAuthController extends Controller
         return response()->json('Logged Out');
     }
 
+    public function checkToken()
+    {
+        return response()->json("Valid");
+    }
+
     public function changePassword(Request $request)
     {
         if (Hash::check($request->currentPassword, auth()->user()->password)) {
             $user = auth()->user();
             $user->password = bcrypt($request->newPassword);
+
             return response()->json($user->save());
-        }else{
+        } else {
             return response(status: 403);
         }
     }

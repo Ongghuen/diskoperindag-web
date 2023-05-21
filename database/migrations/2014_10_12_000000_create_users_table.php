@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('fcm_token')->nullable();
             $table->string('NIK', 16);
             $table->string('alamat');
             $table->string('phone');

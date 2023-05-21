@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
-
+use Kreait\Firebase\Messaging\CloudMessage;
+use Kreait\Firebase\Messaging\Notification;
 
 class BeritaController extends Controller
 {
@@ -23,7 +24,6 @@ class BeritaController extends Controller
 
         return view('pages.berita', ['itemList' => $dataBerita]);
     }
-
 
     public function storeView()
     {
@@ -54,10 +54,10 @@ class BeritaController extends Controller
         $items = new Berita;
 
         $image = null;
-        if ($request->file){
+        if ($request->file) {
             $fileName = $this->generateRandomString();
             $extension = $request->file->extension();
-            $image = $fileName.'.'.$extension;
+            $image = $fileName . '.' . $extension;
 
             $request->file->move(public_path('images/berita/'), $image);
         }
@@ -68,21 +68,33 @@ class BeritaController extends Controller
         $items->body = $request->body;
         $items->save();
 
+        $messaging = app('firebase.messaging');
+
+        $notification = Notification::fromArray([
+            'title' => $request->judul,
+            'body' => $request->subjudul,
+        ]);
+
+        $message = CloudMessage::withTarget('topic', 'diskoperindag')
+            ->withNotification($notification);
+        $messaging->send($message);
+
         if ($items) {
             return redirect()->intended('/berita')->with('create', 'berhasil create');
         }
     }
 
-
     public function beritadetail($id)
     {
         $items = Berita::findOrFail($id);
+
         return view('pages.berita-detail', ['item' => $items]);
     }
 
     public function editview($id)
     {
         $items = Berita::findOrFail($id);
+
         return view('pages.berita-edit', ['item' => $items]);
     }
 
@@ -156,36 +168,40 @@ class BeritaController extends Controller
             }
         }
     }
+
     public function destroy(Request $request)
     {
         $ids = $request->ids;
 
-        if($ids != null){
+        if ($ids != null) {
             // foreach($ids as $data){
             //     File::delete(storage_path('images/berita/' . Berita::find($data)->image));
             // }
             $berita = Berita::whereIn('id', $ids);
             $berita->delete();
 
-            if($berita){
+            if ($berita) {
                 return redirect()->intended('/berita')->with('delete', 'berhasil dihapus');
             }
-        } else{
+        } else {
             return redirect()->intended('/berita')->with('deleteFail', 'gagal dihapus');
         }
     }
 
-    function generateRandomString($length = 10) {
+    public function generateRandomString($length = 10)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 
-    public function restoreView(){
+    public function restoreView()
+    {
         $dataBerita = Berita::onlyTrashed()->get();
 
         return view('pages.berita-deleted', ['itemList' => $dataBerita]);
@@ -198,28 +214,30 @@ class BeritaController extends Controller
         return view('pages.berita-detail', ['item' => $items]);
     }
 
-    public function forceDestroy(Request $request){
+    public function forceDestroy(Request $request)
+    {
         $ids = $request->ids;
 
-        if($ids != null){
-            foreach($ids as $data){
+        if ($ids != null) {
+            foreach ($ids as $data) {
                 $image = Berita::withTrashed()->find($data);
-                if($image->image != null){
+                if ($image->image != null) {
                     File::delete('images/berita/' . $image->image);
                 }
             }
             $berita = Berita::whereIn('id', $ids);
             $berita->forceDelete();
 
-            if($berita){
+            if ($berita) {
                 return redirect()->intended('/berita-restore')->with('delete', 'berhasil dihapus');
             }
-        } else{
+        } else {
             return redirect()->intended('/berita-restore')->with('deleteFail', 'gagal dihapus');
         }
     }
 
-    public function restore($id){
+    public function restore($id)
+    {
         $berita = Berita::withTrashed()->where('id', $id)->restore();
 
         return redirect()->intended('/berita-restore')->with('restore', 'berhasil dipulihkan');

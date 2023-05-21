@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BantuanController;
+use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\SertifikatController;
 
@@ -103,6 +104,10 @@ Route::get('/berita-restore', [BeritaController::class, 'restoreView'])->middlew
 Route::get('/berita-detail-deleted/{id}', [BeritaController::class, 'beritaDetailDeleted'])->middleware('IsLogin');
 Route::post('/berita-force-destroy', [BeritaController::class, 'forceDestroy'])->middleware('IsLogin');
 Route::get('/berita-pulihkan/{id}', [BeritaController::class, 'restore'])->middleware('IsLogin');
+
+# Notifikasi Routes
+Route::get('/notifikasi', [NotifikasiController::class, 'create'])->middleware('IsLogin');
+Route::post('/notifikasi/add', [NotifikasiController::class, 'store'])->middleware('IsLogin');
 
 # Report Routes
 Route::get('/report', [ReportController::class, 'index'])->middleware('IsLogin');

@@ -21,9 +21,9 @@
                                     </button>
 
                                     <?php
-                                    
+
                                     $nomer = 1;
-                                    
+
                                     ?>
 
                                     @foreach ($errors->all() as $error)
