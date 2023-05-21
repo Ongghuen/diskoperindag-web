@@ -41,14 +41,12 @@ class NotifikasiController extends Controller
         $token = 'diskoperindag';
         $message = null;
 
-        if ($request->token != null) {
-            $argOne = 'token';
-            $token = $request->token;
+        if ($request->token == 'Semua') {
             $message = CloudMessage::withTarget($argOne, $token)
                 ->withNotification($notification);
-        }
-
-        if ($request->token == 'Semua') {
+        } else {
+            $argOne = 'token';
+            $token = $request->token;
             $message = CloudMessage::withTarget($argOne, $token)
                 ->withNotification($notification);
         }

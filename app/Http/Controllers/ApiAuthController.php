@@ -39,7 +39,7 @@ class ApiAuthController extends Controller
 
     public function checkToken()
     {
-        return response()->json("Valid");
+        return response()->json('Valid');
     }
 
     public function changePassword(Request $request)
@@ -52,5 +52,17 @@ class ApiAuthController extends Controller
         } else {
             return response(status: 403);
         }
+    }
+
+    public function assignToken(Request $request)
+    {
+        $user = auth()->user();
+        $user->fcm_token = $request->fcm_token;
+
+        if ($user->save()) {
+            return response()->json('Token berhasil ditambahkan ke user');
+        }
+
+        return response()->json('Token gagal ditambahkan');
     }
 }

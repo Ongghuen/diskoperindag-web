@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/logout', [ApiAuthController::class, 'logout']);
     Route::get('/checkToken', [ApiAuthController::class, 'checkToken']);
     Route::post('/changePassword', [ApiAuthController::class, 'changePassword']);
+    Route::post('/assignToken', [ApiAuthController::class, 'assignToken']);
 
     // berita
     Route::post('/news/add', [ApiBeritaController::class, 'store']);
