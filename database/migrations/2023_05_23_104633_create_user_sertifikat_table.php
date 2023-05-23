@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sertifikat', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('keterangan')->default(2);
+        Schema::create('user_sertifikat', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->unsignedBigInteger('sertifikat_id');
+            $table->foreign('sertifikat_id')->references('id')->on('sertifikat')->onDelete('restrict');
+            $table->string('no_sertifikat');
         });
     }
 
@@ -22,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sertifikat', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('user_sertifikat');
     }
 };

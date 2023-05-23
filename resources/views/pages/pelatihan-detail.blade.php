@@ -90,7 +90,8 @@
                 <form class="forms-sample" action="/pelatihan-add-user" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group col-12">
+                        <div class="form-group">
+                            <label for="select-state">Peserta</label>
                             <select class="form-control input-default" id="select-state" name="user_id">
                                 @foreach ($user as $item)
                                     <option value="{{ $item->id }}">{{ $item->name . ' - ' . $item->NIK}}</option>

@@ -163,7 +163,7 @@
                                                 @endforeach
                                             </table>
                                         </div>
-                                        <a href="" data-toggle="modal" data-target="#addModal" class="btn btn-sm btn-primary ml-2">Tambah</a>
+                                        <a href="" data-toggle="modal" data-target="#addModalPelatihan" class="btn btn-sm btn-primary ml-2">Tambah</a>
                                         <a href="/user-pelatihan" class="btn btn-sm btn-primary ml-2">Pelatihan Baru</a>
                                     </td>
                                 </tr>
@@ -186,7 +186,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $data->no_sertifikat }}</td>
+                                                        <td>{{ $data->pivot->no_sertifikat }}</td>
                                                         <td>{{ $data->nama }}</td>
                                                         <td>{{ $data->tanggal_terbit }}</td>
                                                         <td>{{ $data->kadaluarsa_penyelenggara }}</td>
@@ -195,11 +195,7 @@
                                                                 class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                 <i class="mdi mdi-eye"></i>
                                                             </a>
-                                                            <a href="/sertifikat-edit/{{ $data->id }}/{{ $item->id }}"
-                                                                class="btn mx-1 mb-1 btn-outline-light btn-sm">
-                                                                <i class="mdi mdi-pencil"></i>
-                                                            </a>
-                                                            <a href="/delete-sertifikat/{{ $data->id }}"
+                                                            <a href="/delete-user-sertifikat/{{ $item->id }}/{{ $data->id }}"
                                                                 class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                 <i class="mdi mdi-delete"></i>
                                                             </a>
@@ -209,8 +205,8 @@
                                                 @endforeach
                                             </table>
                                         </div>
-                                        <a href="/user-sertifikat/{{ $item->id }}"
-                                            class="btn btn-sm btn-primary ml-2">Tambah</a>
+                                        <a href="" data-toggle="modal" data-target="#addModalSertifikat" class="btn btn-sm btn-primary ml-2">Tambah</a>
+                                        <a href="/user-sertifikat" class="btn btn-sm btn-primary ml-2">Sertifikat Baru</a>
                                     </td>
                                 </tr>
                             </table>
@@ -220,8 +216,8 @@
             </div>
         </div>
     </div>
-    {{-- Modal Tambah --}}
-    <div class="modal fade" id="addModal">
+    {{-- Modal Tambah Pelatihan --}}
+    <div class="modal fade" id="addModalPelatihan">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -251,8 +247,47 @@
                 </form>
             </div>
         </div>
-    </div><
-    {{-- End Modal Tambah --}}
+    </div>
+    {{-- End Modal Tambah Pelatihan --}}
+    {{-- Modal Tambah Sertifikat --}}
+    <div class="modal fade" id="addModalSertifikat">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Sertifikat</h5>
+                    <button type="button" class="close"
+                        data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <form class="forms-sample" action="/sertifikat-add-user" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="select-state">Penerima</label>
+                            <select class="form-control input-default" id="select-state" name="sertifikat_id">
+                                @foreach ($sertifikat as $data)
+                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Nomor Sertifikat</label>
+                            <input type="text" class="form-control input-default" id="exampleInputUsername1"
+                                placeholder="" name="no_sertifikat">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control input-rounded" id="exampleInputUsername1"
+                                placeholder="Username" value="{{ $item->id }}" name="user_id">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- End Modal Tambah Sertifikat--}}
 @endsection
 
 @section('script')

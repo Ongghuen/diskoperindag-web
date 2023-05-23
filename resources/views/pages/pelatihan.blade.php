@@ -21,7 +21,7 @@
                                             data-dismiss="modal"><span>&times;</span>
                                         </button>
                                     </div>
-                                        <div class="modal-body">Anda yakin akan menghapus data pengguna ini?</div>
+                                        <div class="modal-body">Anda yakin akan menghapus data pelatihan ini?</div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-danger">Yes</button>
                                             <button type="button" class="btn btn-primary"
@@ -36,7 +36,7 @@
                             <p class="card-title">Data Pelatihan</p>
                         </div>
                         <div class="align-right text-right">
-                            <a class="btn mb-1 mr-1 btn-outline-primary btn-sm ms-auto" href="/user-pelatihan">Tambah</a>
+                            <a class="btn mb-1 mr-1 btn-outline-primary btn-sm ms-auto" href="/user-sertifikat">Tambah</a>
                             <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="" data-toggle="modal" data-target="#hapusModal">Hapus</a>
                         </div>
                         <div class="table-responsive">

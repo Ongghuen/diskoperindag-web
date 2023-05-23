@@ -12,6 +12,7 @@ use App\Models\Pelatihan;
 use App\Models\Sertifikat;
 use App\Models\BantuanAlat;
 use App\Models\UserPelatihan;
+use App\Models\UserSertifikat;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Crypt;
 
@@ -77,6 +78,7 @@ class DatabaseSeeder extends Seeder
         Pelatihan::factory()->count(20)->create();
         BantuanAlat::factory()->count(30)->create();
         UserPelatihan::factory()->count(30)->create();
+        UserSertifikat::factory()->count(30)->create();
         Berita::factory()->count(5)->create();
     }
 }

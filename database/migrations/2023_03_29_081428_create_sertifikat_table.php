@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('sertifikat', function (Blueprint $table) {
             $table->id();
-            $table->string('no_sertifikat');
             $table->string('nama');
             $table->date('tanggal_terbit');
             $table->date('kadaluarsa_penyelenggara');

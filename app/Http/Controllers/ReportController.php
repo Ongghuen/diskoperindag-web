@@ -168,8 +168,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -181,8 +180,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -194,8 +192,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data3){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data3.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data3.'%')
+                        ->where('nama', 'LIKE', '%'.$data3.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data3.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data3.'%')
                         ->orwhereHas('user', function ($query) use($data3){
@@ -320,8 +317,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -333,8 +329,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -346,8 +341,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data3){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data3.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data3.'%')
+                        ->where('nama', 'LIKE', '%'.$data3.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data3.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data3.'%')
                         ->orwhereHas('user', function ($query) use($data3){
@@ -472,8 +466,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -485,8 +478,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -498,8 +490,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data3){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data3.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data3.'%')
+                        ->where('nama', 'LIKE', '%'.$data3.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data3.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data3.'%')
                         ->orwhereHas('user', function ($query) use($data3){
@@ -622,8 +613,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -635,8 +625,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -648,8 +637,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data3){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data3.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data3.'%')
+                        ->where('nama', 'LIKE', '%'.$data3.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data3.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data3.'%')
                         ->orwhereHas('user', function ($query) use($data3){
@@ -744,8 +732,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -757,8 +744,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -854,8 +840,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -867,8 +852,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -964,8 +948,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -977,8 +960,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -1072,8 +1054,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -1085,8 +1066,7 @@ class ReportController extends Controller
                     })
                     ->where(function ($query) use($data2){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                        ->where('nama', 'LIKE', '%'.$data2.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                         ->orwhereHas('user', function ($query) use($data2){
@@ -1152,8 +1132,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -1220,8 +1199,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -1288,8 +1266,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -1354,8 +1331,7 @@ class ReportController extends Controller
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                        ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                        ->where('nama', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                         ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){

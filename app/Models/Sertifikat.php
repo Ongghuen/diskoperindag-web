@@ -23,6 +23,7 @@ class Sertifikat extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsToMany(User::class, 'user_sertifikat', 'sertifikat_id', 'user_id')
+        ->withPivot(['no_sertifikat']);
     }
 }

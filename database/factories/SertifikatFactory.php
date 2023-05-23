@@ -17,12 +17,10 @@ class SertifikatFactory extends Factory
     public function definition(): array
     {
         return [
-            'no_sertifikat' => $this->faker->randomNumber(2, false),
             'nama' => $this->faker->words(2, true),
             'tanggal_terbit' => $this->faker->date(),
             'kadaluarsa_penyelenggara' => $this->faker->date(),
-            'keterangan' => $this->faker->paragraph(),
-            "user_id" => $this->faker->numberBetween(3, 12)
+            'keterangan' => $this->faker->paragraph()
         ];
     }
 }

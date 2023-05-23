@@ -134,8 +134,7 @@ class UserThreeExport implements FromCollection, WithHeadings, WithMapping, With
         $sertifikat = Sertifikat::with('user.role')
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                    ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                    ->where('nama', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                     ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -147,8 +146,7 @@ class UserThreeExport implements FromCollection, WithHeadings, WithMapping, With
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                    ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                    ->where('nama', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                     ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -160,8 +158,7 @@ class UserThreeExport implements FromCollection, WithHeadings, WithMapping, With
                 })
                 ->where(function ($query) use($data3){
                     $query
-                    ->where('no_sertifikat', 'LIKE', '%'.$data3.'%')
-                    ->orWhere('nama', 'LIKE', '%'.$data3.'%')
+                    ->where('nama', 'LIKE', '%'.$data3.'%')
                     ->orWhere('tanggal_terbit', 'LIKE', '%'.$data3.'%')
                     ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data3.'%')
                     ->orwhereHas('user', function ($query) use($data3){
@@ -262,41 +259,43 @@ class UserThreeExport implements FromCollection, WithHeadings, WithMapping, With
         }
 
         foreach($sertifikat as $data){
-            if($data->user->gender == 'P'){
-                $gender = 'Perempuan';
-            } else{
-                $gender = 'Laki-Laki';
-            }
-
-            if($data->user->kepala_keluarga == 1){
-                $kk = 'Iya';
-            } else{
-                $kk = 'Tidak';
-            }
-
-            $newUser = [
-                'nama' => $data->user->name,
-                'nik' => $data->user->NIK,
-                'email' => $data->user->email,
-                'alamat' => $data->user->alamat,
-                'phone' => $data->user->phone,
-                'gender' => $gender,
-                'kk' => $kk,
-                'tempat_lahir' => $data->user->tempat_lahir,
-                'tanggal_lahir' => $data->user->tanggal_lahir,
-                'umur' => $data->user->umur
-            ];
-
-            $found = false;
-            foreach ($user as $item) {
-                if ($item['nama'] === $newUser['nama']) {
-                    $found = true;
-                    break;
+            foreach($data->user as $dataUser){
+                if($dataUser->gender == 'P'){
+                    $gender = 'Perempuan';
+                } else{
+                    $gender = 'Laki-Laki';
                 }
-            }
-
-            if (!$found) {
-                $user[] = $newUser;
+    
+                if($dataUser->kepala_keluarga == 1){
+                    $kk = 'Iya';
+                } else{
+                    $kk = 'Tidak';
+                }
+    
+                $newUser = [
+                    'nama' => $dataUser->name,
+                    'nik' => $dataUser->NIK,
+                    'email' => $dataUser->email,
+                    'alamat' => $dataUser->alamat,
+                    'phone' => $dataUser->phone,
+                    'gender' => $gender,
+                    'kk' => $kk,
+                    'tempat_lahir' => $dataUser->tempat_lahir,
+                    'tanggal_lahir' => $dataUser->tanggal_lahir,
+                    'umur' => $dataUser->umur
+                ];
+    
+                $found = false;
+                foreach ($user as $item) {
+                    if ($item['nama'] === $newUser['nama']) {
+                        $found = true;
+                        break;
+                    }
+                }
+    
+                if (!$found) {
+                    $user[] = $newUser;
+                }
             }
         }
 

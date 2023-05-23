@@ -78,7 +78,8 @@ class User extends Authenticatable
 
     public function sertifikat()
     {
-        return $this->hasMany(Sertifikat::class, 'user_id', 'id');
+        return $this->belongsToMany(Sertifikat::class, 'user_sertifikat', 'user_id', 'sertifikat_id')
+        ->withPivot(['no_sertifikat']);
     }
 
     public function berita()

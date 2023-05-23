@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserSertifikat>
  */
-class UserPelatihanFactory extends Factory
+class UserSertifikatFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,8 @@ class UserPelatihanFactory extends Factory
     {
         return [
             "user_id" => $this->faker->numberBetween(3, 12),
-            "pelatihan_id" => $this->faker->numberBetween(1, 20)
+            "sertifikat_id" => $this->faker->numberBetween(1, 20),
+            'no_sertifikat' => $this->faker->randomNumber(3, false)
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Alat;
 use App\Models\User;
 use App\Models\Bantuan;
 use App\Models\Pelatihan;
+use App\Models\Sertifikat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules\Password;
@@ -219,7 +220,11 @@ class UserController extends Controller
                 $query->where('id', $id);
             })->get();
 
-        return view('pages.detail-user-bantuan', ['item' => $user, 'pelatihan' => $pelatihan]);
+        $sertifikat = Sertifikat::whereDoesntHave('user', function ($query) use ($id) {
+                $query->where('id', $id);
+            })->get();
+
+        return view('pages.detail-user-bantuan', ['item' => $user, 'pelatihan' => $pelatihan, 'sertifikat' => $sertifikat]);
     }
 
     public function deleteBantuan($id)

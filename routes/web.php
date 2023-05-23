@@ -79,11 +79,13 @@ Route::get('/delete-user-pelatihan/{user}/{pelatihan}', [PelatihanController::cl
 # Sertifikat
 Route::get('/sertifikat', [SertifikatController::class, 'index'])->middleware('IsLogin');
 Route::get('/sertifikat-detail/{id}', [SertifikatController::class, 'detailsertifikat'])->middleware('IsLogin');
-Route::get('/delete-sertifikat/{id}', [SertifikatController::class, 'destroy'])->middleware('IsLogin');
-Route::get('/user-sertifikat/{id}', [SertifikatController::class, 'storeView'])->middleware('IsLogin');
+Route::post('/delete-sertifikat', [SertifikatController::class, 'destroy'])->middleware('IsLogin');
+Route::get('/user-sertifikat', [SertifikatController::class, 'storeView'])->middleware('IsLogin');
 Route::post('/sertifikat', [SertifikatController::class, 'store'])->middleware('IsLogin');
 Route::put('/sertifikat-update/{id}', [SertifikatController::class, 'update'])->middleware('IsLogin');
-Route::get('/sertifikat-edit/{idSertifikat}/{idUser}', [SertifikatController::class, 'updateView'])->middleware('IsLogin');
+Route::get('/sertifikat-edit/{idSertifikat}', [SertifikatController::class, 'updateView'])->middleware('IsLogin');
+Route::post('/sertifikat-add-user', [SertifikatController::class, 'addUser'])->middleware('IsLogin');
+Route::get('/delete-user-sertifikat/{user}/{sertifikat}', [SertifikatController::class, 'deleteUser'])->middleware('IsLogin');
 
 # Item Routes
 Route::get('/alatitem', [ItemController::class, 'index'])->middleware('IsLogin');

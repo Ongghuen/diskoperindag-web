@@ -192,11 +192,10 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
-                                        <th>NIK</th>
-                                        <th>Alamat</th>
-                                        <th>Nomor Sertifikat</th>
                                         <th>Sertfikat</th>
+                                        <th>Nomor Sertifikat</th>
+                                        <th>Penerima</th>
+                                        <th>NIK</th>
                                         <th>Tanggal Terbit</th>
                                         <th>Tanggal Kadaluarsa</th>
                                     </tr>
@@ -205,11 +204,22 @@
                                     @foreach ($sertifList as $item)
                                         <tr>
                                             <td>{{ $loop->iteration + $sertifList->firstItem() - 1 }}</td>
-                                            <td>{{ $item->user->name }}</td>
-                                            <td>{{ $item->user->NIK }}</td>
-                                            <td>{{ $item->user->alamat }}</td>
-                                            <td>{{ $item->no_sertifikat }}</td>
                                             <td>{{ $item->nama }}</td>
+                                            <td>
+                                                @foreach ($item->user as $data)
+                                                    {{ $data->pivot->no_sertifikat }}<br><br>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach ($item->user as $data)
+                                                    {{ $data->name }}<br><br>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach ($item->user as $data)
+                                                    {{ $data->NIK }}<br><br>
+                                                @endforeach
+                                            </td>
                                             <td>{{ $item->tanggal_terbit }}</td>
                                             <td>{{ $item->kadaluarsa_penyelenggara }}</td>
                                         </tr>

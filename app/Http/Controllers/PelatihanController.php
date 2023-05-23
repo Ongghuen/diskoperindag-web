@@ -126,7 +126,6 @@ class PelatihanController extends Controller
         );
 
         $items = Pelatihan::findOrFail($id);
-        $user = $request->user_id;
         $items->update($request->all());
 
         return redirect('/pelatihan')->with('update', 'berhasil diupdate');

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sertifikat;
 use Illuminate\Http\Request;
+use App\Models\UserSertifikat;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -18,8 +19,7 @@ class SertifikatController extends Controller
         $items = Sertifikat::with('user')
             ->where(function ($query) use ($keyword) {
                 $query
-                    ->where('no_sertifikat', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('nama', 'LIKE', '%' . $keyword . '%');
+                    ->where('nama', 'LIKE', '%' . $keyword . '%');
             })
             ->orWhereHas('user', function ($query) use ($keyword) {
                 $query
@@ -34,40 +34,49 @@ class SertifikatController extends Controller
     public function detailsertifikat($id)
     {
         $items = Sertifikat::with('user')->findOrFail($id);
-        return view('pages.sertifikat-detail', ['item' => $items]);
+
+        $user = User::where('role_id', '3')->whereDoesntHave('sertifikat', function ($query) use ($id) {
+            $query->where('id', $id);
+        })->get();
+
+        return view('pages.sertifikat-detail', ['sertifikat' => $items, 'user' => $user]);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         try {
-            $items = Sertifikat::findOrFail($id);
-            $items->delete();
-    
-            return back()->with('delete', 'berhasil dihapus');
+            $ids = $request->ids;
+
+            if($ids != null){
+                $sertifikat = Sertifikat::whereIn('id', $ids);
+                $sertifikat->delete();
+
+                if($sertifikat){
+                    return redirect()->intended('/sertifikat')->with('delete', 'berhasil delete');
+                }
+            } else{
+                return redirect()->intended('/sertifikat')->with('deleteFail', 'gagal dihapus');
+            }
         } catch (\Throwable $th) {
-            return back()->with('gagal', 'gagal dihapus');
+            return redirect()->intended('/sertifikat')->with('gagal', 'gagal delete');
         }
     }
 
-    public function storeView($id)
+    public function storeView()
     {
-        $user = User::findOrFail($id);
-
-        return view('pages.sertifikat-add', ['user' => $user]);
+        return view('pages.sertifikat-add');
     }
 
     public function store(Request $request)
     {
         $request->validate(
             [
-                'no_sertifikat' => 'required',
                 'nama' => 'required|max:50',
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
                 'keterangan' => 'required|max:255',
             ],
             [
-                'no_sertifikat.required' => 'No. Sertifikat tidak boleh kosong!',
                 'nama.required' => 'Nama tidak boleh kosong!',
                 'nama.max' => 'Nama maksimal 50 karakter!',
                 'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
@@ -78,34 +87,28 @@ class SertifikatController extends Controller
         );
 
         $items = new Sertifikat;
-        $user = $request->user_id;
 
         $items->create($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
+        return redirect('/sertifikat')->with('create', 'berhasil ditambahkan');
     }
 
-    public function updateView($idSertifikat, $idUser)
+    public function updateView($idSertifikat)
     {
         $items = Sertifikat::findOrFail($idSertifikat);
-        $user = User::findOrFail($idUser);
-        return view('pages.sertifikat-edit', ['item' => $items, 'user' => $user]);
+        return view('pages.sertifikat-edit', ['item' => $items]);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate(
             [
-
-                'no_sertifikat' => 'required|max:20',
                 'nama' => 'required|max:50',
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
                 'keterangan' => 'required|max:255',
             ],
             [
-                'no_sertifikat.required' => 'No. Sertifikat tidak boleh kosong!',
-                'no_sertifikat.max' => 'No. Sertifikat maksimal 20 karakter!',
                 'nama.required' => 'Nama tidak boleh kosong!',
                 'nama.max' => 'Nama maksimal 50 karakter!',
                 'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
@@ -116,9 +119,31 @@ class SertifikatController extends Controller
         );
 
         $items = Sertifikat::findOrFail($id);
-        $user = $request->user_id;
         $items->update($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user)->with('update', 'berhasil diupdate');
+        return redirect('/sertifikat')->with('update', 'berhasil diupdate');
+    }
+
+    public function addUser(Request $request)
+    {
+        $data = new UserSertifikat;
+        $data->create($request->all());
+
+        if ($data) {
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Item berhasil ditambahkan!');
+            return redirect()->back()->with('create', 'Item berhasil ditambahkan');
+        }
+    }
+
+    public function deleteUser($user, $sertifikat)
+    {
+        $data = UserSertifikat::where('user_id', $user)->where('sertifikat_id', $sertifikat)->delete();
+
+        if ($data) {
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Item berhasil ditambahkan!');
+            return redirect()->back()->with('delete', 'berhasil delete');
+        }
     }
 }

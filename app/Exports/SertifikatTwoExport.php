@@ -28,8 +28,7 @@ class SertifikatTwoExport implements FromCollection, WithHeadings, WithMapping, 
         $sertfikat = Sertifikat::with('user.role')
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('no_sertifikat', 'LIKE', '%'.$data1.'%')
-                    ->orWhere('nama', 'LIKE', '%'.$data1.'%')
+                    ->where('nama', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tanggal_terbit', 'LIKE', '%'.$data1.'%')
                     ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -41,8 +40,7 @@ class SertifikatTwoExport implements FromCollection, WithHeadings, WithMapping, 
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('no_sertifikat', 'LIKE', '%'.$data2.'%')
-                    ->orWhere('nama', 'LIKE', '%'.$data2.'%')
+                    ->where('nama', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tanggal_terbit', 'LIKE', '%'.$data2.'%')
                     ->orWhere('kadaluarsa_penyelenggara', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -63,16 +61,30 @@ class SertifikatTwoExport implements FromCollection, WithHeadings, WithMapping, 
 
     public function map($sertfikat): array
     {
+        $no_sertif = [];
+        $penerima = [];
+        $nik = [];
         ++$this->rowNumber;
+
+        foreach($sertfikat->user as $item){
+            array_push($no_sertif, $item->pivot->no_sertifikat);
+        }
+
+        foreach($sertfikat->user as $item){
+            array_push($penerima, $item->name);
+        }
+
+        foreach($sertfikat->user as $item){
+            array_push($nik, $item->NIK);
+        }
 
         return [
             [
                 $this->rowNumber,
-                $sertfikat->user->name,
-                $sertfikat->user->NIK,
-                $sertfikat->user->alamat,
-                $sertfikat->no_sertifikat,
                 $sertfikat->nama,
+                join(',', $no_sertif),
+                join(',', $penerima),
+                join(',', $nik),
                 $sertfikat->tanggal_terbit,
                 $sertfikat->kadaluarsa_penyelenggara,
                 $sertfikat->keterangan
@@ -84,11 +96,10 @@ class SertifikatTwoExport implements FromCollection, WithHeadings, WithMapping, 
     {
         return [
             'No.',
+            'Sertifikat',
+            'Nomor Sertifikat',
             'Nama Penerima',
             'NIK',
-            'Alamat',
-            'Nomor Sertifikat',
-            'Sertifikat',
             'Tanggal Terbit',
             'Tanggal Kadaluarsa',
             'Keterangan'
