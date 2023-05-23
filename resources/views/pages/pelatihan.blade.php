@@ -9,23 +9,47 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <form action="/delete-pelatihan" method="POST">
+                        @csrf
+                        {{-- Modal Hapus --}}
+                        <div class="modal fade" id="hapusModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Hapus Modal</h5>
+                                        <button type="button" class="close"
+                                            data-dismiss="modal"><span>&times;</span>
+                                        </button>
+                                    </div>
+                                        <div class="modal-body">Anda yakin akan menghapus data pengguna ini?</div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">Yes</button>
+                                            <button type="button" class="btn btn-primary"
+                                                data-dismiss="modal">No</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- End Modal Hapus --}}
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2">
                             <p class="card-title">Data Pelatihan</p>
                         </div>
-
-
+                        <div class="align-right text-right">
+                            <a class="btn mb-1 mr-1 btn-outline-primary btn-sm ms-auto" href="/user-pelatihan">Tambah</a>
+                            <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="" data-toggle="modal" data-target="#hapusModal">Hapus</a>
+                        </div>
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered zero-configuration">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Pelatihan</th>
-                                        <th>Penerima</th>
-                                        <th>NIK</th>
                                         <th>Penyelenggara</th>
                                         <th>Tanggal Pelaksanaan</th>
                                         <th>Tempat</th>
+                                        <th>Action</th>
+                                        <th>Hapus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,40 +62,29 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->user->name }}</td>
-                                            <td>{{ $item->user->NIK }}</td>
                                             <td>{{ $item->penyelenggara }}</td>
                                             <td>{{ $item->tanggal_pelaksanaan }}</td>
                                             <td>{{ $item->tempat }}</td>
-                                        </tr>
-                                    @endforeach
+                                            <td class="align-middle text-center">
+                                                <span>
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/pelatihan-detail/{{ $item->id }}">
+                                                        <i class="icon-eye menu-icon"></i>
+                                                    </a>
 
-                                    @foreach ($itemList as $item)
-                                        {{-- modal Hapus --}}
-                                        <div class="modal fade" id="ModalHapus{{ $item->id }}" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <form action="/pelatihan-destroy/{{ $item->id }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <div class="modal-body">
-                                                            <p>Anda Yakin Menghapus Data Pelatihan {{ $item->nama_item }} ?
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end modal Hapus --}}
+                                                    <a class="btn mx-1 mb-1 btn-outline-light btn-sm"
+                                                        href="/pelatihan-edit/{{ $item->id }}">
+                                                        <i class="icon-pencil menu-icon"></i>
+                                                    </a>
+                                                    {{-- <button data-toggle="modal" data-target="#hapusModal{{ $item->id }}"
+                                                        type="button"
+                                                        class="btn mb-1 btn-rounded btn-outline-danger btn-sm">Delete</button> --}}
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <input type="checkbox" name="ids[{{$item->id}}]" id="delete" value="{{$item->id}}">
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -82,6 +95,7 @@
                             </nav> --}}
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

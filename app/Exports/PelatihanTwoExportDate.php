@@ -70,15 +70,24 @@ class PelatihanTwoExportDate implements FromCollection, WithHeadings, WithMappin
 
     public function map($pelatihan): array
     {
+        $peserta = [];
+        $nik = [];
         ++$this->rowNumber;
+
+        foreach($pelatihan->user as $item){
+            array_push($peserta, $item->name);
+        }
+
+        foreach($pelatihan->user as $item){
+            array_push($nik, $item->NIK);
+        }
 
         return [
             [
                 $this->rowNumber,
-                $pelatihan->user->name,
-                $pelatihan->user->NIK,
-                $pelatihan->user->alamat,
                 $pelatihan->nama,
+                join(',', $peserta),
+                join(',', $nik),
                 $pelatihan->penyelenggara,
                 $pelatihan->tanggal_pelaksanaan,
                 $pelatihan->tempat
@@ -90,10 +99,9 @@ class PelatihanTwoExportDate implements FromCollection, WithHeadings, WithMappin
     {
         return [
             'No.',
+            'Nama Pelatihan',
             'Nama Penerima',
             'NIK',
-            'Alamat',
-            'Pelatihan',
             'Penyelenggara',
             'Tanggal Pelaksanaan',
             'Tempat'

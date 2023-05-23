@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('surat', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->longText('content');
-            $table->string('image')->nullable();
+        Schema::create('user_pelatihan', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->unsignedBigInteger('pelatihan_id');
+            $table->foreign('pelatihan_id')->references('id')->on('pelatihan')->onDelete('restrict');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('surat');
+        Schema::dropIfExists('user_pelatihan');
     }
 };

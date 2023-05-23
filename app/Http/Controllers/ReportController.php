@@ -40,14 +40,14 @@ class ReportController extends Controller
                     $query
                     ->where('name', 'User');
                 })
-                ->paginate(10);
+                ->paginate(5);
 
         $sertfikat = Sertifikat::with('user.role')
                 ->whereHas('user.role', function($query){
                     $query
                     ->where('name', 'User');
                 })
-                ->paginate(10);
+                ->paginate(5);
 
         if($keyword){
             if(array_key_exists('2', $data)){
@@ -163,7 +163,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -210,7 +210,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'date2' => $date2]);
             }elseif(isset($data3) && ($date1 == null) && ($date2 != null)){
@@ -315,7 +315,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -362,7 +362,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'now' => $now, 'date2' => $date2]);
             }elseif(isset($data3) && ($date1 != null) && ($date2 == null)){
@@ -467,7 +467,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -514,7 +514,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'now' => $now]);
             }if(isset($data3) && ($date1 == null) && ($date2 == null)){
@@ -617,7 +617,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -663,7 +663,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
             }elseif(isset($data2) && ($date1 != null) && ($date2 != null)){
@@ -739,7 +739,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -773,7 +773,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'date2' => $date2]);
             }elseif(isset($data2) && ($date1 == null) && ($date2 != null)){
@@ -849,7 +849,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -883,7 +883,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'now' => $now, 'date2' => $date2]);
             }elseif(isset($data2) && ($date1 != null) && ($date2 == null)){
@@ -959,7 +959,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -993,7 +993,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'now' => $now]);
             }elseif(isset($data2) && ($date1 == null) && ($date2 == null)){
@@ -1067,7 +1067,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -1100,7 +1100,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
             }elseif(isset($data1) && ($date1 != null) && ($date2 != null)){
@@ -1147,7 +1147,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -1168,7 +1168,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'date2' => $date2]);
             }elseif(isset($data1) && ($date1 == null) && ($date2 != null)){
@@ -1215,7 +1215,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -1236,7 +1236,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'now' => $now, 'date2' => $date2]);
             }elseif(isset($data1) && ($date1 != null) && ($date2 == null)){
@@ -1283,7 +1283,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -1304,7 +1304,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword, 'date1' => $date1, 'now' => $now]);
             }elseif(isset($data1) && ($date1 == null) && ($date2 == null)){
@@ -1349,7 +1349,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 $sertfikat = Sertifikat::with('user.role')
                     ->where(function ($query) use($data1){
@@ -1369,7 +1369,7 @@ class ReportController extends Controller
                         $query
                         ->where('name', 'User');
                     })
-                    ->paginate(10);
+                    ->paginate(5);
 
                 return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'keyword' => $keyword]);
             }
@@ -1389,7 +1389,7 @@ class ReportController extends Controller
                     ->where('name', 'User');
                 })
                 ->whereBetween('created_at', [$date1, $date2])
-                ->paginate(10);
+                ->paginate(5);
 
             $sertfikat = Sertifikat::with('user.role')
                 ->whereHas('user.role', function($query){
@@ -1397,7 +1397,7 @@ class ReportController extends Controller
                     ->where('name', 'User');
                 })
                 ->whereBetween('created_at', [$date1, $date2])
-                ->paginate(10);
+                ->paginate(5);
 
             return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'date1' => $date1, 'date2' => $date2]);
         }elseif(empty($keyword) && ($date1 == null) && ($date2 != null)){
@@ -1415,7 +1415,7 @@ class ReportController extends Controller
                     ->where('name', 'User');
                 })
                 ->whereBetween('created_at', [$now, $date2])
-                ->paginate(10);
+                ->paginate(5);
 
             $sertfikat = Sertifikat::with('user.role')
                 ->whereHas('user.role', function($query){
@@ -1423,7 +1423,7 @@ class ReportController extends Controller
                     ->where('name', 'User');
                 })
                 ->whereBetween('created_at', [$now, $date2])
-                ->paginate(10);
+                ->paginate(5);
 
             return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'now' => $now, 'date2' => $date2]);
         }elseif(empty($keyword) && ($date1 != null) && ($date2 == null)){
@@ -1441,7 +1441,7 @@ class ReportController extends Controller
                         ->where('name', 'User');
                     })
                     ->whereBetween('created_at', [$date1, $now])
-                    ->paginate(10);
+                    ->paginate(5);
 
             $sertfikat = Sertifikat::with('user.role')
                     ->whereHas('user.role', function($query){
@@ -1449,7 +1449,7 @@ class ReportController extends Controller
                         ->where('name', 'User');
                     })
                     ->whereBetween('created_at', [$date1, $now])
-                    ->paginate(10);
+                    ->paginate(5);
 
             return view('pages.report', ['userList' => $bantuan, 'pelatihanList' => $pelatihan, 'sertifList' => $sertfikat, 'date1' => $date1, 'now' => $now]);
         }elseif(empty($keyword)){

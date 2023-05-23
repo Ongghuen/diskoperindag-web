@@ -141,10 +141,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
+                                        <th>Nama Pelatihan</th>
+                                        <th>Peserta</th>
                                         <th>NIK</th>
-                                        <th>Alamat</th>
-                                        <th>Pelatihan</th>
                                         <th>Penyelenggara</th>
                                         <th>Tanggal Pelaksanaan</th>
                                         <th>Tempat</th>
@@ -154,10 +153,17 @@
                                     @foreach ($pelatihanList as $item)
                                         <tr>
                                             <td>{{ $loop->iteration + $pelatihanList->firstItem() - 1 }}</td>
-                                            <td>{{ $item->user->name }}</td>
-                                            <td>{{ $item->user->NIK }}</td>
-                                            <td>{{ $item->user->alamat }}</td>
                                             <td>{{ $item->nama }}</td>
+                                            <td>
+                                                @foreach ($item->user as $data)
+                                                    {{ $data->name }}<br><br>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach ($item->user as $data)
+                                                    {{ $data->NIK }}<br><br>
+                                                @endforeach
+                                            </td>
                                             <td>{{ $item->penyelenggara }}</td>
                                             <td>{{ $item->tanggal_pelaksanaan }}</td>
                                             <td>{{ $item->tempat }}</td>

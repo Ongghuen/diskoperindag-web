@@ -21,7 +21,6 @@ class PelatihanFactory extends Factory
             'penyelenggara' => $this->faker->words(2, true),
             'tanggal_pelaksanaan' => $this->faker->date(),
             'tempat' => $this->faker->words(2, true),
-            "user_id" => $this->faker->numberBetween(3, 12)
         ];
     }
 }

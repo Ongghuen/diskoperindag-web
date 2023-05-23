@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Alat;
 use App\Models\User;
 use App\Models\Bantuan;
-use App\Models\Alat;
+use App\Models\Pelatihan;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Session;
-use Carbon\Carbon;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -214,7 +215,11 @@ class UserController extends Controller
             ->where('id', '=', $id)
             ->first();
 
-        return view('pages.detail-user-bantuan', ['item' => $user]);
+        $pelatihan = Pelatihan::whereDoesntHave('user', function ($query) use ($id) {
+                $query->where('id', $id);
+            })->get();
+
+        return view('pages.detail-user-bantuan', ['item' => $user, 'pelatihan' => $pelatihan]);
     }
 
     public function deleteBantuan($id)

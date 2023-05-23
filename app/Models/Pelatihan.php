@@ -20,9 +20,9 @@ class Pelatihan extends Model
         'tempat',
         'user_id'
     ];
-
+    
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsToMany(User::class, 'user_pelatihan', 'pelatihan_id', 'user_id');
     }
 }

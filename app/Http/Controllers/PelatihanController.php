@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
+use App\Models\UserPelatihan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -37,26 +38,38 @@ class PelatihanController extends Controller
             ->where('id', '=', $id)
             ->first();
 
-        return view('pages.pelatihan-detail', ['item' => $pelatihan]);
+        $user = User::where('role_id', '3')->whereDoesntHave('pelatihan', function ($query) use ($id) {
+                $query->where('id', $id);
+            })->get();
+
+        return view('pages.pelatihan-detail', ['pelatihan' => $pelatihan, 'user' => $user]);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         try {
-            $items = Pelatihan::findOrFail($id);
-            $items->delete();
-    
-            return back()->with('delete', 'berhasil dihapus');
+            $ids = $request->ids;
+
+            if($ids != null){
+                $pelatihan = Pelatihan::whereIn('id', $ids);
+                $pelatihan->delete();
+
+                if($pelatihan){
+                    return redirect()->intended('/pelatihan')->with('delete', 'berhasil delete');
+                }
+            } else{
+                return redirect()->intended('/pelatihan')->with('deleteFail', 'gagal dihapus');
+            }
         } catch (\Throwable $th) {
-            return back()->with('gagal', 'gagal dihapus');
+            return redirect()->intended('/pelatihan')->with('gagal', 'gagal delete');
         }
     }
 
-    public function storeView($id)
+    public function storeView()
     {
-        $user = User::findOrFail($id);
+        // $user = User::findOrFail($id);
 
-        return view('pages.pelatihan-add', ['user' => $user]);
+        return view('pages.pelatihan-add');
     }
 
     public function store(Request $request)
@@ -83,14 +96,14 @@ class PelatihanController extends Controller
 
         $items->create($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
+        return redirect('/pelatihan')->with('create', 'berhasil ditambahkan');
     }
 
-    public function updateView($idPelatihan, $idUser)
+    public function updateView($idPelatihan)
     {
         $items = Pelatihan::findOrFail($idPelatihan);
-        $user = User::findOrFail($idUser);
-        return view('pages.pelatihan-edit', ['item' => $items, 'user' => $user]);
+        // $user = User::findOrFail($idUser);
+        return view('pages.pelatihan-edit', ['item' => $items]);
     }
 
     public function update(Request $request, $id)
@@ -116,6 +129,29 @@ class PelatihanController extends Controller
         $user = $request->user_id;
         $items->update($request->all());
 
-        return redirect('/detail-user-bantuan/' . $user)->with('update', 'berhasil diupdate');
+        return redirect('/pelatihan')->with('update', 'berhasil diupdate');
+    }
+
+    public function addUser(Request $request)
+    {
+        $data = new UserPelatihan;
+        $data->create($request->all());
+
+        if ($data) {
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Item berhasil ditambahkan!');
+            return redirect()->back()->with('create', 'Item berhasil ditambahkan');
+        }
+    }
+
+    public function deleteUser($user, $pelatihan)
+    {
+        $data = UserPelatihan::where('user_id', $user)->where('pelatihan_id', $pelatihan)->delete();
+
+        if ($data) {
+            // Session::flash('status', 'success');
+            // Session::flash('message', 'Item berhasil ditambahkan!');
+            return redirect()->back()->with('delete', 'berhasil delete');
+        }
     }
 }

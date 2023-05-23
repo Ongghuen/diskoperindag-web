@@ -15,12 +15,9 @@ class BeritaController extends Controller
     {
         $keyword = $request->keyword;
 
-        $dataBerita = Berita::where(function ($query) use ($keyword) {
-            $query
-                ->where('judul', 'LIKE', '%' . $keyword . '%')
-                ->orWhere('subjudul', 'LIKE', '%' . $keyword . '%');
-        })
-            ->get();
+        $dataBerita = Berita::
+        orderByDesc('id')
+        ->get();
 
         return view('pages.berita', ['itemList' => $dataBerita]);
     }
@@ -37,7 +34,7 @@ class BeritaController extends Controller
                 'file' => 'max:2048|mimes:png,jpg,jpeg',
                 'judul' => 'required|max:100',
                 'subjudul' => 'required|max:100',
-                'body' => 'required|max:1000',
+                'body' => 'required|max:5000',
             ],
             [
                 'file.max' => 'Image maksimal 2MB!',
@@ -105,7 +102,7 @@ class BeritaController extends Controller
                 [
                     'judul' => 'required|max:100',
                     'subjudul' => 'required|max:100',
-                    'body' => 'required|max:1000',
+                    'body' => 'required|max:5000',
                 ],
                 [
                     'judul.required' => 'Judul tidak boleh kosong!',

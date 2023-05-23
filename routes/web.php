@@ -68,11 +68,13 @@ Route::put('bantuan-update/{id}', [BantuanController::class, 'update'])->middlew
 # Pelatihan
 Route::get('/pelatihan', [PelatihanController::class, 'index'])->middleware('IsLogin');
 Route::get('/pelatihan-detail/{id}', [PelatihanController::class, 'detailPelatihan'])->middleware('IsLogin');
-Route::get('/delete-pelatihan/{id}', [PelatihanController::class, 'destroy'])->middleware('IsLogin');
-Route::get('/user-pelatihan/{id}', [PelatihanController::class, 'storeView'])->middleware('IsLogin');
+Route::post('/delete-pelatihan', [PelatihanController::class, 'destroy'])->middleware('IsLogin');
+Route::get('/user-pelatihan', [PelatihanController::class, 'storeView'])->middleware('IsLogin');
 Route::post('/pelatihan', [PelatihanController::class, 'store'])->middleware('IsLogin');
-Route::get('/pelatihan-edit/{idPelatihan}/{idUser}', [PelatihanController::class, 'updateView'])->middleware('IsLogin');
+Route::get('/pelatihan-edit/{idPelatihan}', [PelatihanController::class, 'updateView'])->middleware('IsLogin');
 Route::put('pelatihan-update/{id}', [PelatihanController::class, 'update'])->middleware('IsLogin');
+Route::post('/pelatihan-add-user', [PelatihanController::class, 'addUser'])->middleware('IsLogin');
+Route::get('/delete-user-pelatihan/{user}/{pelatihan}', [PelatihanController::class, 'deleteUser'])->middleware('IsLogin');
 
 # Sertifikat
 Route::get('/sertifikat', [SertifikatController::class, 'index'])->middleware('IsLogin');

@@ -149,11 +149,11 @@
                                                             <td>{{ $data->tanggal_pelaksanaan }}</td>
                                                             <td>{{ $data->tempat }}</td>
                                                             <td>
-                                                                <a href="/pelatihan-edit/{{ $data->id }}/{{ $item->id }}"
+                                                                <a href="/pelatihan-detail/{{ $data->id }}"
                                                                     class="btn mx-1 mb-1 btn-outline-light btn-sm">
-                                                                    <i class="mdi mdi-pencil"></i>
+                                                                    <i class="mdi mdi-eye"></i>
                                                                 </a>
-                                                                <a href="/delete-pelatihan/{{ $data->id }}"
+                                                                <a href="/delete-user-pelatihan/{{ $item->id }}/{{ $data->id }}"
                                                                     class="btn mx-1 mb-1 btn-outline-light btn-sm">
                                                                     <i class="mdi mdi-delete"></i>
                                                                 </a>
@@ -163,8 +163,8 @@
                                                 @endforeach
                                             </table>
                                         </div>
-                                        <a href="/user-pelatihan/{{ $item->id }}"
-                                            class="btn btn-sm btn-primary ml-2">Tambah</a>
+                                        <a href="" data-toggle="modal" data-target="#addModal" class="btn btn-sm btn-primary ml-2">Tambah</a>
+                                        <a href="/user-pelatihan" class="btn btn-sm btn-primary ml-2">Pelatihan Baru</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -220,6 +220,39 @@
             </div>
         </div>
     </div>
+    {{-- Modal Tambah --}}
+    <div class="modal fade" id="addModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Pelatihan</h5>
+                    <button type="button" class="close"
+                        data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <form class="forms-sample" action="/pelatihan-add-user" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group col-12">
+                            <select class="form-control input-default" id="select-state" name="pelatihan_id">
+                                @foreach ($pelatihan as $data)
+                                    <option value="{{ $data->id }}">{{ $data->nama . ' - ' . $data->penyelenggara}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control input-rounded" id="exampleInputUsername1"
+                                placeholder="Username" value="{{ $item->id }}" name="user_id">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><
+    {{-- End Modal Tambah --}}
 @endsection
 
 @section('script')
