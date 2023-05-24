@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -57,7 +58,7 @@ class AuthController extends Controller
 
     public function changePassword(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'old_password' => 'required',
             'new_password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()],
             'new_password_confirmation' => 'required|same:new_password',
@@ -69,6 +70,10 @@ class AuthController extends Controller
             'new_password_confirmation.required' => 'Konfirmasi password baru tidak boleh kosong',
             'new_password_confirmation.same' => 'Konfirmasi password salah',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->with('gagalcp', 'Validasi gagal');
+        }
     
         $user = Auth::user();
     

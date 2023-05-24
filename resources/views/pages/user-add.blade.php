@@ -42,20 +42,9 @@
                                 <input name="email" type="text" class="form-control input-default"
                                     placeholder="Input Email" value="{{ old('email') }}" required>
                             </div>
-                            {{-- <div class="form-group">
-                                <label for="">Password</label>
-                                <input name="password" type="password" class="form-control input-default"
-                                    placeholder="Input Password" value="{{ old('password') }}" required>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="">Re-Password</label>
-                                <input name="re_password" type="password" class="form-control input-default"
-                                    placeholder="Input Password" value="{{ old('re_password') }}" required>
-                            </div> --}}
                             <div class="form-group">
                                 <label for="">NIK</label>
-                                <input name="NIK" type="text" class="form-control input-default"
+                                <input name="NIK" type="number" class="form-control input-default"
                                     placeholder="Input NIK" value="{{ old('NIK') }}" required>
                             </div>
                             <div class="form-group">
@@ -72,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">No Phone</label>
-                                <input name="phone" type="text" class="form-control input-default"
+                                <input name="phone" type="number" class="form-control input-default"
                                     placeholder="Input Number Phone" value="{{ old('phone') }}" required>
                             </div>
                             <div class="form-group">

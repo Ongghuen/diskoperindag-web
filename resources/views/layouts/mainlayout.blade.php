@@ -192,6 +192,21 @@
     </script>
 @endif
 
+@if (Session::get('gagalcp'))
+    <script>
+        Toastify({
+            text: "    Ganti password gagal, beberapa kondisi belum terpenuhi ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+        }).showToast();
+    </script>
+@endif
+
 @if (Session::get('nameexists'))
     <script>
         Toastify({

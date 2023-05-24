@@ -40,13 +40,16 @@
                                     id="exampleInputUsername1" placeholder="Name" value="{{ $item->name }}">
                             </div>
                             <div class="form-group">
-
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="email" class="form-control input-default" id="exampleInputEmail1"
                                     name="email" placeholder="Email" value="{{ $item->email }}">
                             </div>
                             <div class="form-group">
-
+                                <label for="exampleInputNIK1">NIK</label>
+                                <input type="number" class="form-control input-default" name="NIK"
+                                    id="exampleInputNIK1" placeholder="NIK" value="{{ $item->NIK }}">
+                            </div>
+                            <div class="form-group">
                                 <label for="gender">Kepala Keluarga</label>
                                 <select name="kepala_keluarga input-default" id="kepala_keluarga"
                                     class="form-control input-default">
@@ -61,19 +64,16 @@
                                 </select>
                             </div>
                             <div class="form-group">
-
                                 <label for="exampleInputAlamat1">Alamat</label>
                                 <input type="text" class="form-control input-default" name="alamat"
                                     id="exampleInputAlamat1" placeholder="Address" value="{{ $item->alamat }}">
                             </div>
                             <div class="form-group">
-
-                                <label for="exampleInputPhone1">No. Telepon</label>
-                                <input type="text" class="form-control input-default" name="phone"
-                                    id="exampleInputPhone1" placeholder="Phone" value="{{ $item->phone }}">
+                                <label for="exampleInputphone1">No Telepon</label>
+                                <input type="number" class="form-control input-default" name="phone"
+                                    id="exampleInputphone1" placeholder="No Telepon" value="{{ $item->phone }}">
                             </div>
                             <div class="form-group">
-
                                 <label for="gender">Gender</label>
                                 <select name="gender" id="gender" class="form-control input-default">
                                     <option value="{{ $item->gender }}">{{ $item->gender }}</option>
@@ -85,13 +85,11 @@
                                 </select>
                             </div>
                             <div class="form-group">
-
                                 <label for="exampleTextarea1">Tanggal Lahir</label>
                                 <input type="date" class="form-control input-default" id="exampleInputEmail1"
                                     name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ $item->tanggal_lahir }}">
                             </div>
                             <div class="form-group">
-
                                 <label for="exampleInputPhone1">Tempat Lahir</label>
                                 <input type="text" name="tempat_lahir" class="form-control input-default"
                                     id="exampleInputPhone1" placeholder="Tempat Lahir" value="{{ $item->tempat_lahir }}">
