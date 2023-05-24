@@ -20,6 +20,7 @@ class Alat extends Model
 
     public function bantuan()
     {
-        return $this->belongsToMany(Bantuan::class, 'bantuan_item', 'item_id', 'bantuan_id');
+        return $this->belongsToMany(Bantuan::class, 'bantuan_alat', 'alat_id', 'bantuan_id')
+        ->withPivot(['kuantitas']);;
     }
 }

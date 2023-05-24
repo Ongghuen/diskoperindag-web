@@ -10,6 +10,7 @@ use App\Models\Sertifikat;
 use App\Models\BantuanAlat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class BantuanController extends Controller
 {
@@ -46,23 +47,23 @@ class BantuanController extends Controller
 
     public function storeItem(Request $request)
     {
-        $request->validate(
-            [
-                'kuantitas' => 'required|numeric',
-            ],
-            [
-                'kuantitas.required' => 'Jumlah tidak boleh kosong!',
-                'kuantitas.numeric' => 'Jumlah harus berupa angka!',
-            ]
-        );
+        $validator = Validator::make($request->all(), [
+            'kuantitas' => 'required|numeric',
+        ], [
+            'kuantitas.required' => 'Jumlah tidak boleh kosong!',
+            'kuantitas.numeric' => 'Jumlah harus berupa angka!',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->with('gagaladditem', 'Validasi gagal');
+        }
+
         $data = new BantuanAlat;
         $dataBantuan = $request->bantuan_id;
 
         $data->create($request->all());
 
         if ($data) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Item berhasil ditambahkan!');
             return redirect('bantuan-detail/' . $dataBantuan)->with('create', 'Item berhasil ditambahkan');
         }
     }
@@ -83,7 +84,11 @@ class BantuanController extends Controller
             ->where('id', '=', $id)
             ->first();
 
-        return view('pages.bantuan-detail', ['item' => $bantuan]);
+        $alat = Alat::whereDoesntHave('bantuan', function ($query) use ($id) {
+                $query->where('id', $id);
+            })->get();
+
+        return view('pages.bantuan-detail', ['item' => $bantuan, 'alat' => $alat]);
     }
 
     public function updateView($idBantuan, $idUser)
@@ -122,5 +127,27 @@ class BantuanController extends Controller
         $items->update($request->all());
 
         return redirect()->intended('/detail-user-bantuan/' . $user)->with('update', 'berhasil diubah');
+    }
+
+    public function updateQty(Request $request, $idBantuan, $idAlat)
+    {
+        $validator = Validator::make($request->all(), [
+            'kuantitas' => 'required|numeric',
+        ], [
+            'kuantitas.required' => 'Jumlah tidak boleh kosong!',
+            'kuantitas.numeric' => 'Jumlah harus berupa angka!',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->with('gagaledititem', 'Validasi gagal');
+        }
+
+        $bantuan = Bantuan::find($idBantuan); // Mengambil model Bantuan berdasarkan $bantuan_id
+        $bantuan->itemBantuan()->updateExistingPivot($idAlat, ['kuantitas' => $request->kuantitas]);
+        $dataBantuan = $request->bantuan_id;
+
+        if ($bantuan) {
+            return redirect('bantuan-detail/' . $dataBantuan)->with('update', 'Item berhasil ditambahkan');
+        }
     }
 }

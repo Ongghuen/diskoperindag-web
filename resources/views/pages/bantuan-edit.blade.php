@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername3">Tanggal Pemberian</label>
-                                    <input type="date" class="form-control input-rounded" id="exampleInputUsername3"
+                                    <input type="date" class="form-control input-master" id="exampleInputUsername3"
                                         placeholder="Tahun Pemberian" name="tahun_pemberian"
                                         value="{{ $item->tahun_pemberian }}">
                                 </div>

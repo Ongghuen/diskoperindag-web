@@ -192,6 +192,51 @@
     </script>
 @endif
 
+@if (Session::get('nameexists'))
+    <script>
+        Toastify({
+            text: "    Nama bantuan sudah ada, silahkan gunakan nama lain ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+        }).showToast();
+    </script>
+@endif
+
+@if (Session::get('gagaladditem'))
+    <script>
+        Toastify({
+            text: "    Alat gagal ditambahkan, silahkan coba lagi ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+        }).showToast();
+    </script>
+@endif
+
+@if (Session::get('gagaledititem'))
+    <script>
+        Toastify({
+            text: "    Qty gagal diubah, silahkan coba lagi ! ",
+            duration: 3000,
+            close: true,
+            stopOnFocus: true,
+            avatar: "{{ asset('images/error.png') }}",
+            style: {
+                background: "linear-gradient(to right, #BE2525, #BE4525)",
+            },
+        }).showToast();
+    </script>
+@endif
+
 @if (Session::get('create'))
     <script>
         Toastify({

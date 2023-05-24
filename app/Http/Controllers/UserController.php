@@ -159,15 +159,8 @@ class UserController extends Controller
         );
 
         $user = User::findOrFail($id);
-
-        // $user->password = bcrypt($user->NIK);
         $user->update($request->all());
-        // if ($user) {
-        //     Session::flash('status', 'success');
-        //     Session::flash('message', 'Data user berhasil diubah!');
-        // }
-
-        // return redirect('/user');
+        
         return redirect()->intended('/user')->with('update', 'berhasil update');
     }
 
@@ -204,10 +197,23 @@ class UserController extends Controller
 
         $data = new Bantuan;
         $user = $request->user_id;
+        $userName = User::findOrFail($user);
+        $bantuanName = $request->nama_bantuan. ' ' .$userName->name;
 
-        $data->create($request->all());
+        $result = Bantuan::where('nama_bantuan', $bantuanName)->exists();
 
-        return redirect()->intended('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
+        if($result){
+            return back()->withInput()->with('nameexists', 'gagal');
+        }else{
+            $data->nama_bantuan = $bantuanName;
+            $data->jenis_usaha = $request->jenis_usaha;
+            $data->koordinator = $request->koordinator;
+            $data->sumber_anggaran = $request->sumber_anggaran;
+            $data->tahun_pemberian = $request->tahun_pemberian;
+            $data->user_id = $request->user_id;
+            $data->save();
+            return redirect()->intended('/detail-user-bantuan/' . $user)->with('create', 'berhasil ditambahkan');
+        }
     }
 
     public function detailuserbantuan($id)

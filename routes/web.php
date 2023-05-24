@@ -64,6 +64,7 @@ Route::get('delete-item/{item}/{bantuan}', [BantuanController::class, 'deleteIte
 Route::get('bantuan-detail/{id}', [BantuanController::class, 'detailbantuan'])->middleware('IsLogin');
 Route::get('/bantuan-edit/{idBantuan}/{idUser}', [BantuanController::class, 'updateView'])->middleware('IsLogin');
 Route::put('bantuan-update/{id}', [BantuanController::class, 'update'])->middleware('IsLogin');
+Route::put('/bantuan-qty-update/{idBantuan}/{idAlat}', [BantuanController::class, 'updateQty'])->middleware('IsLogin');
 
 # Pelatihan
 Route::get('/pelatihan', [PelatihanController::class, 'index'])->middleware('IsLogin');

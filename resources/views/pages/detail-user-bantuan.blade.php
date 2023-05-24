@@ -92,6 +92,8 @@
                                                         <th scope="col">Nama Bantuan</th>
                                                         <th scope="col">Jenis Usaha</th>
                                                         <th>Tanggal Pemberian</th>
+                                                        <th>List Alat</th>
+                                                        <th>Kuantitas</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -102,6 +104,16 @@
                                                             <td>{{ $data->nama_bantuan }}</td>
                                                             <td>{{ $data->jenis_usaha }}</td>
                                                             <td>{{ $data->tahun_pemberian }}</td>
+                                                            <td>
+                                                                @foreach ($data->itemBantuan as $namaAlat)
+                                                                    {{ $namaAlat->nama_item }}<br><br>
+                                                                @endforeach
+                                                            </td>
+                                                            <td>
+                                                                @foreach ($data->itemBantuan as $stok)
+                                                                    {{ $stok->pivot->kuantitas }}<br><br>
+                                                                @endforeach
+                                                            </td>
                                                             <td>
                                                                 <a href="/bantuan-detail/{{ $data->id }}"
                                                                     class="btn mx-1 mb-1 btn-outline-light btn-sm">
