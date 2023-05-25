@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index() //function untuk menampilkan semua data admin yang ada ditabel user
     {
         $admin = User::with('role')
             ->where('role_id', '=', 2)
@@ -16,26 +16,21 @@ class AdminController extends Controller
             ->get();
 
         return view(
-            'pages.admin',
-            [
-                'adminList' => $admin,
-            ]
+            'pages.admin',['adminList' => $admin]
         );
     }
 
-    public function storeView()
+    public function storeView() //function untuk menampilkan tampilan tambah admin
     {
         return view('pages.admin-add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //function untuk tambah admin
     {
         $request->validate(
             [
                 'name' => 'required|max:50',
                 'email' => 'required|email|max:50|unique:users,email',
-                // 'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->uncompromised()],
-                // 're_password' => 'required|same:password',
                 'NIK' => 'unique:users|required|numeric|digits:16',
                 'alamat' => 'required|max:100',
                 'phone' => 'required|numeric',
@@ -50,12 +45,6 @@ class AdminController extends Controller
                 'email.email' => 'Email tidak valid',
                 'email.max' => 'Email tidak boleh lebih dari 50 karakter',
                 'email.unique' => 'Email sudah terdaftar, silahkan gunakan email lain',
-                // 'password.required' => 'Password tidak boleh kosong',
-                // 'password.min' => 'Password harus lebih dari 8 karakter',
-                // 'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol',
-                // 're_password.required' => 'Konfirmasi password tidak boleh kosong',
-                // 're_password.same' => 'Konfirmasi password tidak sama dengan password',
-                // 'password.max' => 'Password tidak boleh lebih dari 30 karakter',
                 'NIK.required' => 'NIK tidak boleh kosong',
                 'NIK.unique' => 'NIK sudah terdaftar',
                 'NIK.numeric' => 'NIK harus berupa angka',
@@ -91,13 +80,11 @@ class AdminController extends Controller
         $user->save();
 
         if ($user) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Tambah data user berhasil!');
             return redirect()->intended('/admin')->with('create', 'berhasil create');
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request) // function untuk multiple delete admin 
     {
         try {
             $ids = $request->ids;
@@ -117,13 +104,13 @@ class AdminController extends Controller
         }
     }
 
-    public function updateView($id)
+    public function updateView($id) //function untuk menampilkan tampilan edit admin
     {
         $user = User::findOrFail($id);
         return view('pages.admin-edit', ['item' => $user]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //function untuk update data admin
     {
         $request->validate(
             [
@@ -154,18 +141,11 @@ class AdminController extends Controller
 
         $user = User::findOrFail($id);
 
-        // $user->password = bcrypt($user->NIK);
         $user->update($request->all());
-        // if ($user) {
-        //     Session::flash('status', 'success');
-        //     Session::flash('message', 'Data user berhasil diubah!');
-        // }
-
-        // return redirect('/user');
         return redirect()->intended('/admin')->with('update', 'berhasil update');
     }
 
-    public function show($id)
+    public function show($id) // function untuk menampilkan detail admin
     {
         $user = User::where('id', '=', $id)
             ->first();
@@ -173,7 +153,7 @@ class AdminController extends Controller
         return view('pages.admin-detail', ['item' => $user]);
     }
 
-    public function resetPassword($id)
+    public function resetPassword($id) //function untuk mengganti password admin
     {
         $user = User::findOrFail($id);
 

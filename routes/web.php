@@ -88,7 +88,7 @@ Route::get('/sertifikat-edit/{idSertifikat}', [SertifikatController::class, 'upd
 Route::post('/sertifikat-add-user', [SertifikatController::class, 'addUser'])->middleware('IsLogin');
 Route::get('/delete-user-sertifikat/{user}/{sertifikat}', [SertifikatController::class, 'deleteUser'])->middleware('IsLogin');
 
-# Item Routes
+# Alat Routes
 Route::get('/alatitem', [ItemController::class, 'index'])->middleware('IsLogin');
 Route::post('/alatitem', [ItemController::class, 'store'])->middleware('IsLogin');
 Route::put('/item-update/{id}', [ItemController::class, 'update'])->middleware('IsLogin');
@@ -114,6 +114,6 @@ Route::get('/berita-pulihkan/{id}', [BeritaController::class, 'restore'])->middl
 Route::get('/notifikasi', [NotifikasiController::class, 'create'])->middleware('IsLogin');
 Route::post('/notifikasi/add', [NotifikasiController::class, 'store'])->middleware('IsLogin');
 
-# Report Routes
+# Report Routes 
 Route::get('/report', [ReportController::class, 'index'])->middleware('IsLogin');
 Route::get('/export', [ReportController::class, 'export'])->middleware('IsLogin');

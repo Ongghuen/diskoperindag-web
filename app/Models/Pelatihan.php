@@ -11,9 +11,9 @@ class Pelatihan extends Model
 {
     use HasFactory;
 
-    protected $table = 'pelatihan';
+    protected $table = 'pelatihan'; //untuk menentukan tabel apa yang akan digunakan
 
-    protected $fillable = [
+    protected $fillable = [ // Berisikan kolom yang saja yang bisa diisi oleh pengguna dalam tabel berita
         'nama',
         'penyelenggara',
         'tanggal_pelaksanaan',

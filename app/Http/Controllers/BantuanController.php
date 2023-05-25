@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BantuanController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request) //function untuk menampilkan semua bantuan yang diberikan ke pengguna
     {
         $keyword = $request->keyword;
 
@@ -37,7 +37,7 @@ class BantuanController extends Controller
         return view('pages.bantuan', ['bantuanList' => $bantuan]);
     }
 
-    public function addItem($id)
+    public function addItem($id) //function untuk menampilkan tampilan tambah alat ke bantuan
     {
         $bantuan = Bantuan::findOrFail($id);
         $items = Alat::all();
@@ -45,7 +45,7 @@ class BantuanController extends Controller
         return view('pages.addItem', ['bantuan' => $bantuan, 'itemList' => $items]);
     }
 
-    public function storeItem(Request $request)
+    public function storeItem(Request $request) //function untuk menambahkan alat ke bantuan
     {
         $validator = Validator::make($request->all(), [
             'kuantitas' => 'required|numeric',
@@ -68,7 +68,7 @@ class BantuanController extends Controller
         }
     }
 
-    public function deleteItem($item, $bantuan)
+    public function deleteItem($item, $bantuan) //function untuk mengahapus alat dari bantuan
     {
         $data = BantuanAlat::where('bantuan_id', '=', $bantuan)
             ->where('alat_id', '=', $item)->delete();
@@ -78,7 +78,7 @@ class BantuanController extends Controller
         }
     }
 
-    public function detailbantuan($id)
+    public function detailbantuan($id) //function untuk menampilkan detail bantuan
     {
         $bantuan = Bantuan::with(['user', 'itemBantuan'])
             ->where('id', '=', $id)
@@ -91,14 +91,14 @@ class BantuanController extends Controller
         return view('pages.bantuan-detail', ['item' => $bantuan, 'alat' => $alat]);
     }
 
-    public function updateView($idBantuan, $idUser)
+    public function updateView($idBantuan, $idUser) //function untuk menampilka tampilan edit bantuan
     {
         $items = Bantuan::findOrFail($idBantuan);
         $user = User::findOrFail($idUser);
         return view('pages.bantuan-edit', ['item' => $items, 'user' => $user]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //function untu update bantuan
     {
         $request->validate(
             [
@@ -129,7 +129,7 @@ class BantuanController extends Controller
         return redirect()->intended('/detail-user-bantuan/' . $user)->with('update', 'berhasil diubah');
     }
 
-    public function updateQty(Request $request, $idBantuan, $idAlat)
+    public function updateQty(Request $request, $idBantuan, $idAlat) //function untuk uodate kuantitas alat yang diberikan
     {
         $validator = Validator::make($request->all(), [
             'kuantitas' => 'required|numeric',

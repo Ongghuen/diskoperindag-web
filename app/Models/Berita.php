@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Berita extends Model
 {
-    protected $table = "berita";
+    protected $table = "berita"; // untuk menentukan tabel yang akan digunakan
 
-    protected $fillable = [
+    protected $fillable = [ // Berisikan kolom yang saja yang bisa diisi oleh pengguna dalam tabel berita
         'image',
         'judul',
         'subjudul',
@@ -18,5 +18,5 @@ class Berita extends Model
         'deleted_at'
     ];
 
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes; 
 }

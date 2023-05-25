@@ -15,11 +15,11 @@ class SertifikatOneExport implements FromCollection, WithHeadings, WithMapping, 
     protected $keyword;
     protected $rowNumber = 0;
 
-    function __construct($data1) {
+    function __construct($data1) { //function untuk menangkap data dari onekeywordexport
         $this->keyword = $data1;
     }
 
-    public function collection()
+    public function collection() //function untuk mencari data yang dibutuhkan
     {
         $data1 = $this->keyword;
         $sertfikat = Sertifikat::with('user.role')
@@ -77,7 +77,7 @@ class SertifikatOneExport implements FromCollection, WithHeadings, WithMapping, 
         ];
     }
 
-    public function headings(): array
+    public function headings(): array //function untuk membuat judul kolom
     {
         return [
             'No.',
@@ -91,12 +91,12 @@ class SertifikatOneExport implements FromCollection, WithHeadings, WithMapping, 
         ];
     }
 
-    public function title(): string
+    public function title(): string //function untuk membuat judul sheet
     {
         return 'Sertifikat';
     }
 
-    public function registerEvents(): array
+    public function registerEvents(): array //function untuk auto width
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {

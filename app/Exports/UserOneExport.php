@@ -21,7 +21,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
         $this->keyword = $data1;
     }
     
-    public function collection()
+    public function collection() //function untuk memilih data yang akan diexport
     {
         $data = $this->keyword;
         $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
@@ -214,7 +214,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
         return collect($user);
     }
 
-    public function map($row): array
+    public function map($row): array //function untuk mengambil data dari query function collection
     {
         ++$this->rowNumber;
         
@@ -235,7 +235,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
         ];
     }
 
-    public function headings(): array
+    public function headings(): array //function untuk membuat headings excel
     {
         return [
             'No.',
@@ -252,12 +252,12 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
         ];
     }
 
-    public function title(): string
+    public function title(): string //function untuk membuat judul sheet
     {
         return 'Induk Pengguna';
     }
 
-    public function registerEvents(): array
+    public function registerEvents(): array //function untuk auto width column laravel excel
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {

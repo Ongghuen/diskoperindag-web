@@ -10,9 +10,9 @@ class Sertifikat extends Model
 {
     use HasFactory;
 
-    protected $table = 'sertifikat';
+    protected $table = 'sertifikat'; //untuk menentukan tabel apa yang aka digunakan
 
-    protected $fillable = [
+    protected $fillable = [ // Berisikan kolom yang saja yang bisa diisi oleh pengguna dalam tabel sertifikat
         'no_sertifikat',
         'nama',
         'tanggal_terbit',
@@ -21,7 +21,7 @@ class Sertifikat extends Model
         'user_id'
     ];
 
-    public function user()
+    public function user() //relasi dari tabel sertifikat ke user secara many to many
     {
         return $this->belongsToMany(User::class, 'user_sertifikat', 'sertifikat_id', 'user_id')
         ->withPivot(['no_sertifikat']);

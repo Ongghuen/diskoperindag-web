@@ -15,7 +15,7 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index() //function untuk menampilkan semua pengguna yang terdaftar
     {
         $user = User::with(['role', 'bantuan.itemBantuan'])
             ->where('role_id', '=', 3)
@@ -30,12 +30,12 @@ class UserController extends Controller
         );
     }
 
-    public function storeView()
+    public function storeView() //function untuk menampilkan tampilan tambah pengguna
     {
         return view('pages.user-add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //function untuk menambah pengguna baru
     {
         $request->validate(
             [
@@ -91,13 +91,11 @@ class UserController extends Controller
         $user->save();
 
         if ($user) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Tambah data user berhasil!');
             return redirect()->intended('/user')->with('create', 'berhasil create');
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request) //function utntuk menghapus pengguna 
     {
         try {
             $ids = $request->ids;
@@ -117,13 +115,13 @@ class UserController extends Controller
         }
     }
 
-    public function updateView($id)
+    public function updateView($id) //function untuk menampilkan tampilan edit pengguna
     {
         $user = User::findOrFail($id);
         return view('pages.user-edit', ['item' => $user]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //function untuk update data pengguna
     {
         $request->validate(
             [
@@ -170,14 +168,14 @@ class UserController extends Controller
         return redirect()->intended('/user')->with('update', 'berhasil update');
     }
 
-    public function addBantuan($id)
+    public function addBantuan($id) //function untuk menampilkan tampilan tambah bantuan baru
     {
         $user = User::findOrFail($id);
 
         return view('pages.addBantuan', ['user' => $user]);
     }
 
-    public function storeBantuan(Request $request)
+    public function storeBantuan(Request $request) //function untuk menambahkan bantuan baru
     {
         $request->validate(
             [
@@ -222,7 +220,7 @@ class UserController extends Controller
         }
     }
 
-    public function detailuserbantuan($id)
+    public function detailuserbantuan($id) //function untuk menampilkan detail pengguna
     {
         $user = User::with(['role', 'bantuan.itemBantuan', 'pelatihan', 'sertifikat'])
             ->where('id', '=', $id)
@@ -239,7 +237,7 @@ class UserController extends Controller
         return view('pages.detail-user-bantuan', ['item' => $user, 'pelatihan' => $pelatihan, 'sertifikat' => $sertifikat]);
     }
 
-    public function deleteBantuan($id)
+    public function deleteBantuan($id) //function untuk menghapus bantuan
     {
         try {
             $data = Bantuan::findOrFail($id);

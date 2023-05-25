@@ -15,12 +15,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Sortable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
+    protected $fillable = [ //Berisikan kolom yang saja yang bisa diisi oleh pengguna dalam tabel user
         'name',
         'email',
         'password',
@@ -34,7 +29,7 @@ class User extends Authenticatable
         'umur',
     ];
 
-    public $sortable = [
+    public $sortable = [ //berisikan kolom apa saja yang bisa dilakukan sorting secara ascending maupun descending
         'name',
         'email',
         'NIK',
@@ -42,57 +37,47 @@ class User extends Authenticatable
         'phone',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
+    protected $hidden = [ 
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
+    public function role() //relasi dari tabel user ke role secara many to one
     {
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
-    public function bantuan()
+    public function bantuan() //relasi dari tabel user ke bantuan secara one to many
     {
         return $this->hasMany(Bantuan::class, 'user_id', 'id');
     }
 
-    public function pelatihan()
+    public function pelatihan() //relasi dari tabel user ke pelatihan secara many to many
     {
         return $this->belongsToMany(Pelatihan::class, 'user_pelatihan', 'user_id', 'pelatihan_id');
     }
 
-    public function sertifikat()
+    public function sertifikat() //relasi dari tabel user ke sertifikat secara many to many
     {
         return $this->belongsToMany(Sertifikat::class, 'user_sertifikat', 'user_id', 'sertifikat_id')
         ->withPivot(['no_sertifikat']);
     }
 
-    public function berita()
+    public function berita() // relasi dari tabel user ke berita secara many to many
     {
         return $this->belongsToMany(Berita::class, 'berita_tersimpan', 'user_id', 'berita_id');
     }
 
-    public function getUmurAttribute()
+    public function getUmurAttribute() //function untuk menginputkan value kedalam kolom umur secara otomatis
     {
         return $this->attributes['umur'] = Carbon::parse($this->attributes['tanggal_lahir'])->age;
     }
 
-    public function routeNotificationForFcm()
+    public function routeNotificationForFcm() //function untuk get token fcm
     {
         return $this->fcm_token;
     }

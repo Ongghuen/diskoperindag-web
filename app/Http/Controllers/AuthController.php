@@ -12,12 +12,12 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    public function index()
+    public function index() //function untuk menampilkan tampilan mobile
     {
         return view('login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(Request $request) //function untuk login kedalam aplikasi website admin
     {
         $credentials = $request->validate([
             'email' => ['required'],
@@ -46,7 +46,7 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request) //function untuk logout dari aplikasi website admin
     {
         Auth::logout();
 
@@ -56,7 +56,7 @@ class AuthController extends Controller
         return redirect('/login')->with('logout', 'logout berhasil');
     }
 
-    public function changePassword(Request $request, $id)
+    public function changePassword(Request $request, $id) //function untuk ganti password admin di aplikasi website admin
     {
         $validator = Validator::make($request->all(), [
             'old_password' => 'required',

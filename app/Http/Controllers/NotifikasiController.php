@@ -9,14 +9,14 @@ use Kreait\Firebase\Messaging\Notification;
 
 class NotifikasiController extends Controller
 {
-    public function create()
+    public function create() //function untuk menampilkan tampilan notifikasi di website
     {
         $user = User::all();
 
         return view('pages.notifikasi', ['user' => $user]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //function untuk mengirim notifikasi ke user
     {
         $request->validate(
             [

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class SertifikatController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request) //function untuk menampilkan semua sertifikat
     {
         $keyword = $request->keyword;
 
@@ -31,7 +31,7 @@ class SertifikatController extends Controller
         return view('pages.sertifikat', ['itemList' => $items]);
     }
 
-    public function detailsertifikat($id)
+    public function detailsertifikat($id) //function untuk menampilkan detail sertifikat
     {
         $items = Sertifikat::with('user')->findOrFail($id);
 
@@ -42,7 +42,7 @@ class SertifikatController extends Controller
         return view('pages.sertifikat-detail', ['sertifikat' => $items, 'user' => $user]);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request) //fuction untuk multiple delete sertifikat
     {
         try {
             $ids = $request->ids;
@@ -62,12 +62,12 @@ class SertifikatController extends Controller
         }
     }
 
-    public function storeView()
+    public function storeView() //function untuk menampilkan tampilan tambah sertifikat 
     {
         return view('pages.sertifikat-add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //fucntion untuk menambah sertifikat
     {
         $request->validate(
             [
@@ -92,13 +92,13 @@ class SertifikatController extends Controller
         return redirect('/sertifikat')->with('create', 'berhasil ditambahkan');
     }
 
-    public function updateView($idSertifikat)
+    public function updateView($idSertifikat) //function untuk menampilkan tampilan edit sertifikat
     {
         $items = Sertifikat::findOrFail($idSertifikat);
         return view('pages.sertifikat-edit', ['item' => $items]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //function untuk update sertifikat
     {
         $request->validate(
             [
@@ -122,25 +122,21 @@ class SertifikatController extends Controller
         return redirect('/sertifikat')->with('update', 'berhasil diupdate');
     }
 
-    public function addUser(Request $request)
+    public function addUser(Request $request) //function untuk menambahkan pengguna ke dalam sertifikat
     {
         $data = new UserSertifikat;
         $data->create($request->all());
 
         if ($data) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Item berhasil ditambahkan!');
             return redirect()->back()->with('create', 'Item berhasil ditambahkan');
         }
     }
 
-    public function deleteUser($user, $sertifikat)
+    public function deleteUser($user, $sertifikat) //function untuk menghapus user dari sertifikat
     {
         $data = UserSertifikat::where('user_id', $user)->where('sertifikat_id', $sertifikat)->delete();
 
         if ($data) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Item berhasil ditambahkan!');
             return redirect()->back()->with('delete', 'berhasil delete');
         }
     }

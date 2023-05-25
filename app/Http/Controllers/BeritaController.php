@@ -11,7 +11,7 @@ use Kreait\Firebase\Messaging\Notification;
 
 class BeritaController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request) //function untuk menampilkan semua berita
     {
         $keyword = $request->keyword;
 
@@ -22,12 +22,12 @@ class BeritaController extends Controller
         return view('pages.berita', ['itemList' => $dataBerita]);
     }
 
-    public function storeView()
+    public function storeView() //function untuk menampilkan tampilan tambah berita
     {
         return view('pages.berita-add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //function untuk tambah berita baru
     {
         $request->validate(
             [
@@ -81,21 +81,21 @@ class BeritaController extends Controller
         }
     }
 
-    public function beritadetail($id)
+    public function beritadetail($id) //function untuk menampilkan detail berita
     {
         $items = Berita::findOrFail($id);
 
         return view('pages.berita-detail', ['item' => $items]);
     }
 
-    public function editview($id)
+    public function editview($id) //fucntion untuk menampilkan tampilan edit berita
     {
         $items = Berita::findOrFail($id);
 
         return view('pages.berita-edit', ['item' => $items]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //function untuk update berita
     {
         if ($request->image == null) {
             $request->validate(
@@ -117,12 +117,8 @@ class BeritaController extends Controller
             $items->update($request->all());
 
             if ($items) {
-                // Session::flash('status', 'success');
-                // Session::flash('message', 'Data item bantuan berhasil diubah!');
                 return redirect()->intended('/berita')->with('update', 'berhasil diupdate');
             }
-
-            // return redirect('/berita');
         } else {
             $request->validate(
                 [
@@ -164,14 +160,11 @@ class BeritaController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request) //function untuk softdelete berita
     {
         $ids = $request->ids;
 
         if ($ids != null) {
-            // foreach($ids as $data){
-            //     File::delete(storage_path('images/berita/' . Berita::find($data)->image));
-            // }
             $berita = Berita::whereIn('id', $ids);
             $berita->delete();
 
@@ -183,7 +176,7 @@ class BeritaController extends Controller
         }
     }
 
-    public function generateRandomString($length = 10)
+    public function generateRandomString($length = 10) //function untuk generate random string sebagai nama image yang diupload
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -195,21 +188,21 @@ class BeritaController extends Controller
         return $randomString;
     }
 
-    public function restoreView()
+    public function restoreView() //function untuk menampilkan berita yang telah disoftdelete
     {
         $dataBerita = Berita::onlyTrashed()->get();
 
         return view('pages.berita-deleted', ['itemList' => $dataBerita]);
     }
 
-    public function beritaDetailDeleted($id)
+    public function beritaDetailDeleted($id) //function untuk melihat detail berita yang telah dihapus
     {
         $items = Berita::withTrashed()->find($id);
 
         return view('pages.berita-detail', ['item' => $items]);
     }
 
-    public function forceDestroy(Request $request)
+    public function forceDestroy(Request $request) //function untuk menghapus permanen berita
     {
         $ids = $request->ids;
 
@@ -231,7 +224,7 @@ class BeritaController extends Controller
         }
     }
 
-    public function restore($id)
+    public function restore($id) //function untuk memulihkan berita yang telah dihapus
     {
         $berita = Berita::withTrashed()->where('id', $id)->restore();
 

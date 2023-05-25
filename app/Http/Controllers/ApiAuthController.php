@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
-    public function login(Request $request)
+    public function login(Request $request) //functio untuk login di aplikasi mobile
     {
         $formField = $request->validate([
             'email' => 'required',
@@ -30,19 +30,19 @@ class ApiAuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request)// function untuk logout di aplikasi mobile
     {
         $request->user()->currentAccessToken()->delete();
 
         return response()->json('Logged Out');
     }
 
-    public function checkToken()
+    public function checkToken()//function untuk cek token bearer 
     {
         return response()->json('Valid');
     }
 
-    public function changePassword(Request $request)
+    public function changePassword(Request $request) //function untuk ganti pasword di aplikasi mobile
     {
         if (Hash::check($request->currentPassword, auth()->user()->password)) {
             $user = auth()->user();
@@ -54,7 +54,7 @@ class ApiAuthController extends Controller
         }
     }
 
-    public function assignToken(Request $request)
+    public function assignToken(Request $request) //function untuk memberi fcm token ke ucer
     {
         $user = auth()->user();
         $user->fcm_token = $request->fcm_token;

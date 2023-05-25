@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class PelatihanController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request) //fucntion untuk menampilkan semua pelatihan
     {
         $keyword = $request->keyword;
 
@@ -32,7 +32,7 @@ class PelatihanController extends Controller
         return view('pages.pelatihan', ['itemList' => $items]);
     }
 
-    public function detailPelatihan($id)
+    public function detailPelatihan($id) //function untuk menampilkan detail pelatihan
     {
         $pelatihan = Pelatihan::with('user')
             ->where('id', '=', $id)
@@ -45,7 +45,7 @@ class PelatihanController extends Controller
         return view('pages.pelatihan-detail', ['pelatihan' => $pelatihan, 'user' => $user]);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request) //function untuk menghapus pelatihan
     {
         try {
             $ids = $request->ids;
@@ -65,14 +65,12 @@ class PelatihanController extends Controller
         }
     }
 
-    public function storeView()
+    public function storeView() //function untuk menampilkan tampilan tambah
     {
-        // $user = User::findOrFail($id);
-
         return view('pages.pelatihan-add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //funtion untuk menambahkan pelatihan
     {
         $request->validate(
             [
@@ -99,14 +97,13 @@ class PelatihanController extends Controller
         return redirect('/pelatihan')->with('create', 'berhasil ditambahkan');
     }
 
-    public function updateView($idPelatihan)
+    public function updateView($idPelatihan) //function untuk menampilkan tampilan edit pelatihan
     {
         $items = Pelatihan::findOrFail($idPelatihan);
-        // $user = User::findOrFail($idUser);
         return view('pages.pelatihan-edit', ['item' => $items]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //funtion untuk update pelatihan
     {
         $request->validate(
             [
@@ -131,25 +128,21 @@ class PelatihanController extends Controller
         return redirect('/pelatihan')->with('update', 'berhasil diupdate');
     }
 
-    public function addUser(Request $request)
+    public function addUser(Request $request) //function untuk menambahkan pengguna ikut ke pelatihan
     {
         $data = new UserPelatihan;
         $data->create($request->all());
 
         if ($data) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Item berhasil ditambahkan!');
             return redirect()->back()->with('create', 'Item berhasil ditambahkan');
         }
     }
 
-    public function deleteUser($user, $pelatihan)
+    public function deleteUser($user, $pelatihan) //function untuk menghapus user dari pelatihan
     {
         $data = UserPelatihan::where('user_id', $user)->where('pelatihan_id', $pelatihan)->delete();
 
         if ($data) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Item berhasil ditambahkan!');
             return redirect()->back()->with('delete', 'berhasil delete');
         }
     }

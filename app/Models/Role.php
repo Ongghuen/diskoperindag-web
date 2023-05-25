@@ -10,7 +10,7 @@ class Role extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function user() //relasi dari tabel role ke user secara one to many
     {
         return $this->hasOne(User::class);
     }

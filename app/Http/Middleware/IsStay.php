@@ -16,9 +16,8 @@ class IsStay
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): Response //middleware untuk mencegah orang yang sudah login agar tidak bisa keluar sembarangan sebelum melakukan logout
     {
-
         if (Auth::check()) {
             return redirect('/user')->with('sudahlogin', 'anda sudah login');
         } else {

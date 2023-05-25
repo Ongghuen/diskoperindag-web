@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Session;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index() //function untuk menampilkan semua alat
     {
         $items = Alat::all();
 
         return view('pages.alatitem', ['itemList' => $items]);
     }
 
-    public function storeView()
+    public function storeView() //function untuk menampilkan tampilan tambah berita
     {
         return view('pages.item-add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //function untuk menambahkan alat baru
     {
         $request->validate(
             [
@@ -32,7 +32,6 @@ class ItemController extends Controller
                 'nama_item.max' => 'Nama item maksimal 50 karakter!',
                 'deskripsi.required' => 'deskripsi tidak boleh kosong!'
             ]
-
         );
 
         $items = new Alat;
@@ -44,7 +43,7 @@ class ItemController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request) //function untuk menghapus alat
     {
         try {
             $ids = $request->ids;
@@ -64,13 +63,13 @@ class ItemController extends Controller
         }
     }
 
-    public function updateView($id)
+    public function updateView($id) //function untuk menampilkan tampilan edit alat
     {
         $items = Alat::findOrFail($id);
         return view('pages.item-edit', ['item' => $items]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //function untuk update alat
     {
         $request->validate(
             [
@@ -82,7 +81,6 @@ class ItemController extends Controller
                 'nama_item.max' => 'Nama item maksimal 50 karakter!',
                 'deskripsi.required' => 'deskripsi tidak boleh kosong!'
             ]
-
         );
 
         $items = Alat::findOrFail($id);
@@ -93,7 +91,7 @@ class ItemController extends Controller
         }
     }
 
-    public function itemdetail($id)
+    public function itemdetail($id) //function untuk menampilkan detail alat
     {
         $items = Alat::findOrFail($id);
         return view('pages.item-detail', ['item' => $items]);

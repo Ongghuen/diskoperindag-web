@@ -10,15 +10,15 @@ class Alat extends Model
 {
     use HasFactory;
 
-    protected $table = 'alat';
+    protected $table = 'alat'; // untuk menentukan tabel apa yang akan digunakan
 
-    protected $fillable = [
+    protected $fillable = [ // Berisikan kolom yang saja yang bisa diisi oleh pengguna dalam tabel alat
         'nama_item',
         'stok',
         'deskripsi'
     ];
 
-    public function bantuan()
+    public function bantuan() // relasi dari tabel alat ke bantuan secara many to many
     {
         return $this->belongsToMany(Bantuan::class, 'bantuan_alat', 'alat_id', 'bantuan_id')
         ->withPivot(['kuantitas']);;
