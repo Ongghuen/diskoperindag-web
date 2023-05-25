@@ -21,13 +21,12 @@ class NotifikasiController extends Controller
         $request->validate(
             [
                 'judul' => 'required|max:100',
-                'body' => 'required|max:1000',
+                'body' => 'required',
             ],
             [
                 'judul.required' => 'Judul tidak boleh kosong!',
                 'judul.max' => 'Sub Judul maksimal 100 karakter!',
-                'body.required' => 'deskripsi tidak boleh kosong!',
-                'body.max' => 'deskripsi maksimal 1000 karakter!',
+                'body.required' => 'deskripsi tidak boleh kosong!'
             ]
         );
 

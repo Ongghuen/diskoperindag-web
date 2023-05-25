@@ -38,11 +38,6 @@
                                     placeholder="Nama Item" name="nama_item" value="{{ old('nama_item') }}">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Jumlah Diberikan</label>
-                                <input type="text" class="form-control input-default" id="exampleInputEmail1"
-                                    name="stok" placeholder="Jumlah Diberikan" value="{{ old('stok') }}">
-                            </div>
-                            <div class="form-group">
                                 <label for="exampleTextarea1">Deskripsi</label>
                                 <textarea class="form-control input-default" id="exampleTextarea1" rows="4" name="deskripsi">{{ old('deskripsi') }}</textarea>
                             </div>

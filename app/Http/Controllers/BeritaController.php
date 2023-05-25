@@ -102,15 +102,14 @@ class BeritaController extends Controller
                 [
                     'judul' => 'required|max:100',
                     'subjudul' => 'required|max:100',
-                    'body' => 'required|max:5000',
+                    'body' => 'required',
                 ],
                 [
                     'judul.required' => 'Judul tidak boleh kosong!',
                     'judul.max' => 'Sub Judul maksimal 100 karakter!',
                     'subjudul.required' => 'Judul tidak boleh kosong!',
                     'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
-                    'body.required' => 'deskripsi tidak boleh kosong!',
-                    'body.max' => 'deskripsi maksimal 1000 karakter!',
+                    'body.required' => 'deskripsi tidak boleh kosong!'
                 ]
             );
 
@@ -130,7 +129,7 @@ class BeritaController extends Controller
                     'image' => 'required|max:2048|mimes:png,jpg,jpeg',
                     'judul' => 'required|max:100',
                     'subjudul' => 'required|max:100',
-                    'body' => 'required|max:1000',
+                    'body' => 'required',
                 ],
                 [
                     'image' => 'Image tidak boleh kosong!',
@@ -140,8 +139,7 @@ class BeritaController extends Controller
                     'judul.max' => 'Sub Judul maksimal 100 karakter!',
                     'subjudul.required' => 'Judul tidak boleh kosong!',
                     'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
-                    'body.required' => 'deskripsi tidak boleh kosong!',
-                    'body.max' => 'deskripsi maksimal 1000 karakter!',
+                    'body.required' => 'deskripsi tidak boleh kosong!'
                 ]
 
             );

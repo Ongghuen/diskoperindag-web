@@ -74,15 +74,14 @@ class SertifikatController extends Controller
                 'nama' => 'required|max:50',
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
-                'keterangan' => 'required|max:255',
+                'keterangan' => 'required',
             ],
             [
                 'nama.required' => 'Nama tidak boleh kosong!',
                 'nama.max' => 'Nama maksimal 50 karakter!',
                 'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
                 'kadaluarsa_penyelenggara.required' => 'Kadaluarsa Penyelenggara tidak boleh kosong!',
-                'keterangan.required' => 'Keterangan tidak boleh kosong!',
-                'keterangan.max' => 'Keterangan maksimal 50 karakter!',
+                'keterangan.required' => 'Keterangan tidak boleh kosong!'
             ]
         );
 
@@ -106,15 +105,14 @@ class SertifikatController extends Controller
                 'nama' => 'required|max:50',
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
-                'keterangan' => 'required|max:255',
+                'keterangan' => 'required',
             ],
             [
                 'nama.required' => 'Nama tidak boleh kosong!',
                 'nama.max' => 'Nama maksimal 50 karakter!',
                 'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
                 'kadaluarasa_penyelenggara.required' => 'Kadaluarsa Penyelenggara tidak boleh kosong!',
-                'keterangan.required' => 'Keterangan tidak boleh kosong!',
-                'keterangan.max' => 'Keterangan maksimal 50 karakter!',
+                'keterangan.required' => 'Keterangan tidak boleh kosong!'
             ]
         );
 

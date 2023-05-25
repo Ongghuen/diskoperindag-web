@@ -25,16 +25,12 @@ class ItemController extends Controller
         $request->validate(
             [
                 'nama_item' => 'required|max:50',
-                'stok' => 'required|numeric',
-                'deskripsi' => 'required|max:255',
+                'deskripsi' => 'required',
             ],
             [
                 'nama_item.required' => 'Nama item tidak boleh kosong!',
                 'nama_item.max' => 'Nama item maksimal 50 karakter!',
-                'stok.required' => 'Stok tidak boleh kosong!',
-                'stok.numeric' => 'Jumlah harus berupa angka!',
-                'deskripsi.required' => 'deskripsi tidak boleh kosong!',
-                'deskripsi.max' => 'deskripsi maksimal 255 karakter!',
+                'deskripsi.required' => 'deskripsi tidak boleh kosong!'
             ]
 
         );
@@ -44,8 +40,6 @@ class ItemController extends Controller
         $items->create($request->all());
 
         if ($items) {
-            // Session::flash('status', 'success');
-            // Session::flash('message', 'Tambah data item bantuan berhasil!');
             return redirect()->intended('/alatitem')->with('create', 'berhasil create');
         }
     }
@@ -81,16 +75,12 @@ class ItemController extends Controller
         $request->validate(
             [
                 'nama_item' => 'required|max:50',
-                'stok' => 'required|max:6',
-                'deskripsi' => 'required|max:255',
+                'deskripsi' => 'required',
             ],
             [
                 'nama_item.required' => 'Nama item tidak boleh kosong!',
                 'nama_item.max' => 'Nama item maksimal 50 karakter!',
-                'stok.required' => 'Stok tidak boleh kosong!',
-                'stok.max' => 'Stok maksimal 6 karakter!',
-                'deskripsi.required' => 'deskripsi tidak boleh kosong!',
-                'deskripsi.max' => 'deskripsi maksimal 255 karakter!',
+                'deskripsi.required' => 'deskripsi tidak boleh kosong!'
             ]
 
         );
