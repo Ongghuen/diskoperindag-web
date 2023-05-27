@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Kreait\Firebase\Messaging\CloudMessage;
@@ -32,7 +33,7 @@ class BeritaController extends Controller
         $request->validate(
             [
                 'file' => 'max:2048|mimes:png,jpg,jpeg',
-                'judul' => 'required|max:100',
+                'judul' => 'required|max:100|unique:berita',
                 'subjudul' => 'required|max:100',
                 'body' => 'required|max:5000',
             ],
@@ -40,9 +41,10 @@ class BeritaController extends Controller
                 'file.max' => 'Image maksimal 2MB!',
                 'file.mimes' => 'Image harus berupa png, jpg, jpeg!',
                 'judul.required' => 'Judul tidak boleh kosong!',
-                'judul.max' => 'Sub Judul maksimal 100 karakter!',
-                'subjudul.required' => 'Judul tidak boleh kosong!',
-                'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
+                'judul.max' => 'Judul maksimal 100 karakter!',
+                'judul.unique' => 'Judul sudah ada, silahkan gunakan judul lain!',
+                'subjudul.required' => 'Subjudul tidak boleh kosong!',
+                'subjudul.max' => 'Subjudul maksimal 100 karakter!',
                 'body.required' => 'deskripsi tidak boleh kosong!',
                 'body.max' => 'deskripsi maksimal 1000 karakter!',
             ]
@@ -100,15 +102,16 @@ class BeritaController extends Controller
         if ($request->image == null) {
             $request->validate(
                 [
-                    'judul' => 'required|max:100',
+                    'judul' => ['required','max:100', Rule::unique('berita')->ignore($id, 'id')],
                     'subjudul' => 'required|max:100',
                     'body' => 'required',
                 ],
                 [
                     'judul.required' => 'Judul tidak boleh kosong!',
-                    'judul.max' => 'Sub Judul maksimal 100 karakter!',
-                    'subjudul.required' => 'Judul tidak boleh kosong!',
-                    'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
+                    'judul.max' => 'Judul maksimal 100 karakter!',
+                    'judul.unique' => 'Judul sudah ada, silahkan gunakan judul lain!',
+                    'subjudul.required' => 'Subjudul tidak boleh kosong!',
+                    'subjudul.max' => 'Subjudul maksimal 100 karakter!',
                     'body.required' => 'deskripsi tidak boleh kosong!'
                 ]
             );
@@ -123,7 +126,7 @@ class BeritaController extends Controller
             $request->validate(
                 [
                     'image' => 'required|max:2048|mimes:png,jpg,jpeg',
-                    'judul' => 'required|max:100',
+                    'judul' => ['required','max:100', Rule::unique('berita')->ignore($id, 'id')],
                     'subjudul' => 'required|max:100',
                     'body' => 'required',
                 ],
@@ -132,9 +135,10 @@ class BeritaController extends Controller
                     'image.max' => 'Image maksimal 2MB!',
                     'image.mimes' => 'Image harus berupa png, jpg, jpeg!',
                     'judul.required' => 'Judul tidak boleh kosong!',
-                    'judul.max' => 'Sub Judul maksimal 100 karakter!',
-                    'subjudul.required' => 'Judul tidak boleh kosong!',
-                    'subjudul.max' => 'Sub Judul maksimal 100 karakter!',
+                    'judul.max' => 'Judul maksimal 100 karakter!',
+                    'judul.unique' => 'Judul sudah ada, silahkan gunakan judul lain!',
+                    'subjudul.required' => 'Subjudul tidak boleh kosong!',
+                    'subjudul.max' => 'Subjudul maksimal 100 karakter!',
                     'body.required' => 'deskripsi tidak boleh kosong!'
                 ]
 

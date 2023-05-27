@@ -59,8 +59,10 @@ class AlatOnlyFullDate implements FromCollection, WithHeadings, WithMapping, Wit
                 $bantuan->nama_bantuan,
                 join(',', $alat),
                 join(',', $qty),
+                $bantuan->koordinator,
+                $bantuan->sumber_anggaran,
                 $bantuan->tahun_pemberian,
-                $bantuan->jenis_usaha
+                $bantuan->user->jenis_usaha
             ],
         ];
     }
@@ -75,6 +77,8 @@ class AlatOnlyFullDate implements FromCollection, WithHeadings, WithMapping, Wit
             'Bantuan',
             'Alat',
             'Jumlah',
+            'Koordinator',
+            'Sumber Anggaran',
             'Tahun Pemberian',
             'Jenis Usaha'
         ];

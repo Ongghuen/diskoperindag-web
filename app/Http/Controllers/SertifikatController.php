@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Sertifikat;
 use Illuminate\Http\Request;
 use App\Models\UserSertifikat;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -71,17 +72,19 @@ class SertifikatController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required|max:50',
+                'nama' => 'required|max:100|unique:sertifikat',
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
-                'keterangan' => 'required',
+                'keterangan' => 'required|max:1000',
             ],
             [
                 'nama.required' => 'Nama tidak boleh kosong!',
-                'nama.max' => 'Nama maksimal 50 karakter!',
+                'nama.max' => 'Nama maksimal 100 karakter!',
+                'nama.unique' => 'Nama sertifikat sudah ada, silahkan gunakan nama lain',
                 'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
                 'kadaluarsa_penyelenggara.required' => 'Kadaluarsa Penyelenggara tidak boleh kosong!',
-                'keterangan.required' => 'Keterangan tidak boleh kosong!'
+                'keterangan.required' => 'Keterangan tidak boleh kosong!',
+                'keterangan.max' => 'Keterangan maksimal 1000 karakter'
             ]
         );
 
@@ -102,17 +105,19 @@ class SertifikatController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required|max:50',
+                'nama' => ['required','max:50', Rule::unique('sertifikat')->ignore($id, 'id')],
                 'tanggal_terbit' => 'required|date',
                 'kadaluarsa_penyelenggara' => 'required|date',
-                'keterangan' => 'required',
+                'keterangan' => 'required|max:1000',
             ],
             [
                 'nama.required' => 'Nama tidak boleh kosong!',
                 'nama.max' => 'Nama maksimal 50 karakter!',
+                'nama.unique' => 'Nama pelatihan sudah ada, silahkan gunakan nama lain',
                 'tanggal_terbit.required' => 'Tanggal Terbit tidak boleh kosong!',
                 'kadaluarasa_penyelenggara.required' => 'Kadaluarsa Penyelenggara tidak boleh kosong!',
-                'keterangan.required' => 'Keterangan tidak boleh kosong!'
+                'keterangan.required' => 'Keterangan tidak boleh kosong!',
+                'keterangan.max' => 'Keterangan maksimal 1000 karakter'
             ]
         );
 

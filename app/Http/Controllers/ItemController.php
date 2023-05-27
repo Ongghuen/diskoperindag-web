@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alat;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Session;
 
 class ItemController extends Controller
@@ -24,13 +25,15 @@ class ItemController extends Controller
     {
         $request->validate(
             [
-                'nama_item' => 'required|max:50',
-                'deskripsi' => 'required',
+                'nama_item' => 'required|max:50|unique:alat',
+                'deskripsi' => 'required|max:1000',
             ],
             [
-                'nama_item.required' => 'Nama item tidak boleh kosong!',
-                'nama_item.max' => 'Nama item maksimal 50 karakter!',
-                'deskripsi.required' => 'deskripsi tidak boleh kosong!'
+                'nama_item.required' => 'Nama alat tidak boleh kosong!',
+                'nama_item.max' => 'Nama alat maksimal 50 karakter!',
+                'nama_item.unique' => 'Nama alat sudah ada, silahkan gunakan nama lain',
+                'deskripsi.required' => 'deskripsi tidak boleh kosong!',
+                'deskripsi.max' => 'Deskripsi maksimal 1000 karakter'
             ]
         );
 
@@ -73,13 +76,15 @@ class ItemController extends Controller
     {
         $request->validate(
             [
-                'nama_item' => 'required|max:50',
-                'deskripsi' => 'required',
+                'nama_item' => ['required','max:50', Rule::unique('alat')->ignore($id, 'id')],
+                'deskripsi' => 'required|max:1000',
             ],
             [
                 'nama_item.required' => 'Nama item tidak boleh kosong!',
                 'nama_item.max' => 'Nama item maksimal 50 karakter!',
-                'deskripsi.required' => 'deskripsi tidak boleh kosong!'
+                'nama_item.unique' => 'Nama alat sudah ada, silahkan gunakan nama lain',
+                'deskripsi.required' => 'Deskripsi tidak boleh kosong!',
+                'deskripsi.max' => 'Deskripsi maksimal 1000 karakter'
             ]
         );
 

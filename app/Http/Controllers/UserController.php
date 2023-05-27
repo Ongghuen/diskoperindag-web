@@ -45,7 +45,8 @@ class UserController extends Controller
                 'alamat' => 'required|max:100',
                 'phone' => 'required|numeric|digits_between:10,13',
                 'tanggal_lahir' => 'required|date',
-                'tempat_lahir' => 'required|max:30',
+                'tempat_lahir' => 'required|max:50',
+                'jenis_usaha_lainnya' => 'max:50'
             ],
             [
                 'name.required' => 'Nama tidak boleh kosong',
@@ -68,13 +69,21 @@ class UserController extends Controller
                 'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
                 'tempat_lahir.max' => 'Tempat lahir tidak boleh lebih dari 30 karakter',
+                'jenis_usaha_lainnya.max' => 'Jenis usaha lainnya tidak boleh lebih dari 50 karakter'
             ],
         );
 
         $user = new User;
+        $jh = '';
         $password = bcrypt($request->NIK);
         $tl = Carbon::parse($request->tanggal_lahir);
         $umur = $tl->diffInYears(Carbon::now());
+
+        if ($request->jenis_usaha === 'Lainnya') {
+            $jh = $request->jenis_usaha_lainnya;
+        }else{
+            $jh = $request->jenis_usaha;
+        }
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -87,6 +96,7 @@ class UserController extends Controller
         $user->tempat_lahir = $request->tempat_lahir;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->umur = $umur;
+        $user->jenis_usaha = $jh;
         $user->role_id = 3;
         $user->save();
 
@@ -136,7 +146,8 @@ class UserController extends Controller
                 'alamat' => 'required|max:100',
                 'phone' => 'required|numeric|digits_between:10,13',
                 'tanggal_lahir' => 'required|date',
-                'tempat_lahir' => 'required|max:30',
+                'tempat_lahir' => 'required|max:50',
+                'jenis_usaha_lainnya' => 'max:50'
             ],
             [
                 'name.required' => 'Nama tidak boleh kosong',
@@ -159,11 +170,33 @@ class UserController extends Controller
                 'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
                 'tempat_lahir.max' => 'Tempat lahir tidak boleh lebih dari 30 karakter',
+                'jenis_usaha_lainnya.max' => 'Jenis usaha lainnya tidak boleh lebih dari 50 karakter'
             ],
         );
 
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        $jh = '';
+        $tl = Carbon::parse($request->tanggal_lahir);
+        $umur = $tl->diffInYears(Carbon::now());
+
+        if ($request->jenis_usaha === 'Lainnya') {
+            $jh = $request->jenis_usaha_lainnya;
+        }else{
+            $jh = $request->jenis_usaha;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->NIK = $request->NIK;
+        $user->kepala_keluarga = $request->kepala_keluarga;
+        $user->alamat = $request->alamat;
+        $user->phone = $request->phone;
+        $user->gender = $request->gender;
+        $user->tempat_lahir = $request->tempat_lahir;
+        $user->tanggal_lahir = $request->tanggal_lahir;
+        $user->umur = $umur;
+        $user->jenis_usaha = $jh;
+        $user->update();
         
         return redirect()->intended('/user')->with('update', 'berhasil update');
     }
@@ -179,23 +212,20 @@ class UserController extends Controller
     {
         $request->validate(
             [
-                'nama_bantuan' => 'required|max:50',
-                'jenis_usaha' => 'required|max:50',
+                'nama_bantuan' => 'required|max:100',
                 'tahun_pemberian' => 'required|date',
-                'koordinator' => 'required|max:50',
-                'sumber_anggaran' => 'required|max:50',
+                'koordinator_lainnya' => 'max:50',
+                'nama_koordinator' => 'max:50',
+                'anggaran_lainnya' =>'max:50'
             ],
             [
                 'nama_bantuan.required' => 'Nama bantuan tidak boleh kosong!',
-                'nama_bantuan.max' => 'Nama bantuan maksimal 50 karakter!',
-                'jenis_usaha.required' => 'Jenis usaha tidak boleh kosong!',
-                'jenis_usaha.max' => 'Jenis usaha maksimal 50 karakter!',
+                'nama_bantuan.max' => 'Nama bantuan maksimal 100 karakter!',
                 'tahun_pemberian.required' => 'Tanggal pemberian tidak boleh kosong!',
                 'tahun_pemberian.date' => 'Tanggal pemberian harus berupa tanggal!',
-                'koordinator.required' => 'Koordinator tidak boleh kosong!',
-                'koordinator.max' => 'Koordinator maksimal 50 karakter!',
-                'sumber_anggaran.required' => 'Sumber anggaran tidak boleh kosong!',
-                'sumber_anggaran.max' => 'Sumber anggaran maksimal 50 karakter!',
+                'koordinator_lainnya.max' => 'Koordinator lainnya maksimal 50 karakter!',
+                'anggaran_lainnya.max' => 'Anggaran lainnya maksimal 50 karakter!',
+                'nama_koordinator.max' => 'Nama koordinator maksimal 50 karakter'
             ]
         );
 
@@ -203,6 +233,28 @@ class UserController extends Controller
         $user = $request->user_id;
         $userName = User::findOrFail($user);
         $bantuanName = $request->nama_bantuan. ' ' .$userName->name;
+        $lembagaKoordinator = '';
+        $sumberAnggaran = '';
+
+        if ($request->nama_koordinator == null) {
+            if ($request->lembaga_koordinator === 'Lainnya') {
+                $lembagaKoordinator = $request->koordinator_lainnya . ' - Tidak Diketahui';
+            }else{
+                $lembagaKoordinator = $request->lembaga_koordinator . ' - Tidak Diketahui';
+            }
+        }else{
+            if ($request->lembaga_koordinator === 'Lainnya') {
+                $lembagaKoordinator = $request->koordinator_lainnya . ' - ' . $request->nama_koordinator;
+            }else{
+                $lembagaKoordinator = $request->lembaga_koordinator . ' - ' . $request->nama_koordinator;
+            }
+        }
+
+        if ($request->sumber_anggaran === 'Lainnya') {
+            $sumberAnggaran = $request->anggaran_lainnya;
+        }else{
+            $sumberAnggaran = $request->sumber_anggaran;
+        }
 
         $result = Bantuan::where('nama_bantuan', $bantuanName)->exists();
 
@@ -210,9 +262,8 @@ class UserController extends Controller
             return back()->withInput()->with('nameexists', 'gagal');
         }else{
             $data->nama_bantuan = $bantuanName;
-            $data->jenis_usaha = $request->jenis_usaha;
-            $data->koordinator = $request->koordinator;
-            $data->sumber_anggaran = $request->sumber_anggaran;
+            $data->koordinator = $lembagaKoordinator;
+            $data->sumber_anggaran = $sumberAnggaran;
             $data->tahun_pemberian = $request->tahun_pemberian;
             $data->user_id = $request->user_id;
             $data->save();

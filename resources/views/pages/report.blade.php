@@ -115,7 +115,7 @@
                                                 @endforeach
                                             </td>
                                             <td>{{ $item->tahun_pemberian }}</td>
-                                            <td>{{ $item->jenis_usaha }}</td>
+                                            <td>{{ $item->user->jenis_usaha }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -78,6 +78,10 @@
                                     <td>{{ $item->tanggal_lahir }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Jenis Usaha</th>
+                                    <td>{{ $item->jenis_usaha }}</td>
+                                </tr>
+                                <tr>
                                     <th>Umur</th>
                                     <td>{{ $item->umur }}</td>
                                 </tr>
@@ -90,7 +94,6 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th scope="col">Nama Bantuan</th>
-                                                        <th scope="col">Jenis Usaha</th>
                                                         <th>Tanggal Pemberian</th>
                                                         <th>List Alat</th>
                                                         <th>Kuantitas</th>
@@ -102,7 +105,6 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $data->nama_bantuan }}</td>
-                                                            <td>{{ $data->jenis_usaha }}</td>
                                                             <td>{{ $data->tahun_pemberian }}</td>
                                                             <td>
                                                                 @foreach ($data->itemBantuan as $namaAlat)

@@ -42,17 +42,6 @@
                                 <input name="email" type="text" class="form-control input-default"
                                     placeholder="Input Email" value="{{ old('email') }}" required>
                             </div>
-                            {{-- <div class="form-group">
-                                <label for="">Password</label>
-                                <input name="password" type="password" class="form-control input-default"
-                                    placeholder="Input Password" value="{{ old('password') }}" required>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="">Re-Password</label>
-                                <input name="re_password" type="password" class="form-control input-default"
-                                    placeholder="Input Password" value="{{ old('re_password') }}" required>
-                            </div> --}}
                             <div class="form-group">
                                 <label for="">NIK</label>
                                 <input name="NIK" type="text" class="form-control input-default"
@@ -85,7 +74,7 @@
                             <div class="form-group">
                                 <label for="exampleTextarea1">Tanggal Lahir</label>
                                 <input type="date" class="form-control input-default" id="exampleInputEmail1"
-                                    name="tanggal_lahir" placeholder="Tanggal Lahir"  value="{{ old('tanngal_lahir') }}">
+                                    name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ old('tanggal_lahir') }}">
                             </div>
                             <div class="form-group">
                                 <label for="">Tempat Lahir</label>

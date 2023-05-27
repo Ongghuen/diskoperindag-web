@@ -46,6 +46,11 @@
                                     name="email" placeholder="Email" value="{{ $item->email }}">
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputUsername1">NIK</label>
+                                <input type="number" name="NIK" class="form-control input-default"
+                                    id="exampleInputUsername1" placeholder="Name" value="{{ $item->NIK }}">
+                            </div>
+                            <div class="form-group">
 
                                 <label for="gender">Kepala Keluarga</label>
                                 <select name="kepala_keluarga input-default" id="kepala_keluarga"
@@ -85,7 +90,6 @@
                                 </select>
                             </div>
                             <div class="form-group">
-
                                 <label for="exampleTextarea1">Tanggal Lahir</label>
                                 <input type="date" class="form-control input-default" id="exampleInputEmail1"
                                     name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ $item->tanggal_lahir }}">

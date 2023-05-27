@@ -50,8 +50,8 @@
                                     id="exampleInputNIK1" placeholder="NIK" value="{{ $item->NIK }}">
                             </div>
                             <div class="form-group">
-                                <label for="gender">Kepala Keluarga</label>
-                                <select name="kepala_keluarga input-default" id="kepala_keluarga"
+                                <label for="kepala_keluarga">Kepala Keluarga</label>
+                                <select name="kepala_keluarga" id="kepala_keluarga"
                                     class="form-control input-default">
                                     <option value="{{ $item->kepala_keluarga }}">
                                         {{ $item->kepala_keluarga == '0' ? 'Tidak' : 'Iya' }}
@@ -94,6 +94,38 @@
                                 <input type="text" name="tempat_lahir" class="form-control input-default"
                                     id="exampleInputPhone1" placeholder="Tempat Lahir" value="{{ $item->tempat_lahir }}">
                             </div>
+                            <div class="form-group">
+                                <label for="jenis_usaha">Jenis Usaha</label>
+                                <select name="jenis_usaha" id="jenis_usaha" onchange="showTextField()" class="form-control input-default form-control">
+                                    @if ($item->jenis_usaha === 'Bakery')
+                                        <option value="{{ $item->jenis_usaha }}">{{ $item->jenis_usaha }}</option>
+                                        <option value="Mebel">Mebel</option>
+                                        <option value="Tukang Jahit">Tukang Jahit</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    @elseif ($item->jenis_usaha === 'Mebel')
+                                        <option value="{{ $item->jenis_usaha }}">{{ $item->jenis_usaha }}</option>
+                                        <option value="Bakery">Bakery</option>
+                                        <option value="Tukang Jahit">Tukang Jahit</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    @elseif ($item->jenis_usaha === 'Tukang Jahit')
+                                        <option value="{{ $item->jenis_usaha }}">{{ $item->jenis_usaha }}</option>
+                                        <option value="Bakery">Bakery</option>
+                                        <option value="Mebel">Mebel</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    @else
+                                        <option value="{{ $item->jenis_usaha }}">{{ $item->jenis_usaha }}</option>
+                                        <option value="Bakery">Bakery</option>
+                                        <option value="Mebel">Mebel</option>
+                                        <option value="Tukang Jahit">Tukang Jahit</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group" id="usaha_lainnya" style="display: none;">
+                                <label for="usaha_lainnya">Usaha Lainnya</label>
+                                <input name="jenis_usaha_lainnya" id="usaha_lainnya" type="text" class="form-control input-default"
+                                    placeholder="Input Usaha Lainnya" value="{{ old('jenis_usaha_lainnya') }}">
+                            </div>
                             <button type="submit" class="btn btn-sm btn-primary me-2">Submit</button>
                             <a class="btn btn-light btn-sm" href="/user">Cancel</a>
                         </form>
@@ -102,4 +134,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function showTextField() {
+            var selectBox = document.getElementById("jenis_usaha");
+            var otherJobDiv = document.getElementById("usaha_lainnya");
+        
+            if (selectBox.value === "Lainnya") {
+                otherJobDiv.style.display = "block";
+            } else {
+                otherJobDiv.style.display = "none";
+            }
+        }
+    </script>
 @endsection

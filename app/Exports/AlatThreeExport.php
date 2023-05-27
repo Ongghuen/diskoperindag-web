@@ -109,8 +109,10 @@ class AlatThreeExport implements FromCollection, WithHeadings, WithMapping, With
                 $bantuan->nama_bantuan,
                 join(',', $alat),
                 join(',', $qty),
+                $bantuan->koordinator,
+                $bantuan->sumber_anggaran,
                 $bantuan->tahun_pemberian,
-                $bantuan->jenis_usaha
+                $bantuan->user->jenis_usaha
             ],
         ];
     }
@@ -125,6 +127,8 @@ class AlatThreeExport implements FromCollection, WithHeadings, WithMapping, With
             'Bantuan',
             'Alat',
             'Jumlah',
+            'Koordinator',
+            'Sumber Anggaran',
             'Tahun Pemberian',
             'Jenis Usaha'
         ];

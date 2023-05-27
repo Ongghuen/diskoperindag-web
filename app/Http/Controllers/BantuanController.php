@@ -22,7 +22,6 @@ class BantuanController extends Controller
             ->where(function ($query) use ($keyword) {
                 $query
                     ->where('nama_bantuan', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('jenis_usaha', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('koordinator', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('sumber_anggaran', 'LIKE', '%' . $keyword . '%');
@@ -30,7 +29,8 @@ class BantuanController extends Controller
             ->orWhereHas('user', function ($query) use ($keyword) {
                 $query
                     ->where('name', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%');
+                    ->orWhere('NIK', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('jenis_usaha', 'LIKE', '%' . $keyword . '%');
             })
             ->get();
 
@@ -102,31 +102,73 @@ class BantuanController extends Controller
     {
         $request->validate(
             [
-                'nama_bantuan' => 'required|max:50',
-                'jenis_usaha' => 'required|max:50',
+                'nama_bantuan' => 'required|max:100',
                 'tahun_pemberian' => 'required|date',
-                'koordinator' => 'required|max:50',
-                'sumber_anggaran' => 'required|max:50',
+                'koordinator_lainnya' => 'max:50',
+                'nama_koordinator' => 'max:50',
+                'anggaran_lainnya' =>'max:50'
             ],
             [
                 'nama_bantuan.required' => 'Nama bantuan tidak boleh kosong!',
-                'nama_bantuan.max' => 'Nama bantuan maksimal 50 karakter!',
-                'jenis_usaha.required' => 'Jenis usaha tidak boleh kosong!',
-                'jenis_usaha.max' => 'Jenis usaha maksimal 50 karakter!',
+                'nama_bantuan.max' => 'Nama bantuan maksimal 100 karakter!',
                 'tahun_pemberian.required' => 'Tanggal pemberian tidak boleh kosong!',
                 'tahun_pemberian.date' => 'Tanggal pemberian harus berupa tanggal!',
-                'koordinator.required' => 'Koordinator tidak boleh kosong!',
-                'koordinator.max' => 'Koordinator maksimal 50 karakter!',
-                'sumber_anggaran.required' => 'Sumber anggaran tidak boleh kosong!',
-                'sumber_anggaran.max' => 'Sumber anggaran maksimal 50 karakter!',
+                'koordinator_lainnya.max' => 'Koordinator lainnya maksimal 50 karakter!',
+                'anggaran_lainnya.max' => 'Anggaran lainnya maksimal 50 karakter!',
+                'nama_koordinator.max' => 'Nama koordinator maksimal 50 karakter'
             ]
         );
 
-        $items = Bantuan::findOrFail($id);
+        $data = Bantuan::findOrFail($id);
         $user = $request->user_id;
-        $items->update($request->all());
+        $userName = User::findOrFail($user);
+        $bantuanName = $request->nama_bantuan. ' ' .$userName->name;
+        $lembagaKoordinator = '';
+        $sumberAnggaran = '';
 
-        return redirect()->intended('/detail-user-bantuan/' . $user)->with('update', 'berhasil diubah');
+        if ($request->nama_koordinator == null) {
+            if ($request->lembaga_koordinator === 'Lainnya') {
+                $lembagaKoordinator = $request->koordinator_lainnya . ' - Tidak Diketahui';
+            }else{
+                $lembagaKoordinator = $request->lembaga_koordinator . ' - Tidak Diketahui';
+            }
+        }else{
+            if ($request->lembaga_koordinator === 'Lainnya') {
+                $lembagaKoordinator = $request->koordinator_lainnya . ' - ' . $request->nama_koordinator;
+            }else{
+                $lembagaKoordinator = $request->lembaga_koordinator . ' - ' . $request->nama_koordinator;
+            }
+        }
+
+        if ($request->sumber_anggaran === 'Lainnya') {
+            $sumberAnggaran = $request->anggaran_lainnya;
+        }else{
+            $sumberAnggaran = $request->sumber_anggaran;
+        }
+
+        if ($bantuanName === $request->nama_bantuan_ril) {
+            $data->nama_bantuan = $bantuanName;
+            $data->koordinator = $lembagaKoordinator;
+            $data->sumber_anggaran = $sumberAnggaran;
+            $data->tahun_pemberian = $request->tahun_pemberian;
+            $data->user_id = $request->user_id;
+            $data->update();
+            return redirect()->intended('/detail-user-bantuan/' . $user)->with('update', 'berhasil diubah');
+        }else{
+            $result = Bantuan::where('nama_bantuan', $bantuanName)->exists();
+    
+            if($result){
+                return back()->withInput()->with('nameexists', 'gagal');
+            }else{
+                $data->nama_bantuan = $bantuanName;
+                $data->koordinator = $lembagaKoordinator;
+                $data->sumber_anggaran = $sumberAnggaran;
+                $data->tahun_pemberian = $request->tahun_pemberian;
+                $data->user_id = $request->user_id;
+                $data->update();
+                return redirect()->intended('/detail-user-bantuan/' . $user)->with('update', 'berhasil diubah');
+            }
+        }
     }
 
     public function updateQty(Request $request, $idBantuan, $idAlat) //function untuk uodate kuantitas alat yang diberikan

@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'tempat_lahir' => $this->faker->words(2, true),
             'tanggal_lahir' => $this->faker->date(),
             'umur' => $this->faker->randomNumber(2, true),
+            'jenis_usaha' => $this->faker->words(2, true),
             'role_id' => '3'
         ];
     }

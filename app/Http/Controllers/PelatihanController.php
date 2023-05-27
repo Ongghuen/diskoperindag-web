@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 use App\Models\UserPelatihan;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -74,14 +75,15 @@ class PelatihanController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required|max:50',
+                'nama' => 'required|max:100|unique:pelatihan',
                 'penyelenggara' => 'required|max:50',
                 'tanggal_pelaksanaan' => 'required|date',
                 'tempat' => 'required|max:50',
             ],
             [
-                'nama.required' => 'Nama Pelatihan tidak boleh kosong',
-                'nama.max' => 'Nama Pelatihan maksimal 50 karakter',
+                'nama.required' => 'Nama pelatihan tidak boleh kosong',
+                'nama.max' => 'Nama pelatihan maksimal 100 karakter',
+                'nama.unique' => 'Nama pelatihan sudah ada, silahkan gunakan nama lain',
                 'tanggal_pelaksanaan.required' => 'tanggal pelaksanaan tidak boleh kosong',
                 'penyelenggara.max' => 'Penyelenggara maksimal 50 karakter',
                 'penyelenggara.required' => 'Penyelenggara tidak boleh kosong',
@@ -107,14 +109,15 @@ class PelatihanController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required|max:50',
+                'nama' => ['required','max:50', Rule::unique('pelatihan')->ignore($id, 'id')],
                 'penyelenggara' => 'required|max:50',
                 'tanggal_pelaksanaan' => 'required|date',
                 'tempat' => 'required|max:50',
             ],
             [
-                'nama.required' => 'Nama Pelatihan tidak boleh kosong',
-                'nama.max' => 'Nama Pelatihan maksimal 50 karakter',
+                'nama.required' => 'Nama pelatihan tidak boleh kosong',
+                'nama.max' => 'Nama pelatihan maksimal 50 karakter',
+                'nama.unique' => 'Nama pelatihan sudah ada, silahkan gunakan nama lain',
                 'tanggal_pelaksanaan.required' => 'tanggal pelaksanaan tidak boleh kosong',
                 'penyelenggara.max' => 'Penyelenggara maksimal 50 karakter',
                 'penyelenggara.required' => 'Penyelenggara tidak boleh kosong',

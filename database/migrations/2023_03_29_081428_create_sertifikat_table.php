@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('sertifikat', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama', 100);
             $table->date('tanggal_terbit');
             $table->date('kadaluarsa_penyelenggara');
-            $table->longText('keterangan');
+            $table->longText('keterangan', 1000);
             $table->timestamps();
         });
     }

@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('bantuan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_bantuan');
-            $table->string('jenis_usaha');
-            $table->string('koordinator')->default('Belum ada');
-            $table->string('sumber_anggaran')->default('Belum ada');
+            $table->string('nama_bantuan', 100);
+            $table->string('koordinator', 100)->default('Belum ada');
+            $table->string('sumber_anggaran', 50)->default('Belum ada');
             $table->date('tahun_pemberian');
             $table->timestamps();
         });

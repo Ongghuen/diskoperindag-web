@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -115,11 +116,18 @@ class AdminController extends Controller
         $request->validate(
             [
                 'name' => 'required|max:50',
-                'email' => 'required|email|max:50',
+                'email' => ['required','email','max:50', Rule::unique('users')->ignore($id, 'id')],
+                'NIK' => [
+                    'required',
+                    'numeric',
+                    'digits:16',
+                    Rule::unique('users')->ignore($id, 'id'),
+                ],
                 'alamat' => 'required|max:100',
-                'phone' => 'required|numeric',
+                'phone' => 'required|numeric|digits_between:10,13',
                 'tanggal_lahir' => 'required|date',
-                'tempat_lahir' => 'required|max:30',
+                'tempat_lahir' => 'required|max:50',
+                'jenis_usaha_lainnya' => 'max:50'
             ],
             [
                 'name.required' => 'Nama tidak boleh kosong',
@@ -128,14 +136,21 @@ class AdminController extends Controller
                 'email.required' => 'Email tidak boleh kosong',
                 'email.email' => 'Email tidak valid',
                 'email.max' => 'Email tidak boleh lebih dari 50 karakter',
+                'email.unique' => 'Email sudah terdaftar, silahkan gunakan email lain',
+                'NIK.required' => 'NIK tidak boleh kosong',
+                'NIK.unique' => 'NIK sudah terdaftar',
+                'NIK.numeric' => 'NIK harus berupa angka',
+                'NIK.digits' => 'NIK harus berjumlah 16 karakter',
                 'alamat.required' => 'Alamat tidak boleh kosong',
                 'alamat.max' => 'Alamat tidak boleh lebih dari 100 karakter',
                 'phone.required' => 'Nomor telepon tidak boleh kosong',
                 'phone.numeric' => 'Nomor telepon harus berupa angka',
+                'phone.digits_between' => 'Nomor telepon minimal 10 angka dan maksimal 13 angka',
                 'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
                 'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
                 'tempat_lahir.max' => 'Tempat lahir tidak boleh lebih dari 30 karakter',
+                'jenis_usaha_lainnya.max' => 'Jenis usaha lainnya tidak boleh lebih dari 50 karakter'
             ],
         );
 

@@ -44,19 +44,41 @@
                                         placeholder="Nama Bantuan" name="nama_bantuan" value="{{ old('nama_bantuan') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputUsername2">Jenis Usaha</label>
-                                    <input type="text" class="form-control input-default" id="exampleInputUsername2"
-                                        placeholder="Jenis Usaha" name="jenis_usaha" value="{{ old('jenis_usaha') }}">
+                                    <label for="lembaga_koordinator">Lembaga Koordinator</label>
+                                    <select name="lembaga_koordinator" id="lembaga_koordinator" onchange="showTextField1()" class="form-control input-default form-control">
+                                        <option value="PDI Perjuangan">PDI Perjuangan</option>
+                                        <option value="Golkar">Golkar</option>
+                                        <option value="Gerindra">Gerindra</option>
+                                        <option value="Partai Kebangkitan Bangsa (PKB)">Partai Kebangkitan Bangsa (PKB)</option>
+                                        <option value="Demokrat">Demokrat</option>
+                                        <option value="Partai Keadilan Sejahtera (PKS)">Partai Keadilan Sejahtera (PKS)</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="koordinator_lainnya" style="display: none;">
+                                    <label for="lainnya">Lembaga Lainnya</label>
+                                    <input name="koordinator_lainnya" id="lainnya" type="text" class="form-control input-default"
+                                        placeholder="Input Koordinator Lainnya" value="{{ old('koordinator_lainnya') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputUsername3">Koordinator</label>
-                                    <input type="text" class="form-control input-default" id="exampleInputUsername3"
-                                        placeholder="Koordinator" name="koordinator" value="{{ old('koordinator') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputUsername4">Sumber Anggaran</label>
+                                    <label for="exampleInputUsername4">Nama Koordinator</label>
                                     <input type="text" class="form-control input-default" id="exampleInputUsername4"
-                                        placeholder="Sumber Anggaran" name="sumber_anggaran" value="{{ old('sumber_anggaran') }}">
+                                        placeholder="Nama Koordinator" name="nama_koordinator" value="{{ old('nama_koordinator') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sumber_anggaran">Sumber Anggaran</label>
+                                    <select name="sumber_anggaran" id="sumber_anggaran" onchange="showTextField2()" class="form-control input-default form-control">
+                                        <option value="DAU">DAU</option>
+                                        <option value="DAK">DAK</option>
+                                        <option value="DBHCHT">DBHCHT</option>
+                                        <option value="BK">BK</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="anggaran_lainnya" style="display: none;">
+                                    <label for="lainnya">Anggaran Lainnya</label>
+                                    <input name="anggaran_lainnya" id="lainnya" type="text" class="form-control input-default"
+                                        placeholder="Input Anggaran Lainnya" value="{{ old('anggaran_lainnya') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername3">Tanggal Pemberian</label>
@@ -73,3 +95,30 @@
     </div>
     </div>
 @endsection
+
+@section('script')
+    <script>
+        function showTextField1() {
+            var selectBox = document.getElementById("lembaga_koordinator");
+            var otherJobDiv = document.getElementById("koordinator_lainnya");
+        
+            if (selectBox.value === "Lainnya") {
+                otherJobDiv.style.display = "block";
+            } else {
+                otherJobDiv.style.display = "none";
+            }
+        }
+
+        function showTextField2() {
+            var selectBox = document.getElementById("sumber_anggaran");
+            var otherJobDiv = document.getElementById("anggaran_lainnya");
+        
+            if (selectBox.value === "Lainnya") {
+                otherJobDiv.style.display = "block";
+            } else {
+                otherJobDiv.style.display = "none";
+            }
+        }
+    </script>
+@endsection
+

@@ -81,6 +81,20 @@
                                 <input name="tempat_lahir" type="text" class="form-control input-default"
                                     placeholder="Input Tempat Lahir" value="{{ old('tempat_lahir') }}" required>
                             </div>
+                            <div class="form-group">
+                                <label for="jenis_usaha">Jenis Usaha</label>
+                                <select name="jenis_usaha" id="jenis_usaha" onchange="showTextField()" class="form-control input-default form-control">
+                                    <option value="Bakery">Bakery</option>
+                                    <option value="Mebel">Mebel</option>
+                                    <option value="Tukang Jahit">Tukang Jahit</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="usaha_lainnya" style="display: none;">
+                                <label for="usaha_lainnya">Usaha Lainnya</label>
+                                <input name="jenis_usaha_lainnya" id="usaha_lainnya" type="text" class="form-control input-default"
+                                    placeholder="Input Usaha Lainnya" value="{{ old('jenis_usaha_lainnya') }}">
+                            </div>
                             <button type="submit" class="btn btn-primary me-2 btn-sm">Submit</button>
                             <a class="btn btn-light btn-sm" href="/user">Cancel</a>
                         </form>
@@ -89,4 +103,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function showTextField() {
+            var selectBox = document.getElementById("jenis_usaha");
+            var otherJobDiv = document.getElementById("usaha_lainnya");
+        
+            if (selectBox.value === "Lainnya") {
+                otherJobDiv.style.display = "block";
+            } else {
+                otherJobDiv.style.display = "none";
+            }
+        }
+    </script>
 @endsection

@@ -40,7 +40,7 @@
                                             <td>{{ $item->nama_bantuan }}</td>
                                             <td>{{ $item->user->name }}</td>
                                             <td>{{ $item->user->NIK }}</td>
-                                            <td>{{ $item->jenis_usaha }}</td>
+                                            <td>{{ $item->user->jenis_usaha }}</td>
                                             <td>{{ $item->koordinator }}</td>
                                             <td>{{ $item->sumber_anggaran }}</td>
                                             <td>{{ $item->tahun_pemberian }}</td>

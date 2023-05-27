@@ -23,7 +23,7 @@
                                 </tr>
                                 <tr>
                                     <th>Jenis Usaha</th>
-                                    <td>{{ $item->jenis_usaha }}</td>
+                                    <td>{{ $item->user->jenis_usaha }}</td>
                                 </tr>
                                 <tr>
                                     <th>Penerima</th>
