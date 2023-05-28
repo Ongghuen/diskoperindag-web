@@ -38,7 +38,7 @@
                             <a class="btn mb-1 btn-outline-danger btn-sm ms-auto" href="" data-toggle="modal" data-target="#hapusModal">Hapus</a>
                         </div>
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered zero-configuration">
+                            <table id="example" class="table table-bordered zero-configuration" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>No</th>

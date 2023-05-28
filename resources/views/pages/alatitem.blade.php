@@ -56,7 +56,7 @@
                             </div>
                         @endif
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered zero-configuration">
+                            <table id="example" class="table table-bordered zero-configuration"  style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>No</th>
