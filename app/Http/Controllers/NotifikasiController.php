@@ -26,7 +26,7 @@ class NotifikasiController extends Controller
             [
                 'judul.required' => 'Judul tidak boleh kosong!',
                 'judul.max' => 'Sub Judul maksimal 100 karakter!',
-                'body.required' => 'deskripsi tidak boleh kosong!'
+                'body.required' => 'deskripsi tidak boleh kosong!',
             ]
         );
 
@@ -46,6 +46,10 @@ class NotifikasiController extends Controller
         } else {
             $argOne = 'token';
             $token = $request->token;
+            if ($token == null) {
+                return redirect()->intended('/notifikasi')->with('notifGagal', 'gagal');
+            }
+
             $message = CloudMessage::withTarget($argOne, $token)
                 ->withNotification($notification);
         }
@@ -55,7 +59,5 @@ class NotifikasiController extends Controller
 
             return redirect()->intended('/notifikasi')->with('createNotif', 'berhasil');
         }
-
-        return redirect()->intended('/notifikasi')->with('notifGagal', 'gagal');
     }
 }
