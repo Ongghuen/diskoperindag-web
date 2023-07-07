@@ -71,14 +71,14 @@ class DatabaseSeeder extends Seeder
             'role_id' => '2'
         ]);
 
-        User::factory()->count(10)->create();
-        Bantuan::factory()->count(10)->create();
-        Alat::factory()->count(20)->create();
-        Sertifikat::factory()->count(20)->create();
-        Pelatihan::factory()->count(20)->create();
-        BantuanAlat::factory()->count(30)->create();
-        UserPelatihan::factory()->count(30)->create();
-        UserSertifikat::factory()->count(30)->create();
-        Berita::factory()->count(5)->create();
+        User::factory()->count(20)->create();
+        // Bantuan::factory()->count(10)->create();
+        // Alat::factory()->count(20)->create();
+        // Sertifikat::factory()->count(20)->create();
+        // Pelatihan::factory()->count(20)->create();
+        // BantuanAlat::factory()->count(30)->create();
+        // UserPelatihan::factory()->count(30)->create();
+        // UserSertifikat::factory()->count(30)->create();
+        // Berita::factory()->count(5)->create();
     }
 }

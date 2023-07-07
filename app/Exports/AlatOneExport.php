@@ -20,14 +20,13 @@ class AlatOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
     function __construct($data1) {
         $this->keyword = $data1;
     }
-    
+
     public function collection()
     {
         $data = $this->keyword;
         $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data.'%')
                     ->orwhereHas('user', function ($query) use($data){
@@ -76,7 +75,6 @@ class AlatOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
                 $bantuan->koordinator,
                 $bantuan->sumber_anggaran,
                 $bantuan->tahun_pemberian,
-                $bantuan->user->jenis_usaha
             ],
         ];
     }
@@ -94,7 +92,6 @@ class AlatOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
             'Koordinator',
             'Sumber Anggaran',
             'Tahun Pemberian',
-            'Jenis Usaha'
         ];
     }
 

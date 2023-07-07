@@ -65,7 +65,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -81,7 +80,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -97,7 +95,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data3){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data3.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data3.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data3.'%')
                     ->orwhereHas('user', function ($query) use($data3){
@@ -214,7 +211,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -230,7 +226,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -246,7 +241,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data3){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data3.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data3.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data3.'%')
                     ->orwhereHas('user', function ($query) use($data3){
@@ -363,7 +357,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -379,7 +372,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -395,7 +387,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data3){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data3.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data3.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data3.'%')
                     ->orwhereHas('user', function ($query) use($data3){
@@ -512,7 +503,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -528,7 +518,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -544,7 +533,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data3){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data3.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data3.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data3.'%')
                     ->orwhereHas('user', function ($query) use($data3){
@@ -658,7 +646,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -674,7 +661,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -766,7 +752,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -782,7 +767,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -874,7 +858,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -890,7 +873,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -982,7 +964,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data1){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                     ->orwhereHas('user', function ($query) use($data1){
@@ -998,7 +979,6 @@ class ReportController extends Controller
                 })
                 ->where(function ($query) use($data2){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data2.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data2.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data2.'%')
                     ->orwhereHas('user', function ($query) use($data2){
@@ -1087,7 +1067,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                         ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -1154,7 +1133,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                         ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -1221,7 +1199,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                         ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){
@@ -1288,7 +1265,6 @@ class ReportController extends Controller
                 $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                     ->where(function ($query) use($data1){
                         $query
-                        ->where('jenis_usaha', 'LIKE', '%'.$data1.'%')
                         ->orWhere('nama_bantuan', 'LIKE', '%'.$data1.'%')
                         ->orWhere('tahun_pemberian', 'LIKE', '%'.$data1.'%')
                         ->orwhereHas('user', function ($query) use($data1){

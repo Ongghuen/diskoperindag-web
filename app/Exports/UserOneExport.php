@@ -20,14 +20,13 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
     function __construct($data1) {
         $this->keyword = $data1;
     }
-    
+
     public function collection() //function untuk memilih data yang akan diexport
     {
         $data = $this->keyword;
         $bantuan = Bantuan::with(['user.role', 'itemBantuan'])
                 ->where(function ($query) use($data){
                     $query
-                    ->where('jenis_usaha', 'LIKE', '%'.$data.'%')
                     ->orWhere('nama_bantuan', 'LIKE', '%'.$data.'%')
                     ->orWhere('tahun_pemberian', 'LIKE', '%'.$data.'%')
                     ->orwhereHas('user', function ($query) use($data){
@@ -136,13 +135,13 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
                 } else{
                     $gender = 'Laki-Laki';
                 }
-    
+
                 if($dataUser->kepala_keluarga == 1){
                     $kk = 'Iya';
                 } else{
                     $kk = 'Tidak';
                 }
-    
+
                 $newUser = [
                     'nama' => $dataUser->name,
                     'nik' => $dataUser->NIK,
@@ -155,7 +154,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
                     'tanggal_lahir' => $dataUser->tanggal_lahir,
                     'umur' => $dataUser->umur
                 ];
-    
+
                 $found = false;
                 foreach ($user as $item) {
                     if ($item['nama'] === $newUser['nama']) {
@@ -163,7 +162,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
                         break;
                     }
                 }
-    
+
                 if (!$found) {
                     $user[] = $newUser;
                 }
@@ -177,13 +176,13 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
                 } else{
                     $gender = 'Laki-Laki';
                 }
-    
+
                 if($dataUser->kepala_keluarga == 1){
                     $kk = 'Iya';
                 } else{
                     $kk = 'Tidak';
                 }
-    
+
                 $newUser = [
                     'nama' => $dataUser->name,
                     'nik' => $dataUser->NIK,
@@ -196,7 +195,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
                     'tanggal_lahir' => $dataUser->tanggal_lahir,
                     'umur' => $dataUser->umur
                 ];
-    
+
                 $found = false;
                 foreach ($user as $item) {
                     if ($item['nama'] === $newUser['nama']) {
@@ -204,7 +203,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
                         break;
                     }
                 }
-    
+
                 if (!$found) {
                     $user[] = $newUser;
                 }
@@ -217,7 +216,7 @@ class UserOneExport implements FromCollection, WithHeadings, WithMapping, WithTi
     public function map($row): array //function untuk mengambil data dari query function collection
     {
         ++$this->rowNumber;
-        
+
         return [
             [
                 $this->rowNumber,
