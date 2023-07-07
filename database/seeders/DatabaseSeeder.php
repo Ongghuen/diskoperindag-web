@@ -36,42 +36,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Daffa Afifi Syahrony',
-            'email' => 'admin@gmail.com',
+            'name' => 'Ifa',
+            'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
-            'NIK' => '7128982898229102',
-            'alamat' => 'Tempurejo, Jember',
-            'phone' => '0895385501523',
+            'NIK' => '999999999999999',
+            'alamat' => 'Bondowoso',
+            'phone' => '0899999999999',
             'gender' => 'L',
             'umur' => '20',
             'role_id' => '1'
         ]);
 
-        User::create([
-            'name' => 'Raihan Achmad',
-            'email' => 'r@r',
-            'password' => bcrypt('r'),
-            'NIK' => '696969696969',
-            'alamat' => 'Jember',
-            'phone' => '089538558328',
-            'gender' => 'L',
-            'umur' => '20',
-            'role_id' => '3'
-        ]);
-
-        User::create([
-            'name' => 'Ilham Ibnu Ahmad',
-            'email' => 'ilham@gmail.com',
-            'password' => bcrypt('1234567890123456'),
-            'NIK' => '1234567890123456',
-            'alamat' => 'ProboProbo',
-            'phone' => '089538558315',
-            'gender' => 'L',
-            'umur' => '20',
-            'role_id' => '2'
-        ]);
-
-        User::factory()->count(20)->create();
+        /* User::factory()->count(20)->create(); */
         // Bantuan::factory()->count(10)->create();
         // Alat::factory()->count(20)->create();
         // Sertifikat::factory()->count(20)->create();
