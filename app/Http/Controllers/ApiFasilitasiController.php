@@ -6,29 +6,56 @@ use App\Models\Bantuan;
 
 class ApiFasilitasiController extends Controller
 {
-
-    public function bantuan() //function untuk menampilkan bantuan yang didapat pengguna di aplikasi mobile
+    //function untuk menampilkan bantuan yang didapat pengguna di aplikasi mobile
+    public function bantuan() 
     {
-        return response()->json(auth()->user()->bantuan()->get());
+        try {
+            return response()->json(auth()->user()->bantuan()->get());
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menampilkan bantuan'
+            ], 500);
+        }
     }
 
-    public function bantuanDetail($id) //function untuk melihat detail bantuan yang didapat pengguna di aplikasi mobile
+    //function untuk melihat detail bantuan yang didapat pengguna di aplikasi mobile
+    public function bantuanDetail($id)
     {
-        $bantuan = Bantuan::with(['user', 'itemBantuan'])
-            ->where('id', '=', $id)
-            ->first();
-
-        return response()->json($bantuan);
+        try {
+            $bantuan = Bantuan::with(['user', 'itemBantuan'])
+                ->where('id', '=', $id)
+                ->first();
+    
+            return response()->json($bantuan);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menampilkan detail bantuan'
+            ], 500);
+        }
     }
 
-    public function sertifikat() //function untuk melihat sertifikat yang didapat pengguna di aplikasi mobile
+    //function untuk melihat sertifikat yang didapat pengguna di aplikasi mobile
+    public function sertifikat() 
     {
-        return response()->json(auth()->user()->sertifikat()->get());
+        try {
+            return response()->json(auth()->user()->sertifikat()->get());
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menampilkan sertifikat'
+            ], 500);
+        }
     }
 
-    public function pelatihan() //function untuk melihat pelatihan yang didapat pengguna di aplikasi mobile
+    //function untuk melihat pelatihan yang didapat pengguna di aplikasi mobile
+    public function pelatihan() 
     {
-        return response()->json(auth()->user()->pelatihan()->get());
+        try {
+            return response()->json(auth()->user()->pelatihan()->get());
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menampilkan pelatihan'
+            ], 500);
+        }
     }
 
 }

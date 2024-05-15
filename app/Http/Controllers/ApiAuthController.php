@@ -8,61 +8,94 @@ use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
-    public function login(Request $request) //functio untuk login di aplikasi mobile
+    // function untuk login di aplikasi mobile
+    public function login(Request $request)
     {
-        $formField = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        if (auth()->attempt($formField)) {
-            $user = User::where('email', $formField['email'])->first();
-            $token = $user->createToken('diskoperindag')->plainTextToken;
-
-            return response([
-                'user' => $user,
-                'token' => $token,
-            ], 201);
-        } else {
-            return response([
-                'message' => 'Bad credentials',
-            ], 401);
+        try {
+            $formField = $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+    
+            if (auth()->attempt($formField)) {
+                $user = User::where('email', $formField['email'])->first();
+                $token = $user->createToken('diskoperindag')->plainTextToken;
+    
+                return response([
+                    'user' => $user,
+                    'token' => $token,
+                ], 201);
+            } else {
+                return response([
+                    'message' => 'Username atau password salah',
+                ], 401);
+            }
+        } catch (\Throwable $e) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat login'
+            ], 500);
         }
     }
 
-    public function logout(Request $request)// function untuk logout di aplikasi mobile
+    // function untuk logout di aplikasi mobile
+    public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-
-        return response()->json('Logged Out');
+        try {
+            $request->user()->currentAccessToken()->delete();
+            return response()->json(['message' => 'Logged Out']);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat logout'
+            ], 500);
+        }
     }
 
-    public function checkToken()//function untuk cek token bearer 
+    //function untuk cek token bearer 
+    public function checkToken()
     {
-        return response()->json('Valid');
+        try {
+            return response()->json(['message' => 'Token Valid']);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat cek token'
+            ], 500);
+        }
     }
 
-    public function changePassword(Request $request) //function untuk ganti pasword di aplikasi mobile
+    //function untuk ganti pasword di aplikasi mobile
+    public function changePassword(Request $request)
     {
-        if (Hash::check($request->currentPassword, auth()->user()->password)) {
+        try {
+            if (Hash::check($request->currentPassword, auth()->user()->password)) {
+                $user = auth()->user();
+                $user->password = bcrypt($request->newPassword);
+                $user->save();
+
+                return response()->json(['message' => 'Password berhasil diubah']);
+            } else {
+                return response(['message' => 'Invalid current password'], 403);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat ganti password'
+            ], 500);
+        }
+    }
+
+    //function untuk memberi fcm token ke user
+    public function assignToken(Request $request)
+    {
+        try {
             $user = auth()->user();
-            $user->password = bcrypt($request->newPassword);
-
-            return response()->json($user->save());
-        } else {
-            return response(status: 403);
+            $user->fcm_token = $request->fcm_token;
+    
+            if ($user->save()) {
+                return response()->json(['message' => 'Token berhasil ditambahkan ke user']);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat assign token'
+            ], 500);
         }
-    }
-
-    public function assignToken(Request $request) //function untuk memberi fcm token ke ucer
-    {
-        $user = auth()->user();
-        $user->fcm_token = $request->fcm_token;
-
-        if ($user->save()) {
-            return response()->json('Token berhasil ditambahkan ke user');
-        }
-
-        return response()->json('Token gagal ditambahkan');
     }
 }

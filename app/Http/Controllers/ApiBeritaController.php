@@ -7,33 +7,77 @@ use Illuminate\Http\Request;
 
 class ApiBeritaController extends Controller
 {
-    public function index() //function untuk menampilkan semua berita di aplikasi mobile
+    //function untuk menampilkan semua berita di aplikasi mobile
+    public function index() 
     {
-        return response()->json(Berita::where('deleted_at', "=", null)->get());
-    }
-
-    public function indexSaved() //function untuk menampilkan berita yang disimpan di aplikasi mobile
-    {
-        return response()->json(auth()->user()->berita()->get());
-    }
-
-    public function detail(string $id) //function untuk melihat detail berita di aplikasi mobile
-    {
-        return response()->json(Berita::where('id', "=", $id)->first());
-    }
-
-    public function store(Request $request) // function untuk menyimpan berita di aplikasi mobile
-    {
-        $saved = auth()->user()->berita()->get();
-        for($i = 0; $i < count($saved); $i++){
-            if($saved[$i]->id == $request->berita_id) return;
+        try {
+            return response()->json(Berita::where('deleted_at', "=", null)->get());
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menampilkan berita'
+            ], 500);
         }
-
-        return auth()->user()->berita()->attach($request->berita_id);
     }
 
-    public function destroy(string $id) //function untuk mengapus berita yang tersimpan di aplikasi mobile
+    //function untuk menampilkan berita yang disimpan di aplikasi mobile
+    public function indexSaved() 
     {
-        return auth()->user()->berita()->detach($id);
+        try {
+            return response()->json(auth()->user()->berita()->get());
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menampilkan berita tersimpan'
+            ], 500);
+        }
+    }
+
+    //function untuk melihat detail berita di aplikasi mobile
+    public function detail(string $id) 
+    {
+        try {
+            return response()->json(Berita::where('id', "=", $id)->first());
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menampilkan detail berita'
+            ], 500);
+        }
+    }
+
+    //function untuk menyimpan berita di aplikasi mobile
+    public function store(Request $request) 
+    {
+        try {
+            $saved = auth()->user()->berita()->get();
+            for($i = 0; $i < count($saved); $i++){
+                if($saved[$i]->id == $request->berita_id) return;
+            }
+    
+            auth()->user()->berita()->attach($request->berita_id);
+
+            return response()->json([
+                'message' => 'Berhasil menyimpan berita',
+                'news' => auth()->user()->berita()->where('berita_id', $request->berita_id)->get()
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menyimpan berita'
+            ], 500);
+        }
+    }
+
+    //function untuk mengapus berita yang tersimpan di aplikasi mobile
+    public function destroy(string $id) 
+    {
+        try {
+            auth()->user()->berita()->detach($id);
+
+            return response()->json([
+                'message' => 'Berhasil menghapus berita',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menghapus berita tersimpan'
+            ], 500);
+        }
     }
 }
